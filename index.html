@@ -1257,11 +1257,11 @@
     async function fetchGlobalStats() {
       if (!API_BASE) { apiAvailable = false; renderLiveBanner(); return; }
       try {
-        // Bypass any HTTP-level caching with a timestamp + cache: no-store
+        // Bypass HTTP-level caching with timestamp + cache: no-store
+        // (we don't add Cache-Control header here — that would trigger CORS preflight)
         const res = await fetch(API_BASE + '/api/stats?t=' + Date.now(), {
           method: 'GET',
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+          cache: 'no-store'
         });
         if (!res.ok) throw new Error('Bad response');
         globalStats = await res.json();
