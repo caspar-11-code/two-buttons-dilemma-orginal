@@ -231,6 +231,150 @@
       line-height: 1.4;
     }
 
+    .live-banner {
+      background: linear-gradient(135deg, rgba(212, 184, 150, 0.06) 0%, rgba(126, 184, 154, 0.04) 100%);
+      border: 0.5px solid rgba(212, 184, 150, 0.25);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .live-banner-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .live-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #7eb89a;
+      box-shadow: 0 0 0 0 rgba(126, 184, 154, 0.6);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(126, 184, 154, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(126, 184, 154, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(126, 184, 154, 0); }
+    }
+
+    .live-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .live-explain {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 16px;
+      opacity: 0.92;
+    }
+
+    .live-explain em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .live-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .live-stat {
+      background: rgba(255,255,255,0.025);
+      border-radius: 6px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 0.5px solid rgba(255,255,255,0.04);
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    .live-stat.flash {
+      background: rgba(212, 184, 150, 0.12);
+      border-color: rgba(212, 184, 150, 0.4);
+    }
+
+    .live-stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .live-stat-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+
+    .live-stat-value.red { color: var(--red); }
+    .live-stat-value.blue { color: var(--blue); }
+
+    .live-stat-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-mute);
+      margin-top: 4px;
+    }
+
+    .live-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--text-mute);
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      text-transform: uppercase;
+    }
+
+    .live-status.visible { opacity: 0.85; }
+    .live-status.success { color: var(--success); }
+    .live-status.warning { color: var(--warning); }
+
+    .first-vote-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: rgba(212, 184, 150, 0.15);
+      color: var(--accent);
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .result-live-section {
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .result-live-section .live-stats-grid {
+      margin-top: 10px;
+    }
+
     .rules {
       background: var(--surface);
       border: 0.5px solid var(--border);
@@ -756,6 +900,31 @@
         <p class="hero-sub" id="hero-sub"></p>
       </div>
 
+      <div class="live-banner">
+        <div class="live-banner-header">
+          <span class="live-pulse"></span>
+          <span class="live-label" id="live-label"></span>
+        </div>
+        <p class="live-explain" id="live-explain"></p>
+        <div class="live-stats-grid">
+          <div class="live-stat" id="live-stat-total">
+            <div class="live-stat-label" id="live-total-label"></div>
+            <div class="live-stat-value" id="live-total-value">—</div>
+          </div>
+          <div class="live-stat" id="live-stat-red">
+            <div class="live-stat-label" id="live-red-label"></div>
+            <div class="live-stat-value red" id="live-red-value">—</div>
+            <div class="live-stat-pct" id="live-red-pct"></div>
+          </div>
+          <div class="live-stat" id="live-stat-blue">
+            <div class="live-stat-label" id="live-blue-label"></div>
+            <div class="live-stat-value blue" id="live-blue-value">—</div>
+            <div class="live-stat-pct" id="live-blue-pct"></div>
+          </div>
+        </div>
+        <p class="live-status" id="live-status"></p>
+      </div>
+
       <div class="rules">
         <div class="rules-label" id="rules-label"></div>
         <p id="rule-1"></p>
@@ -854,6 +1023,20 @@
         halfwayInsight: (n) => `You've unlocked ${n} questions. ${16 - n} remain. Each unrevealed one challenges a different aspect of your thinking — worth seeing them all.`,
         closingQuote: 'The question isn\'t "what would you choose". The question is "what would you choose, knowing most people will choose differently than they claim".',
         footerText: 'PolyForm Noncommercial 1.0.0',
+
+        // Global stats — real votes
+        liveLabel: 'Live · Real votes worldwide',
+        liveExplain: 'This isn\'t just a simulation. Your <em>first</em> click is recorded into the global tally below. Subsequent plays only run the simulation. One person, one vote.',
+        liveTotalLabel: 'Total votes',
+        liveRedLabel: 'Picked red',
+        liveBlueLabel: 'Picked blue',
+        liveLoading: 'Loading global tally…',
+        liveYourVote: 'Your vote was counted',
+        liveAlreadyVoted: 'You already voted',
+        liveOffline: 'Global tally offline · simulation still works',
+        firstVoteBadge: 'Your real vote',
+        firstVoteCounted: (c) => `Your first click was recorded as ${c}. From now on you\'re only running the simulation.`,
+        liveResultsHeader: 'Real-world results so far',
 
         // Result messages
         resultRedBlueWon: { title: 'You live.', sub: 'Humanity chose trust. The blues saved everyone, including you.', mood: 'shame', detail: (p) => `${p}% chose blue. You were saved by people you didn't trust. No one will know — but you will.` },
@@ -956,6 +1139,20 @@
         closingQuote: 'Pytanie nie brzmi "co byś wybrał". Pytanie brzmi "co byś wybrał, wiedząc że większość wybierze odwrotnie, niż deklaruje".',
         footerText: 'PolyForm Noncommercial 1.0.0',
 
+        // Globalne statystyki — realne głosy
+        liveLabel: 'Na żywo · Realne głosy z całego świata',
+        liveExplain: 'To nie tylko symulacja. Twój <em>pierwszy</em> klik trafia do globalnej statystyki poniżej. Każda kolejna gra to już tylko symulacja. Jedna osoba, jeden głos.',
+        liveTotalLabel: 'Wszystkich głosów',
+        liveRedLabel: 'Wybrało czerwony',
+        liveBlueLabel: 'Wybrało niebieski',
+        liveLoading: 'Ładowanie globalnych statystyk…',
+        liveYourVote: 'Twój głos został zarejestrowany',
+        liveAlreadyVoted: 'Już głosowałeś',
+        liveOffline: 'Globalne statystyki niedostępne · symulacja działa',
+        firstVoteBadge: 'Twój realny głos',
+        firstVoteCounted: (c) => `Twój pierwszy klik został zapisany jako ${c}. Od teraz tylko uruchamiasz symulację.`,
+        liveResultsHeader: 'Realne wyniki ze świata',
+
         resultRedBlueWon: { title: 'Żyjesz.', sub: 'Ludzkość wybrała zaufanie. Niebiescy uratowali wszystkich, w tym ciebie.', mood: 'shame', detail: (p) => `${p}% wybrało niebieski. Zostałeś uratowany przez ludzi, którym nie zaufałeś. Nikt się nie dowie, ale ty wiesz.` },
         resultRedAllRed: { title: 'Żyjesz.', sub: 'Wszyscy wybrali czerwony. Nikt nie zginął.', mood: 'neutral', detail: () => 'Idealna koordynacja przez nieufność. Wszyscy myśleli tak samo jak ty. Nikt nie zaryzykował dla nikogo, ale wszyscy żyją. Czy to jest zwycięstwo?' },
         resultRedBlueDied: { title: 'Żyjesz.', sub: (p) => `${p}% wybrało niebieski. Wszyscy oni nie żyją.`, mood: 'heavy', detail: () => 'Twoja kalkulacja była poprawna. Miliardy ludzi właśnie zginęły, bo zaufali. Ty miałeś rację. Czy to ci pomaga zasnąć?' },
@@ -963,7 +1160,7 @@
         resultBlueDied: { title: 'Nie żyjesz.', sub: (p) => `Tylko ${p}% wybrało niebieski. Za mało.`, mood: 'death', detail: () => 'Czerwoni żyją. Ty zginąłeś za ideę, której większość nie podzieliła. Twoja śmierć nikogo nie uratowała. Nikt nigdy się nie dowie, że wybrałeś niebieski.' },
 
         comparisonBlue: 'W meta-analizie 130 eksperymentów z dylematem więźnia (Sally 1995) średni wskaźnik kooperacji to ~47%. Wybrałeś niebieski — jesteś blisko tej średniej. W realnych scenariuszach z prawdziwą stawką kooperacja spada znacznie niżej.',
-        comparisonRed: 'W meta-analizie 130 eksperymentów z dylematem więźnia (Sally 1995) średnia kooperacja to ~47% — czyli ~53% wybiera defekcję. Jesteś w tej większości. To statystyczna norma, nie wyjątek.',
+        comparisonRed: 'W meta-analizie 130 eksperymentów z dylematem więźnia (Sally 1995) średnia kooperacja to ~47% — czyli ~53% wybiera opcję egoistyczną. Jesteś w tej większości. To statystyczna norma, nie wyjątek.',
 
         patternHigh: (p) => `${p}% niebieskich. Tak deklarują w ankietach. Tak nie zachowują się w eksperymentach.`,
         patternMid: (p) => `${p}% niebieskich — blisko poziomu kooperacji w laboratoryjnych dylematach więźnia (~47%).`,
@@ -1014,12 +1211,128 @@
     const unlockedBlue = [];
     const unlockedRed = [];
 
+    // ───────────────────────────────────────────────
+    // GLOBAL VOTE TRACKING (real worldwide stats)
+    // ───────────────────────────────────────────────
+    // Replace API_BASE with your deployed Cloudflare Worker URL.
+    // Leave empty string '' to disable global stats (game still works).
+    const API_BASE = 'https://two-buttons-stats.YOUR-SUBDOMAIN.workers.dev';
+
+    const VOTER_ID_KEY = 'gamestheory_voter_id';
+    const FIRST_CHOICE_KEY = 'gamestheory_first_choice';
+
+    let voterId = null;
+    let firstChoice = null;
+    let globalStats = { red: 0, blue: 0, total: 0 };
+    let apiAvailable = true;
+
+    function getOrCreateVoterId() {
+      try {
+        let id = localStorage.getItem(VOTER_ID_KEY);
+        if (!id) {
+          id = (crypto.randomUUID && crypto.randomUUID()) ||
+            ('v_' + Date.now() + '_' + Math.random().toString(36).slice(2, 12));
+          localStorage.setItem(VOTER_ID_KEY, id);
+        }
+        return id;
+      } catch (e) {
+        return 'v_' + Date.now() + '_' + Math.random().toString(36).slice(2, 12);
+      }
+    }
+
+    async function fetchGlobalStats() {
+      if (!API_BASE) { apiAvailable = false; renderLiveBanner(); return; }
+      try {
+        const res = await fetch(API_BASE + '/api/stats', { method: 'GET' });
+        if (!res.ok) throw new Error('Bad response');
+        globalStats = await res.json();
+        apiAvailable = true;
+      } catch (e) {
+        apiAvailable = false;
+      }
+      renderLiveBanner();
+    }
+
+    async function recordFirstVote(choice) {
+      if (!API_BASE || firstChoice) return;
+      try {
+        const res = await fetch(API_BASE + '/api/vote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ voter_id: voterId, choice: choice })
+        });
+        if (!res.ok) throw new Error('Bad response');
+        const data = await res.json();
+        firstChoice = data.choice || choice;
+        try { localStorage.setItem(FIRST_CHOICE_KEY, firstChoice); } catch(e) {}
+        if (data.stats) globalStats = data.stats;
+        apiAvailable = true;
+        flashLiveStat(firstChoice);
+        showLiveStatus(data.already_voted ? t().liveAlreadyVoted : t().liveYourVote, 'success');
+      } catch (e) {
+        apiAvailable = false;
+        renderLiveBanner();
+      }
+    }
+
+    function flashLiveStat(choice) {
+      const el = document.getElementById('live-stat-' + choice);
+      if (!el) return;
+      el.classList.add('flash');
+      setTimeout(() => el.classList.remove('flash'), 1500);
+    }
+
+    function showLiveStatus(text, kind) {
+      const el = document.getElementById('live-status');
+      if (!el) return;
+      el.textContent = text;
+      el.className = 'live-status visible' + (kind ? ' ' + kind : '');
+      setTimeout(() => { el.classList.remove('visible'); }, 4000);
+    }
+
+    function fmtNum(n) {
+      return (n || 0).toLocaleString(currentLang === 'pl' ? 'pl-PL' : 'en-US');
+    }
+
+    function pct(part, total) {
+      if (!total) return '—';
+      return Math.round((part / total) * 100) + '%';
+    }
+
+    function renderLiveBanner() {
+      const txt = t();
+      document.getElementById('live-label').textContent = txt.liveLabel;
+      document.getElementById('live-explain').innerHTML = txt.liveExplain;
+      document.getElementById('live-total-label').textContent = txt.liveTotalLabel;
+      document.getElementById('live-red-label').textContent = txt.liveRedLabel;
+      document.getElementById('live-blue-label').textContent = txt.liveBlueLabel;
+
+      if (!apiAvailable && globalStats.total === 0) {
+        document.getElementById('live-total-value').textContent = '—';
+        document.getElementById('live-red-value').textContent = '—';
+        document.getElementById('live-blue-value').textContent = '—';
+        document.getElementById('live-red-pct').textContent = '';
+        document.getElementById('live-blue-pct').textContent = '';
+        showLiveStatus(txt.liveOffline, 'warning');
+        return;
+      }
+
+      document.getElementById('live-total-value').textContent = fmtNum(globalStats.total);
+      document.getElementById('live-red-value').textContent = fmtNum(globalStats.red);
+      document.getElementById('live-blue-value').textContent = fmtNum(globalStats.blue);
+      document.getElementById('live-red-pct').textContent = pct(globalStats.red, globalStats.total);
+      document.getElementById('live-blue-pct').textContent = pct(globalStats.blue, globalStats.total);
+    }
+
+    // ───────────────────────────────────────────────
+
     function setLang(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
       document.getElementById('lang-en').classList.toggle('active', lang === 'en');
       document.getElementById('lang-pl').classList.toggle('active', lang === 'pl');
       renderIntro();
+      renderLiveBanner();
       updateStats();
     }
 
@@ -1148,6 +1461,19 @@
     }
 
     function choose(choice) {
+      // Record first-ever vote for this device (no-op if already voted or no API)
+      const wasFirstVote = !firstChoice;
+      if (wasFirstVote) {
+        // Optimistic UI update so the user sees their vote land
+        firstChoice = choice;
+        try { localStorage.setItem(FIRST_CHOICE_KEY, choice); } catch(e) {}
+        globalStats[choice] = (globalStats[choice] || 0) + 1;
+        globalStats.total = (globalStats.total || 0) + 1;
+        renderLiveBanner();
+        flashLiveStat(choice);
+        recordFirstVote(choice); // Fire and forget; will reconcile counts from server
+      }
+
       const bluePct = simulateBluePercent();
       const rawMsg = getResult(choice, bluePct);
       const msg = getPattern(choice, bluePct, rawMsg);
@@ -1164,6 +1490,33 @@
         <div class="new-question ${choice}">
           <div class="new-question-label">${txt.newQuestion} · ${choice === 'blue' ? txt.blue : txt.red} #${newQ.number}/${newQ.total}</div>
           <div class="new-question-text">${newQ.text}</div>
+        </div>
+      ` : '';
+
+      // Real-world live results section (only if we have any data)
+      const liveResultsHtml = (apiAvailable && globalStats.total > 0) ? `
+        <div class="result-live-section">
+          <div class="result-section-label">
+            ${wasFirstVote ? '<span class="first-vote-badge">' + txt.firstVoteBadge + '</span>' : ''}
+            ${txt.liveResultsHeader}
+          </div>
+          ${wasFirstVote ? `<p style="font-size: 13px; line-height: 1.55; margin-top: 8px; opacity: 0.85;">${txt.firstVoteCounted(choice === 'red' ? txt.red.toLowerCase() : txt.blue.toLowerCase())}</p>` : ''}
+          <div class="live-stats-grid">
+            <div class="live-stat">
+              <div class="live-stat-label">${txt.liveTotalLabel}</div>
+              <div class="live-stat-value">${fmtNum(globalStats.total)}</div>
+            </div>
+            <div class="live-stat">
+              <div class="live-stat-label">${txt.liveRedLabel}</div>
+              <div class="live-stat-value red">${fmtNum(globalStats.red)}</div>
+              <div class="live-stat-pct">${pct(globalStats.red, globalStats.total)}</div>
+            </div>
+            <div class="live-stat">
+              <div class="live-stat-label">${txt.liveBlueLabel}</div>
+              <div class="live-stat-value blue">${fmtNum(globalStats.blue)}</div>
+              <div class="live-stat-pct">${pct(globalStats.blue, globalStats.total)}</div>
+            </div>
+          </div>
         </div>
       ` : '';
 
@@ -1184,6 +1537,7 @@
             <div class="result-section-label">${txt.comparison}</div>
             <div class="result-section-text">${choice === 'blue' ? txt.comparisonBlue : txt.comparisonRed}</div>
           </div>
+          ${liveResultsHtml}
           ${newQHtml}
           ${noNewQ}
           <div class="result-actions">
@@ -1329,13 +1683,30 @@
       r.classList.remove('hidden');
     }
 
-    // Detect browser language on load
+    // Detect browser language and initialize global stats tracking
     (function() {
+      // Set up voter identity (idempotent)
+      voterId = getOrCreateVoterId();
+      try { firstChoice = localStorage.getItem(FIRST_CHOICE_KEY); } catch(e) { firstChoice = null; }
+
+      // Detect language from URL ?lang= parameter, then browser
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
       const browserLang = (navigator.language || 'en').toLowerCase();
-      if (browserLang.startsWith('pl')) {
+
+      if (urlLang === 'pl' || (!urlLang && browserLang.startsWith('pl'))) {
         setLang('pl');
       } else {
         renderIntro();
+        renderLiveBanner();
+      }
+
+      // Fetch real global stats (async, non-blocking)
+      fetchGlobalStats();
+
+      // If user already voted, show subtle indicator on intro
+      if (firstChoice) {
+        showLiveStatus(t().liveAlreadyVoted, 'success');
       }
     })();
   </script>
