@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Buttons — A test of who you become when no one is watching</title>
+  <meta name="description" content="An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. Discover the questions that challenge your choice.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0d0d0e;
+      --surface: #161618;
+      --surface-2: #1d1d20;
+      --text: #ece7dc;
+      --text-mute: #95918a;
+      --text-faint: #5d5a55;
+      --border: rgba(236, 231, 220, 0.08);
+      --border-strong: rgba(236, 231, 220, 0.18);
+      --red: #C8302C;
+      --red-deep: #7a1815;
+      --red-text: #f0c4c2;
+      --blue: #2563b8;
+      --blue-deep: #143a72;
+      --blue-text: #b8d4f4;
+      --accent: #d4b896;
+      --warning: #d4a05e;
+      --success: #7eb89a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(212, 184, 150, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(37, 99, 184, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.75 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 64px;
+      padding-bottom: 16px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+
+    .lang-toggle button {
+      background: transparent;
+      border: 0.5px solid var(--border);
+      color: var(--text-mute);
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+    }
+
+    .lang-toggle button:first-child { border-radius: 4px 0 0 4px; }
+    .lang-toggle button:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+    .lang-toggle button:hover { color: var(--text); }
+    .lang-toggle button.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+    .hero { margin-bottom: 56px; }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(56px, 10vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--text-mute);
+      max-width: 480px;
+      line-height: 1.4;
+    }
+
+    .rules {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+
+    .rules-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .rules p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .rules p:last-child { margin-bottom: 0; }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .choice-btn {
+      height: 180px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 32px;
+      letter-spacing: -0.01em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .choice-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .choice-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+
+    .choice-btn:active { transform: translateY(0); }
+
+    .choice-red {
+      background: var(--red);
+      color: var(--red-text);
+      border: 0.5px solid var(--red-deep);
+    }
+
+    .choice-blue {
+      background: var(--blue);
+      color: var(--blue-text);
+      border: 0.5px solid var(--blue-deep);
+    }
+
+    .privacy-note {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+
+    .hint {
+      text-align: center;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-mute);
+      margin-bottom: 24px;
+    }
+
+    .secondary-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: transparent;
+      border: 0.5px solid var(--border-strong);
+      color: var(--text-mute);
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    .screen { animation: fadeIn 0.6s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result {
+      border-radius: 12px;
+      padding: 40px 32px;
+      min-height: 380px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .result.death { background: #050506; color: #4a4a4a; }
+    .result.heavy { background: #1f0c0c; color: #c89898; }
+    .result.shame { background: #0d1224; color: #98a4c8; }
+    .result.triumph { background: #091f17; color: #98c8ad; }
+    .result.neutral { background: var(--surface); color: var(--text); }
+
+    .result-title {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: inherit;
+    }
+
+    .result-sub {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      opacity: 0.85;
+    }
+
+    .histogram {
+      margin: 32px 0;
+      position: relative;
+    }
+
+    .histogram-bar {
+      display: flex;
+      height: 28px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 0.5px solid rgba(255,255,255,0.12);
+    }
+
+    .histogram-blue { background: var(--blue); height: 100%; transition: width 1.2s ease-out; }
+    .histogram-red { background: var(--red); height: 100%; transition: width 1.2s ease-out; }
+
+    .histogram-threshold {
+      position: absolute;
+      left: 50%;
+      top: -6px;
+      bottom: -6px;
+      width: 1px;
+      border-left: 1px dashed rgba(255,255,255,0.45);
+    }
+
+    .histogram-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 10px;
+      opacity: 0.5;
+    }
+
+    .result-detail {
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 24px 0 16px;
+      opacity: 0.85;
+    }
+
+    .result-section {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 0.5px solid rgba(255,255,255,0.08);
+    }
+
+    .result-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .result-section-text {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    .new-question {
+      margin-top: 24px;
+      padding: 20px 22px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .new-question.blue { border-left-color: var(--blue-text); }
+    .new-question.red { border-left-color: var(--red-text); }
+
+    .new-question-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    .new-question-text {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.45;
+      opacity: 0.95;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .result .btn {
+      border-color: currentColor;
+      opacity: 0.7;
+      color: inherit;
+    }
+
+    .result .btn:hover { opacity: 1; }
+
+    .stats {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .stats-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 14px 12px;
+      text-align: center;
+      border: 0.5px solid var(--border);
+    }
+
+    .stat-card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat-card-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .stat-card-value.red { color: var(--red); }
+    .stat-card-value.blue { color: var(--blue); }
+
+    .pattern {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .panel-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .panel-sub {
+      font-size: 15px;
+      color: var(--text-mute);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .data-card {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 12px;
+      border: 0.5px solid var(--border);
+    }
+
+    .data-card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .data-card-headline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .data-card-detail {
+      font-size: 14px;
+      color: var(--text-mute);
+      line-height: 1.6;
+    }
+
+    .verdict {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .verdict-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .verdict-text {
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .summary {
+      margin-top: 32px;
+      padding: 24px 26px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-top: 2px solid var(--warning);
+    }
+
+    .summary-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--warning);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .summary-headline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .summary-detail {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-mute);
+    }
+
+    .closing-quote {
+      text-align: center;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--text-mute);
+      margin: 36px auto;
+      max-width: 540px;
+    }
+
+    .questions-section { margin-bottom: 32px; }
+
+    .questions-section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .question-card {
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin-bottom: 8px;
+      border-left: 2px solid;
+    }
+
+    .question-card.unlocked-blue { border-left-color: var(--blue); }
+    .question-card.unlocked-red { border-left-color: var(--red); }
+    .question-card.locked { border-left-color: var(--border-strong); opacity: 0.4; }
+
+    .question-card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .question-card.unlocked-blue .question-card-label { color: var(--blue-text); }
+    .question-card.unlocked-red .question-card-label { color: var(--red-text); }
+    .question-card.locked .question-card-label { color: var(--text-faint); }
+
+    .question-card-text {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .question-card.locked .question-card-text {
+      color: var(--text-faint);
+      font-style: italic;
+      font-size: 13px;
+      font-family: 'Newsreader', serif;
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--border);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .footer a { color: var(--text-mute); text-decoration: none; }
+    .footer a:hover { color: var(--text); }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 600px) {
+      .page { padding: 24px 18px 60px; }
+      .top-bar { margin-bottom: 40px; }
+      h1 { font-size: 56px; }
+      .hero-sub { font-size: 18px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .result { padding: 28px 22px; }
+      .result-title { font-size: 40px; }
+      .new-question-text { font-size: 18px; }
+      .panel-title { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-bar">
+      <div class="brand" id="brand">Two Buttons · 001</div>
+      <div class="lang-toggle">
+        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="lang-pl" onclick="setLang('pl')">PL</button>
+      </div>
+    </div>
+
+    <div id="screen-intro" class="screen">
+      <div class="hero">
+        <div class="hero-eyebrow" id="hero-eyebrow"></div>
+        <h1 id="hero-title"></h1>
+        <p class="hero-sub" id="hero-sub"></p>
+      </div>
+
+      <div class="rules">
+        <div class="rules-label" id="rules-label"></div>
+        <p id="rule-1"></p>
+        <p id="rule-2"></p>
+        <p id="rule-3"></p>
+      </div>
+
+      <div class="buttons-grid">
+        <button class="choice-btn choice-red" onclick="choose('red')" id="btn-red"></button>
+        <button class="choice-btn choice-blue" onclick="choose('blue')" id="btn-blue"></button>
+      </div>
+
+      <p class="privacy-note" id="privacy-note"></p>
+      <p class="hint" id="hint"></p>
+
+      <div class="secondary-actions">
+        <button class="btn" onclick="showReality()" id="btn-research"></button>
+        <button class="btn hidden" id="btn-questions" onclick="showQuestions()"></button>
+      </div>
+    </div>
+
+    <div id="screen-result" class="screen hidden"></div>
+    <div id="screen-reality" class="screen hidden"></div>
+    <div id="screen-questions" class="screen hidden"></div>
+
+    <div id="stats" class="stats hidden">
+      <p class="stats-label" id="stats-label"></p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-label" id="stat-label-total"></div>
+          <div class="stat-card-value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label" id="stat-label-red"></div>
+          <div class="stat-card-value red" id="stat-red">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label" id="stat-label-blue"></div>
+          <div class="stat-card-value blue" id="stat-blue">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label" id="stat-label-questions"></div>
+          <div class="stat-card-value" id="stat-questions">0/16</div>
+        </div>
+      </div>
+      <div id="pattern" class="pattern hidden"></div>
+    </div>
+
+    <div class="footer">
+      <span id="footer-text"></span> · <a href="https://github.com" id="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    const T = {
+      en: {
+        brand: 'Two Buttons · 001',
+        eyebrow: 'A moral dilemma · Game theory experiment',
+        title: 'Two <em>buttons</em>.<br>One choice.',
+        sub: 'A test of who you become when no one is watching.',
+        rulesLabel: 'Rules',
+        rule1: 'If more than 50% of humanity picks blue → everyone lives.',
+        rule2: 'If 50% or fewer pick blue → blues die, reds live.',
+        rule3: 'If everyone picks red → everyone lives.',
+        red: 'Red',
+        blue: 'Blue',
+        privacyNote: 'No one will ever know what you chose',
+        hint: 'Each play unlocks a new question challenging your choice. 16 questions total.',
+        btnResearch: 'What research shows ↗',
+        btnQuestions: 'Your questions ↗',
+        statsLabel: 'Your choices in this session',
+        statTotal: 'Played',
+        statRed: 'Red',
+        statBlue: 'Blue',
+        statQuestions: 'Questions',
+        playAgain: 'Play again',
+        seeReality: 'Research ↗',
+        seeQuestions: 'Questions',
+        backToGame: 'Back to game',
+        researchTitle: 'What research shows',
+        researchSub: 'A collision between hypothetical morality and humanity\'s documented behavior.',
+        questionsTitle: 'Questions you\'ve unlocked',
+        questionsSub: 'Each play reveals one new question challenging your choice. Blue plays unlock blue-questioning. Red plays unlock red-questioning.',
+        questionsCount: 'Unlocked',
+        bluePlays: 'Questions challenging blue',
+        redPlays: 'Questions challenging red',
+        playLockedBlue: 'Play blue to unlock',
+        playLockedRed: 'Play red to unlock',
+        newQuestion: 'New question',
+        comparison: 'Compared to research',
+        yourPattern: 'Your pattern',
+        mainPattern: 'The main pattern',
+        allUnlocked: 'All 16 questions unlocked',
+        allUnlockedHeadline: 'Each choice has its 8 weak points.',
+        allUnlockedDetail: 'This game was designed so you couldn\'t win morally. Both blue and red can be dismantled with eight questions that have no clean answer. What does that say about a real situation where you\'d actually have to choose?',
+        halfwayInsight: (n) => `You've unlocked ${n} questions. ${16 - n} remain. Each unrevealed one challenges a different aspect of your thinking — worth seeing them all.`,
+        closingQuote: 'The question isn\'t "what would you choose". The question is "what would you choose, knowing most people will choose differently than they claim".',
+        footerText: 'PolyForm Noncommercial 1.0.0',
+
+        // Result messages
+        resultRedBlueWon: { title: 'You live.', sub: 'Humanity chose trust. The blues saved everyone, including you.', mood: 'shame', detail: (p) => `${p}% chose blue. You were saved by people you didn't trust. No one will know — but you will.` },
+        resultRedAllRed: { title: 'You live.', sub: 'Everyone picked red. Nobody died.', mood: 'neutral', detail: () => 'Perfect coordination through distrust. Everyone thought just like you. No one risked anything for anyone, but everyone lives. Is that a victory?' },
+        resultRedBlueDied: { title: 'You live.', sub: (p) => `${p}% picked blue. They\'re all dead now.`, mood: 'heavy', detail: () => 'Your calculation was correct. Billions just died because they trusted. You were right. Does that help you sleep?' },
+        resultBlueWon: { title: 'You all live.', sub: (p) => `Everyone. ${p}% picked blue.`, mood: 'triumph', detail: () => 'You trusted, and you were right. Humanity passed the test. This is a rare scenario — but it just happened. Would you risk it again next time?' },
+        resultBlueDied: { title: 'You\'re dead.', sub: (p) => `Only ${p}% picked blue. Not enough.`, mood: 'death', detail: () => 'Reds live. You died for an idea most didn\'t share. Your death saved no one. No one will ever know you chose blue.' },
+
+        // Research comparison
+        comparisonBlue: 'In laboratory prisoner\'s dilemma games (Sally 1995, meta-analysis of 30 studies), ~37% of people choose cooperation. You picked blue — you\'re in that minority.',
+        comparisonRed: 'In laboratory prisoner\'s dilemma games (Sally 1995), ~63% of people choose defection. You\'re in that majority. This is the statistical norm, not the exception.',
+
+        // Pattern insights
+        patternHigh: (p) => `${p}% blue. That\'s what surveys say. Not what experiments show.`,
+        patternMid: (p) => `${p}% blue — exactly the cooperation rate in laboratory prisoner\'s dilemmas.`,
+        patternLow: (p) => `${p}% blue. The simulation works — your self-preservation instinct is active.`,
+        patternVeryLow: (p) => `${p}% blue. Consistently self-interested. In a survey, you\'d probably say otherwise.`,
+
+        // Verdict in research panel
+        verdictHigh: (p) => `You pick blue ${p}% of the time — far above any documented baseline. Either unusually strong faith in humanity, or awareness this is just a simulation. In real scenarios, most people who say "I'd pick blue" change their answer when the risk becomes real.`,
+        verdictMid: (p) => `You pick blue ${p}% of the time — close to laboratory prisoner\'s dilemma rates (~37%). Statistically typical behavior.`,
+        verdictLow: (p) => `You pick blue ${p}% of the time — below the lab average. The simulation is real enough to you that your self-preservation instinct activates.`,
+        verdictVeryLow: (p) => `You pick blue ${p}% of the time — far below average. Consistently self-interested. In a survey, 95% of people would say "I'd risk myself for others sometimes". Your choices say otherwise.`,
+
+        // Research data points
+        researchData: [
+          { label: 'In surveys (declared)', headline: '~70% say "I\'d help a stranger in danger"', detail: 'Hypothetical surveys are choices without cost. People consistently declare high altruism.' },
+          { label: 'In the laboratory (one-shot prisoner\'s dilemma)', headline: '~37% choose cooperation', detail: 'Sally (1995), meta-analysis of 30 studies. When decisions start having consequences, cooperation drops by half.' },
+          { label: 'In experiments (bystander effect)', headline: '31% help when they think others are watching', detail: 'Darley & Latané (1968). "Someone else will do it" — diffusion of responsibility.' },
+          { label: 'In history (Holocaust, occupied Europe)', headline: '0.1–0.5% of population actively hid Jews', detail: 'Oliner & Oliner (1988). When the stakes are real death, the percentage of those willing to sacrifice is microscopic.' },
+          { label: 'In reality (COVID mask compliance, peak pandemic)', headline: 'Japan 95% / Germany 75% / US ~50%', detail: 'Same dilemma, same virus, completely different outcomes. Cooperation isn\'t a constant of "humanity" — it depends on culture and institutional trust.' },
+          { label: 'In economics (public goods game)', headline: 'Cooperation: ~50% → ~10% after 10 rounds', detail: 'Fehr & Gächter (2000). Without punishment for free riders, cooperation decays — out of frustration, not greed.' }
+        ],
+        mainPatternHeadline: 'The more real the risk, the less cooperation.',
+        mainPatternDetail: '70% in surveys. 37% in the lab. <1% in occupied Europe. Hypothetical morality and real choices are two different systems. When you pick blue in this game, you\'re in the first. If the stakes were real, most people jump to the second.',
+
+        // Questions
+        questionsBlue: [
+          'If you truly trusted humanity, the risk would be zero. Were your hands trembling when you clicked?',
+          'Soldiers who threw themselves on grenades for their squadmates also "chose blue". But they knew who they were saving. You\'re choosing for anonymous billions. Same thing — or entirely different?',
+          'Blue is a choice of solidarity — or moral performance for yourself? No one will know how you chose. So who are you choosing for?',
+          'If this dilemma was only about people you politically disagree with — would you still pick blue?',
+          'Kant would say: a moral act is one you\'d choose even knowing you\'ll bear the consequences. Did you choose blue because of that — or because it\'s just a game?',
+          'If 99% of humanity picks red, your death as a blue saves no one. Is that a sacrifice — or a demonstration?',
+          'Real history: <1% of populations in occupied Europe actively hid Jews. You just clicked blue. Are you in that 1% — or do you click differently when there\'s no cost?',
+          'You picked blue despite your own suspicions about human nature. Because if you truly believed in the collective, you wouldn\'t need to constantly fix it.'
+        ],
+        questionsRed: [
+          'Perfect logic. But how do you feel knowing a million blues just died, and you live?',
+          'Red is the choice of rational self-interest. Are you ready to call yourself that, looking in the mirror?',
+          'If everyone picks red, everyone lives. But someone has to trust first. Are you that someone — or the one who waits for someone else to take the risk?',
+          'Resistance fighters chose blue. People who hid refugees chose blue. Are you proud you chose differently than them?',
+          'Red is a guarantee of survival. Blue is an act of faith. Are there any moments in your life where you chose faith over guarantee?',
+          'You say "we\'re all in this together". But red separates your fate from everyone else\'s. Do you still feel part of the community?',
+          'Consequences of red: you live, but you know humanity failed the test. Is that a victory — or confirmation of your worst suspicions about yourself and others?',
+          'If you knew your child chose blue — and you chose red — how would you feel?'
+        ]
+      },
+      pl: {
+        brand: 'Dwa przyciski · 001',
+        eyebrow: 'Dylemat moralny · eksperyment z teorii gier',
+        title: 'Dwa <em>przyciski</em>.<br>Jeden wybór.',
+        sub: 'Test tego, kim się stajesz, kiedy nikt nie patrzy.',
+        rulesLabel: 'Zasady',
+        rule1: 'Jeśli ponad 50% ludzkości wybierze niebieski → wszyscy żyją.',
+        rule2: 'Jeśli 50% lub mniej → niebiescy giną, czerwoni żyją.',
+        rule3: 'Jeśli wszyscy wybiorą czerwony → wszyscy żyją.',
+        red: 'Czerwony',
+        blue: 'Niebieski',
+        privacyNote: 'Nikt nigdy się nie dowie, co wybrałeś',
+        hint: 'Każda gra odsłania nowe pytanie podważające twój wybór. Łącznie 16 pytań.',
+        btnResearch: 'Co mówią badania ↗',
+        btnQuestions: 'Twoje pytania ↗',
+        statsLabel: 'Twoje wybory w tej sesji',
+        statTotal: 'Rozegrane',
+        statRed: 'Czerwony',
+        statBlue: 'Niebieski',
+        statQuestions: 'Pytania',
+        playAgain: 'Zagraj znowu',
+        seeReality: 'Badania ↗',
+        seeQuestions: 'Pytania',
+        backToGame: 'Wróć do gry',
+        researchTitle: 'Co mówią badania',
+        researchSub: 'Zderzenie hipotetycznej moralności z udokumentowanym zachowaniem ludzi.',
+        questionsTitle: 'Pytania, które odsłoniłeś',
+        questionsSub: 'Każda gra odkrywa jedno nowe pytanie podważające twój wybór. Niebieski odkrywa pytania kwestionujące niebieski, czerwony — kwestionujące czerwony.',
+        questionsCount: 'Odkryte',
+        bluePlays: 'Pytania kwestionujące niebieski',
+        redPlays: 'Pytania kwestionujące czerwony',
+        playLockedBlue: 'Zagraj na niebieskim, żeby odkryć',
+        playLockedRed: 'Zagraj na czerwonym, żeby odkryć',
+        newQuestion: 'Nowe pytanie',
+        comparison: 'Porównanie z badaniami',
+        yourPattern: 'Twój wzorzec',
+        mainPattern: 'Wzorzec główny',
+        allUnlocked: 'Wszystkie 16 pytań odkryte',
+        allUnlockedHeadline: 'Każdy wybór ma swoje 8 punktów słabych.',
+        allUnlockedDetail: 'To była gra zaprojektowana tak, żebyś nie mógł wygrać moralnie. Zarówno niebieski, jak i czerwony można rozłożyć ośmioma pytaniami, na które nie ma czystej odpowiedzi. Co to mówi o sytuacji, w której naprawdę musiałbyś wybrać?',
+        halfwayInsight: (n) => `Odkryłeś już ${n} pytań. Zostało ${16 - n}. Każde z nieodkrytych podważa inny aspekt twojego myślenia — warto poznać wszystkie.`,
+        closingQuote: 'Pytanie nie brzmi "co byś wybrał". Pytanie brzmi "co byś wybrał, wiedząc że większość wybierze odwrotnie, niż deklaruje".',
+        footerText: 'PolyForm Noncommercial 1.0.0',
+
+        resultRedBlueWon: { title: 'Żyjesz.', sub: 'Ludzkość wybrała zaufanie. Niebiescy uratowali wszystkich, w tym ciebie.', mood: 'shame', detail: (p) => `${p}% wybrało niebieski. Zostałeś uratowany przez ludzi, którym nie zaufałeś. Nikt się nie dowie, ale ty wiesz.` },
+        resultRedAllRed: { title: 'Żyjesz.', sub: 'Wszyscy wybrali czerwony. Nikt nie zginął.', mood: 'neutral', detail: () => 'Idealna koordynacja przez nieufność. Wszyscy myśleli tak samo jak ty. Nikt nie zaryzykował dla nikogo, ale wszyscy żyją. Czy to jest zwycięstwo?' },
+        resultRedBlueDied: { title: 'Żyjesz.', sub: (p) => `${p}% wybrało niebieski. Wszyscy oni nie żyją.`, mood: 'heavy', detail: () => 'Twoja kalkulacja była poprawna. Miliardy ludzi właśnie zginęły, bo zaufali. Ty miałeś rację. Czy to ci pomaga zasnąć?' },
+        resultBlueWon: { title: 'Żyjecie.', sub: (p) => `Wszyscy. ${p}% wybrało niebieski.`, mood: 'triumph', detail: () => 'Zaufałeś i miałeś rację. Ludzkość zdała test. To rzadki scenariusz, ale właśnie się wydarzył. Czy następnym razem zaryzykujesz znowu?' },
+        resultBlueDied: { title: 'Nie żyjesz.', sub: (p) => `Tylko ${p}% wybrało niebieski. Za mało.`, mood: 'death', detail: () => 'Czerwoni żyją. Ty zginąłeś za ideę, której większość nie podzieliła. Twoja śmierć nikogo nie uratowała. Nikt nigdy się nie dowie, że wybrałeś niebieski.' },
+
+        comparisonBlue: 'W laboratoryjnym dylemacie więźnia (Sally 1995, meta-analiza 30 badań) ~37% ludzi wybiera kooperację. Wybrałeś niebieski — jesteś w tej mniejszości.',
+        comparisonRed: 'W laboratoryjnym dylemacie więźnia (Sally 1995) ~63% ludzi wybiera defekcję. Jesteś w tej większości. To statystyczna norma, nie wyjątek.',
+
+        patternHigh: (p) => `${p}% niebieskich. Tak deklarują w ankietach. Tak nie zachowują się w eksperymentach.`,
+        patternMid: (p) => `${p}% niebieskich — to dokładnie poziom kooperacji w laboratoryjnych dylematach więźnia.`,
+        patternLow: (p) => `${p}% niebieskich. Symulacja działa — twój instynkt samozachowawczy jest aktywny.`,
+        patternVeryLow: (p) => `${p}% niebieskich. Spójnie egoistycznie. W ankiecie powiedziałbyś prawdopodobnie inaczej.`,
+
+        verdictHigh: (p) => `Wybierasz niebieski w ${p}% rund — znacznie powyżej średniej w jakichkolwiek badaniach. To albo wyjątkowo silne zaufanie do ludzkości, albo świadomość że to tylko symulacja. W realnym scenariuszu większość ludzi mówiących "wybrałbym niebieski" zmienia zdanie kiedy ryzyko staje się prawdziwe.`,
+        verdictMid: (p) => `Wybierasz niebieski w ${p}% rund — zbliżone do laboratoryjnego dylematu więźnia (37%). Twoje zachowanie jest statystycznie typowe.`,
+        verdictLow: (p) => `Wybierasz niebieski w ${p}% rund — poniżej średniej laboratoryjnej. Symulacja jest dla ciebie dostatecznie realna, żeby aktywować instynkt samozachowawczy.`,
+        verdictVeryLow: (p) => `Wybierasz niebieski w ${p}% rund — głęboko poniżej średniej. To zachowanie spójnie egoistyczne. W ankiecie 95% ludzi powiedziałoby "czasami zaryzykowałbym dla innych". Twoje wybory mówią coś innego.`,
+
+        researchData: [
+          { label: 'W ankietach (deklaracja)', headline: '~70% mówi "pomógłbym nieznajomemu w niebezpieczeństwie"', detail: 'Ankiety hipotetyczne to wybór bez kosztów. Ludzie konsekwentnie deklarują wysoki poziom altruizmu.' },
+          { label: 'W laboratorium (jednorazowy dylemat więźnia)', headline: '~37% wybiera kooperację', detail: 'Sally (1995), meta-analiza 30 badań. Kiedy decyzja zaczyna mieć konsekwencje, kooperacja spada o połowę.' },
+          { label: 'W eksperymencie (efekt świadka)', headline: '31% pomaga, gdy myślą że są inni świadkowie', detail: 'Darley & Latané (1968). "Ktoś inny to zrobi" — diffusion of responsibility.' },
+          { label: 'W historii (Holokaust, kraje okupowane)', headline: '0.1–0.5% populacji aktywnie ratowało Żydów', detail: 'Oliner & Oliner (1988). Kiedy stawka to realne ryzyko śmierci, procent ludzi gotowych do poświęcenia jest mikroskopijny.' },
+          { label: 'W rzeczywistości (compliance z maskami COVID)', headline: 'Japonia 95% / Niemcy 75% / USA ~50%', detail: 'Ten sam dylemat, ten sam wirus, kompletnie różne wyniki. Kooperacja zależy od kultury i zaufania do instytucji.' },
+          { label: 'W ekonomii (gra dóbr publicznych)', headline: 'Kooperacja: ~50% → ~10% po 10 rundach', detail: 'Fehr & Gächter (2000). Bez karania pasażerów na gapę kooperacja zanika z frustracji, nie z chciwości.' }
+        ],
+        mainPatternHeadline: 'Im bardziej realne ryzyko — tym mniej kooperacji.',
+        mainPatternDetail: '70% w ankiecie. 37% w laboratorium. <1% w okupowanym kraju. Hipotetyczna moralność i realne wybory to dwa różne systemy. Kiedy wybierasz niebieski w grze, jesteś w pierwszym. Kiedy stawka byłaby prawdziwa, większość ludzi przeskakuje do drugiego.',
+
+        questionsBlue: [
+          'Gdybyś naprawdę ufał ludzkości, ryzyko byłoby zerowe. Twoje ręce się trzęsły, kiedy klikałeś?',
+          'Powstańcy Warszawscy też "wybierali niebieski". Tylko że oni wiedzieli, kogo ratują. Ty wybierasz dla anonimowych miliardów. To samo, czy zupełnie co innego?',
+          'Niebieski to wybór solidarności — czy performans moralny przed samym sobą? Nikt się nie dowie, jak wybrałeś. Więc dla kogo wybierasz?',
+          'Gdyby ten dylemat dotyczył nie wszystkich, tylko ludzi z którymi się politycznie nie zgadzasz — czy nadal niebieski?',
+          'Kant by powiedział: akt moralny to taki, który byś wybrał nawet wiedząc że poniesiesz konsekwencje. Czy wybrałeś niebieski dlatego, czy dlatego że to tylko gra?',
+          'Jeśli 99% ludzkości wybierze czerwony, twoja śmierć w niebieskim nikogo nie uratuje. To poświęcenie, czy demonstracja?',
+          'Rzeczywista historia: <1% Polaków pomagało Żydom w okupacji. Ty właśnie kliknąłeś niebieski. Jesteś w tym 1%, czy klikasz inaczej, kiedy nie ma kosztu?',
+          'Wybierasz niebieski wbrew własnym podejrzeniom o naturę ludzką. Bo gdybyś naprawdę wierzył w kolektyw, nie potrzebowałbyś go ciągle naprawiać.'
+        ],
+        questionsRed: [
+          'Logika idealna. Ale co czujesz, kiedy myślisz że milion niebieskich właśnie zginęło, a ty żyjesz?',
+          'Czerwony to wybór racjonalnego egoizmu. Czy jesteś gotów tak nazywać siebie, patrząc w lustro?',
+          'Jeśli każdy wybierze czerwony, wszyscy żyją. Ale ktoś musi pierwszy zaufać. Czy jesteś tym kimś, czy tym, kto czeka aż ktoś inny zaryzykuje?',
+          'Powstańcy Warszawscy wybrali niebieski. Żołnierze wyklęci wybrali niebieski. Czy jesteś dumny, że wybrałeś inaczej niż oni?',
+          'Czerwony to gwarancja przeżycia. Niebieski to akt wiary. Czy w twoim życiu są w ogóle momenty, w których wybrałeś wiarę nad gwarancję?',
+          'Mówisz że "naród to wspólnota losu". Ale czerwony oddziela twój los od losu innych. Czy nadal czujesz się częścią wspólnoty?',
+          'Konsekwencje czerwonego: żyjesz, ale wiesz że ludzkość zawiodła test. To zwycięstwo, czy potwierdzenie najgorszych podejrzeń o sobie i innych?',
+          'Gdybyś wiedział, że twoje dziecko wybrało niebieski — a ty czerwony — co byś czuł?'
+        ]
+      }
+    };
+
+    let currentLang = 'en';
+    const stats = { total: 0, red: 0, blue: 0 };
+    const unlockedBlue = [];
+    const unlockedRed = [];
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-pl').classList.toggle('active', lang === 'pl');
+      renderIntro();
+      updateStats();
+    }
+
+    function t() { return T[currentLang]; }
+
+    function renderIntro() {
+      const txt = t();
+      document.getElementById('brand').textContent = txt.brand;
+      document.getElementById('hero-eyebrow').textContent = txt.eyebrow;
+      document.getElementById('hero-title').innerHTML = txt.title;
+      document.getElementById('hero-sub').textContent = txt.sub;
+      document.getElementById('rules-label').textContent = txt.rulesLabel;
+      document.getElementById('rule-1').textContent = txt.rule1;
+      document.getElementById('rule-2').textContent = txt.rule2;
+      document.getElementById('rule-3').textContent = txt.rule3;
+      document.getElementById('btn-red').textContent = txt.red;
+      document.getElementById('btn-blue').textContent = txt.blue;
+      document.getElementById('privacy-note').textContent = txt.privacyNote;
+      document.getElementById('hint').textContent = txt.hint;
+      document.getElementById('btn-research').textContent = txt.btnResearch;
+      document.getElementById('btn-questions').textContent = txt.btnQuestions;
+      document.getElementById('footer-text').textContent = txt.footerText;
+      document.title = (lang => lang === 'en' ? 'Two Buttons — A test of who you become when no one is watching' : 'Dwa przyciski — test tego, kim się stajesz, kiedy nikt nie patrzy')(currentLang);
+    }
+
+    function updateStats() {
+      const txt = t();
+      document.getElementById('stats-label').textContent = txt.statsLabel;
+      document.getElementById('stat-label-total').textContent = txt.statTotal;
+      document.getElementById('stat-label-red').textContent = txt.statRed;
+      document.getElementById('stat-label-blue').textContent = txt.statBlue;
+      document.getElementById('stat-label-questions').textContent = txt.statQuestions;
+      document.getElementById('stat-total').textContent = stats.total;
+      document.getElementById('stat-red').textContent = stats.red;
+      document.getElementById('stat-blue').textContent = stats.blue;
+      const totalUnlocked = unlockedBlue.length + unlockedRed.length;
+      document.getElementById('stat-questions').textContent = totalUnlocked + '/16';
+
+      const btnQ = document.getElementById('btn-questions');
+      btnQ.classList.toggle('hidden', totalUnlocked === 0);
+
+      const pattern = document.getElementById('pattern');
+      if (stats.total < 3) {
+        pattern.classList.add('hidden');
+      } else {
+        const bluePct = Math.round(stats.blue / stats.total * 100);
+        let text;
+        if (bluePct >= 70) text = txt.patternHigh(bluePct);
+        else if (bluePct >= 40) text = txt.patternMid(bluePct);
+        else if (bluePct >= 15) text = txt.patternLow(bluePct);
+        else text = txt.patternVeryLow(bluePct);
+        pattern.textContent = text;
+        pattern.classList.remove('hidden');
+      }
+    }
+
+    function simulateBluePercent() {
+      const r = Math.random();
+      if (r < 0.05) return 50 + Math.random() * 30;
+      if (r < 0.20) return 45 + Math.random() * 8;
+      if (r < 0.70) return 25 + Math.random() * 20;
+      return 10 + Math.random() * 15;
+    }
+
+    function getResult(choice, bluePct) {
+      const txt = t();
+      const blueWon = bluePct > 50;
+      const everyoneRed = bluePct < 1;
+      if (choice === 'red') {
+        if (blueWon) return txt.resultRedBlueWon;
+        if (everyoneRed) return txt.resultRedAllRed;
+        return txt.resultRedBlueDied;
+      }
+      return blueWon ? txt.resultBlueWon : txt.resultBlueDied;
+    }
+
+    function unlockNextQuestion(choice) {
+      const txt = t();
+      const arr = choice === 'blue' ? txt.questionsBlue : txt.questionsRed;
+      const unlocked = choice === 'blue' ? unlockedBlue : unlockedRed;
+      if (unlocked.length >= arr.length) return null;
+      const idx = unlocked.length;
+      unlocked.push(idx);
+      return { text: arr[idx], number: idx + 1, side: choice, total: arr.length };
+    }
+
+    function getPattern(choice, bluePct, msg) {
+      const txt = t();
+      const p = bluePct.toFixed(1);
+      return {
+        title: msg.title,
+        sub: typeof msg.sub === 'function' ? msg.sub(p) : msg.sub,
+        detail: msg.detail(p),
+        mood: msg.mood
+      };
+    }
+
+    function hideAll() {
+      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+    }
+
+    function choose(choice) {
+      const bluePct = simulateBluePercent();
+      const rawMsg = getResult(choice, bluePct);
+      const msg = getPattern(choice, bluePct, rawMsg);
+      stats.total++;
+      if (choice === 'red') stats.red++; else stats.blue++;
+      const newQ = unlockNextQuestion(choice);
+      const txt = t();
+      const blueWidth = Math.round(bluePct);
+      const redWidth = 100 - blueWidth;
+
+      const noNewQ = !newQ ? `<p style="font-size: 13px; opacity: 0.6; font-style: italic; margin-top: 16px;">${currentLang === 'en' ? 'All ' + (choice === 'blue' ? 'blue' : 'red') + '-questioning unlocked. Try the other side.' : 'Wszystkie pytania ' + (choice === 'blue' ? 'kwestionujące niebieski' : 'kwestionujące czerwony') + ' odkryte. Spróbuj drugiego przycisku.'}</p>` : '';
+
+      const newQHtml = newQ ? `
+        <div class="new-question ${choice}">
+          <div class="new-question-label">${txt.newQuestion} · ${choice === 'blue' ? txt.blue : txt.red} #${newQ.number}/${newQ.total}</div>
+          <div class="new-question-text">${newQ.text}</div>
+        </div>
+      ` : '';
+
+      const html = `
+        <div class="result ${msg.mood}">
+          <div class="result-title">${msg.title}</div>
+          <div class="result-sub">${msg.sub}</div>
+          <div class="histogram">
+            <div class="histogram-bar">
+              <div class="histogram-blue" style="width: ${blueWidth}%"></div>
+              <div class="histogram-red" style="width: ${redWidth}%"></div>
+            </div>
+            <div class="histogram-threshold"></div>
+            <div class="histogram-label">${currentLang === 'en' ? 'threshold 50% · blue: ' : 'próg 50% · niebieski: '}${bluePct.toFixed(1)}%</div>
+          </div>
+          <div class="result-detail">${msg.detail}</div>
+          <div class="result-section">
+            <div class="result-section-label">${txt.comparison}</div>
+            <div class="result-section-text">${choice === 'blue' ? txt.comparisonBlue : txt.comparisonRed}</div>
+          </div>
+          ${newQHtml}
+          ${noNewQ}
+          <div class="result-actions">
+            <button class="btn" onclick="playAgain()">${txt.playAgain}</button>
+            <button class="btn" onclick="showQuestions()">${txt.seeQuestions} (${unlockedBlue.length + unlockedRed.length}/16) ↗</button>
+            <button class="btn" onclick="showReality()">${txt.seeReality}</button>
+          </div>
+        </div>
+      `;
+
+      hideAll();
+      const r = document.getElementById('screen-result');
+      r.innerHTML = html;
+      r.classList.remove('hidden');
+      document.getElementById('stats').classList.remove('hidden');
+      updateStats();
+    }
+
+    function playAgain() {
+      hideAll();
+      document.getElementById('screen-intro').classList.remove('hidden');
+    }
+
+    function showReality() {
+      const txt = t();
+      let verdictHtml = '';
+      if (stats.total >= 3) {
+        const bluePct = Math.round(stats.blue / stats.total * 100);
+        let verdict;
+        if (bluePct >= 70) verdict = txt.verdictHigh(bluePct);
+        else if (bluePct >= 40) verdict = txt.verdictMid(bluePct);
+        else if (bluePct >= 15) verdict = txt.verdictLow(bluePct);
+        else verdict = txt.verdictVeryLow(bluePct);
+        verdictHtml = `<div class="verdict"><div class="verdict-label">${txt.yourPattern}</div><div class="verdict-text">${verdict}</div></div>`;
+      }
+
+      const cardsHtml = txt.researchData.map(d => `
+        <div class="data-card">
+          <div class="data-card-label">${d.label}</div>
+          <div class="data-card-headline">${d.headline}</div>
+          <div class="data-card-detail">${d.detail}</div>
+        </div>
+      `).join('');
+
+      const html = `
+        <h2 class="panel-title">${txt.researchTitle}</h2>
+        <p class="panel-sub">${txt.researchSub}</p>
+        ${verdictHtml}
+        ${cardsHtml}
+        <div class="summary">
+          <div class="summary-label">${txt.mainPattern}</div>
+          <div class="summary-headline">${txt.mainPatternHeadline}</div>
+          <div class="summary-detail">${txt.mainPatternDetail}</div>
+        </div>
+        <div class="closing-quote">${txt.closingQuote}</div>
+        <div style="text-align: center;">
+          <button class="btn" onclick="playAgain()">${txt.backToGame}</button>
+        </div>
+      `;
+      hideAll();
+      const r = document.getElementById('screen-reality');
+      r.innerHTML = html;
+      r.classList.remove('hidden');
+    }
+
+    function showQuestions() {
+      const txt = t();
+      const totalUnlocked = unlockedBlue.length + unlockedRed.length;
+
+      let metaInsight = '';
+      if (totalUnlocked === 16) {
+        metaInsight = `
+          <div class="summary">
+            <div class="summary-label">${txt.allUnlocked}</div>
+            <div class="summary-headline">${txt.allUnlockedHeadline}</div>
+            <div class="summary-detail">${txt.allUnlockedDetail}</div>
+          </div>
+        `;
+      } else if (totalUnlocked >= 8) {
+        metaInsight = `<div class="verdict"><div class="verdict-text">${txt.halfwayInsight(totalUnlocked)}</div></div>`;
+      }
+
+      let blueCards = '';
+      for (let i = 0; i < txt.questionsBlue.length; i++) {
+        const isUnlocked = unlockedBlue.includes(i);
+        if (isUnlocked) {
+          blueCards += `
+            <div class="question-card unlocked-blue">
+              <div class="question-card-label">${txt.blue} #${i + 1}</div>
+              <div class="question-card-text">${txt.questionsBlue[i]}</div>
+            </div>
+          `;
+        } else {
+          blueCards += `
+            <div class="question-card locked">
+              <div class="question-card-label">${txt.blue} #${i + 1}</div>
+              <div class="question-card-text">${txt.playLockedBlue}</div>
+            </div>
+          `;
+        }
+      }
+
+      let redCards = '';
+      for (let i = 0; i < txt.questionsRed.length; i++) {
+        const isUnlocked = unlockedRed.includes(i);
+        if (isUnlocked) {
+          redCards += `
+            <div class="question-card unlocked-red">
+              <div class="question-card-label">${txt.red} #${i + 1}</div>
+              <div class="question-card-text">${txt.questionsRed[i]}</div>
+            </div>
+          `;
+        } else {
+          redCards += `
+            <div class="question-card locked">
+              <div class="question-card-label">${txt.red} #${i + 1}</div>
+              <div class="question-card-text">${txt.playLockedRed}</div>
+            </div>
+          `;
+        }
+      }
+
+      const html = `
+        <h2 class="panel-title">${txt.questionsTitle}</h2>
+        <p class="panel-sub">${txt.questionsSub}</p>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 24px;">${txt.questionsCount}: <span style="color: var(--accent);">${totalUnlocked}/16</span></p>
+        ${metaInsight}
+        <div class="questions-section">
+          <div class="questions-section-title">${txt.bluePlays} (${unlockedBlue.length}/8)</div>
+          ${blueCards}
+        </div>
+        <div class="questions-section">
+          <div class="questions-section-title">${txt.redPlays} (${unlockedRed.length}/8)</div>
+          ${redCards}
+        </div>
+        <div style="text-align: center; margin-top: 32px;">
+          <button class="btn" onclick="playAgain()">${txt.backToGame}</button>
+        </div>
+      `;
+      hideAll();
+      const r = document.getElementById('screen-questions');
+      r.innerHTML = html;
+      r.classList.remove('hidden');
+    }
+
+    // Detect browser language on load
+    (function() {
+      const browserLang = (navigator.language || 'en').toLowerCase();
+      if (browserLang.startsWith('pl')) {
+        setLang('pl');
+      } else {
+        renderIntro();
+      }
+    })();
+  </script>
+</body>
+</html>
