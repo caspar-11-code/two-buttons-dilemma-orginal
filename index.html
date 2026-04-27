@@ -5,6 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two Buttons — A test of who you become when no one is watching</title>
   <meta name="description" content="An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. Discover the questions that challenge your choice.">
+  <meta name="keywords" content="game theory, moral dilemma, prisoner's dilemma, psychology test, behavioral experiment, trust game, two buttons, online game, free, interactive">
+  <meta name="author" content="gamestheory.org">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0d0d0e">
+
+  <!-- Canonical & language alternates -->
+  <link rel="canonical" href="https://gamestheory.org/">
+  <link rel="alternate" hreflang="en" href="https://gamestheory.org/">
+  <link rel="alternate" hreflang="pl" href="https://gamestheory.org/?lang=pl">
+  <link rel="alternate" hreflang="x-default" href="https://gamestheory.org/">
+
+  <!-- Open Graph (Facebook, LinkedIn, Discord, Slack, iMessage) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Two Buttons">
+  <meta property="og:title" content="Two Buttons — A test of who you become when no one is watching">
+  <meta property="og:description" content="An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. 16 questions that challenge whoever you think you are.">
+  <meta property="og:url" content="https://gamestheory.org/">
+  <meta property="og:image" content="https://gamestheory.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Two Buttons — Red or Blue. One choice.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="pl_PL">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Two Buttons — A test of who you become when no one is watching">
+  <meta name="twitter:description" content="An interactive moral dilemma game based on game theory. Red or blue. 16 questions that challenge whoever you think you are.">
+  <meta name="twitter:image" content="https://gamestheory.org/og-image.png">
+  <meta name="twitter:image:alt" content="Two Buttons — Red or Blue. One choice.">
+
+  <!-- Structured data: WebApplication + Game -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Two Buttons",
+        "alternateName": "Dwa przyciski",
+        "url": "https://gamestheory.org/",
+        "description": "An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. 16 questions that challenge whoever you think you are.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any (browser-based)",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": ["en", "pl"],
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "license": "https://polyformproject.org/licenses/noncommercial/1.0.0/"
+      },
+      {
+        "@type": "Game",
+        "name": "Two Buttons — Moral Dilemma",
+        "url": "https://gamestheory.org/",
+        "genre": ["Game theory", "Psychological experiment", "Moral dilemma"],
+        "gamePlatform": "Web browser",
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 1
+        },
+        "about": [
+          {"@type": "Thing", "name": "Game theory"},
+          {"@type": "Thing", "name": "Prisoner's dilemma"},
+          {"@type": "Thing", "name": "Behavioral economics"},
+          {"@type": "Thing", "name": "Bystander effect"}
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://gamestheory.org/",
+        "name": "gamestheory.org",
+        "inLanguage": ["en", "pl"]
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -661,7 +742,7 @@
 <body>
   <div class="page">
     <div class="top-bar">
-      <div class="brand" id="brand">Two Buttons · kwh</div>
+      <div class="brand" id="brand">Two Buttons · 001</div>
       <div class="lang-toggle">
         <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
         <button id="lang-pl" onclick="setLang('pl')">PL</button>
@@ -731,7 +812,7 @@
   <script>
     const T = {
       en: {
-        brand: 'Two Buttons · kwh',
+        brand: 'Two Buttons · 001',
         eyebrow: 'A moral dilemma · Game theory experiment',
         title: 'Two <em>buttons</em>.<br>One choice.',
         sub: 'A test of who you become when no one is watching.',
@@ -832,7 +913,7 @@
         ]
       },
       pl: {
-        brand: 'Dwa przyciski · kwh',
+        brand: 'Dwa przyciski · 001',
         eyebrow: 'Dylemat moralny · eksperyment z teorii gier',
         title: 'Dwa <em>przyciski</em>.<br>Jeden wybór.',
         sub: 'Test tego, kim się stajesz, kiedy nikt nie patrzy.',
@@ -961,7 +1042,25 @@
       document.getElementById('btn-research').textContent = txt.btnResearch;
       document.getElementById('btn-questions').textContent = txt.btnQuestions;
       document.getElementById('footer-text').textContent = txt.footerText;
-      document.title = (lang => lang === 'en' ? 'Two Buttons — A test of who you become when no one is watching' : 'Dwa przyciski — test tego, kim się stajesz, kiedy nikt nie patrzy')(currentLang);
+
+      // SEO: update document title + meta tags per language
+      const pageTitle = currentLang === 'en'
+        ? 'Two Buttons — A test of who you become when no one is watching'
+        : 'Dwa przyciski — test tego, kim się stajesz, kiedy nikt nie patrzy';
+      const pageDesc = currentLang === 'en'
+        ? 'An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. 16 questions that challenge whoever you think you are.'
+        : 'Interaktywna gra dylematu moralnego oparta na teorii gier i badaniach behawioralnych. Wybierz czerwony albo niebieski. 16 pytań, które kwestionują to, kim myślisz że jesteś.';
+      document.title = pageTitle;
+      const setMeta = (sel, content) => {
+        const el = document.querySelector(sel);
+        if (el) el.setAttribute('content', content);
+      };
+      setMeta('meta[name="description"]', pageDesc);
+      setMeta('meta[property="og:title"]', pageTitle);
+      setMeta('meta[property="og:description"]', pageDesc);
+      setMeta('meta[property="og:locale"]', currentLang === 'en' ? 'en_US' : 'pl_PL');
+      setMeta('meta[name="twitter:title"]', pageTitle);
+      setMeta('meta[name="twitter:description"]', pageDesc);
     }
 
     function updateStats() {
