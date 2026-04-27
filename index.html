@@ -1257,7 +1257,12 @@
     async function fetchGlobalStats() {
       if (!API_BASE) { apiAvailable = false; renderLiveBanner(); return; }
       try {
-        const res = await fetch(API_BASE + '/api/stats', { method: 'GET' });
+        // Bypass any HTTP-level caching with a timestamp + cache: no-store
+        const res = await fetch(API_BASE + '/api/stats?t=' + Date.now(), {
+          method: 'GET',
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        });
         if (!res.ok) throw new Error('Bad response');
         globalStats = await res.json();
         apiAvailable = true;
