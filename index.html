@@ -349,6 +349,17 @@
     .live-status.success { color: var(--success); }
     .live-status.warning { color: var(--warning); }
 
+    .cache-disclaimer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      text-align: center;
+      margin-top: 10px;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
     .first-vote-badge {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
@@ -923,6 +934,7 @@
           </div>
         </div>
         <p class="live-status" id="live-status"></p>
+        <p class="cache-disclaimer" id="cache-disclaimer"></p>
       </div>
 
       <div class="rules">
@@ -1037,6 +1049,7 @@
         firstVoteBadge: 'Your real vote',
         firstVoteCounted: (c) => `Your first click was recorded as ${c}. From now on you\'re only running the simulation.`,
         liveResultsHeader: 'Real-world results so far',
+        cacheDisclaimer: 'Updates may take ~60 seconds to reflect',
 
         // Result messages
         resultRedBlueWon: { title: 'You live.', sub: 'Humanity chose trust. The blues saved everyone, including you.', mood: 'shame', detail: (p) => `${p}% chose blue. You were saved by people you didn't trust. No one will know — but you will.` },
@@ -1152,6 +1165,7 @@
         firstVoteBadge: 'Twój realny głos',
         firstVoteCounted: (c) => `Twój pierwszy klik został zapisany jako ${c}. Od teraz tylko uruchamiasz symulację.`,
         liveResultsHeader: 'Realne wyniki ze świata',
+        cacheDisclaimer: 'Aktualizacja może zająć ~60 sekund',
 
         resultRedBlueWon: { title: 'Żyjesz.', sub: 'Ludzkość wybrała zaufanie. Niebiescy uratowali wszystkich, w tym ciebie.', mood: 'shame', detail: (p) => `${p}% wybrało niebieski. Zostałeś uratowany przez ludzi, którym nie zaufałeś. Nikt się nie dowie, ale ty wiesz.` },
         resultRedAllRed: { title: 'Żyjesz.', sub: 'Wszyscy wybrali czerwony. Nikt nie zginął.', mood: 'neutral', detail: () => 'Idealna koordynacja przez nieufność. Wszyscy myśleli tak samo jak ty. Nikt nie zaryzykował dla nikogo, ale wszyscy żyją. Czy to jest zwycięstwo?' },
@@ -1306,6 +1320,7 @@
       document.getElementById('live-total-label').textContent = txt.liveTotalLabel;
       document.getElementById('live-red-label').textContent = txt.liveRedLabel;
       document.getElementById('live-blue-label').textContent = txt.liveBlueLabel;
+      document.getElementById('cache-disclaimer').textContent = txt.cacheDisclaimer;
 
       if (!apiAvailable && globalStats.total === 0) {
         document.getElementById('live-total-value').textContent = '—';
