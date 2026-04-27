@@ -4,7 +4,9 @@ A test of who you become when no one is watching.
 
 An interactive moral dilemma game grounded in game theory and behavioral research. Pick red or blue. Discover the questions that challenge your choice.
 
-**Play it:** [OPEN `[https://gamestheory.org]`] in any browser, or host it on GitHub Pages.
+<a href="https://gamestheory.org">
+  <button>Play Game</button>
+</a>
 
 ---
 
