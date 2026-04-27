@@ -1280,17 +1280,21 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ voter_id: voterId, choice: choice })
         });
-        if (!res.ok) throw new Error('Bad response');
+        if (!res.ok) throw new Error('Bad response: ' + res.status);
         const data = await res.json();
+        // ONLY persist firstChoice after server confirms
         firstChoice = data.choice || choice;
         try { localStorage.setItem(FIRST_CHOICE_KEY, firstChoice); } catch(e) {}
         if (data.stats) globalStats = data.stats;
         apiAvailable = true;
         flashLiveStat(firstChoice);
+        renderLiveBanner();
         showLiveStatus(data.already_voted ? t().liveAlreadyVoted : t().liveYourVote, 'success');
       } catch (e) {
+        // POST failed — do NOT persist firstChoice locally so user can retry next time
+        console.warn('Vote recording failed:', e.message);
         apiAvailable = false;
-        renderLiveBanner();
+        showLiveStatus(t().liveOffline, 'warning');
       }
     }
 
@@ -1484,14 +1488,20 @@
       // Record first-ever vote for this device (no-op if already voted or no API)
       const wasFirstVote = !firstChoice;
       if (wasFirstVote) {
-        // Optimistic UI update so the user sees their vote land
-        firstChoice = choice;
-        try { localStorage.setItem(FIRST_CHOICE_KEY, choice); } catch(e) {}
+        // Optimistic UI update for immediate feedback
+        // We DO NOT save firstChoice to localStorage here — only after server confirms
+        // (this way, if POST fails, the user can retry next time)
+        firstChoice = choice; // Set in-memory only — recordFirstVote will persist if server confirms
         globalStats[choice] = (globalStats[choice] || 0) + 1;
         globalStats.total = (globalStats.total || 0) + 1;
         renderLiveBanner();
         flashLiveStat(choice);
-        recordFirstVote(choice); // Fire and forget; will reconcile counts from server
+        recordFirstVote(choice).then(() => {
+          // If recordFirstVote failed silently (apiAvailable=false), reset firstChoice so retry works
+          if (!apiAvailable) {
+            firstChoice = null;
+          }
+        });
       }
 
       const bluePct = simulateBluePercent();
