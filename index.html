@@ -1489,19 +1489,13 @@
       const wasFirstVote = !firstChoice;
       if (wasFirstVote) {
         // Optimistic UI update for immediate feedback
-        // We DO NOT save firstChoice to localStorage here — only after server confirms
+        // We DO NOT set firstChoice here — recordFirstVote does that ONLY after server confirms
         // (this way, if POST fails, the user can retry next time)
-        firstChoice = choice; // Set in-memory only — recordFirstVote will persist if server confirms
         globalStats[choice] = (globalStats[choice] || 0) + 1;
         globalStats.total = (globalStats.total || 0) + 1;
         renderLiveBanner();
         flashLiveStat(choice);
-        recordFirstVote(choice).then(() => {
-          // If recordFirstVote failed silently (apiAvailable=false), reset firstChoice so retry works
-          if (!apiAvailable) {
-            firstChoice = null;
-          }
-        });
+        recordFirstVote(choice);
       }
 
       const bluePct = simulateBluePercent();
