@@ -13,22 +13,22 @@
   <style>
     :root {
       --bg: #0d0d0e;
-      --surface: #161618;
-      --surface-2: #1d1d20;
+      --surface: #18181b;
+      --surface-2: #212125;
       --text: #ece7dc;
-      --text-mute: #95918a;
-      --text-faint: #5d5a55;
-      --border: rgba(236, 231, 220, 0.08);
-      --border-strong: rgba(236, 231, 220, 0.18);
-      --red: #C8302C;
+      --text-mute: #b8b3a9;
+      --text-faint: #847f78;
+      --border: rgba(236, 231, 220, 0.12);
+      --border-strong: rgba(236, 231, 220, 0.28);
+      --red: #d83a36;
       --red-deep: #7a1815;
-      --red-text: #f0c4c2;
-      --blue: #2563b8;
+      --red-text: #f8d6d4;
+      --blue: #3a7ad4;
       --blue-deep: #143a72;
-      --blue-text: #b8d4f4;
-      --accent: #d4b896;
-      --warning: #d4a05e;
-      --success: #7eb89a;
+      --blue-text: #cce0f7;
+      --accent: #e0c8a4;
+      --warning: #e0b070;
+      --success: #8ec8aa;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -283,10 +283,10 @@
       animation: fadeIn 0.8s ease;
     }
 
-    .result.death { background: #050506; color: #4a4a4a; }
-    .result.heavy { background: #1f0c0c; color: #c89898; }
-    .result.shame { background: #0d1224; color: #98a4c8; }
-    .result.triumph { background: #091f17; color: #98c8ad; }
+    .result.death { background: #08080a; color: #6f6f72; }
+    .result.heavy { background: #1f0c0c; color: #d8a8a8; }
+    .result.shame { background: #0d1224; color: #aab4d4; }
+    .result.triumph { background: #091f17; color: #a8d4ba; }
     .result.neutral { background: var(--surface); color: var(--text); }
 
     .result-title {
@@ -303,7 +303,7 @@
       font-size: 18px;
       line-height: 1.5;
       margin-bottom: 32px;
-      opacity: 0.85;
+      opacity: 0.92;
     }
 
     .histogram {
@@ -338,7 +338,7 @@
       text-transform: uppercase;
       text-align: center;
       margin-top: 10px;
-      opacity: 0.5;
+      opacity: 0.7;
     }
 
     .result-detail {
@@ -346,7 +346,7 @@
       font-size: 15px;
       line-height: 1.7;
       margin: 24px 0 16px;
-      opacity: 0.85;
+      opacity: 0.92;
     }
 
     .result-section {
@@ -360,14 +360,14 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      opacity: 0.7;
+      opacity: 0.85;
       margin-bottom: 8px;
     }
 
     .result-section-text {
       font-size: 14px;
       line-height: 1.6;
-      opacity: 0.85;
+      opacity: 0.92;
     }
 
     .new-question {
@@ -386,7 +386,7 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      opacity: 0.75;
+      opacity: 0.9;
       margin-bottom: 10px;
     }
 
@@ -395,7 +395,7 @@
       font-style: italic;
       font-size: 21px;
       line-height: 1.45;
-      opacity: 0.95;
+      opacity: 1;
     }
 
     .result-actions {
@@ -407,7 +407,7 @@
 
     .result .btn {
       border-color: currentColor;
-      opacity: 0.7;
+      opacity: 0.85;
       color: inherit;
     }
 
@@ -782,32 +782,32 @@
         resultBlueDied: { title: 'You\'re dead.', sub: (p) => `Only ${p}% picked blue. Not enough.`, mood: 'death', detail: () => 'Reds live. You died for an idea most didn\'t share. Your death saved no one. No one will ever know you chose blue.' },
 
         // Research comparison
-        comparisonBlue: 'In laboratory prisoner\'s dilemma games (Sally 1995, meta-analysis of 30 studies), ~37% of people choose cooperation. You picked blue — you\'re in that minority.',
-        comparisonRed: 'In laboratory prisoner\'s dilemma games (Sally 1995), ~63% of people choose defection. You\'re in that majority. This is the statistical norm, not the exception.',
+        comparisonBlue: 'In a meta-analysis of 130 prisoner\'s dilemma experiments (Sally 1995), the average cooperation rate was ~47%. You picked blue — you\'re close to that baseline. In real-stake scenarios, cooperation drops far below it.',
+        comparisonRed: 'In a meta-analysis of 130 prisoner\'s dilemma experiments (Sally 1995), the average cooperation rate was ~47% — meaning ~53% choose to defect. You\'re in that majority. This is the statistical norm, not the exception.',
 
         // Pattern insights
         patternHigh: (p) => `${p}% blue. That\'s what surveys say. Not what experiments show.`,
-        patternMid: (p) => `${p}% blue — exactly the cooperation rate in laboratory prisoner\'s dilemmas.`,
+        patternMid: (p) => `${p}% blue — close to the cooperation rate in laboratory prisoner\'s dilemmas (~47%).`,
         patternLow: (p) => `${p}% blue. The simulation works — your self-preservation instinct is active.`,
         patternVeryLow: (p) => `${p}% blue. Consistently self-interested. In a survey, you\'d probably say otherwise.`,
 
         // Verdict in research panel
         verdictHigh: (p) => `You pick blue ${p}% of the time — far above any documented baseline. Either unusually strong faith in humanity, or awareness this is just a simulation. In real scenarios, most people who say "I'd pick blue" change their answer when the risk becomes real.`,
-        verdictMid: (p) => `You pick blue ${p}% of the time — close to laboratory prisoner\'s dilemma rates (~37%). Statistically typical behavior.`,
+        verdictMid: (p) => `You pick blue ${p}% of the time — close to laboratory prisoner\'s dilemma rates (~47%). Statistically typical behavior.`,
         verdictLow: (p) => `You pick blue ${p}% of the time — below the lab average. The simulation is real enough to you that your self-preservation instinct activates.`,
         verdictVeryLow: (p) => `You pick blue ${p}% of the time — far below average. Consistently self-interested. In a survey, 95% of people would say "I'd risk myself for others sometimes". Your choices say otherwise.`,
 
         // Research data points
         researchData: [
           { label: 'In surveys (declared)', headline: '~70% say "I\'d help a stranger in danger"', detail: 'Hypothetical surveys are choices without cost. People consistently declare high altruism.' },
-          { label: 'In the laboratory (one-shot prisoner\'s dilemma)', headline: '~37% choose cooperation', detail: 'Sally (1995), meta-analysis of 30 studies. When decisions start having consequences, cooperation drops by half.' },
-          { label: 'In experiments (bystander effect)', headline: '31% help when they think others are watching', detail: 'Darley & Latané (1968). "Someone else will do it" — diffusion of responsibility.' },
-          { label: 'In history (Holocaust, occupied Europe)', headline: '0.1–0.5% of population actively hid Jews', detail: 'Oliner & Oliner (1988). When the stakes are real death, the percentage of those willing to sacrifice is microscopic.' },
-          { label: 'In reality (COVID mask compliance, peak pandemic)', headline: 'Japan 95% / Germany 75% / US ~50%', detail: 'Same dilemma, same virus, completely different outcomes. Cooperation isn\'t a constant of "humanity" — it depends on culture and institutional trust.' },
+          { label: 'In the laboratory (prisoner\'s dilemma)', headline: '~47% choose cooperation', detail: 'Sally (1995), meta-analysis of 130 experiments. When decisions start having consequences, cooperation drops sharply from declared willingness.' },
+          { label: 'In experiments (bystander effect)', headline: '31% help when they think 4 other witnesses are present', detail: 'Darley & Latané (1968). When alone, 85% help; with one other, 62%; with four others, only 31%. "Someone else will do it" — diffusion of responsibility.' },
+          { label: 'In history (Holocaust, occupied Europe)', headline: 'Far below 1% of population actively hid Jews', detail: 'Oliner & Oliner (1988). When the stakes are real death, the percentage of those willing to sacrifice is microscopic.' },
+          { label: 'In reality (COVID mask compliance)', headline: 'Japan ~85% / Germany ~65% / US ~50%', detail: 'Same dilemma, same virus, different outcomes (self-reported, varying by period). Cooperation isn\'t a constant of "humanity" — it depends on culture and institutional trust.' },
           { label: 'In economics (public goods game)', headline: 'Cooperation: ~50% → ~10% after 10 rounds', detail: 'Fehr & Gächter (2000). Without punishment for free riders, cooperation decays — out of frustration, not greed.' }
         ],
         mainPatternHeadline: 'The more real the risk, the less cooperation.',
-        mainPatternDetail: '70% in surveys. 37% in the lab. <1% in occupied Europe. Hypothetical morality and real choices are two different systems. When you pick blue in this game, you\'re in the first. If the stakes were real, most people jump to the second.',
+        mainPatternDetail: '70% in surveys. ~47% in the lab. Far below 1% in occupied Europe. Hypothetical morality and real choices are two different systems. When you pick blue in this game, you\'re in the first. If the stakes were real, most people jump to the second.',
 
         // Questions
         questionsBlue: [
@@ -816,18 +816,18 @@
           'Blue is a choice of solidarity — or moral performance for yourself? No one will know how you chose. So who are you choosing for?',
           'If this dilemma was only about people you politically disagree with — would you still pick blue?',
           'Kant would say: a moral act is one you\'d choose even knowing you\'ll bear the consequences. Did you choose blue because of that — or because it\'s just a game?',
-          'If 99% of humanity picks red, your death as a blue saves no one. Is that a sacrifice — or a demonstration?',
-          'Real history: <1% of populations in occupied Europe actively hid Jews. You just clicked blue. Are you in that 1% — or do you click differently when there\'s no cost?',
+          'If 99% of humanity were to pick red, your death as a blue would save no one. Would you still pick blue, knowing that in advance?',
+          'Real history: far below 1% of populations in occupied Europe actively hid Jews at risk to their lives. You just clicked blue. Are you in that fraction — or do you click differently when there\'s no cost?',
           'You picked blue despite your own suspicions about human nature. Because if you truly believed in the collective, you wouldn\'t need to constantly fix it.'
         ],
         questionsRed: [
-          'Perfect logic. But how do you feel knowing a million blues just died, and you live?',
+          'Perfect logic. But imagine the scenario where a million blues just died, and you live because of your self-interest. How does that feel?',
           'Red is the choice of rational self-interest. Are you ready to call yourself that, looking in the mirror?',
           'If everyone picks red, everyone lives. But someone has to trust first. Are you that someone — or the one who waits for someone else to take the risk?',
           'Resistance fighters chose blue. People who hid refugees chose blue. Are you proud you chose differently than them?',
           'Red is a guarantee of survival. Blue is an act of faith. Are there any moments in your life where you chose faith over guarantee?',
           'You say "we\'re all in this together". But red separates your fate from everyone else\'s. Do you still feel part of the community?',
-          'Consequences of red: you live, but you know humanity failed the test. Is that a victory — or confirmation of your worst suspicions about yourself and others?',
+          'A possible consequence of red: you live, knowing humanity failed the test. When that happens — is it a victory, or confirmation of your worst suspicions about yourself and others?',
           'If you knew your child chose blue — and you chose red — how would you feel?'
         ]
       },
@@ -881,29 +881,29 @@
         resultBlueWon: { title: 'Żyjecie.', sub: (p) => `Wszyscy. ${p}% wybrało niebieski.`, mood: 'triumph', detail: () => 'Zaufałeś i miałeś rację. Ludzkość zdała test. To rzadki scenariusz, ale właśnie się wydarzył. Czy następnym razem zaryzykujesz znowu?' },
         resultBlueDied: { title: 'Nie żyjesz.', sub: (p) => `Tylko ${p}% wybrało niebieski. Za mało.`, mood: 'death', detail: () => 'Czerwoni żyją. Ty zginąłeś za ideę, której większość nie podzieliła. Twoja śmierć nikogo nie uratowała. Nikt nigdy się nie dowie, że wybrałeś niebieski.' },
 
-        comparisonBlue: 'W laboratoryjnym dylemacie więźnia (Sally 1995, meta-analiza 30 badań) ~37% ludzi wybiera kooperację. Wybrałeś niebieski — jesteś w tej mniejszości.',
-        comparisonRed: 'W laboratoryjnym dylemacie więźnia (Sally 1995) ~63% ludzi wybiera defekcję. Jesteś w tej większości. To statystyczna norma, nie wyjątek.',
+        comparisonBlue: 'W meta-analizie 130 eksperymentów z dylematem więźnia (Sally 1995) średni wskaźnik kooperacji to ~47%. Wybrałeś niebieski — jesteś blisko tej średniej. W realnych scenariuszach z prawdziwą stawką kooperacja spada znacznie niżej.',
+        comparisonRed: 'W meta-analizie 130 eksperymentów z dylematem więźnia (Sally 1995) średnia kooperacja to ~47% — czyli ~53% wybiera defekcję. Jesteś w tej większości. To statystyczna norma, nie wyjątek.',
 
         patternHigh: (p) => `${p}% niebieskich. Tak deklarują w ankietach. Tak nie zachowują się w eksperymentach.`,
-        patternMid: (p) => `${p}% niebieskich — to dokładnie poziom kooperacji w laboratoryjnych dylematach więźnia.`,
+        patternMid: (p) => `${p}% niebieskich — blisko poziomu kooperacji w laboratoryjnych dylematach więźnia (~47%).`,
         patternLow: (p) => `${p}% niebieskich. Symulacja działa — twój instynkt samozachowawczy jest aktywny.`,
         patternVeryLow: (p) => `${p}% niebieskich. Spójnie egoistycznie. W ankiecie powiedziałbyś prawdopodobnie inaczej.`,
 
         verdictHigh: (p) => `Wybierasz niebieski w ${p}% rund — znacznie powyżej średniej w jakichkolwiek badaniach. To albo wyjątkowo silne zaufanie do ludzkości, albo świadomość że to tylko symulacja. W realnym scenariuszu większość ludzi mówiących "wybrałbym niebieski" zmienia zdanie kiedy ryzyko staje się prawdziwe.`,
-        verdictMid: (p) => `Wybierasz niebieski w ${p}% rund — zbliżone do laboratoryjnego dylematu więźnia (37%). Twoje zachowanie jest statystycznie typowe.`,
+        verdictMid: (p) => `Wybierasz niebieski w ${p}% rund — zbliżone do laboratoryjnego dylematu więźnia (~47%). Twoje zachowanie jest statystycznie typowe.`,
         verdictLow: (p) => `Wybierasz niebieski w ${p}% rund — poniżej średniej laboratoryjnej. Symulacja jest dla ciebie dostatecznie realna, żeby aktywować instynkt samozachowawczy.`,
         verdictVeryLow: (p) => `Wybierasz niebieski w ${p}% rund — głęboko poniżej średniej. To zachowanie spójnie egoistyczne. W ankiecie 95% ludzi powiedziałoby "czasami zaryzykowałbym dla innych". Twoje wybory mówią coś innego.`,
 
         researchData: [
           { label: 'W ankietach (deklaracja)', headline: '~70% mówi "pomógłbym nieznajomemu w niebezpieczeństwie"', detail: 'Ankiety hipotetyczne to wybór bez kosztów. Ludzie konsekwentnie deklarują wysoki poziom altruizmu.' },
-          { label: 'W laboratorium (jednorazowy dylemat więźnia)', headline: '~37% wybiera kooperację', detail: 'Sally (1995), meta-analiza 30 badań. Kiedy decyzja zaczyna mieć konsekwencje, kooperacja spada o połowę.' },
-          { label: 'W eksperymencie (efekt świadka)', headline: '31% pomaga, gdy myślą że są inni świadkowie', detail: 'Darley & Latané (1968). "Ktoś inny to zrobi" — diffusion of responsibility.' },
-          { label: 'W historii (Holokaust, kraje okupowane)', headline: '0.1–0.5% populacji aktywnie ratowało Żydów', detail: 'Oliner & Oliner (1988). Kiedy stawka to realne ryzyko śmierci, procent ludzi gotowych do poświęcenia jest mikroskopijny.' },
-          { label: 'W rzeczywistości (compliance z maskami COVID)', headline: 'Japonia 95% / Niemcy 75% / USA ~50%', detail: 'Ten sam dylemat, ten sam wirus, kompletnie różne wyniki. Kooperacja zależy od kultury i zaufania do instytucji.' },
+          { label: 'W laboratorium (dylemat więźnia)', headline: '~47% wybiera kooperację', detail: 'Sally (1995), meta-analiza 130 eksperymentów. Kiedy decyzja zaczyna mieć konsekwencje, kooperacja spada wyraźnie poniżej deklarowanej gotowości.' },
+          { label: 'W eksperymencie (efekt świadka)', headline: '31% pomaga, gdy myślą że są 4 inni świadkowie', detail: 'Darley & Latané (1968). Sami: 85% pomaga; z jednym innym: 62%; z czterema innymi: 31%. "Ktoś inny to zrobi" — diffusion of responsibility.' },
+          { label: 'W historii (Holokaust, okupowana Europa)', headline: 'Znacznie poniżej 1% populacji aktywnie ratowało Żydów', detail: 'Oliner & Oliner (1988). Kiedy stawka to realne ryzyko śmierci, procent ludzi gotowych do poświęcenia jest mikroskopijny.' },
+          { label: 'W rzeczywistości (compliance z maskami COVID)', headline: 'Japonia ~85% / Niemcy ~65% / USA ~50%', detail: 'Ten sam dylemat, ten sam wirus, różne wyniki (deklaracje samodzielne, zmieniały się w czasie). Kooperacja zależy od kultury i zaufania do instytucji.' },
           { label: 'W ekonomii (gra dóbr publicznych)', headline: 'Kooperacja: ~50% → ~10% po 10 rundach', detail: 'Fehr & Gächter (2000). Bez karania pasażerów na gapę kooperacja zanika z frustracji, nie z chciwości.' }
         ],
         mainPatternHeadline: 'Im bardziej realne ryzyko — tym mniej kooperacji.',
-        mainPatternDetail: '70% w ankiecie. 37% w laboratorium. <1% w okupowanym kraju. Hipotetyczna moralność i realne wybory to dwa różne systemy. Kiedy wybierasz niebieski w grze, jesteś w pierwszym. Kiedy stawka byłaby prawdziwa, większość ludzi przeskakuje do drugiego.',
+        mainPatternDetail: '70% w ankiecie. ~47% w laboratorium. Znacznie poniżej 1% w okupowanej Europie. Hipotetyczna moralność i realne wybory to dwa różne systemy. Kiedy wybierasz niebieski w grze, jesteś w pierwszym. Kiedy stawka byłaby prawdziwa, większość ludzi przeskakuje do drugiego.',
 
         questionsBlue: [
           'Gdybyś naprawdę ufał ludzkości, ryzyko byłoby zerowe. Twoje ręce się trzęsły, kiedy klikałeś?',
@@ -911,18 +911,18 @@
           'Niebieski to wybór solidarności — czy performans moralny przed samym sobą? Nikt się nie dowie, jak wybrałeś. Więc dla kogo wybierasz?',
           'Gdyby ten dylemat dotyczył nie wszystkich, tylko ludzi z którymi się politycznie nie zgadzasz — czy nadal niebieski?',
           'Kant by powiedział: akt moralny to taki, który byś wybrał nawet wiedząc że poniesiesz konsekwencje. Czy wybrałeś niebieski dlatego, czy dlatego że to tylko gra?',
-          'Jeśli 99% ludzkości wybierze czerwony, twoja śmierć w niebieskim nikogo nie uratuje. To poświęcenie, czy demonstracja?',
-          'Rzeczywista historia: <1% Polaków pomagało Żydom w okupacji. Ty właśnie kliknąłeś niebieski. Jesteś w tym 1%, czy klikasz inaczej, kiedy nie ma kosztu?',
+          'Gdyby 99% ludzkości wybrało czerwony, twoja śmierć w niebieskim nikogo by nie uratowała. Wybrałbyś tak samo, wiedząc to z góry?',
+          'Rzeczywista historia: znacznie poniżej 1% ludzi w okupowanej Europie aktywnie ukrywało Żydów, ryzykując życie. Ty właśnie kliknąłeś niebieski. Jesteś w tym ułamku, czy klikasz inaczej, kiedy nie ma kosztu?',
           'Wybierasz niebieski wbrew własnym podejrzeniom o naturę ludzką. Bo gdybyś naprawdę wierzył w kolektyw, nie potrzebowałbyś go ciągle naprawiać.'
         ],
         questionsRed: [
-          'Logika idealna. Ale co czujesz, kiedy myślisz że milion niebieskich właśnie zginęło, a ty żyjesz?',
+          'Logika idealna. Ale wyobraź sobie scenariusz, w którym milion niebieskich właśnie zginęło, a ty żyjesz dzięki swojemu egoizmowi. Co wtedy czujesz?',
           'Czerwony to wybór racjonalnego egoizmu. Czy jesteś gotów tak nazywać siebie, patrząc w lustro?',
           'Jeśli każdy wybierze czerwony, wszyscy żyją. Ale ktoś musi pierwszy zaufać. Czy jesteś tym kimś, czy tym, kto czeka aż ktoś inny zaryzykuje?',
-          'Powstańcy Warszawscy wybrali niebieski. Żołnierze wyklęci wybrali niebieski. Czy jesteś dumny, że wybrałeś inaczej niż oni?',
+          'Powstańcy Warszawscy wybrali niebieski. Sprawiedliwi wśród Narodów Świata wybrali niebieski. Czy jesteś dumny, że wybrałeś inaczej niż oni?',
           'Czerwony to gwarancja przeżycia. Niebieski to akt wiary. Czy w twoim życiu są w ogóle momenty, w których wybrałeś wiarę nad gwarancję?',
           'Mówisz że "naród to wspólnota losu". Ale czerwony oddziela twój los od losu innych. Czy nadal czujesz się częścią wspólnoty?',
-          'Konsekwencje czerwonego: żyjesz, ale wiesz że ludzkość zawiodła test. To zwycięstwo, czy potwierdzenie najgorszych podejrzeń o sobie i innych?',
+          'Możliwa konsekwencja czerwonego: żyjesz wiedząc, że ludzkość zawiodła test. Jeśli to się wydarza — to zwycięstwo, czy potwierdzenie najgorszych podejrzeń o sobie i innych?',
           'Gdybyś wiedział, że twoje dziecko wybrało niebieski — a ty czerwony — co byś czuł?'
         ]
       }
