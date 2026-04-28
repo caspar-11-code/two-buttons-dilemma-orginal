@@ -470,6 +470,31 @@
       text-shadow: 0 0 12px rgba(126, 184, 154, 0.4);
     }
 
+    .histogram-rain-section {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 0.5px solid rgba(255,255,255,0.04);
+    }
+
+    #histogram-rain-canvas {
+      display: block;
+      width: 100%;
+      height: 36px;
+      max-width: 100%;
+      opacity: 0.75;
+    }
+
+    .histogram-rain-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 8px;
+      opacity: 0.6;
+    }
+
     /* ─── Personality / Self-test CTA ─── */
     .self-test-cta {
       background: linear-gradient(135deg, rgba(212, 184, 150, 0.06) 0%, rgba(212, 184, 150, 0.02) 100%);
@@ -1459,6 +1484,51 @@
     .footer a { color: var(--text-mute); text-decoration: none; }
     .footer a:hover { color: var(--text); }
 
+    .top-bar-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sound-toggle-top {
+      background: transparent;
+      border: 0.5px solid var(--border);
+      color: var(--text-mute);
+      cursor: pointer;
+      font-size: 18px;
+      width: 32px;
+      height: 28px;
+      border-radius: 4px;
+      padding: 0;
+      letter-spacing: 0;
+      transition: color 0.15s, transform 0.1s, border-color 0.15s, background 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      position: relative;
+    }
+    .sound-toggle-top:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+    .sound-toggle-top[aria-pressed="true"] {
+      color: var(--accent);
+      border-color: rgba(212, 184, 150, 0.4);
+      background: rgba(212, 184, 150, 0.06);
+    }
+    .sound-toggle-top.muted::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      top: 50%;
+      height: 1.5px;
+      background: currentColor;
+      transform: rotate(-22deg);
+      transform-origin: center;
+    }
+
     /* ─── Cookie / Privacy Banner ─── */
     .cookie-banner {
       position: fixed;
@@ -1607,6 +1677,40 @@
       font-weight: 500;
     }
 
+    .easter-modal-content {
+      background: linear-gradient(135deg, #1a1612 0%, #0a0808 100%);
+      border-color: rgba(212, 184, 150, 0.25);
+      max-width: 540px;
+    }
+
+    .easter-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      opacity: 0.85;
+    }
+
+    .easter-modal-content h2 {
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .easter-body {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 18px !important;
+      line-height: 1.55 !important;
+      color: var(--text) !important;
+      opacity: 0.95 !important;
+      padding-left: 16px;
+      border-left: 2px solid rgba(212, 184, 150, 0.4);
+      margin-left: 4px;
+    }
+
     .hidden { display: none !important; }
 
     @media (max-width: 600px) {
@@ -1626,9 +1730,12 @@
   <div class="page">
     <div class="top-bar">
       <div class="brand" id="brand">Two Buttons · kwh</div>
-      <div class="lang-toggle">
-        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
-        <button id="lang-pl" onclick="setLang('pl')">PL</button>
+      <div class="top-bar-controls">
+        <button class="sound-toggle-top" id="sound-toggle" onclick="toggleSound()" aria-label="Toggle sound" aria-pressed="true">♪</button>
+        <div class="lang-toggle">
+          <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+          <button id="lang-pl" onclick="setLang('pl')">PL</button>
+        </div>
       </div>
     </div>
 
@@ -1676,6 +1783,11 @@
           <p class="progress-status" id="progress-status"></p>
         </div>
 
+        <div class="histogram-rain-section" id="histogram-rain-section">
+          <canvas id="histogram-rain-canvas" width="600" height="36"></canvas>
+          <p class="histogram-rain-label" id="histogram-rain-label"></p>
+        </div>
+
         <div class="map-toggle">
           <button class="btn" id="btn-toggle-map" onclick="toggleMap()"></button>
         </div>
@@ -1697,15 +1809,6 @@
         <p class="cache-disclaimer" id="cache-disclaimer"></p>
       </div>
 
-      <div class="self-test-cta" onclick="showPersonality()">
-        <span class="self-test-icon">⌖</span>
-        <div class="self-test-content">
-          <div class="self-test-title" id="self-test-title"></div>
-          <div class="self-test-sub" id="self-test-sub"></div>
-        </div>
-        <span class="self-test-arrow">→</span>
-      </div>
-
       <div class="rules">
         <div class="rules-label" id="rules-label"></div>
         <p id="rule-1"></p>
@@ -1720,6 +1823,15 @@
 
       <p class="privacy-note" id="privacy-note"></p>
       <p class="hint" id="hint"></p>
+
+      <div class="self-test-cta" onclick="showPersonality()">
+        <span class="self-test-icon">⌖</span>
+        <div class="self-test-content">
+          <div class="self-test-title" id="self-test-title"></div>
+          <div class="self-test-sub" id="self-test-sub"></div>
+        </div>
+        <span class="self-test-arrow">→</span>
+      </div>
 
       <div class="secondary-actions">
         <button class="btn" onclick="showReality()" id="btn-research"></button>
@@ -1780,6 +1892,19 @@
       <div id="privacy-body"></div>
       <div style="text-align: center; margin-top: 24px;">
         <button class="btn" onclick="closePrivacy()" id="privacy-close-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Easter egg modal — re-uses privacy modal styling, dynamic content -->
+  <div id="easter-modal" class="privacy-modal hidden" onclick="if(event.target===this)closeEaster()">
+    <div class="privacy-modal-content easter-modal-content">
+      <button class="privacy-close" onclick="closeEaster()">×</button>
+      <p class="easter-eyebrow" id="easter-eyebrow"></p>
+      <h2 id="easter-title"></h2>
+      <p class="easter-body" id="easter-body"></p>
+      <div style="text-align: center; margin-top: 28px;">
+        <button class="btn" onclick="closeEaster()" id="easter-close-btn"></button>
       </div>
     </div>
   </div>
@@ -1901,6 +2026,17 @@
         progressStatusAt: 'Critical threshold. Every single vote tips the balance.',
         progressStatusPassed: '✦ HUMANITY HAS PASSED THE TEST ✦',
         progressStatusPassedSub: (over) => `Blue exceeds 50% by ${over}%. If the world voted right now, everyone would live.`,
+        histogramRainLabel: 'Live · simulated voter activity',
+
+        // Easter eggs
+        easterStreakTitle: 'A quiet observation',
+        easterStreakBody: 'You\'ve picked red ten times in a row. Why are you still playing — if you already know the answer?',
+        easterBothTitle: 'Hidden question · #17',
+        easterBothBody: 'You tried to press both. Like trying to live and die at once. The dilemma assumed you\'d choose. What if the most honest answer is to refuse?',
+        easterNightTitle: 'Question · #18 · Night unlock',
+        easterNightBody: 'It\'s 3:33 in your time zone. You should be sleeping. Or maybe the question is: who do you become at 3:33, when no one is watching, when the world is asleep, when even your own performance has gone quiet? Same red and blue. Different you.',
+        easterFoundLabel: 'Hidden discovery',
+        easterDismiss: 'Close',
 
         // Self-test CTA
         selfTestTitle: 'Test yourself · earn your badge',
@@ -1951,7 +2087,7 @@
           },
           believer: {
             name: 'The <em>Believer</em>',
-            tagline: 'Faith over guarantee.',
+            tagline: 'Faith in people over guarantee.',
             quote: '"I\'d rather be wrong with hope than right alone."',
             desc: 'You picked blue more often than red. You bet on humanity even knowing the math. Maybe you\'re an idealist. Maybe you just refuse to be the kind of person who saves themselves while others die. Either way, you chose meaning over odds.'
           },
@@ -2137,7 +2273,7 @@
         // Pytanie prowokacyjne (po kilku grach)
         thresholdQuestionLabel: 'Zatrzymaj się przy tym',
         thresholdQuestionRed: 'Wybrałeś czerwony. Jaki procent ludzkości wybierający niebieski musiałby być zagwarantowany z góry — żebyś nacisnął niebieski zamiast czerwonego? 70%? 90%? Czy nigdy, bez względu na wszystko?',
-        thresholdQuestionBlue: 'Wybrałeś niebieski. A gdyby tylko 30% ludzkości miało do ciebie dołączyć? Nadal niebieski? A 10%? W którym momencie wiara staje się głupotą — czy może takiego momentu nie ma?',
+        thresholdQuestionBlue: 'Wybrałeś niebieski. A gdyby tylko 30% ludzkości miało do ciebie dołączyć? Nadal niebieski? A 10%? W którym momencie wiara w ludzkość staje się głupotą — czy może takiego momentu nie ma?',
         cacheDisclaimer: 'Aktualizacja może zająć ~60 sekund',
 
         // Pasek postępu
@@ -2146,6 +2282,17 @@
         progressStatusAt: 'Próg krytyczny. Każdy pojedynczy głos przeważa szalę.',
         progressStatusPassed: '✦ LUDZKOŚĆ PRZESZŁA TEST ✦',
         progressStatusPassedSub: (over) => `Niebieski przekracza próg 50% o ${over}%. Gdyby świat głosował teraz, wszyscy by przeżyli.`,
+        histogramRainLabel: 'Na żywo · symulowana aktywność głosujących',
+
+        // Easter eggi
+        easterStreakTitle: 'Ciche spostrzeżenie',
+        easterStreakBody: 'Wybrałeś czerwony dziesięć razy z rzędu. Dlaczego jeszcze grasz — skoro już znasz odpowiedź?',
+        easterBothTitle: 'Ukryte pytanie · #17',
+        easterBothBody: 'Próbowałeś wcisnąć oba. Jak próba życia i śmierci jednocześnie. Dylemat zakładał, że wybierzesz. A może najuczciwszą odpowiedzią jest odmowa?',
+        easterNightTitle: 'Pytanie · #18 · Odblokowane nocą',
+        easterNightBody: 'Jest 3:33 w twojej strefie czasowej. Powinieneś spać. A może pytanie brzmi: kim się stajesz o 3:33, kiedy nikt nie patrzy, kiedy świat śpi, kiedy nawet twój własny występ ucichł? Ten sam czerwony i niebieski. Inny ty.',
+        easterFoundLabel: 'Ukryte odkrycie',
+        easterDismiss: 'Zamknij',
 
         // Self-test CTA
         selfTestTitle: 'Sprawdź siebie · zdobądź odznakę',
@@ -2200,7 +2347,7 @@
           believer: {
             name: '<em>Wierzący</em>',
             nameInstrumental: 'Wierzącym',
-            tagline: 'Wiara nad gwarancją.',
+            tagline: 'Wiara w ludzkość nad gwarancją.',
             quote: '"Wolę mylić się z nadzieją niż mieć rację samotnie."',
             desc: 'Wybierałeś niebieski częściej niż czerwony. Postawiłeś na ludzkość, mimo że znałeś statystyki. Może jesteś idealistą. Może po prostu odmawiasz bycia kimś, kto ratuje siebie kiedy inni giną. Tak czy inaczej, wybrałeś znaczenie ponad szanse.'
           },
@@ -2285,7 +2432,7 @@
           'Czerwony to wybór racjonalnego egoizmu. Czy jesteś gotów tak nazywać siebie, patrząc w lustro?',
           'Jeśli każdy wybierze czerwony, wszyscy żyją. Ale ktoś musi pierwszy zaufać. Czy jesteś tym kimś, czy tym, kto czeka aż ktoś inny zaryzykuje?',
           'Powstańcy Warszawscy wybrali niebieski. Sprawiedliwi wśród Narodów Świata wybrali niebieski. Czy jesteś dumny, że wybrałeś inaczej niż oni?',
-          'Czerwony to gwarancja przeżycia. Niebieski to akt wiary. Czy w twoim życiu są w ogóle momenty, w których wybrałeś wiarę nad gwarancję?',
+          'Czerwony to gwarancja przeżycia. Niebieski to akt wiary w ludzkość. Czy w twoim życiu są w ogóle momenty, w których wybrałeś wiarę w innych nad gwarancję?',
           'Mówisz że "naród to wspólnota losu". Ale czerwony oddziela twój los od losu innych. Czy nadal czujesz się częścią wspólnoty?',
           'Możliwa konsekwencja czerwonego: żyjesz wiedząc, że ludzkość zawiodła test. Jeśli to się wydarza — to zwycięstwo, czy potwierdzenie najgorszych podejrzeń o sobie i innych?',
           'Gdybyś wiedział, że twoje dziecko wybrało niebieski — a ty czerwony — co byś czuł?'
@@ -2416,6 +2563,8 @@
       document.getElementById('live-blue-label').textContent = txt.liveBlueLabel;
       document.getElementById('cache-disclaimer').textContent = txt.cacheDisclaimer;
       document.getElementById('progress-label-left').textContent = txt.progressLabelLeft;
+      const histLabel = document.getElementById('histogram-rain-label');
+      if (histLabel) histLabel.textContent = txt.histogramRainLabel;
       document.getElementById('btn-toggle-map').textContent = mapVisible ? txt.mapToggleHide : txt.mapToggleShow;
 
       // Self-test CTA copy
@@ -3021,6 +3170,387 @@
     }
 
     // ───────────────────────────────────────────────
+    // EASTER EGGS — hidden discoveries
+    // ───────────────────────────────────────────────
+
+    // State for streak detection
+    let easterRedStreak = 0;
+    const easterFoundKeys = {
+      streak: 'gamestheory_easter_streak',
+      both: 'gamestheory_easter_both',
+      night: 'gamestheory_easter_night'
+    };
+
+    function hasEasterBeenFound(key) {
+      try { return localStorage.getItem(easterFoundKeys[key]) === '1'; }
+      catch(e) { return false; }
+    }
+
+    function markEasterFound(key) {
+      try { localStorage.setItem(easterFoundKeys[key], '1'); } catch(e) {}
+    }
+
+    function showEaster(kind) {
+      const txt = t();
+      let title, body;
+      if (kind === 'streak') {
+        title = txt.easterStreakTitle;
+        body = txt.easterStreakBody;
+      } else if (kind === 'both') {
+        title = txt.easterBothTitle;
+        body = txt.easterBothBody;
+      } else if (kind === 'night') {
+        title = txt.easterNightTitle;
+        body = txt.easterNightBody;
+      } else { return; }
+
+      document.getElementById('easter-eyebrow').textContent = txt.easterFoundLabel;
+      document.getElementById('easter-title').textContent = title;
+      document.getElementById('easter-body').textContent = body;
+      document.getElementById('easter-close-btn').textContent = txt.easterDismiss;
+      document.getElementById('easter-modal').classList.remove('hidden');
+      markEasterFound(kind);
+    }
+
+    function closeEaster() {
+      document.getElementById('easter-modal').classList.add('hidden');
+    }
+
+    // Track 10x red streak
+    function easterTrackChoice(choice) {
+      if (choice === 'red') {
+        easterRedStreak++;
+        if (easterRedStreak >= 10 && !hasEasterBeenFound('streak')) {
+          // Show after slight delay so it doesn't crowd the result reveal
+          setTimeout(() => showEaster('streak'), 1200);
+        }
+      } else {
+        easterRedStreak = 0;
+      }
+    }
+
+    // Detect "both pressed" — track timing of clicks on red and blue
+    let lastChoiceTime = 0;
+    let lastChoiceColor = null;
+    function easterTrackTiming(choice) {
+      const now = performance.now();
+      if (lastChoiceColor && lastChoiceColor !== choice && (now - lastChoiceTime) < 250) {
+        // Two opposing clicks within 250ms — counts as "both"
+        if (!hasEasterBeenFound('both')) {
+          setTimeout(() => showEaster('both'), 800);
+        }
+      }
+      lastChoiceTime = now;
+      lastChoiceColor = choice;
+    }
+
+    // 3:33 AM check — runs once per page load
+    function easterCheckNightTime() {
+      if (hasEasterBeenFound('night')) return;
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes();
+      // Trigger between 3:33 and 3:36 to give a small window
+      if (h === 3 && m >= 33 && m <= 36) {
+        // Show after a few seconds of being on the page (don't spook them)
+        setTimeout(() => showEaster('night'), 4000);
+      }
+    }
+
+    // ───────────────────────────────────────────────
+
+    // ───────────────────────────────────────────────
+    // HISTOGRAM RAIN — animated dots representing voters
+    // ───────────────────────────────────────────────
+
+    let histogramAnimationId = null;
+    let histogramDots = [];
+    let histogramLastSpawn = 0;
+    let histogramVisibilityState = 'visible';
+
+    function spawnDot(canvas) {
+      const total = globalStats.total || 1;
+      const blueRatio = globalStats.blue / total;
+      // Each dot is independently red/blue weighted by current global ratio
+      const isBlue = Math.random() < blueRatio;
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Spawn from random x at top; bias slightly toward correct side
+      const sideBias = isBlue ? (0.5 + Math.random() * 0.5) : (Math.random() * 0.5);
+      const x = sideBias * w;
+
+      histogramDots.push({
+        x: x,
+        y: -4,
+        vy: 0.3 + Math.random() * 0.6,
+        radius: 1.2 + Math.random() * 0.8,
+        color: isBlue ? 'rgba(37, 99, 184, 0.9)' : 'rgba(200, 48, 44, 0.85)',
+        isBlue: isBlue,
+        opacity: 0.85,
+        hasLanded: false
+      });
+
+      // Cap to prevent memory bloat — drop oldest
+      if (histogramDots.length > 220) {
+        histogramDots.splice(0, histogramDots.length - 220);
+      }
+    }
+
+    function animateHistogram() {
+      const canvas = document.getElementById('histogram-rain-canvas');
+      if (!canvas) {
+        histogramAnimationId = requestAnimationFrame(animateHistogram);
+        return;
+      }
+
+      // Pause animation when tab is hidden to save battery
+      if (histogramVisibilityState === 'hidden') {
+        histogramAnimationId = requestAnimationFrame(animateHistogram);
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Adapt canvas to its actual displayed size for crispness
+      const displayWidth = canvas.offsetWidth;
+      if (displayWidth && Math.abs(canvas.width - displayWidth) > 4) {
+        canvas.width = displayWidth;
+      }
+
+      // Faded trail effect — clear with semi-transparent black
+      ctx.fillStyle = 'rgba(13, 13, 14, 0.16)';
+      ctx.fillRect(0, 0, canvas.width, h);
+
+      // Spawn rate based on volume of activity (slower, more contemplative)
+      const now = performance.now();
+      const total = globalStats.total || 0;
+      const baseSpawnRate = total > 1000 ? 180 : (total > 100 ? 280 : 450); // ms between spawns
+      if (now - histogramLastSpawn > baseSpawnRate) {
+        spawnDot(canvas);
+        histogramLastSpawn = now;
+      }
+
+      // Update + draw dots
+      histogramDots.forEach((dot, i) => {
+        if (dot.hasLanded) {
+          // Fading on the bottom
+          dot.opacity *= 0.985;
+          if (dot.opacity < 0.05) {
+            dot.markedForRemoval = true;
+            return;
+          }
+        } else {
+          dot.y += dot.vy;
+          if (dot.y > h - 4) {
+            dot.y = h - 4;
+            dot.hasLanded = true;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        const baseColor = dot.color;
+        ctx.fillStyle = baseColor.replace(/[\d.]+\)$/, dot.opacity + ')');
+        ctx.fill();
+      });
+
+      // Cleanup dead dots
+      histogramDots = histogramDots.filter(d => !d.markedForRemoval);
+
+      histogramAnimationId = requestAnimationFrame(animateHistogram);
+    }
+
+    function startHistogramAnimation() {
+      const label = document.getElementById('histogram-rain-label');
+      if (label) label.textContent = t().histogramRainLabel;
+      if (!histogramAnimationId) {
+        animateHistogram();
+      }
+    }
+
+    // Pause animation when tab becomes hidden
+    document.addEventListener('visibilitychange', () => {
+      histogramVisibilityState = document.hidden ? 'hidden' : 'visible';
+    });
+
+    // ───────────────────────────────────────────────
+    // SOUND DESIGN — Web Audio API generated sounds
+    // ───────────────────────────────────────────────
+
+    const SOUND_ENABLED_KEY = 'gamestheory_sound_enabled';
+    let audioContext = null;
+    let soundEnabled = false;
+
+    function initSound() {
+      try {
+        const stored = localStorage.getItem(SOUND_ENABLED_KEY);
+        // Default: ON (only OFF if explicitly set to '0')
+        soundEnabled = stored !== '0';
+      } catch(e) { soundEnabled = true; }
+      updateSoundToggle();
+    }
+
+    function ensureAudioContext() {
+      if (!audioContext) {
+        try {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch(e) { return null; }
+      }
+      // Resume if suspended (autoplay policy)
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      return audioContext;
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      try { localStorage.setItem(SOUND_ENABLED_KEY, soundEnabled ? '1' : '0'); } catch(e) {}
+      updateSoundToggle();
+      if (soundEnabled) {
+        // Confirm click
+        const ctx = ensureAudioContext();
+        if (ctx) playClick('blue', 0.15);
+      }
+    }
+
+    function updateSoundToggle() {
+      const btn = document.getElementById('sound-toggle');
+      if (btn) {
+        btn.textContent = '♪';
+        btn.classList.toggle('muted', !soundEnabled);
+        btn.setAttribute('title', soundEnabled
+          ? (currentLang === 'pl' ? 'Dźwięk włączony — kliknij aby wyłączyć' : 'Sound on — click to mute')
+          : (currentLang === 'pl' ? 'Dźwięk wyłączony — kliknij aby włączyć' : 'Sound off — click to enable')
+        );
+        btn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
+      }
+    }
+
+    // Subtle click — short percussive tone
+    function playClick(side, volume = 0.2) {
+      if (!soundEnabled) return;
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+
+      // Red: lower, harder. Blue: higher, softer.
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(side === 'red' ? 220 : 440, now);
+      osc.frequency.exponentialRampToValueAtTime(side === 'red' ? 110 : 330, now + 0.08);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(side === 'red' ? 800 : 1500, now);
+      filter.Q.value = 2;
+
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(volume, now + 0.005);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.13);
+    }
+
+    // Death — dramatic low descending fade (when blue dies)
+    function playDeath() {
+      if (!soundEnabled) return;
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      // Layered low drone with descending pitch
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(110, now);
+      osc1.frequency.exponentialRampToValueAtTime(40, now + 1.4);
+
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(165, now);  // perfect 5th
+      osc2.frequency.exponentialRampToValueAtTime(60, now + 1.4);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(600, now);
+      filter.frequency.exponentialRampToValueAtTime(150, now + 1.4);
+
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.18, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0.12, now + 0.6);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
+
+      osc1.connect(filter);
+      osc2.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 1.45);
+      osc2.stop(now + 1.45);
+    }
+
+    // Triumph — ascending major chord (when blue wins)
+    function playTriumph() {
+      if (!soundEnabled) return;
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      // Three notes in ascending succession (major triad: C E G)
+      const notes = [
+        { freq: 261.63, start: 0,    dur: 1.4 },
+        { freq: 329.63, start: 0.18, dur: 1.2 },
+        { freq: 392.00, start: 0.36, dur: 1.0 }
+      ];
+
+      notes.forEach(n => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = n.freq;
+        gain.gain.setValueAtTime(0, now + n.start);
+        gain.gain.linearRampToValueAtTime(0.12, now + n.start + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + n.start + n.dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + n.start);
+        osc.stop(now + n.start + n.dur + 0.02);
+      });
+    }
+
+    // Heavy result (red wins, blue died) — somber low tone
+    function playHeavy() {
+      if (!soundEnabled) return;
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 130;  // C3
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.1, now + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.95);
+    }
+
+    // ───────────────────────────────────────────────
 
     function setLang(lang) {
       currentLang = lang;
@@ -3158,6 +3688,13 @@
     }
 
     function choose(choice) {
+      // Sound: click immediately for haptic feel
+      playClick(choice);
+
+      // Easter egg tracking
+      easterTrackChoice(choice);
+      easterTrackTiming(choice);
+
       // Record first-ever vote for this device (no-op if already voted or no API)
       const wasFirstVote = !firstChoice;
       if (wasFirstVote) {
@@ -3262,6 +3799,13 @@
       r.classList.remove('hidden');
       document.getElementById('stats').classList.remove('hidden');
       updateStats();
+
+      // Mood sound — slight delay so it follows the reveal animation
+      setTimeout(() => {
+        if (msg.mood === 'death') playDeath();
+        else if (msg.mood === 'triumph') playTriumph();
+        else if (msg.mood === 'heavy' || msg.mood === 'shame') playHeavy();
+      }, 350);
     }
 
     function playAgain() {
@@ -3452,6 +3996,15 @@
 
       // Fetch real global stats (async, non-blocking)
       fetchGlobalStats();
+
+      // Initialize sound from saved preference
+      initSound();
+
+      // Start animated voter histogram (lazy — runs at ~60fps but yields when tab hidden)
+      startHistogramAnimation();
+
+      // Check for 3:33 night-time easter egg
+      easterCheckNightTime();
 
       // If user already voted, show subtle indicator on intro
       if (firstChoice) {
