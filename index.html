@@ -1573,7 +1573,7 @@
         personalityLockedSub: 'Play at least 5 rounds to unlock your moral type and shareable badge.',
         personalityLockedProgress: (n) => `${n} / 5 rounds played`,
         personalityShare: 'Share badge',
-        personalityCopyLink: 'Copy link',
+        personalityCopyLink: 'Copy result',
         personalityDownload: 'Download image',
         personalityCopied: 'Copied!',
         personalityShareText: (name) => `I'm ${name} according to gamestheory.org — what about you?`,
@@ -1581,6 +1581,11 @@
         personalityStatRed: 'Red',
         personalityStatBlue: 'Blue',
         personalityBack: 'Back to game',
+        imageEyebrow: 'GAMESTHEORY.ORG  ·  YOUR MORAL PROFILE',
+        imageRoundsLabel: 'ROUNDS',
+        imageRedLabel: 'RED',
+        imageBlueLabel: 'BLUE',
+        imageTagline: 'A test of who you become when no one is watching',
 
         // The 8 personality archetypes
         archetypes: {
@@ -1741,7 +1746,7 @@
         personalityLockedSub: 'Zagraj minimum 5 rund, żeby odblokować swój typ moralny i odznakę do udostępnienia.',
         personalityLockedProgress: (n) => `${n} / 5 rund rozegranych`,
         personalityShare: 'Udostępnij odznakę',
-        personalityCopyLink: 'Skopiuj link',
+        personalityCopyLink: 'Skopiuj wynik',
         personalityDownload: 'Pobierz obrazek',
         personalityCopied: 'Skopiowano!',
         personalityShareText: (name) => `Jestem ${name} według gamestheory.org — a ty?`,
@@ -1749,6 +1754,11 @@
         personalityStatRed: 'Czerwony',
         personalityStatBlue: 'Niebieski',
         personalityBack: 'Wróć do gry',
+        imageEyebrow: 'GAMESTHEORY.ORG  ·  TWÓJ PROFIL MORALNY',
+        imageRoundsLabel: 'RUND',
+        imageRedLabel: 'CZERWONY',
+        imageBlueLabel: 'NIEBIESKI',
+        imageTagline: 'Test tego, kim się stajesz, kiedy nikt nie patrzy',
 
         // 8 archetypów
         archetypes: {
@@ -2385,6 +2395,7 @@
     function downloadPersonalityImage(archetypeKey) {
       const archetype = getArchetype();
       if (!archetype) return;
+      const txt = t();
 
       const canvas = document.createElement('canvas');
       const w = 1200;
@@ -2416,7 +2427,7 @@
       ctx.fillStyle = '#95918a';
       ctx.font = '500 18px "JetBrains Mono", monospace';
       ctx.textAlign = 'left';
-      ctx.fillText('GAMESTHEORY.ORG  ·  YOUR MORAL PROFILE', 80, 100);
+      ctx.fillText(txt.imageEyebrow, 80, 100);
 
       // Name
       const cleanName = archetype.name.replace(/<\/?em>/g, '');
@@ -2436,9 +2447,9 @@
 
       ctx.font = '500 16px "JetBrains Mono", monospace';
       ctx.fillStyle = '#5d5a55';
-      ctx.fillText('ROUNDS', 120, statY - 5);
-      ctx.fillText('RED', 470, statY - 5);
-      ctx.fillText('BLUE', 800, statY - 5);
+      ctx.fillText(txt.imageRoundsLabel, 120, statY - 5);
+      ctx.fillText(txt.imageRedLabel, 470, statY - 5);
+      ctx.fillText(txt.imageBlueLabel, 800, statY - 5);
 
       ctx.font = '60px "Instrument Serif", "Times New Roman", serif';
       ctx.fillStyle = '#ece7dc';
@@ -2452,7 +2463,7 @@
       ctx.fillStyle = '#95918a';
       ctx.font = '500 18px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
-      ctx.fillText('A test of who you become when no one is watching', w / 2, h - 90);
+      ctx.fillText(txt.imageTagline, w / 2, h - 90);
       ctx.fillStyle = '#d4b896';
       ctx.font = '500 24px "JetBrains Mono", monospace';
       ctx.fillText('GAMESTHEORY.ORG', w / 2, h - 60);
@@ -2691,6 +2702,7 @@
             <button class="btn" onclick="playAgain()">${txt.playAgain}</button>
             <button class="btn" onclick="showQuestions()">${txt.seeQuestions} (${unlockedBlue.length + unlockedRed.length}/16) ↗</button>
             <button class="btn" onclick="showReality()">${txt.seeReality}</button>
+            ${stats.total >= 5 ? `<button class="btn" onclick="showPersonality()" style="border-color: var(--accent); color: var(--accent);">${txt.personalityEyebrow} ↗</button>` : ''}
           </div>
         </div>
       `;
