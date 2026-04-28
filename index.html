@@ -616,6 +616,22 @@
       position: relative;
     }
 
+    .personality-quote {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.35;
+      color: var(--accent);
+      text-align: center;
+      margin: 0 0 28px;
+      padding: 22px 24px;
+      border-top: 0.5px solid rgba(212, 184, 150, 0.2);
+      border-bottom: 0.5px solid rgba(212, 184, 150, 0.2);
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
     .personality-actions {
       display: flex;
       gap: 10px;
@@ -1645,13 +1661,48 @@
 
         // The 8 personality archetypes
         archetypes: {
-          calculator: { name: 'The <em>Calculator</em>', tagline: 'Cold logic, no illusions.', desc: 'You picked red almost every time. Game theory says you\'re right — red is the dominant strategy. But you didn\'t hesitate, didn\'t even flinch. That\'s not just rationality, that\'s a worldview: trust your math, not your species.' },
-          pragmatist: { name: 'The <em>Pragmatist</em>', tagline: 'Mostly safe, occasionally hopeful.', desc: 'You leaned red but tried blue at least once. You understand the math, but a part of you wonders what would happen if you took the leap. That tension is where most people actually live.' },
-          hesitant: { name: 'The <em>Hesitant</em>', tagline: 'Torn between two worlds.', desc: 'Almost 50/50. You don\'t have a clean answer — and that\'s honest. Most people who claim certainty are performing. You sat with the discomfort of a real dilemma. That\'s rarer than you think.' },
-          believer: { name: 'The <em>Believer</em>', tagline: 'Faith over guarantee.', desc: 'You picked blue more often than red. You bet on humanity even knowing the math. Maybe you\'re an idealist. Maybe you just refuse to be the kind of person who saves themselves while others die. Either way, you chose meaning over odds.' },
-          martyr: { name: 'The <em>Martyr</em>', tagline: 'All in. Every time.', desc: 'Almost every click was blue. Either you have radical faith in collective action — or you\'ve decided the moral cost of choosing red is too high to bear. In real life, your kind is rare. Movements are built on people like you.' },
-          performer: { name: 'The <em>Performer</em>', tagline: 'Says one thing, does another.', desc: 'You picked blue then red, then blue again. Maybe you\'re testing the game. Maybe you\'re testing yourself. Either way, your behavior reveals what surveys hide: even our best intentions don\'t survive contact with cost.' },
-          observer: { name: 'The <em>Observer</em>', tagline: 'Watching, but not yet committed.', desc: 'You\'re still finding your pattern. You haven\'t yet shown your hand — and maybe that\'s the most honest place to be. Keep playing. The pattern will reveal itself.' }
+          calculator: {
+            name: 'The <em>Calculator</em>',
+            tagline: 'Cold logic, no illusions.',
+            quote: '"I trust my math, not my species."',
+            desc: 'You picked red almost every time. Game theory says you\'re right — red is the dominant strategy. But you didn\'t hesitate, didn\'t even flinch. That\'s not just rationality, that\'s a worldview: trust your math, not your species.'
+          },
+          pragmatist: {
+            name: 'The <em>Pragmatist</em>',
+            tagline: 'Mostly safe, occasionally hopeful.',
+            quote: '"I do the math, but a part of me still hopes."',
+            desc: 'You leaned red but tried blue at least once. You understand the math, but a part of you wonders what would happen if you took the leap. That tension is where most people actually live.'
+          },
+          hesitant: {
+            name: 'The <em>Hesitant</em>',
+            tagline: 'Torn between two worlds.',
+            quote: '"Certainty would be a lie. So I sit with the question."',
+            desc: 'Almost 50/50. You don\'t have a clean answer — and that\'s honest. Most people who claim certainty are performing. You sat with the discomfort of a real dilemma. That\'s rarer than you think.'
+          },
+          believer: {
+            name: 'The <em>Believer</em>',
+            tagline: 'Faith over guarantee.',
+            quote: '"I\'d rather be wrong with hope than right alone."',
+            desc: 'You picked blue more often than red. You bet on humanity even knowing the math. Maybe you\'re an idealist. Maybe you just refuse to be the kind of person who saves themselves while others die. Either way, you chose meaning over odds.'
+          },
+          martyr: {
+            name: 'The <em>Martyr</em>',
+            tagline: 'All in. Every time.',
+            quote: '"If I have to choose between living alone and dying with others, I already chose."',
+            desc: 'Almost every click was blue. Either you have radical faith in collective action — or you\'ve decided the moral cost of choosing red is too high to bear. In real life, your kind is rare. Movements are built on people like you.'
+          },
+          performer: {
+            name: 'The <em>Performer</em>',
+            tagline: 'Says one thing, does another.',
+            quote: '"I find out who I am one click at a time."',
+            desc: 'You picked blue then red, then blue again. Maybe you\'re testing the game. Maybe you\'re testing yourself. Either way, your behavior reveals what surveys hide: even our best intentions don\'t survive contact with cost.'
+          },
+          observer: {
+            name: 'The <em>Observer</em>',
+            tagline: 'Watching, but not yet committed.',
+            quote: '"Before I act, I want to understand what acting means."',
+            desc: 'You\'re still finding your pattern. You haven\'t yet shown your hand — and maybe that\'s the most honest place to be. Keep playing. The pattern will reveal itself.'
+          }
         },
 
         // Map
@@ -1819,13 +1870,55 @@
 
         // 8 archetypów
         archetypes: {
-          calculator: { name: '<em>Kalkulator</em>', tagline: 'Zimna logika, żadnych iluzji.', desc: 'Wybierałeś czerwony niemal za każdym razem. Teoria gier mówi że masz rację — czerwony to strategia dominująca. Ale ty się nie wahałeś, nawet nie drgnąłeś. To nie jest tylko racjonalność, to światopogląd: ufaj matematyce, nie gatunkowi.' },
-          pragmatist: { name: '<em>Pragmatyk</em>', tagline: 'Głównie bezpiecznie, czasem z nadzieją.', desc: 'Skłaniałeś się ku czerwonemu, ale przynajmniej raz spróbowałeś niebieskiego. Rozumiesz matematykę, ale jakaś część ciebie się zastanawia, co by się stało gdybyś podjął ryzyko. W tym napięciu większość ludzi naprawdę żyje.' },
-          hesitant: { name: '<em>Niezdecydowany</em>', tagline: 'Rozdarty między dwoma światami.', desc: 'Prawie 50/50. Nie masz czystej odpowiedzi — i to jest uczciwe. Większość ludzi twierdzących że są pewni, gra rolę. Ty usiadłeś z dyskomfortem prawdziwego dylematu. To rzadsze niż myślisz.' },
-          believer: { name: '<em>Wierzący</em>', tagline: 'Wiara nad gwarancją.', desc: 'Wybierałeś niebieski częściej niż czerwony. Postawiłeś na ludzkość, mimo że znałeś statystyki. Może jesteś idealistą. Może po prostu odmawiasz bycia kimś, kto ratuje siebie kiedy inni giną. Tak czy inaczej, wybrałeś znaczenie ponad szanse.' },
-          martyr: { name: '<em>Męczennik</em>', tagline: 'All in. Za każdym razem.', desc: 'Niemal każdy klik to niebieski. Albo masz radykalną wiarę w działanie zbiorowe — albo uznałeś że moralny koszt wyboru czerwonego jest zbyt wysoki. W prawdziwym życiu twój typ jest rzadki. Ruchy społeczne są zbudowane na ludziach jak ty.' },
-          performer: { name: '<em>Aktor</em>', tagline: 'Mówi jedno, robi drugie.', desc: 'Wybrałeś niebieski, potem czerwony, potem znów niebieski. Może testujesz grę. Może testujesz siebie. Tak czy inaczej, twoje zachowanie ujawnia to, co ankiety ukrywają: nawet nasze najlepsze intencje nie przeżywają kontaktu z kosztem.' },
-          observer: { name: '<em>Obserwator</em>', tagline: 'Patrzy, ale jeszcze nie zdecydował.', desc: 'Twój wzorzec jeszcze się nie ujawnił. Nie pokazałeś jeszcze swojej karty — i może to jest najszczersze miejsce. Graj dalej. Wzorzec sam się ujawni.' }
+          calculator: {
+            name: '<em>Kalkulator</em>',
+            nameInstrumental: 'Kalkulatorem',
+            tagline: 'Zimna logika, żadnych iluzji.',
+            quote: '"Ufam matematyce, nie gatunkowi."',
+            desc: 'Wybierałeś czerwony niemal za każdym razem. Teoria gier mówi że masz rację — czerwony to strategia dominująca. Ale ty się nie wahałeś, nawet nie drgnąłeś. To nie jest tylko racjonalność, to światopogląd: ufaj matematyce, nie gatunkowi.'
+          },
+          pragmatist: {
+            name: '<em>Pragmatyk</em>',
+            nameInstrumental: 'Pragmatykiem',
+            tagline: 'Głównie bezpiecznie, czasem z nadzieją.',
+            quote: '"Liczę szanse, ale część mnie wciąż ma nadzieję."',
+            desc: 'Skłaniałeś się ku czerwonemu, ale przynajmniej raz spróbowałeś niebieskiego. Rozumiesz matematykę, ale jakaś część ciebie się zastanawia, co by się stało gdybyś podjął ryzyko. W tym napięciu większość ludzi naprawdę żyje.'
+          },
+          hesitant: {
+            name: '<em>Niezdecydowany</em>',
+            nameInstrumental: 'Niezdecydowanym',
+            tagline: 'Rozdarty między dwoma światami.',
+            quote: '"Pewność byłaby kłamstwem. Wolę zostać z pytaniem."',
+            desc: 'Prawie 50/50. Nie masz czystej odpowiedzi — i to jest uczciwe. Większość ludzi twierdzących że są pewni, gra rolę. Ty usiadłeś z dyskomfortem prawdziwego dylematu. To rzadsze niż myślisz.'
+          },
+          believer: {
+            name: '<em>Wierzący</em>',
+            nameInstrumental: 'Wierzącym',
+            tagline: 'Wiara nad gwarancją.',
+            quote: '"Wolę mylić się z nadzieją niż mieć rację samotnie."',
+            desc: 'Wybierałeś niebieski częściej niż czerwony. Postawiłeś na ludzkość, mimo że znałeś statystyki. Może jesteś idealistą. Może po prostu odmawiasz bycia kimś, kto ratuje siebie kiedy inni giną. Tak czy inaczej, wybrałeś znaczenie ponad szanse.'
+          },
+          martyr: {
+            name: '<em>Męczennik</em>',
+            nameInstrumental: 'Męczennikiem',
+            tagline: 'All in. Za każdym razem.',
+            quote: '"Między samotnym życiem a śmiercią z innymi — już dawno wybrałem."',
+            desc: 'Niemal każdy klik to niebieski. Albo masz radykalną wiarę w działanie zbiorowe — albo uznałeś że moralny koszt wyboru czerwonego jest zbyt wysoki. W prawdziwym życiu twój typ jest rzadki. Ruchy społeczne są zbudowane na ludziach jak ty.'
+          },
+          performer: {
+            name: '<em>Aktor</em>',
+            nameInstrumental: 'Aktorem',
+            tagline: 'Mówi jedno, robi drugie.',
+            quote: '"Dowiaduję się kim jestem — jeden klik na raz."',
+            desc: 'Wybrałeś niebieski, potem czerwony, potem znów niebieski. Może testujesz grę. Może testujesz siebie. Tak czy inaczej, twoje zachowanie ujawnia to, co ankiety ukrywają: nawet nasze najlepsze intencje nie przeżywają kontaktu z kosztem.'
+          },
+          observer: {
+            name: '<em>Obserwator</em>',
+            nameInstrumental: 'Obserwatorem',
+            tagline: 'Patrzy, ale jeszcze nie zdecydował.',
+            quote: '"Zanim zadziałam, chcę zrozumieć co znaczy działać."',
+            desc: 'Twój wzorzec jeszcze się nie ujawnił. Nie pokazałeś jeszcze swojej karty — i może to jest najszczersze miejsce. Graj dalej. Wzorzec sam się ujawni.'
+          }
         },
 
         // Mapa
@@ -2418,6 +2511,7 @@
               </div>
             </div>
             <div class="personality-description">${archetype.desc}</div>
+            <div class="personality-quote">${archetype.quote}</div>
             <div class="personality-actions">
               <button class="btn-primary" onclick="downloadPersonalityImage('${archetype.key}')">${txt.personalityDownload}</button>
               <button class="btn" onclick="copyShareLink('${archetype.key}')" id="btn-copy-link">${txt.personalityCopyLink}</button>
@@ -2436,8 +2530,11 @@
       const txt = t();
       const archetype = getArchetype();
       if (!archetype) return;
-      const cleanName = archetype.name.replace(/<\/?em>/g, '');
-      const text = txt.personalityShareText(cleanName) + ' https://gamestheory.org';
+      // Use instrumental case if available (Polish), otherwise plain name
+      const nameForShare = archetype.nameInstrumental
+        ? archetype.nameInstrumental
+        : archetype.name.replace(/<\/?em>/g, '');
+      const text = txt.personalityShareText(nameForShare) + ' https://gamestheory.org';
       try {
         navigator.clipboard.writeText(text);
         const btn = document.getElementById('btn-copy-link');
@@ -2489,16 +2586,40 @@
       // Name
       const cleanName = archetype.name.replace(/<\/?em>/g, '');
       ctx.fillStyle = '#ece7dc';
-      ctx.font = 'italic 88px "Instrument Serif", "Times New Roman", serif';
-      ctx.fillText(cleanName, 80, 220);
+      ctx.font = 'italic 84px "Instrument Serif", "Times New Roman", serif';
+      ctx.fillText(cleanName, 80, 200);
 
       // Tagline
       ctx.fillStyle = '#d4b896';
-      ctx.font = 'italic 32px "Instrument Serif", "Times New Roman", serif';
-      ctx.fillText('"' + archetype.tagline + '"', 80, 280);
+      ctx.font = 'italic 28px "Instrument Serif", "Times New Roman", serif';
+      ctx.fillText('"' + archetype.tagline + '"', 80, 250);
 
-      // Stats row
-      const statY = 380;
+      // Quote (wrapped, prominent) — full archetype.quote already wrapped in quotes
+      ctx.fillStyle = '#ece7dc';
+      ctx.font = 'italic 24px "Instrument Serif", "Times New Roman", serif';
+      const quoteText = archetype.quote;
+      const maxQuoteWidth = w - 200;
+      const quoteWords = quoteText.split(' ');
+      const quoteLines = [];
+      let currentLine = '';
+      for (const word of quoteWords) {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        if (ctx.measureText(testLine).width > maxQuoteWidth && currentLine) {
+          quoteLines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) quoteLines.push(currentLine);
+      const quoteStartY = 310;
+      quoteLines.forEach((line, i) => {
+        ctx.fillText(line, 80, quoteStartY + i * 32);
+      });
+
+      // Stats row (shifted down to make room for quote)
+      const quoteHeight = quoteLines.length * 32;
+      const statY = Math.max(420, quoteStartY + quoteHeight + 40);
       ctx.fillStyle = 'rgba(255,255,255,0.04)';
       ctx.fillRect(80, statY - 40, w - 160, 100);
 
