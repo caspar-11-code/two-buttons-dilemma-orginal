@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two Buttons — A test of who you become when no one is watching</title>
+  <link rel="icon" type="image/svg+xml" id="dynamic-favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23C8302C'/%3E%3C/svg%3E">
   <meta name="description" content="An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. Discover the questions that challenge your choice.">
   <meta name="keywords" content="game theory, moral dilemma, prisoner's dilemma, psychology test, behavioral experiment, trust game, two buttons, online game, free, interactive">
   <meta name="author" content="gamestheory.org">
@@ -3019,6 +3020,47 @@
       r.innerHTML = html;
       r.classList.remove('hidden');
     }
+
+    // ───────────────────────────────────────────────
+    // ANIMATED FAVICON — alternating red/blue dot
+    // ───────────────────────────────────────────────
+    (function setupFaviconAnimation() {
+      const favicon = document.getElementById('dynamic-favicon');
+      if (!favicon) return;
+
+      const makeFaviconSvg = (color) =>
+        `data:image/svg+xml,${encodeURIComponent(
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="${color}"/></svg>`
+        )}`;
+
+      const RED = '#C8302C';
+      const BLUE = '#2563b8';
+      let isRed = true;
+
+      // Pause animation when tab not visible to save CPU
+      let intervalId = null;
+      const tick = () => {
+        isRed = !isRed;
+        favicon.href = makeFaviconSvg(isRed ? RED : BLUE);
+      };
+
+      const start = () => {
+        if (intervalId) return;
+        intervalId = setInterval(tick, 1000);
+      };
+      const stop = () => {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      };
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
+
+      start();
+    })();
 
     // Detect browser language and initialize global stats tracking
     (function() {
