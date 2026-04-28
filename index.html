@@ -757,7 +757,7 @@
     }
 
     .map-tooltip {
-      position: absolute;
+      position: fixed;
       pointer-events: none;
       background: #0a0a0a;
       border: 0.5px solid var(--border-strong);
@@ -1095,6 +1095,53 @@
     .new-question.blue { border-left-color: var(--blue-text); }
     .new-question.red { border-left-color: var(--red-text); }
 
+    .threshold-question {
+      margin-top: 20px;
+      padding: 18px 22px;
+      background: rgba(212, 184, 150, 0.04);
+      border: 0.5px solid rgba(212, 184, 150, 0.18);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .threshold-question::before {
+      content: '?';
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      width: 22px;
+      height: 22px;
+      background: var(--bg);
+      border: 0.5px solid rgba(212, 184, 150, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .threshold-question-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    .threshold-question-text {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
     .new-question-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
@@ -1412,6 +1459,154 @@
     .footer a { color: var(--text-mute); text-decoration: none; }
     .footer a:hover { color: var(--text); }
 
+    /* ─── Cookie / Privacy Banner ─── */
+    .cookie-banner {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+      background: rgba(13, 13, 14, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 18px 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      z-index: 200;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .cookie-banner-content {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cookie-banner-text {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .cookie-banner-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px dotted var(--accent);
+    }
+
+    .cookie-banner-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cookie-banner-actions .btn,
+    .cookie-banner-actions .btn-primary {
+      flex: 1 1 auto;
+      font-size: 11px;
+      padding: 9px 14px;
+    }
+
+    /* ─── Privacy Modal ─── */
+    .privacy-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 300;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .privacy-modal-content {
+      max-width: 600px;
+      width: 100%;
+      background: var(--bg);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .privacy-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-mute);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 8px;
+      transition: color 0.2s;
+    }
+    .privacy-close:hover { color: var(--text); }
+
+    .privacy-modal h2 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .privacy-updated {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .privacy-modal h3 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 500;
+      font-size: 18px;
+      margin: 24px 0 8px;
+      color: var(--accent);
+    }
+
+    .privacy-modal p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .privacy-modal ul {
+      margin: 8px 0 12px 20px;
+    }
+
+    .privacy-modal li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .privacy-modal strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
     .hidden { display: none !important; }
 
     @media (max-width: 600px) {
@@ -1561,10 +1756,48 @@
     </div>
 
     <div class="footer">
-      <span id="footer-text"></span> · <a href="https://github.com/caspar-11-code/two-buttons-dilemma-orginal" id="footer-link" target="_blank">GitHub</a>
+      <span id="footer-text"></span> · <a href="https://github.com/caspar-11-code/two-buttons-dilemma-orginal" id="footer-link" target="_blank">GitHub</a> · <a href="#" onclick="showPrivacy(event)" id="footer-privacy">Privacy</a>
     </div>
   </div>
 
+  <!-- Cookie / privacy banner — shown once, dismissable -->
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-banner-content">
+      <p class="cookie-banner-text" id="cookie-banner-text"></p>
+      <div class="cookie-banner-actions">
+        <button class="btn-primary" onclick="acceptPrivacy()" id="cookie-banner-accept"></button>
+        <button class="btn" onclick="showPrivacy(event)" id="cookie-banner-learn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy modal — full text -->
+  <div id="privacy-modal" class="privacy-modal hidden" onclick="if(event.target===this)closePrivacy()">
+    <div class="privacy-modal-content">
+      <button class="privacy-close" onclick="closePrivacy()">×</button>
+      <h2 id="privacy-title"></h2>
+      <p class="privacy-updated" id="privacy-updated"></p>
+      <div id="privacy-body"></div>
+      <div style="text-align: center; margin-top: 24px;">
+        <button class="btn" onclick="closePrivacy()" id="privacy-close-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animated favicon — alternating red/blue dot to draw attention in background tabs
+    (function() {
+      const RED_FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23C8302C'/%3E%3C/svg%3E";
+      const BLUE_FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%232563b8'/%3E%3C/svg%3E";
+      let isBlue = false;
+      setInterval(() => {
+        const link = document.getElementById('dynamic-favicon');
+        if (!link) return;
+        isBlue = !isBlue;
+        link.setAttribute('href', isBlue ? BLUE_FAVICON : RED_FAVICON);
+      }, 1000);
+    })();
+  </script>
   <script>
     const T = {
       en: {
@@ -1610,6 +1843,37 @@
         halfwayInsight: (n) => `You've unlocked ${n} questions. ${16 - n} remain. Each unrevealed one challenges a different aspect of your thinking — worth seeing them all.`,
         closingQuote: 'The question isn\'t "what would you choose". The question is "what would you choose, knowing most people will choose differently than they claim".',
         footerText: 'PolyForm Noncommercial 1.0.0',
+        footerPrivacy: 'Privacy',
+
+        // Privacy / cookies
+        cookieBannerText: 'This site stores a random ID locally (so your vote counts only once) and uses your country code to color the world map. No tracking, no analytics, no third parties. <a href="#" onclick="showPrivacy(event); return false;">Learn more</a>',
+        cookieBannerAccept: 'Got it',
+        cookieBannerLearn: 'Privacy details',
+        privacyTitle: 'Privacy',
+        privacyUpdated: 'Last updated · April 2026',
+        privacyClose: 'Close',
+        privacyBody: `
+          <p>This game is a hobby project. It exists to make people think — not to track them. Here's exactly what happens with your data:</p>
+          <h3>What we store</h3>
+          <ul>
+            <li><strong>A random anonymous ID</strong> in your browser's localStorage. It has no link to your name, email, IP address, or anything personal. It exists only to make sure each device casts at most one vote in the global tally.</li>
+            <li><strong>Your two-letter country code</strong> (e.g. PL, US, DE), detected automatically by Cloudflare from your connection. Used only to color the world map and country rankings. We never store your IP address, city, or any precise location.</li>
+            <li><strong>Your single vote</strong> (red or blue). Aggregated with everyone else's. Not linked to your identity.</li>
+          </ul>
+          <h3>What we don't do</h3>
+          <ul>
+            <li>No analytics (no Google Analytics, no Facebook Pixel, no anything similar).</li>
+            <li>No third-party cookies.</li>
+            <li>No advertising or marketing trackers.</li>
+            <li>No data sold or shared with anyone, ever.</li>
+          </ul>
+          <h3>Your rights</h3>
+          <p>You can clear all data at any time by clearing your browser's localStorage for this site. You can also open an issue on GitHub if you want your country's vote count adjusted (though we cannot identify <em>which</em> vote is yours, since we don't link votes to specific IDs in any retrievable way).</p>
+          <h3>Where the data lives</h3>
+          <p>On Cloudflare's infrastructure (edge servers worldwide). The site is hosted on Cloudflare Pages. Aggregated counts live in Cloudflare KV. No third-party services involved.</p>
+          <h3>Contact</h3>
+          <p>This is a personal project. For privacy questions, open an issue on the GitHub repository linked in the footer.</p>
+        `,
 
         // Global stats — real votes
         liveLabel: 'Live · Real votes worldwide',
@@ -1624,6 +1888,11 @@
         firstVoteBadge: 'Your real vote',
         firstVoteCounted: (c) => `Your first click was recorded as ${c}. From now on you\'re only running the simulation.`,
         liveResultsHeader: 'Real-world results so far',
+
+        // Provocative threshold question (after several plays)
+        thresholdQuestionLabel: 'Sit with this',
+        thresholdQuestionRed: 'You picked red. What percentage of humanity choosing blue would have to be guaranteed in advance — before you would press blue instead? 70%? 90%? Or never, no matter what?',
+        thresholdQuestionBlue: 'You picked blue. What if only 30% of humanity would join you? Still blue? What about 10%? At what point does faith become foolishness — or is there no such point?',
         cacheDisclaimer: 'Updates may take ~60 seconds to reflect',
 
         // Progress bar
@@ -1819,6 +2088,37 @@
         halfwayInsight: (n) => `Odkryłeś już ${n} pytań. Zostało ${16 - n}. Każde z nieodkrytych podważa inny aspekt twojego myślenia — warto poznać wszystkie.`,
         closingQuote: 'Pytanie nie brzmi "co byś wybrał". Pytanie brzmi "co byś wybrał, wiedząc że większość wybierze odwrotnie, niż deklaruje".',
         footerText: 'PolyForm Noncommercial 1.0.0',
+        footerPrivacy: 'Prywatność',
+
+        // Prywatność / ciasteczka
+        cookieBannerText: 'Ta strona zapisuje lokalnie losowy identyfikator (żeby twój głos liczył się tylko raz) i używa kodu twojego kraju do pokolorowania mapy świata. Bez śledzenia, bez analityki, bez stron trzecich. <a href="#" onclick="showPrivacy(event); return false;">Dowiedz się więcej</a>',
+        cookieBannerAccept: 'Rozumiem',
+        cookieBannerLearn: 'Szczegóły',
+        privacyTitle: 'Prywatność',
+        privacyUpdated: 'Ostatnia aktualizacja · kwiecień 2026',
+        privacyClose: 'Zamknij',
+        privacyBody: `
+          <p>Ta gra to projekt hobbystyczny. Istnieje po to, żeby skłonić ludzi do myślenia — a nie żeby ich śledzić. Oto dokładnie co dzieje się z twoimi danymi:</p>
+          <h3>Co przechowujemy</h3>
+          <ul>
+            <li><strong>Losowy anonimowy identyfikator</strong> w localStorage twojej przeglądarki. Nie ma żadnego powiązania z twoim imieniem, mailem, adresem IP ani niczym osobistym. Istnieje tylko po to, żeby zapewnić że każde urządzenie odda maksymalnie jeden głos w globalnej statystyce.</li>
+            <li><strong>Dwuliterowy kod twojego kraju</strong> (np. PL, US, DE), wykryty automatycznie przez Cloudflare z twojego połączenia. Używany tylko do kolorowania mapy świata i rankingów krajów. Nigdy nie przechowujemy twojego adresu IP, miasta, ani żadnej precyzyjnej lokalizacji.</li>
+            <li><strong>Twój pojedynczy głos</strong> (czerwony lub niebieski). Zagregowany z głosami wszystkich innych. Niepowiązany z twoją tożsamością.</li>
+          </ul>
+          <h3>Czego nie robimy</h3>
+          <ul>
+            <li>Brak analityki (nie używamy Google Analytics, Facebook Pixel, ani niczego podobnego).</li>
+            <li>Brak ciasteczek stron trzecich.</li>
+            <li>Brak trackerów reklamowych ani marketingowych.</li>
+            <li>Żadne dane nie są sprzedawane ani udostępniane komukolwiek.</li>
+          </ul>
+          <h3>Twoje prawa</h3>
+          <p>Możesz wyczyścić wszystkie dane w dowolnym momencie czyszcząc localStorage tej strony w swojej przeglądarce. Możesz też otworzyć zgłoszenie na GitHubie jeśli chcesz żeby liczba głosów z twojego kraju została skorygowana (choć nie możemy zidentyfikować <em>którego</em> dokładnie głosu, bo nie wiążemy głosów z konkretnymi identyfikatorami w żaden odzyskiwalny sposób).</p>
+          <h3>Gdzie żyją dane</h3>
+          <p>Na infrastrukturze Cloudflare (serwery edge na całym świecie). Strona hostowana jest na Cloudflare Pages. Zagregowane liczby przechowywane są w Cloudflare KV. Żadne usługi stron trzecich nie są zaangażowane.</p>
+          <h3>Kontakt</h3>
+          <p>To jest projekt osobisty. W kwestii prywatności otwórz zgłoszenie w repozytorium GitHub linkowanym w stopce.</p>
+        `,
 
         // Globalne statystyki — realne głosy
         liveLabel: 'Na żywo · Realne głosy z całego świata',
@@ -1833,6 +2133,11 @@
         firstVoteBadge: 'Twój realny głos',
         firstVoteCounted: (c) => `Twój pierwszy klik został zapisany jako ${c}. Od teraz tylko uruchamiasz symulację.`,
         liveResultsHeader: 'Realne wyniki ze świata',
+
+        // Pytanie prowokacyjne (po kilku grach)
+        thresholdQuestionLabel: 'Zatrzymaj się przy tym',
+        thresholdQuestionRed: 'Wybrałeś czerwony. Jaki procent ludzkości wybierający niebieski musiałby być zagwarantowany z góry — żebyś nacisnął niebieski zamiast czerwonego? 70%? 90%? Czy nigdy, bez względu na wszystko?',
+        thresholdQuestionBlue: 'Wybrałeś niebieski. A gdyby tylko 30% ludzkości miało do ciebie dołączyć? Nadal niebieski? A 10%? W którym momencie wiara staje się głupotą — czy może takiego momentu nie ma?',
         cacheDisclaimer: 'Aktualizacja może zająć ~60 sekund',
 
         // Pasek postępu
@@ -2428,15 +2733,25 @@
         <div class="map-tooltip-name">${getCountryName(code)}</div>
         <div class="map-tooltip-stats">${txt.mapTooltipVotes(data.total)} · ${Math.round(bluePct)}% ${txt.mapTooltipBlue}</div>
       `;
-      const wrapper = document.getElementById('map-svg-wrapper');
-      const rect = wrapper.getBoundingClientRect();
+
+      // Position fixed relative to viewport — make tooltip visible first to get its size
+      tooltip.classList.add('visible');
       const tooltipRect = tooltip.getBoundingClientRect();
-      let left = e.clientX - rect.left + 12;
-      let top = e.clientY - rect.top - tooltipRect.height - 12;
-      if (top < 0) top = e.clientY - rect.top + 16;
+
+      // Default: tooltip above cursor with 14px gap
+      let left = e.clientX - tooltipRect.width / 2;
+      let top = e.clientY - tooltipRect.height - 14;
+
+      // Keep within viewport horizontally
+      const maxLeft = window.innerWidth - tooltipRect.width - 8;
+      if (left < 8) left = 8;
+      if (left > maxLeft) left = maxLeft;
+
+      // If above is off-screen, put below cursor
+      if (top < 8) top = e.clientY + 18;
+
       tooltip.style.left = left + 'px';
       tooltip.style.top = top + 'px';
-      tooltip.classList.add('visible');
     }
 
     function onMapLeave() {
@@ -2663,6 +2978,50 @@
 
     // ───────────────────────────────────────────────
 
+    // ───────────────────────────────────────────────
+    // PRIVACY / COOKIE banner + modal
+    // ───────────────────────────────────────────────
+
+    const PRIVACY_ACCEPTED_KEY = 'gamestheory_privacy_accepted';
+
+    function shouldShowPrivacyBanner() {
+      try {
+        return !localStorage.getItem(PRIVACY_ACCEPTED_KEY);
+      } catch(e) {
+        return false;
+      }
+    }
+
+    function showPrivacyBanner() {
+      const txt = t();
+      const banner = document.getElementById('cookie-banner');
+      document.getElementById('cookie-banner-text').innerHTML = txt.cookieBannerText;
+      document.getElementById('cookie-banner-accept').textContent = txt.cookieBannerAccept;
+      document.getElementById('cookie-banner-learn').textContent = txt.cookieBannerLearn;
+      banner.classList.remove('hidden');
+    }
+
+    function acceptPrivacy() {
+      try { localStorage.setItem(PRIVACY_ACCEPTED_KEY, '1'); } catch(e) {}
+      document.getElementById('cookie-banner').classList.add('hidden');
+    }
+
+    function showPrivacy(e) {
+      if (e) e.preventDefault();
+      const txt = t();
+      document.getElementById('privacy-title').textContent = txt.privacyTitle;
+      document.getElementById('privacy-updated').textContent = txt.privacyUpdated;
+      document.getElementById('privacy-body').innerHTML = txt.privacyBody;
+      document.getElementById('privacy-close-btn').textContent = txt.privacyClose;
+      document.getElementById('privacy-modal').classList.remove('hidden');
+    }
+
+    function closePrivacy() {
+      document.getElementById('privacy-modal').classList.add('hidden');
+    }
+
+    // ───────────────────────────────────────────────
+
     function setLang(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -2692,6 +3051,7 @@
       document.getElementById('btn-research').textContent = txt.btnResearch;
       document.getElementById('btn-questions').textContent = txt.btnQuestions;
       document.getElementById('footer-text').textContent = txt.footerText;
+      document.getElementById('footer-privacy').textContent = txt.footerPrivacy;
 
       // SEO: update document title + meta tags per language
       const pageTitle = currentLang === 'en'
@@ -2830,6 +3190,15 @@
         </div>
       ` : '';
 
+      // Provocative threshold question — appears after 3+ rounds, alternates red/blue framing
+      const showThreshold = stats.total >= 3 && stats.total % 2 === 1;
+      const thresholdHtml = showThreshold ? `
+        <div class="threshold-question">
+          <div class="threshold-question-label">${txt.thresholdQuestionLabel}</div>
+          <div class="threshold-question-text">${choice === 'red' ? txt.thresholdQuestionRed : txt.thresholdQuestionBlue}</div>
+        </div>
+      ` : '';
+
       // Real-world live results section (only if we have any data)
       const liveResultsHtml = (apiAvailable && globalStats.total > 0) ? `
         <div class="result-live-section">
@@ -2876,6 +3245,7 @@
           </div>
           ${liveResultsHtml}
           ${newQHtml}
+          ${thresholdHtml}
           ${noNewQ}
           <div class="result-actions">
             <button class="btn btn-play-again" onclick="playAgain()">${txt.playAgain}</button>
@@ -3086,6 +3456,12 @@
       // If user already voted, show subtle indicator on intro
       if (firstChoice) {
         showLiveStatus(t().liveAlreadyVoted, 'success');
+      }
+
+      // Show privacy banner once on first visit
+      if (shouldShowPrivacyBanner()) {
+        // Tiny delay so the banner doesn't flash before page loads
+        setTimeout(showPrivacyBanner, 600);
       }
     })();
   </script>
