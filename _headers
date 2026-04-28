@@ -1,8 +1,14 @@
 # Cloudflare Pages headers — security & privacy hardening
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Notes on CSP:
+# - 'unsafe-inline' is needed for inline <script> and <style> in index.html
+# - 'unsafe-eval' is needed for Cloudflare's challenge-platform (bot detection)
+# - cdn-cgi paths are auto-injected by Cloudflare for security challenges
+# - The Worker URL must be in connect-src to allow API calls
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://two-buttons-stats.hkacper111.workers.dev; img-src 'self' data: blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gamestheory.org https://*.cloudflare.com; script-src-elem 'self' 'unsafe-inline' https://gamestheory.org https://*.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://two-buttons-stats.hkacper111.workers.dev https://gamestheory.org https://*.cloudflare.com; img-src 'self' data: blob: https://*.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
