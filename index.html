@@ -3361,18 +3361,75 @@
     let apiAvailable = true;
     let mapVisible = false;
 
+    // RFC 4122 v4 UUID validation regex (matches the strict format the Worker requires)
+    const UUID_V4_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+    function generateUuidV4() {
+      // Prefer crypto.randomUUID (available in all modern browsers)
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      // Fallback: build a v4 UUID using crypto.getRandomValues
+      if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        bytes[6] = (bytes[6] & 0x0f) | 0x40; // version 4
+        bytes[8] = (bytes[8] & 0x3f) | 0x80; // variant 10
+        const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+        return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
+      }
+      // Last-resort fallback (very unlikely path on modern browsers): non-crypto random
+      // This produces a UUID that LOOKS like v4 but isn't cryptographically random.
+      // The Worker will accept it as long as it matches the format.
+      const r = () => Math.floor(Math.random() * 16).toString(16);
+      const make = (n) => Array.from({ length: n }, r).join('');
+      return `${make(8)}-${make(4)}-4${make(3)}-${['8','9','a','b'][Math.floor(Math.random()*4)]}${make(3)}-${make(12)}`;
+    }
+
     function getOrCreateVoterId() {
       try {
         let id = localStorage.getItem(VOTER_ID_KEY);
-        if (!id) {
-          id = (crypto.randomUUID && crypto.randomUUID()) ||
-            ('v_' + Date.now() + '_' + Math.random().toString(36).slice(2, 12));
+        // Validate stored UUID — if it's malformed (legacy format from earlier versions),
+        // regenerate to ensure compatibility with the strict Worker validation.
+        if (!id || !UUID_V4_REGEX.test(id)) {
+          id = generateUuidV4();
           localStorage.setItem(VOTER_ID_KEY, id);
         }
         return id;
       } catch (e) {
-        return 'v_' + Date.now() + '_' + Math.random().toString(36).slice(2, 12);
+        // localStorage unavailable (private mode in some browsers, etc.)
+        // Generate ephemeral UUID — vote won't persist across sessions but at least works once.
+        return generateUuidV4();
       }
+    }
+
+    // Sanitize and coerce stats response — defensive against unexpected API shape.
+    // Numbers are clamped to safe integer range; countries object filtered to valid codes only.
+    function sanitizeStats(data) {
+      const safeNum = (v) => {
+        const n = Number(v);
+        if (!Number.isFinite(n) || n < 0 || n > Number.MAX_SAFE_INTEGER) return 0;
+        return Math.floor(n);
+      };
+      const countries = {};
+      if (data && data.countries && typeof data.countries === 'object') {
+        for (const [code, vals] of Object.entries(data.countries)) {
+          // Only accept 2-letter ISO country codes
+          if (!/^[A-Z]{2}$/i.test(code)) continue;
+          if (!vals || typeof vals !== 'object') continue;
+          countries[code.toUpperCase()] = {
+            red: safeNum(vals.red),
+            blue: safeNum(vals.blue),
+            total: safeNum(vals.total),
+          };
+        }
+      }
+      return {
+        red: safeNum(data && data.red),
+        blue: safeNum(data && data.blue),
+        total: safeNum(data && data.total),
+        countries,
+      };
     }
 
     async function fetchGlobalStats() {
@@ -3384,12 +3441,7 @@
         });
         if (!res.ok) throw new Error('Bad response');
         const data = await res.json();
-        globalStats = {
-          red: data.red || 0,
-          blue: data.blue || 0,
-          total: data.total || 0,
-          countries: data.countries || {}
-        };
+        globalStats = sanitizeStats(data);
         apiAvailable = true;
       } catch (e) {
         apiAvailable = false;
@@ -3408,15 +3460,11 @@
         if (!res.ok) throw new Error('Bad response: ' + res.status);
         const data = await res.json();
         // ONLY persist firstChoice after server confirms
-        firstChoice = data.choice || choice;
+        const confirmedChoice = (data.choice === 'red' || data.choice === 'blue') ? data.choice : choice;
+        firstChoice = confirmedChoice;
         try { localStorage.setItem(FIRST_CHOICE_KEY, firstChoice); } catch(e) {}
         if (data.stats) {
-          globalStats = {
-            red: data.stats.red || 0,
-            blue: data.stats.blue || 0,
-            total: data.stats.total || 0,
-            countries: data.stats.countries || globalStats.countries || {}
-          };
+          globalStats = sanitizeStats(data.stats);
         }
         apiAvailable = true;
         flashLiveStat(firstChoice);
@@ -3771,6 +3819,20 @@
       `;
     }
 
+    // Escape HTML for any string we might inject into innerHTML.
+    // Currently all data sources are trusted (hardcoded translations + API returning
+    // only numbers and 2-letter ISO country codes), but this helper is defensive
+    // for any future user-generated or third-party content.
+    function escapeHtml(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function onMapHover(e, code) {
       const tooltip = document.getElementById('map-tooltip');
       if (!tooltip) return;
@@ -3778,10 +3840,17 @@
       const data = (globalStats.countries || {})[code];
       if (!data) return;
       const bluePct = (data.blue / data.total) * 100;
-      tooltip.innerHTML = `
-        <div class="map-tooltip-name">${getCountryName(code)}</div>
-        <div class="map-tooltip-stats">${txt.mapTooltipVotes(data.total)} · ${Math.round(bluePct)}% ${txt.mapTooltipBlue}</div>
-      `;
+
+      // Build tooltip with textContent (no innerHTML — eliminates any XSS surface here)
+      tooltip.replaceChildren();
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'map-tooltip-name';
+      nameDiv.textContent = getCountryName(code);
+      const statsDiv = document.createElement('div');
+      statsDiv.className = 'map-tooltip-stats';
+      statsDiv.textContent = `${txt.mapTooltipVotes(data.total)} · ${Math.round(bluePct)}% ${txt.mapTooltipBlue}`;
+      tooltip.appendChild(nameDiv);
+      tooltip.appendChild(statsDiv);
 
       // Position fixed relative to viewport — make tooltip visible first to get its size
       tooltip.classList.add('visible');
@@ -5038,7 +5107,13 @@
     (function() {
       // Set up voter identity (idempotent)
       voterId = getOrCreateVoterId();
-      try { firstChoice = localStorage.getItem(FIRST_CHOICE_KEY); } catch(e) { firstChoice = null; }
+      try {
+        const stored = localStorage.getItem(FIRST_CHOICE_KEY);
+        // Only accept exact 'red' or 'blue' — anything else is treated as no vote
+        firstChoice = (stored === 'red' || stored === 'blue') ? stored : null;
+      } catch(e) {
+        firstChoice = null;
+      }
 
       // Detect language from URL ?lang= parameter, then browser
       const urlParams = new URLSearchParams(window.location.search);
