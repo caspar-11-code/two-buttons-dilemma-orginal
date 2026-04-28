@@ -1,92 +1,180 @@
-# Two Buttons
+# Two Buttons · Dwa Przyciski
 
-A test of who you become when no one is watching.
+**An interactive moral dilemma · A test of who you become when no one is watching.**
 
-An interactive moral dilemma game grounded in game theory and behavioral research. Pick red or blue. Discover the questions that challenge your choice.
-
-<a href="https://gamestheory.org">
-  <button>Play Game</button>
-</a>
+🌐 Live: [gamestheory.org](https://gamestheory.org)
 
 ---
 
-## What it is
+## What is this?
 
-Every human on Earth gets the same message: two buttons, one private choice.
+You have two buttons. Red and blue. So does every other person on Earth.
 
-- If more than 50% of humanity picks **blue** → everyone lives.
-- If 50% or fewer pick blue → blues die, reds live.
-- If everyone picks red → everyone lives.
+- If **more than 50%** of humanity picks blue → everyone lives.
+- If **50% or fewer** pick blue → everyone who picked blue dies. Reds survive.
+- If **everyone** picks red → everyone lives.
 
-Red is the dominant strategy: 100% survival regardless of what others do. Blue is an act of faith: cooperative, idealistic, deadly if too few people share your faith.
+Red is the safe choice. Blue is an act of trust.
 
-The game uses a realistic distribution of simulated humanity (most people pick red, occasionally enough pick blue for everyone to survive) and confronts you with **16 questions** that systematically dismantle whichever side you chose.
+The game records your **first click** as a real vote in a global counter. After that, every play runs only as a simulation that reveals one new question challenging your choice. The 16 questions, the personality archetypes, the world map of cooperation, and the six in-depth essays are tools to make you sit with the uncomfortable gap between **what you'd say you'd choose** and **what you actually do when no one is watching**.
+
+This is not a game. This is the structure of climate cooperation, vaccinations, taxes, and every collective action problem in human history.
+
+---
 
 ## Features
 
-- **Probabilistic simulation** — based on documented cooperation rates in one-shot anonymous prisoner's dilemma games (~37% cooperation, Sally 1995)
-- **Four distinct emotional outcomes** — shame, weight, triumph, death — each tuned to the gap between your choice and humanity's actual behavior
-- **Reality check panel** — six research findings spanning surveys → laboratory → real history (Holocaust rescuers, COVID compliance, public goods games)
-- **16 unlockable questions** — 8 challenging blue, 8 challenging red, revealed one at a time. Forces you to play both sides if you want the full collection
-- **Pattern recognition** — after 3+ plays, the game tells you what your choice pattern reveals about you compared to documented research
-- **Bilingual** — English and Polish, auto-detected from browser locale, manually switchable
+### 🎮 Core gameplay
+- **Two-button moral dilemma** with persistent global vote counter
+- **One vote per device** (anonymous random ID in localStorage)
+- **16 unlockable questions** that challenge your choice — eight challenge red, eight challenge blue, revealed one per play
+- **Real-time global statistics** — total votes, red %, blue %
+- **Progress bar** showing "distance to humanity passing the test" with dramatic visual feedback when blue exceeds 50%
 
-## Research basis
+### 🌍 Geography
+- **Live world map** colored by per-country cooperation rates (uses Cloudflare's `cf-ipcountry` header)
+- **Top 5 most cooperative / most self-interested** country rankings
+- **Tooltips** showing votes and blue % per country
 
-The game is built on real findings from social psychology and experimental economics:
+### 👤 Personality typing
+- **8 moral archetypes** unlocked after 5 rounds (Calculator, Pragmatist, Hesitant, Believer, Martyr, Performer, Observer)
+- Each archetype includes: name, tagline, provocative quote, 3-paragraph description
+- **Shareable image generation** — 1200×630 PNG with personality data, perfect for social media (Open Graph)
+- **"Copy result"** for direct text sharing
+- Polish version uses correct **instrumental case** (e.g. "Jestem Kalkulatorem")
 
-- Sally, D. (1995). *Conversation and cooperation in social dilemmas: A meta-analysis of experiments from 1958 to 1992.*
-- Darley, J., & Latané, B. (1968). *Bystander intervention in emergencies: Diffusion of responsibility.*
-- Oliner, S. P., & Oliner, P. M. (1988). *The altruistic personality: Rescuers of Jews in Nazi Europe.*
-- Fehr, E., & Gächter, S. (2000). *Cooperation and punishment in public goods experiments.*
+### 📚 Six essays · "Deeper"
+Long-form content unlocked after completing all 16 questions and casting a vote (or via "skip the game" option after voting). Each ~3 min read with sources:
 
-The pattern is consistent: the more real the risk, the lower the cooperation rate. Surveys yield ~70% claimed altruism. Laboratory games with token stakes yield ~37%. Occupied Europe under Nazi rule yielded <1% active rescuers.
+1. **Kant vs Mill** — deontological vs utilitarian ethics
+2. **Schelling and the focal point** — game theory · why red feels "obvious"
+3. **Climate, vaccines, taxes** — your choice returns, every day
+4. **Why Switzerland works** — institutions over strong leaders
+5. **The Warsaw Uprising and calculation** — when blue is the only choice
+6. **When "the collective" kills** — Mao, Pol Pot, Stalin · the dark side of forced blue
 
-## Setup
+Each essay deliberately uncomfortable for a different ideological side.
 
-No build step. No dependencies. No tracking.
+### 🎵 Sound design
+Web Audio API (no external files):
+- Distinct click tones for red (low) vs blue (high)
+- Death sound when blue loses (descending drone)
+- Triumph chord when blue wins (ascending C-E-G)
+- Heavy tone when red wins
+- Toggle in top bar, persisted in localStorage, ON by default
 
-```bash
-git clone <this-repo>
-cd two-buttons-dilemma
-# Open index.html in any browser
-```
+### 🌧️ Atmospheric details
+- **Animated histogram** of voter activity — dots fall continuously, biased toward current global blue/red ratio
+- **Animated favicon** alternating red/blue every second
+- **Provocative threshold question** appearing every other game ("What % would you need before pressing blue?")
 
-To host on GitHub Pages: push to a public repo and enable Pages from the main branch root.
+### 🥚 Easter eggs
+Three hidden discoveries, one-time only:
+- **10× red streak** → "Why are you still playing if you already know the answer?"
+- **Both buttons in <250ms** → Hidden question #17 about refusing to choose
+- **3:33 AM local time** → Hidden question #18 about who you become when even your performance has gone quiet
 
-## License
+### 🌐 Internationalization
+- Full **English** and **Polish** translations
+- Browser language auto-detection with manual override
+- URL parameter support (`?lang=pl` or `?lang=en`)
+- Localized share text, image generation, and SEO meta tags
 
-[PolyForm Noncommercial 1.0.0](./LICENSE) — free for personal, academic, research, and other non-commercial use. **Commercial use requires a separate license** — contact the copyright holder.
+### 🛡️ Privacy
+- **No analytics, no third-party trackers, no advertising**
+- Anonymous random ID in localStorage (one vote per device)
+- Cloudflare-detected country code only (no IP storage, no precise location)
+- Cookie banner on first visit, full privacy policy modal in footer
+- GDPR/RODO compliant
+
+### ❓ Help system
+- `?` button in top bar opens guide explaining all features
+- 9 sections covering rules, voting, unlocks, map, profile, sound, languages, privacy, tips
+- Localized in PL and EN
 
 ---
 
-# Dwa przyciski (PL)
+## Architecture
 
-Test tego, kim się stajesz, kiedy nikt nie patrzy.
+### Frontend
+**Single-file static HTML** — no build step, no framework, no dependencies.
+- Vanilla JavaScript (~5000 lines)
+- CSS with design tokens, dark theme
+- SVG world map (simplified continental outlines + dot positions)
+- Canvas API for shareable images and animated histogram
+- Web Audio API for procedural sound
 
-Interaktywny dylemat moralny oparty na teorii gier i badaniach behawioralnych. Wybierz czerwony albo niebieski. Odkryj 16 pytań, które podważają twój wybór.
+Hosted on **Cloudflare Pages** with auto-deploy from GitHub.
 
-## Czym to jest
+### Backend
+**Cloudflare Worker** + **KV namespace** (`STATS`):
 
-Każdy człowiek na Ziemi otrzymuje tę samą wiadomość — dwa przyciski, jeden prywatny wybór.
+```
+GET  /api/stats      → { red, blue, total, countries: { PL: {...}, US: {...} } }
+POST /api/vote       → body: { voter_id, choice }
+                       returns { success | already_voted, choice, stats }
+```
 
-- Jeśli ponad 50% ludzkości wybierze **niebieski** → wszyscy żyją.
-- Jeśli 50% lub mniej → niebiescy giną, czerwoni żyją.
-- Jeśli wszyscy wybiorą czerwony → wszyscy żyją.
+KV keys:
+- `global` → `{ red, blue, total }`
+- `countries` → `{ "US": {red,blue,total}, "PL": {...}, ... }`
+- `voter:{uuid}` → `"red"` | `"blue"` (one-vote enforcement)
 
-Czerwony to strategia dominująca: 100% przeżycia niezależnie od innych. Niebieski to akt wiary — kooperacja, idealizm, śmierć jeśli za mało ludzi podziela tę wiarę.
+KV cacheTtl: 60s. Country detection via `cf-ipcountry` header.
 
-Gra wykorzystuje realistyczny rozkład symulowanej ludzkości i konfrontuje cię z **16 pytaniami**, które systematycznie demontują twój wybór — niezależnie od tego, którą stronę wybierzesz.
+### License
+**[PolyForm Noncommercial 1.0.0](LICENSE)** — free for any non-commercial use including academic, educational, personal projects. Commercial use requires permission.
 
-## Funkcje
+---
 
-- Symulacja probabilistyczna oparta na udokumentowanych poziomach kooperacji w jednorazowych dylematach więźnia
-- Cztery różne emocjonalne zakończenia: wstyd, ciężar, triumf, śmierć
-- Panel "co mówią badania" z sześcioma poziomami: ankiety → laboratorium → historia (Holokaust, COVID, gra dóbr publicznych)
-- 16 odblokowywanych pytań — 8 podważa niebieski, 8 czerwony
-- Rozpoznawanie wzorca po 3+ grach
-- Dwujęzyczność: polski i angielski
+## Setup (for developers)
 
-## Licencja
+See **[SETUP_GLOBAL_STATS.md](SETUP_GLOBAL_STATS.md)** for the full Cloudflare Worker + KV deployment guide.
 
-[PolyForm Noncommercial 1.0.0](./LICENSE) — darmowa do użytku osobistego, akademickiego, badawczego i innego niekomercyjnego. **Użytek komercyjny wymaga osobnej licencji** — skontaktuj się z autorem.
+Short version:
+1. Fork the repo
+2. Connect to Cloudflare Pages (auto-deploys `index.html`)
+3. Create a Cloudflare Worker, paste `worker.js`, bind a KV namespace as `STATS`
+4. Update `API_BASE` constant in `index.html` to your Worker URL
+5. Optionally seed initial stats in KV (`global` key with `{"red":N,"blue":M,"total":N+M}`)
+
+---
+
+## Sources & inspiration
+
+The game's questions and essays draw on:
+
+- **Sally (1995)** — meta-analysis of cooperation rates in prisoner's dilemma experiments (~37% baseline)
+- **Darley & Latané (1968)** — bystander effect research
+- **Oliner & Oliner (1988)** — *The Altruistic Personality* (Holocaust rescuers)
+- **Fehr & Gächter (2000)** — punishment in cooperation games
+- **Schelling (1960)** — *The Strategy of Conflict* · focal points
+- **Kant (1785)** — *Groundwork of the Metaphysics of Morals*
+- **Mill (1863)** — *Utilitarianism*
+- **Acemoglu & Robinson (2012)** — *Why Nations Fail*
+- **Dikötter** — *Mao's Great Famine*
+- **Hayek (1944)** — *The Road to Serfdom*
+
+The dilemma format itself echoes thought experiments in social choice theory and global coordination problems.
+
+---
+
+## Roadmap
+
+- [ ] More languages (DE, ES, FR, IT)
+- [ ] "Last chance" mechanic — allow re-vote once after all questions discovered
+- [ ] More essays (extended library)
+- [ ] Compare with friends mode (shareable comparison URLs)
+- [ ] Class/group rooms for educational use
+
+---
+
+## Contact
+
+This is a personal project. Issues, suggestions, and translations welcome via GitHub issues.
+
+For privacy questions or vote removal requests: open an issue.
+
+---
+
+*If everyone you know is going to die anyway, what matters is the kind of person you choose to be on the way there.*
