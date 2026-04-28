@@ -360,6 +360,467 @@
       opacity: 0.55;
     }
 
+    /* ─── Progress Bar (Humanity passes the test) ─── */
+    .progress-section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 0.5px solid rgba(255,255,255,0.06);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-label-left {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+    }
+
+    .progress-label-right {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 0.5px solid rgba(255,255,255,0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue) 0%, #4a8fd1 100%);
+      border-radius: 6px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba(37, 99, 184, 0.4);
+    }
+
+    .progress-fill.humanity-passing {
+      background: linear-gradient(90deg, var(--success) 0%, #5a9a82 100%);
+      box-shadow: 0 0 16px rgba(126, 184, 154, 0.6);
+      animation: gentle-glow 2.5s ease-in-out infinite;
+    }
+
+    @keyframes gentle-glow {
+      0%, 100% { box-shadow: 0 0 12px rgba(126, 184, 154, 0.4); }
+      50% { box-shadow: 0 0 24px rgba(126, 184, 154, 0.7); }
+    }
+
+    .progress-threshold-marker {
+      position: absolute;
+      left: 50%;
+      top: -4px;
+      bottom: -4px;
+      width: 1px;
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 0 6px rgba(255,255,255,0.4);
+    }
+
+    .progress-threshold-marker::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: -2px;
+      width: 7px;
+      height: 7px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+    }
+
+    .progress-marker-label {
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .progress-status {
+      margin-top: 26px;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-mute);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .progress-status.passed {
+      color: var(--success);
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 12px rgba(126, 184, 154, 0.4);
+    }
+
+    /* ─── Personality / Self-test CTA ─── */
+    .self-test-cta {
+      background: linear-gradient(135deg, rgba(212, 184, 150, 0.06) 0%, rgba(212, 184, 150, 0.02) 100%);
+      border: 0.5px solid rgba(212, 184, 150, 0.18);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .self-test-cta:hover {
+      border-color: rgba(212, 184, 150, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .self-test-icon {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .self-test-content {
+      flex: 1;
+    }
+
+    .self-test-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .self-test-sub {
+      font-size: 13px;
+      color: var(--text-mute);
+      line-height: 1.4;
+    }
+
+    .self-test-arrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* ─── Personality Result Card ─── */
+    .personality-card {
+      background: linear-gradient(135deg, #1a1a1c 0%, #0f0f10 100%);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 36px 32px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .personality-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 184, 150, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .personality-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .personality-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .personality-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .personality-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--text-mute);
+      line-height: 1.4;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .personality-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .personality-stat {
+      text-align: center;
+      padding: 12px 8px;
+      background: rgba(255,255,255,0.025);
+      border-radius: 6px;
+    }
+
+    .personality-stat-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .personality-stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .personality-description {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      opacity: 0.88;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .personality-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #e5cba4;
+      transform: translateY(-1px);
+    }
+
+    .personality-locked {
+      text-align: center;
+      padding: 30px 24px;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 0.5px dashed var(--border-strong);
+    }
+
+    .personality-locked-text {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--text-mute);
+      margin-bottom: 8px;
+    }
+
+    .personality-locked-progress {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    /* ─── Geo Map ─── */
+    .map-toggle {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .map-container {
+      margin-top: 16px;
+      padding: 18px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      border: 0.5px solid var(--border);
+    }
+
+    .map-container-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .map-svg {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      display: block;
+    }
+
+    .map-svg .country {
+      stroke: rgba(255,255,255,0.12);
+      stroke-width: 0.4;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .map-svg .country:hover {
+      opacity: 0.8;
+      stroke: rgba(255,255,255,0.4);
+      stroke-width: 0.8;
+    }
+
+    .map-legend {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+    }
+
+    .map-legend-gradient {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-legend-bar {
+      width: 80px;
+      height: 8px;
+      background: linear-gradient(90deg, var(--red) 0%, #777 50%, var(--blue) 100%);
+      border-radius: 2px;
+      border: 0.5px solid rgba(255,255,255,0.1);
+    }
+
+    .map-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: #0a0a0a;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text);
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 100;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .map-tooltip.visible { opacity: 1; }
+
+    .map-tooltip-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .map-tooltip-stats {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--text-mute);
+    }
+
+    .map-top-list {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 0.5px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .map-top-section h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--text-mute);
+      font-weight: 500;
+    }
+
+    .map-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 12px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.04);
+    }
+
+    .map-top-row:last-child { border-bottom: none; }
+
+    .map-top-country {
+      color: var(--text);
+    }
+
+    .map-top-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    .map-top-pct.red { color: var(--red); }
+    .map-top-pct.blue { color: var(--blue); }
+
+    @media (max-width: 600px) {
+      .personality-name { font-size: 32px; }
+      .personality-stats { gap: 8px; }
+      .personality-stat-value { font-size: 18px; }
+      .map-top-list { grid-template-columns: 1fr; gap: 14px; }
+    }
+
     .first-vote-badge {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
@@ -933,8 +1394,49 @@
             <div class="live-stat-pct" id="live-blue-pct"></div>
           </div>
         </div>
+
+        <div class="progress-section" id="progress-section">
+          <div class="progress-label">
+            <span class="progress-label-left" id="progress-label-left"></span>
+            <span class="progress-label-right" id="progress-label-right">—</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            <div class="progress-threshold-marker">
+              <span class="progress-marker-label" id="progress-marker-label">50%</span>
+            </div>
+          </div>
+          <p class="progress-status" id="progress-status"></p>
+        </div>
+
+        <div class="map-toggle">
+          <button class="btn" id="btn-toggle-map" onclick="toggleMap()"></button>
+        </div>
+
+        <div class="map-container hidden" id="map-container">
+          <div class="map-container-header" id="map-header"></div>
+          <div id="map-svg-wrapper"></div>
+          <div class="map-legend">
+            <span id="map-legend-red"></span>
+            <div class="map-legend-gradient">
+              <div class="map-legend-bar"></div>
+            </div>
+            <span id="map-legend-blue"></span>
+          </div>
+          <div class="map-top-list" id="map-top-list"></div>
+        </div>
+
         <p class="live-status" id="live-status"></p>
         <p class="cache-disclaimer" id="cache-disclaimer"></p>
+      </div>
+
+      <div class="self-test-cta" onclick="showPersonality()">
+        <span class="self-test-icon">⌖</span>
+        <div class="self-test-content">
+          <div class="self-test-title" id="self-test-title"></div>
+          <div class="self-test-sub" id="self-test-sub"></div>
+        </div>
+        <span class="self-test-arrow">→</span>
       </div>
 
       <div class="rules">
@@ -961,6 +1463,7 @@
     <div id="screen-result" class="screen hidden"></div>
     <div id="screen-reality" class="screen hidden"></div>
     <div id="screen-questions" class="screen hidden"></div>
+    <div id="screen-personality" class="screen hidden"></div>
 
     <div id="stats" class="stats hidden">
       <p class="stats-label" id="stats-label"></p>
@@ -1050,6 +1553,58 @@
         firstVoteCounted: (c) => `Your first click was recorded as ${c}. From now on you\'re only running the simulation.`,
         liveResultsHeader: 'Real-world results so far',
         cacheDisclaimer: 'Updates may take ~60 seconds to reflect',
+
+        // Progress bar
+        progressLabelLeft: 'Distance to humanity passing',
+        progressStatusBelow: (gap) => `Blue is <strong>${gap}%</strong> short of saving humanity. Every vote shifts the line.`,
+        progressStatusAt: 'Critical threshold. Every single vote tips the balance.',
+        progressStatusPassed: '✦ HUMANITY HAS PASSED THE TEST ✦',
+        progressStatusPassedSub: (over) => `Blue exceeds 50% by ${over}%. If the world voted right now, everyone would live.`,
+
+        // Self-test CTA
+        selfTestTitle: 'Test yourself · earn your badge',
+        selfTestSub: 'Play 5 rounds. We\'ll show you who you are. Share the result.',
+        selfTestSubReady: 'Your moral profile is ready. Tap to see and share.',
+        selfTestSubProgress: (n) => `${5 - n} more ${5 - n === 1 ? 'round' : 'rounds'} to unlock your profile.`,
+
+        // Personality types
+        personalityEyebrow: 'Your moral profile',
+        personalityLockedTitle: 'Profile locked',
+        personalityLockedSub: 'Play at least 5 rounds to unlock your moral type and shareable badge.',
+        personalityLockedProgress: (n) => `${n} / 5 rounds played`,
+        personalityShare: 'Share badge',
+        personalityCopyLink: 'Copy link',
+        personalityDownload: 'Download image',
+        personalityCopied: 'Copied!',
+        personalityShareText: (name) => `I'm ${name} according to gamestheory.org — what about you?`,
+        personalityStatRounds: 'Rounds played',
+        personalityStatRed: 'Red',
+        personalityStatBlue: 'Blue',
+        personalityBack: 'Back to game',
+
+        // The 8 personality archetypes
+        archetypes: {
+          calculator: { name: 'The <em>Calculator</em>', tagline: 'Cold logic, no illusions.', desc: 'You picked red almost every time. Game theory says you\'re right — red is the dominant strategy. But you didn\'t hesitate, didn\'t even flinch. That\'s not just rationality, that\'s a worldview: trust your math, not your species.' },
+          pragmatist: { name: 'The <em>Pragmatist</em>', tagline: 'Mostly safe, occasionally hopeful.', desc: 'You leaned red but tried blue at least once. You understand the math, but a part of you wonders what would happen if you took the leap. That tension is where most people actually live.' },
+          hesitant: { name: 'The <em>Hesitant</em>', tagline: 'Torn between two worlds.', desc: 'Almost 50/50. You don\'t have a clean answer — and that\'s honest. Most people who claim certainty are performing. You sat with the discomfort of a real dilemma. That\'s rarer than you think.' },
+          believer: { name: 'The <em>Believer</em>', tagline: 'Faith over guarantee.', desc: 'You picked blue more often than red. You bet on humanity even knowing the math. Maybe you\'re an idealist. Maybe you just refuse to be the kind of person who saves themselves while others die. Either way, you chose meaning over odds.' },
+          martyr: { name: 'The <em>Martyr</em>', tagline: 'All in. Every time.', desc: 'Almost every click was blue. Either you have radical faith in collective action — or you\'ve decided the moral cost of choosing red is too high to bear. In real life, your kind is rare. Movements are built on people like you.' },
+          performer: { name: 'The <em>Performer</em>', tagline: 'Says one thing, does another.', desc: 'You picked blue then red, then blue again. Maybe you\'re testing the game. Maybe you\'re testing yourself. Either way, your behavior reveals what surveys hide: even our best intentions don\'t survive contact with cost.' },
+          observer: { name: 'The <em>Observer</em>', tagline: 'Watching, but not yet committed.', desc: 'You\'re still finding your pattern. You haven\'t yet shown your hand — and maybe that\'s the most honest place to be. Keep playing. The pattern will reveal itself.' }
+        },
+
+        // Map
+        mapToggleShow: 'Show world map ↗',
+        mapToggleHide: 'Hide map',
+        mapHeader: 'Cooperation across countries',
+        mapLegendRed: '0% blue',
+        mapLegendBlue: '100% blue',
+        mapNoData: 'No data yet',
+        mapTopBlue: 'Most cooperative',
+        mapTopRed: 'Most self-interested',
+        mapMinVotes: 'min. 5 votes',
+        mapTooltipVotes: (n) => `${n} ${n === 1 ? 'vote' : 'votes'}`,
+        mapTooltipBlue: 'blue',
 
         // Result messages
         resultRedBlueWon: { title: 'You live.', sub: 'Humanity chose trust. The blues saved everyone, including you.', mood: 'shame', detail: (p) => `${p}% chose blue. You were saved by people you didn't trust. No one will know — but you will.` },
@@ -1167,6 +1722,58 @@
         liveResultsHeader: 'Realne wyniki ze świata',
         cacheDisclaimer: 'Aktualizacja może zająć ~60 sekund',
 
+        // Pasek postępu
+        progressLabelLeft: 'Dystans do uratowania ludzkości',
+        progressStatusBelow: (gap) => `Niebieski jest <strong>${gap}%</strong> od uratowania ludzkości. Każdy głos przesuwa linię.`,
+        progressStatusAt: 'Próg krytyczny. Każdy pojedynczy głos przeważa szalę.',
+        progressStatusPassed: '✦ LUDZKOŚĆ PRZESZŁA TEST ✦',
+        progressStatusPassedSub: (over) => `Niebieski przekracza próg 50% o ${over}%. Gdyby świat głosował teraz, wszyscy by przeżyli.`,
+
+        // Self-test CTA
+        selfTestTitle: 'Sprawdź siebie · zdobądź odznakę',
+        selfTestSub: 'Zagraj 5 rund. Pokażemy ci kim jesteś. Podziel się wynikiem.',
+        selfTestSubReady: 'Twój profil moralny jest gotowy. Kliknij żeby zobaczyć i udostępnić.',
+        selfTestSubProgress: (n) => `Jeszcze ${5 - n} ${5 - n === 1 ? 'runda' : (5 - n < 5 && 5 - n > 1 ? 'rundy' : 'rund')} żeby odblokować profil.`,
+
+        // Profil moralny
+        personalityEyebrow: 'Twój profil moralny',
+        personalityLockedTitle: 'Profil zablokowany',
+        personalityLockedSub: 'Zagraj minimum 5 rund, żeby odblokować swój typ moralny i odznakę do udostępnienia.',
+        personalityLockedProgress: (n) => `${n} / 5 rund rozegranych`,
+        personalityShare: 'Udostępnij odznakę',
+        personalityCopyLink: 'Skopiuj link',
+        personalityDownload: 'Pobierz obrazek',
+        personalityCopied: 'Skopiowano!',
+        personalityShareText: (name) => `Jestem ${name} według gamestheory.org — a ty?`,
+        personalityStatRounds: 'Rund rozegranych',
+        personalityStatRed: 'Czerwony',
+        personalityStatBlue: 'Niebieski',
+        personalityBack: 'Wróć do gry',
+
+        // 8 archetypów
+        archetypes: {
+          calculator: { name: '<em>Kalkulator</em>', tagline: 'Zimna logika, żadnych iluzji.', desc: 'Wybierałeś czerwony niemal za każdym razem. Teoria gier mówi że masz rację — czerwony to strategia dominująca. Ale ty się nie wahałeś, nawet nie drgnąłeś. To nie jest tylko racjonalność, to światopogląd: ufaj matematyce, nie gatunkowi.' },
+          pragmatist: { name: '<em>Pragmatyk</em>', tagline: 'Głównie bezpiecznie, czasem z nadzieją.', desc: 'Skłaniałeś się ku czerwonemu, ale przynajmniej raz spróbowałeś niebieskiego. Rozumiesz matematykę, ale jakaś część ciebie się zastanawia, co by się stało gdybyś podjął ryzyko. W tym napięciu większość ludzi naprawdę żyje.' },
+          hesitant: { name: '<em>Niezdecydowany</em>', tagline: 'Rozdarty między dwoma światami.', desc: 'Prawie 50/50. Nie masz czystej odpowiedzi — i to jest uczciwe. Większość ludzi twierdzących że są pewni, gra rolę. Ty usiadłeś z dyskomfortem prawdziwego dylematu. To rzadsze niż myślisz.' },
+          believer: { name: '<em>Wierzący</em>', tagline: 'Wiara nad gwarancją.', desc: 'Wybierałeś niebieski częściej niż czerwony. Postawiłeś na ludzkość, mimo że znałeś statystyki. Może jesteś idealistą. Może po prostu odmawiasz bycia kimś, kto ratuje siebie kiedy inni giną. Tak czy inaczej, wybrałeś znaczenie ponad szanse.' },
+          martyr: { name: '<em>Męczennik</em>', tagline: 'All in. Za każdym razem.', desc: 'Niemal każdy klik to niebieski. Albo masz radykalną wiarę w działanie zbiorowe — albo uznałeś że moralny koszt wyboru czerwonego jest zbyt wysoki. W prawdziwym życiu twój typ jest rzadki. Ruchy społeczne są zbudowane na ludziach jak ty.' },
+          performer: { name: '<em>Aktor</em>', tagline: 'Mówi jedno, robi drugie.', desc: 'Wybrałeś niebieski, potem czerwony, potem znów niebieski. Może testujesz grę. Może testujesz siebie. Tak czy inaczej, twoje zachowanie ujawnia to, co ankiety ukrywają: nawet nasze najlepsze intencje nie przeżywają kontaktu z kosztem.' },
+          observer: { name: '<em>Obserwator</em>', tagline: 'Patrzy, ale jeszcze nie zdecydował.', desc: 'Twój wzorzec jeszcze się nie ujawnił. Nie pokazałeś jeszcze swojej karty — i może to jest najszczersze miejsce. Graj dalej. Wzorzec sam się ujawni.' }
+        },
+
+        // Mapa
+        mapToggleShow: 'Pokaż mapę świata ↗',
+        mapToggleHide: 'Ukryj mapę',
+        mapHeader: 'Współpraca w różnych krajach',
+        mapLegendRed: '0% niebieskich',
+        mapLegendBlue: '100% niebieskich',
+        mapNoData: 'Brak danych',
+        mapTopBlue: 'Najbardziej kooperatywne',
+        mapTopRed: 'Najbardziej egoistyczne',
+        mapMinVotes: 'min. 5 głosów',
+        mapTooltipVotes: (n) => `${n} ${n === 1 ? 'głos' : (n < 5 && n > 1 ? 'głosy' : 'głosów')}`,
+        mapTooltipBlue: 'niebieski',
+
         resultRedBlueWon: { title: 'Żyjesz.', sub: 'Ludzkość wybrała zaufanie. Niebiescy uratowali wszystkich, w tym ciebie.', mood: 'shame', detail: (p) => `${p}% wybrało niebieski. Zostałeś uratowany przez ludzi, którym nie zaufałeś. Nikt się nie dowie, ale ty wiesz.` },
         resultRedAllRed: { title: 'Żyjesz.', sub: 'Wszyscy wybrali czerwony. Nikt nie zginął.', mood: 'neutral', detail: () => 'Idealna koordynacja przez nieufność. Wszyscy myśleli tak samo jak ty. Nikt nie zaryzykował dla nikogo, ale wszyscy żyją. Czy to jest zwycięstwo?' },
         resultRedBlueDied: { title: 'Żyjesz.', sub: (p) => `${p}% wybrało niebieski. Wszyscy oni nie żyją.`, mood: 'heavy', detail: () => 'Twoja kalkulacja była poprawna. Miliardy ludzi właśnie zginęły, bo zaufali. Ty miałeś rację. Czy to ci pomaga zasnąć?' },
@@ -1237,8 +1844,9 @@
 
     let voterId = null;
     let firstChoice = null;
-    let globalStats = { red: 0, blue: 0, total: 0 };
+    let globalStats = { red: 0, blue: 0, total: 0, countries: {} };
     let apiAvailable = true;
+    let mapVisible = false;
 
     function getOrCreateVoterId() {
       try {
@@ -1257,14 +1865,18 @@
     async function fetchGlobalStats() {
       if (!API_BASE) { apiAvailable = false; renderLiveBanner(); return; }
       try {
-        // Bypass HTTP-level caching with timestamp + cache: no-store
-        // (we don't add Cache-Control header here — that would trigger CORS preflight)
         const res = await fetch(API_BASE + '/api/stats?t=' + Date.now(), {
           method: 'GET',
           cache: 'no-store'
         });
         if (!res.ok) throw new Error('Bad response');
-        globalStats = await res.json();
+        const data = await res.json();
+        globalStats = {
+          red: data.red || 0,
+          blue: data.blue || 0,
+          total: data.total || 0,
+          countries: data.countries || {}
+        };
         apiAvailable = true;
       } catch (e) {
         apiAvailable = false;
@@ -1285,7 +1897,14 @@
         // ONLY persist firstChoice after server confirms
         firstChoice = data.choice || choice;
         try { localStorage.setItem(FIRST_CHOICE_KEY, firstChoice); } catch(e) {}
-        if (data.stats) globalStats = data.stats;
+        if (data.stats) {
+          globalStats = {
+            red: data.stats.red || 0,
+            blue: data.stats.blue || 0,
+            total: data.stats.total || 0,
+            countries: data.stats.countries || globalStats.countries || {}
+          };
+        }
         apiAvailable = true;
         flashLiveStat(firstChoice);
         renderLiveBanner();
@@ -1330,6 +1949,16 @@
       document.getElementById('live-red-label').textContent = txt.liveRedLabel;
       document.getElementById('live-blue-label').textContent = txt.liveBlueLabel;
       document.getElementById('cache-disclaimer').textContent = txt.cacheDisclaimer;
+      document.getElementById('progress-label-left').textContent = txt.progressLabelLeft;
+      document.getElementById('btn-toggle-map').textContent = mapVisible ? txt.mapToggleHide : txt.mapToggleShow;
+
+      // Self-test CTA copy
+      document.getElementById('self-test-title').textContent = txt.selfTestTitle;
+      let ctaSub;
+      if (stats.total >= 5) ctaSub = txt.selfTestSubReady;
+      else if (stats.total > 0) ctaSub = txt.selfTestSubProgress(stats.total);
+      else ctaSub = txt.selfTestSub;
+      document.getElementById('self-test-sub').textContent = ctaSub;
 
       if (!apiAvailable && globalStats.total === 0) {
         document.getElementById('live-total-value').textContent = '—';
@@ -1337,6 +1966,7 @@
         document.getElementById('live-blue-value').textContent = '—';
         document.getElementById('live-red-pct').textContent = '';
         document.getElementById('live-blue-pct').textContent = '';
+        renderProgressBar(0);
         showLiveStatus(txt.liveOffline, 'warning');
         return;
       }
@@ -1346,6 +1976,499 @@
       document.getElementById('live-blue-value').textContent = fmtNum(globalStats.blue);
       document.getElementById('live-red-pct').textContent = pct(globalStats.red, globalStats.total);
       document.getElementById('live-blue-pct').textContent = pct(globalStats.blue, globalStats.total);
+
+      const bluePctNum = globalStats.total > 0 ? (globalStats.blue / globalStats.total) * 100 : 0;
+      renderProgressBar(bluePctNum);
+
+      if (mapVisible) renderMap();
+    }
+
+    function renderProgressBar(bluePct) {
+      const txt = t();
+      const fill = document.getElementById('progress-fill');
+      const labelRight = document.getElementById('progress-label-right');
+      const status = document.getElementById('progress-status');
+
+      const safeWidth = Math.max(0, Math.min(100, bluePct));
+      fill.style.width = safeWidth + '%';
+      labelRight.textContent = bluePct.toFixed(1) + '%';
+
+      // Update color tone based on threshold
+      if (bluePct > 50) {
+        fill.classList.add('humanity-passing');
+        labelRight.style.color = 'var(--success)';
+        status.classList.add('passed');
+        const over = (bluePct - 50).toFixed(1);
+        status.innerHTML = `<div style="font-size: 17px; margin-bottom: 6px;">${txt.progressStatusPassed}</div><div style="font-size: 13px; opacity: 0.85; font-style: italic; font-weight: 400; letter-spacing: 0;">${txt.progressStatusPassedSub(over)}</div>`;
+      } else if (bluePct >= 49 && bluePct <= 50) {
+        fill.classList.remove('humanity-passing');
+        labelRight.style.color = 'var(--warning)';
+        status.classList.remove('passed');
+        status.innerHTML = txt.progressStatusAt;
+      } else {
+        fill.classList.remove('humanity-passing');
+        labelRight.style.color = 'var(--blue)';
+        status.classList.remove('passed');
+        const gap = (50 - bluePct).toFixed(1);
+        status.innerHTML = txt.progressStatusBelow(gap);
+      }
+    }
+
+    // ───────────────────────────────────────────────
+    // GEO MAP — countries colored by blue % cooperation
+    // ───────────────────────────────────────────────
+
+    // Country position grid — natural Earth simplified positions
+    // Format: [x, y, name_en, name_pl] in viewBox 0..1000 x 0..500
+    const COUNTRY_POSITIONS = {
+      'US': [220, 195, 'United States', 'USA'],
+      'CA': [210, 130, 'Canada', 'Kanada'],
+      'MX': [195, 240, 'Mexico', 'Meksyk'],
+      'BR': [340, 320, 'Brazil', 'Brazylia'],
+      'AR': [310, 400, 'Argentina', 'Argentyna'],
+      'CL': [290, 390, 'Chile', 'Chile'],
+      'CO': [275, 290, 'Colombia', 'Kolumbia'],
+      'PE': [275, 330, 'Peru', 'Peru'],
+      'VE': [290, 270, 'Venezuela', 'Wenezuela'],
+      'GB': [475, 145, 'United Kingdom', 'Wielka Brytania'],
+      'IE': [462, 148, 'Ireland', 'Irlandia'],
+      'FR': [490, 165, 'France', 'Francja'],
+      'DE': [510, 155, 'Germany', 'Niemcy'],
+      'ES': [475, 180, 'Spain', 'Hiszpania'],
+      'PT': [462, 180, 'Portugal', 'Portugalia'],
+      'IT': [510, 180, 'Italy', 'Włochy'],
+      'PL': [525, 150, 'Poland', 'Polska'],
+      'NL': [498, 148, 'Netherlands', 'Holandia'],
+      'BE': [495, 153, 'Belgium', 'Belgia'],
+      'CH': [505, 168, 'Switzerland', 'Szwajcaria'],
+      'AT': [515, 165, 'Austria', 'Austria'],
+      'SE': [525, 110, 'Sweden', 'Szwecja'],
+      'NO': [510, 105, 'Norway', 'Norwegia'],
+      'FI': [540, 105, 'Finland', 'Finlandia'],
+      'DK': [515, 135, 'Denmark', 'Dania'],
+      'CZ': [520, 158, 'Czech Republic', 'Czechy'],
+      'SK': [525, 162, 'Slovakia', 'Słowacja'],
+      'HU': [528, 168, 'Hungary', 'Węgry'],
+      'RO': [545, 175, 'Romania', 'Rumunia'],
+      'GR': [538, 195, 'Greece', 'Grecja'],
+      'TR': [565, 195, 'Turkey', 'Turcja'],
+      'UA': [555, 152, 'Ukraine', 'Ukraina'],
+      'RU': [620, 130, 'Russia', 'Rosja'],
+      'BY': [548, 145, 'Belarus', 'Białoruś'],
+      'CN': [770, 195, 'China', 'Chiny'],
+      'JP': [855, 195, 'Japan', 'Japonia'],
+      'KR': [830, 200, 'South Korea', 'Korea Płd.'],
+      'IN': [720, 245, 'India', 'Indie'],
+      'PK': [695, 220, 'Pakistan', 'Pakistan'],
+      'BD': [745, 240, 'Bangladesh', 'Bangladesz'],
+      'TH': [785, 270, 'Thailand', 'Tajlandia'],
+      'VN': [800, 265, 'Vietnam', 'Wietnam'],
+      'PH': [830, 275, 'Philippines', 'Filipiny'],
+      'ID': [815, 320, 'Indonesia', 'Indonezja'],
+      'MY': [795, 295, 'Malaysia', 'Malezja'],
+      'SG': [790, 305, 'Singapore', 'Singapur'],
+      'AU': [855, 380, 'Australia', 'Australia'],
+      'NZ': [905, 415, 'New Zealand', 'Nowa Zelandia'],
+      'EG': [555, 240, 'Egypt', 'Egipt'],
+      'ZA': [555, 395, 'South Africa', 'RPA'],
+      'NG': [510, 290, 'Nigeria', 'Nigeria'],
+      'KE': [565, 320, 'Kenya', 'Kenia'],
+      'ET': [575, 285, 'Ethiopia', 'Etiopia'],
+      'MA': [475, 215, 'Morocco', 'Maroko'],
+      'DZ': [495, 220, 'Algeria', 'Algieria'],
+      'SA': [600, 245, 'Saudi Arabia', 'Arabia Saud.'],
+      'AE': [625, 250, 'UAE', 'ZEA'],
+      'IL': [575, 220, 'Israel', 'Izrael'],
+      'IR': [635, 215, 'Iran', 'Iran'],
+      'IQ': [605, 215, 'Iraq', 'Irak'],
+      'AF': [685, 215, 'Afghanistan', 'Afganistan'],
+      'TW': [820, 235, 'Taiwan', 'Tajwan'],
+      'HK': [810, 240, 'Hong Kong', 'Hongkong'],
+      'NL': [498, 148, 'Netherlands', 'Holandia']
+    };
+
+    function colorForBluePct(bluePct) {
+      // 0% → red, 50% → neutral grey, 100% → blue
+      if (bluePct < 50) {
+        const t = bluePct / 50;
+        const r = Math.round(200 + (119 - 200) * t);
+        const g = Math.round(48 + (119 - 48) * t);
+        const b = Math.round(44 + (119 - 44) * t);
+        return `rgb(${r},${g},${b})`;
+      } else {
+        const t = (bluePct - 50) / 50;
+        const r = Math.round(119 + (37 - 119) * t);
+        const g = Math.round(119 + (99 - 119) * t);
+        const b = Math.round(119 + (184 - 119) * t);
+        return `rgb(${r},${g},${b})`;
+      }
+    }
+
+    function getCountryName(code) {
+      const pos = COUNTRY_POSITIONS[code];
+      if (!pos) return code;
+      return currentLang === 'pl' ? pos[3] : pos[2];
+    }
+
+    function toggleMap() {
+      mapVisible = !mapVisible;
+      const container = document.getElementById('map-container');
+      container.classList.toggle('hidden', !mapVisible);
+      document.getElementById('btn-toggle-map').textContent = mapVisible ? t().mapToggleHide : t().mapToggleShow;
+      if (mapVisible) renderMap();
+    }
+
+    function renderMap() {
+      const txt = t();
+      const wrapper = document.getElementById('map-svg-wrapper');
+      document.getElementById('map-header').textContent = txt.mapHeader;
+      document.getElementById('map-legend-red').textContent = txt.mapLegendRed;
+      document.getElementById('map-legend-blue').textContent = txt.mapLegendBlue;
+
+      const countries = (globalStats.countries) || {};
+
+      // Build SVG with country dots sized by total votes, colored by blue%
+      const dots = [];
+      Object.entries(COUNTRY_POSITIONS).forEach(([code, pos]) => {
+        const data = countries[code];
+        if (!data || data.total < 1) return;
+        const bluePct = data.total > 0 ? (data.blue / data.total) * 100 : 0;
+        const color = colorForBluePct(bluePct);
+        const radius = Math.max(4, Math.min(18, Math.sqrt(data.total) * 2.5));
+        dots.push({
+          code, x: pos[0], y: pos[1], color, radius, bluePct, total: data.total
+        });
+      });
+
+      // Sort by total descending so bigger circles render under (small ones on top, so they remain hoverable)
+      dots.sort((a, b) => b.radius - a.radius);
+
+      const dotsSvg = dots.map(d => `
+        <circle class="country-dot"
+          data-code="${d.code}"
+          cx="${d.x}" cy="${d.y}" r="${d.radius}"
+          fill="${d.color}" fill-opacity="0.78"
+          stroke="rgba(255,255,255,0.3)" stroke-width="0.5"
+          style="cursor: pointer; transition: fill-opacity 0.15s, stroke 0.15s;"
+          onmouseover="onMapHover(event, '${d.code}')"
+          onmouseout="onMapLeave()"
+          ontouchstart="onMapHover(event, '${d.code}')"
+        />
+      `).join('');
+
+      // Background: stylized continent silhouettes (simplified Natural Earth-like outlines)
+      const continents = `
+        <g fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-linejoin="round">
+          <!-- North America -->
+          <path d="M 130 100 L 165 85 L 195 80 L 230 90 L 245 100 L 260 130 L 270 145 L 265 165 L 245 170 L 220 195 L 200 220 L 185 235 L 175 245 L 165 250 L 155 240 L 145 230 L 135 215 L 130 195 L 130 175 L 125 155 L 130 130 Z" />
+          <!-- Central America + Caribbean -->
+          <path d="M 200 250 L 215 245 L 240 255 L 250 268 L 260 275 L 265 285 L 255 290 L 240 285 L 225 275 L 210 270 L 195 258 Z" />
+          <!-- South America -->
+          <path d="M 290 270 L 310 265 L 330 270 L 350 285 L 360 305 L 365 330 L 360 360 L 350 385 L 335 410 L 320 425 L 305 430 L 295 425 L 290 410 L 285 380 L 280 350 L 280 320 L 285 290 Z" />
+          <!-- Greenland -->
+          <path d="M 380 70 L 420 65 L 445 70 L 455 85 L 450 100 L 435 115 L 415 120 L 395 115 L 380 100 L 375 85 Z" />
+          <!-- Europe -->
+          <path d="M 460 130 L 480 125 L 505 125 L 535 130 L 555 135 L 565 145 L 560 160 L 555 175 L 545 195 L 525 200 L 510 195 L 500 190 L 490 185 L 478 180 L 465 175 L 458 165 L 458 150 Z" />
+          <!-- Africa -->
+          <path d="M 470 215 L 495 210 L 525 215 L 555 225 L 580 240 L 590 265 L 585 295 L 575 325 L 560 360 L 545 390 L 530 410 L 515 415 L 500 410 L 490 395 L 482 370 L 478 340 L 475 305 L 472 270 L 470 240 Z" />
+          <!-- Middle East / Arabia -->
+          <path d="M 575 220 L 610 220 L 635 230 L 645 250 L 640 270 L 625 280 L 605 275 L 585 265 L 575 245 Z" />
+          <!-- Asia (main mass) -->
+          <path d="M 555 130 L 600 120 L 660 115 L 720 115 L 780 120 L 830 130 L 870 145 L 880 165 L 875 185 L 855 200 L 825 210 L 790 215 L 770 220 L 740 225 L 705 230 L 680 235 L 655 230 L 630 220 L 605 210 L 580 195 L 565 175 L 558 155 Z" />
+          <!-- India subcontinent -->
+          <path d="M 690 215 L 725 215 L 745 225 L 750 245 L 740 265 L 720 270 L 705 260 L 695 245 L 690 230 Z" />
+          <!-- Southeast Asia / Indochina -->
+          <path d="M 770 240 L 800 235 L 815 250 L 815 270 L 805 285 L 790 285 L 780 275 L 772 260 Z" />
+          <!-- Indonesia / Philippines archipelago -->
+          <path d="M 790 295 L 820 290 L 850 295 L 855 310 L 845 320 L 825 325 L 805 322 L 790 315 Z" />
+          <path d="M 825 270 L 845 268 L 850 285 L 838 290 L 825 285 Z" />
+          <!-- Japan -->
+          <path d="M 840 175 L 865 175 L 870 195 L 860 210 L 845 205 L 838 190 Z" />
+          <!-- Australia -->
+          <path d="M 820 365 L 855 358 L 895 365 L 910 380 L 905 400 L 880 410 L 850 408 L 825 395 L 815 378 Z" />
+          <!-- New Zealand -->
+          <path d="M 905 410 L 920 415 L 925 430 L 915 435 L 905 425 Z" />
+          <!-- UK / Ireland -->
+          <path d="M 460 130 L 475 128 L 482 138 L 478 152 L 468 155 L 460 145 Z" />
+          <!-- Iceland -->
+          <path d="M 458 105 L 472 103 L 478 112 L 470 118 L 460 115 Z" />
+        </g>
+      `;
+
+      let svg;
+      if (dots.length === 0) {
+        svg = `<svg viewBox="0 0 1000 500" class="map-svg" xmlns="http://www.w3.org/2000/svg">
+          ${continents}
+          <text x="500" y="250" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Newsreader, serif" font-style="italic" font-size="20">${txt.mapNoData}</text>
+        </svg>`;
+      } else {
+        svg = `<svg viewBox="0 0 1000 500" class="map-svg" xmlns="http://www.w3.org/2000/svg">
+          ${continents}
+          ${dotsSvg}
+        </svg>
+        <div class="map-tooltip" id="map-tooltip"></div>`;
+      }
+
+      wrapper.innerHTML = svg;
+
+      // Render top lists
+      renderMapTopLists();
+    }
+
+    function renderMapTopLists() {
+      const txt = t();
+      const list = document.getElementById('map-top-list');
+      const countries = globalStats.countries || {};
+
+      const enriched = Object.entries(countries)
+        .filter(([code, d]) => d.total >= 5)
+        .map(([code, d]) => ({
+          code,
+          name: getCountryName(code),
+          bluePct: (d.blue / d.total) * 100,
+          total: d.total
+        }));
+
+      if (enriched.length === 0) {
+        list.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-faint); font-style: italic; font-size: 13px;">${txt.mapMinVotes}</div>`;
+        return;
+      }
+
+      const topBlue = [...enriched].sort((a, b) => b.bluePct - a.bluePct).slice(0, 5);
+      const topRed = [...enriched].sort((a, b) => a.bluePct - b.bluePct).slice(0, 5);
+
+      const renderRow = (item, side) => `
+        <div class="map-top-row">
+          <span class="map-top-country">${item.name}</span>
+          <span class="map-top-pct ${side}">${Math.round(side === 'blue' ? item.bluePct : 100 - item.bluePct)}%</span>
+        </div>
+      `;
+
+      list.innerHTML = `
+        <div class="map-top-section">
+          <h4 style="color: var(--blue);">${txt.mapTopBlue}</h4>
+          ${topBlue.map(c => renderRow(c, 'blue')).join('')}
+        </div>
+        <div class="map-top-section">
+          <h4 style="color: var(--red);">${txt.mapTopRed}</h4>
+          ${topRed.map(c => renderRow(c, 'red')).join('')}
+        </div>
+      `;
+    }
+
+    function onMapHover(e, code) {
+      const tooltip = document.getElementById('map-tooltip');
+      if (!tooltip) return;
+      const txt = t();
+      const data = (globalStats.countries || {})[code];
+      if (!data) return;
+      const bluePct = (data.blue / data.total) * 100;
+      tooltip.innerHTML = `
+        <div class="map-tooltip-name">${getCountryName(code)}</div>
+        <div class="map-tooltip-stats">${txt.mapTooltipVotes(data.total)} · ${Math.round(bluePct)}% ${txt.mapTooltipBlue}</div>
+      `;
+      const wrapper = document.getElementById('map-svg-wrapper');
+      const rect = wrapper.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      let left = e.clientX - rect.left + 12;
+      let top = e.clientY - rect.top - tooltipRect.height - 12;
+      if (top < 0) top = e.clientY - rect.top + 16;
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+      tooltip.classList.add('visible');
+    }
+
+    function onMapLeave() {
+      const tooltip = document.getElementById('map-tooltip');
+      if (tooltip) tooltip.classList.remove('visible');
+    }
+
+    // ───────────────────────────────────────────────
+    // PERSONALITY TYPING — moral profile after 5+ rounds
+    // ───────────────────────────────────────────────
+
+    function getArchetype() {
+      const txt = t();
+      const total = stats.total;
+      if (total < 5) return null;
+      const bluePct = (stats.blue / total) * 100;
+
+      if (bluePct >= 90) return { key: 'martyr', ...txt.archetypes.martyr };
+      if (bluePct >= 65) return { key: 'believer', ...txt.archetypes.believer };
+      if (bluePct >= 45 && bluePct <= 55) return { key: 'hesitant', ...txt.archetypes.hesitant };
+      if (bluePct >= 35) return { key: 'pragmatist', ...txt.archetypes.pragmatist };
+      if (bluePct < 10) return { key: 'calculator', ...txt.archetypes.calculator };
+      if (bluePct < 35) return { key: 'pragmatist', ...txt.archetypes.pragmatist };
+
+      // Behavioral check: did they switch sides? If both >0, they "performed"
+      if (stats.red > 0 && stats.blue > 0 && total >= 5) {
+        const minorityRatio = Math.min(stats.red, stats.blue) / total;
+        if (minorityRatio >= 0.2 && minorityRatio <= 0.4) {
+          return { key: 'performer', ...txt.archetypes.performer };
+        }
+      }
+
+      return { key: 'observer', ...txt.archetypes.observer };
+    }
+
+    function showPersonality() {
+      const txt = t();
+      const screen = document.getElementById('screen-personality');
+      const archetype = getArchetype();
+
+      let html;
+      if (!archetype) {
+        html = `
+          <div class="personality-locked">
+            <div class="personality-locked-text">${txt.personalityLockedTitle}</div>
+            <p style="font-size: 13px; color: var(--text-mute); margin: 8px 0 14px; line-height: 1.5;">${txt.personalityLockedSub}</p>
+            <div class="personality-locked-progress">${txt.personalityLockedProgress(stats.total)}</div>
+            <div style="margin-top: 24px;">
+              <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+            </div>
+          </div>
+        `;
+      } else {
+        const bluePct = ((stats.blue / stats.total) * 100).toFixed(0);
+        const redPct = ((stats.red / stats.total) * 100).toFixed(0);
+        html = `
+          <div class="personality-card" id="personality-card">
+            <div class="personality-eyebrow">${txt.personalityEyebrow}</div>
+            <div class="personality-name">${archetype.name}</div>
+            <div class="personality-tagline">"${archetype.tagline}"</div>
+            <div class="personality-stats">
+              <div class="personality-stat">
+                <div class="personality-stat-value">${stats.total}</div>
+                <div class="personality-stat-label">${txt.personalityStatRounds}</div>
+              </div>
+              <div class="personality-stat">
+                <div class="personality-stat-value" style="color: var(--red);">${redPct}%</div>
+                <div class="personality-stat-label">${txt.personalityStatRed}</div>
+              </div>
+              <div class="personality-stat">
+                <div class="personality-stat-value" style="color: var(--blue);">${bluePct}%</div>
+                <div class="personality-stat-label">${txt.personalityStatBlue}</div>
+              </div>
+            </div>
+            <div class="personality-description">${archetype.desc}</div>
+            <div class="personality-actions">
+              <button class="btn-primary" onclick="downloadPersonalityImage('${archetype.key}')">${txt.personalityDownload}</button>
+              <button class="btn" onclick="copyShareLink('${archetype.key}')" id="btn-copy-link">${txt.personalityCopyLink}</button>
+              <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+            </div>
+          </div>
+        `;
+      }
+
+      hideAll();
+      screen.innerHTML = html;
+      screen.classList.remove('hidden');
+    }
+
+    function copyShareLink(archetypeKey) {
+      const txt = t();
+      const archetype = getArchetype();
+      if (!archetype) return;
+      const cleanName = archetype.name.replace(/<\/?em>/g, '');
+      const text = txt.personalityShareText(cleanName) + ' https://gamestheory.org';
+      try {
+        navigator.clipboard.writeText(text);
+        const btn = document.getElementById('btn-copy-link');
+        const orig = btn.textContent;
+        btn.textContent = txt.personalityCopied;
+        setTimeout(() => { btn.textContent = orig; }, 2000);
+      } catch(e) {
+        console.warn('Copy failed:', e);
+      }
+    }
+
+    function downloadPersonalityImage(archetypeKey) {
+      const archetype = getArchetype();
+      if (!archetype) return;
+
+      const canvas = document.createElement('canvas');
+      const w = 1200;
+      const h = 630;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#1a1a1c');
+      grad.addColorStop(1, '#0a0a0b');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle radial accent
+      const radial = ctx.createRadialGradient(w * 0.85, h * 0.2, 0, w * 0.85, h * 0.2, w * 0.5);
+      radial.addColorStop(0, 'rgba(212, 184, 150, 0.15)');
+      radial.addColorStop(1, 'rgba(212, 184, 150, 0)');
+      ctx.fillStyle = radial;
+      ctx.fillRect(0, 0, w, h);
+
+      // Border
+      ctx.strokeStyle = 'rgba(212, 184, 150, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(40, 40, w - 80, h - 80);
+
+      // Eyebrow
+      ctx.fillStyle = '#95918a';
+      ctx.font = '500 18px "JetBrains Mono", monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('GAMESTHEORY.ORG  ·  YOUR MORAL PROFILE', 80, 100);
+
+      // Name
+      const cleanName = archetype.name.replace(/<\/?em>/g, '');
+      ctx.fillStyle = '#ece7dc';
+      ctx.font = 'italic 88px "Instrument Serif", "Times New Roman", serif';
+      ctx.fillText(cleanName, 80, 220);
+
+      // Tagline
+      ctx.fillStyle = '#d4b896';
+      ctx.font = 'italic 32px "Instrument Serif", "Times New Roman", serif';
+      ctx.fillText('"' + archetype.tagline + '"', 80, 280);
+
+      // Stats row
+      const statY = 380;
+      ctx.fillStyle = 'rgba(255,255,255,0.04)';
+      ctx.fillRect(80, statY - 40, w - 160, 100);
+
+      ctx.font = '500 16px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#5d5a55';
+      ctx.fillText('ROUNDS', 120, statY - 5);
+      ctx.fillText('RED', 470, statY - 5);
+      ctx.fillText('BLUE', 800, statY - 5);
+
+      ctx.font = '60px "Instrument Serif", "Times New Roman", serif';
+      ctx.fillStyle = '#ece7dc';
+      ctx.fillText(stats.total.toString(), 120, statY + 45);
+      ctx.fillStyle = '#C8302C';
+      ctx.fillText(((stats.red / stats.total) * 100).toFixed(0) + '%', 470, statY + 45);
+      ctx.fillStyle = '#2563b8';
+      ctx.fillText(((stats.blue / stats.total) * 100).toFixed(0) + '%', 800, statY + 45);
+
+      // Footer
+      ctx.fillStyle = '#95918a';
+      ctx.font = '500 18px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('A test of who you become when no one is watching', w / 2, h - 90);
+      ctx.fillStyle = '#d4b896';
+      ctx.font = '500 24px "JetBrains Mono", monospace';
+      ctx.fillText('GAMESTHEORY.ORG', w / 2, h - 60);
+
+      // Trigger download
+      const filename = `gamestheory-${archetypeKey}.png`;
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 'image/png');
     }
 
     // ───────────────────────────────────────────────
@@ -1479,7 +2602,7 @@
     }
 
     function hideAll() {
-      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions'].forEach(id => {
+      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
     }
