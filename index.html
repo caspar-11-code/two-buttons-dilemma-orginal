@@ -1097,9 +1097,47 @@
 
     .result-actions {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 8px;
+      flex-wrap: nowrap;
       margin-top: 28px;
+      align-items: stretch;
+    }
+
+    .result-actions .btn {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 10px 8px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-play-again {
+      background: rgba(255,255,255,0.08) !important;
+      border-color: currentColor !important;
+      opacity: 1 !important;
+      font-weight: 500;
+      flex: 1.4 1 auto !important;
+      box-shadow: inset 0 0 0 0.5px currentColor;
+    }
+
+    .btn-play-again:hover {
+      background: rgba(255,255,255,0.14) !important;
+    }
+
+    @media (max-width: 600px) {
+      .result-actions {
+        flex-wrap: wrap;
+      }
+      .result-actions .btn {
+        flex: 1 1 calc(50% - 4px);
+      }
+      .btn-play-again {
+        flex: 1 1 calc(50% - 4px) !important;
+      }
     }
 
     .result .btn {
@@ -1109,6 +1147,23 @@
     }
 
     .result .btn:hover { opacity: 1; }
+
+    .btn-personality-active {
+      border-color: var(--accent) !important;
+      color: var(--accent) !important;
+      opacity: 1 !important;
+    }
+    .btn-personality-active:hover {
+      background: rgba(212, 184, 150, 0.08);
+    }
+
+    .btn-personality-locked {
+      opacity: 0.35 !important;
+      cursor: not-allowed;
+    }
+    .btn-personality-locked:hover {
+      opacity: 0.45 !important;
+    }
 
     .stats {
       margin-top: 48px;
@@ -1581,6 +1636,7 @@
         personalityStatRed: 'Red',
         personalityStatBlue: 'Blue',
         personalityBack: 'Back to game',
+        personalityButtonShort: 'Your profile',
         imageEyebrow: 'GAMESTHEORY.ORG  ·  YOUR MORAL PROFILE',
         imageRoundsLabel: 'ROUNDS',
         imageRedLabel: 'RED',
@@ -1754,6 +1810,7 @@
         personalityStatRed: 'Czerwony',
         personalityStatBlue: 'Niebieski',
         personalityBack: 'Wróć do gry',
+        personalityButtonShort: 'Twój profil',
         imageEyebrow: 'GAMESTHEORY.ORG  ·  TWÓJ PROFIL MORALNY',
         imageRoundsLabel: 'RUND',
         imageRedLabel: 'CZERWONY',
@@ -2699,10 +2756,10 @@
           ${newQHtml}
           ${noNewQ}
           <div class="result-actions">
-            <button class="btn" onclick="playAgain()">${txt.playAgain}</button>
+            <button class="btn btn-play-again" onclick="playAgain()">${txt.playAgain}</button>
             <button class="btn" onclick="showQuestions()">${txt.seeQuestions} (${unlockedBlue.length + unlockedRed.length}/16) ↗</button>
             <button class="btn" onclick="showReality()">${txt.seeReality}</button>
-            ${stats.total >= 5 ? `<button class="btn" onclick="showPersonality()" style="border-color: var(--accent); color: var(--accent);">${txt.personalityEyebrow} ↗</button>` : ''}
+            <button class="btn ${stats.total >= 5 ? 'btn-personality-active' : 'btn-personality-locked'}" onclick="showPersonality()">${txt.personalityButtonShort} ${stats.total >= 5 ? '↗' : `(${stats.total}/5)`}</button>
           </div>
         </div>
       `;
