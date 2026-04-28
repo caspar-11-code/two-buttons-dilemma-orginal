@@ -37,6 +37,48 @@ const COUNTRY_REGEX = /^[A-Z]{2}$/;
 // Max number of countries we'll track (195 real + XX). If KV grows beyond this, reject.
 const MAX_COUNTRIES = 250;
 
+// ─── Rate limiting (KV-backed, per-IP) ───────────────────────────────────
+// Limits per IP per time window. Adjust to taste:
+const RATE_LIMITS = {
+  vote:  { max: 5,  windowSec: 60 },   // 5 vote attempts per minute per IP
+  stats: { max: 60, windowSec: 60 },   // 60 stats reads per minute per IP
+};
+
+/**
+ * Rate-limit check using KV. Returns { allowed: boolean, retryAfter: number }
+ * Note: KV is eventually consistent, so this isn't perfectly precise — but it's
+ * good enough to stop scripted abuse. For really aggressive defence, use
+ * Cloudflare WAF rules at the dashboard level (independent of this code).
+ */
+async function checkRateLimit(env, ip, kind) {
+  const limit = RATE_LIMITS[kind];
+  if (!limit) return { allowed: true, retryAfter: 0 };
+  const key = `rl:${kind}:${ip}`;
+  try {
+    const raw = await env.STATS.get(key);
+    const now = Math.floor(Date.now() / 1000);
+    let entry = { count: 0, resetAt: now + limit.windowSec };
+    if (raw) {
+      try { entry = JSON.parse(raw); } catch { /* invalid, reset */ }
+    }
+    if (entry.resetAt <= now) {
+      // Window expired, reset
+      entry = { count: 0, resetAt: now + limit.windowSec };
+    }
+    entry.count = (entry.count || 0) + 1;
+    if (entry.count > limit.max) {
+      return { allowed: false, retryAfter: Math.max(1, entry.resetAt - now) };
+    }
+    // Persist with TTL = remaining window time (so KV cleans itself up)
+    const ttl = Math.max(60, entry.resetAt - now);
+    await env.STATS.put(key, JSON.stringify(entry), { expirationTtl: ttl });
+    return { allowed: true, retryAfter: 0 };
+  } catch (e) {
+    // If KV fails, fail open (allow request) rather than blocking everyone
+    return { allowed: true, retryAfter: 0 };
+  }
+}
+
 function getCorsHeaders(request) {
   const origin = request.headers.get("Origin") || "";
   const allowed = ALLOWED_ORIGINS.includes(origin);
@@ -90,6 +132,15 @@ export default {
 
     // GET /api/stats — read-only, less restrictive (any origin can read public stats)
     if (url.pathname === "/api/stats" && request.method === "GET") {
+      // Rate limit per IP
+      const ip = request.headers.get("cf-connecting-ip") || "unknown";
+      const rl = await checkRateLimit(env, ip, "stats");
+      if (!rl.allowed) {
+        return json({ error: "Rate limit exceeded" }, 429, request, {
+          "Retry-After": String(rl.retryAfter),
+        });
+      }
+
       try {
         const [stats, countries] = await Promise.all([
           env.STATS.get("global", { type: "json", cacheTtl: 60 }),
@@ -116,6 +167,15 @@ export default {
       // Reject if origin not in allowlist (browser-only abuse mitigation)
       if (!isOriginAllowed(request)) {
         return json({ error: "Forbidden origin" }, 403, request);
+      }
+
+      // Rate limit per IP — strict for writes
+      const ip = request.headers.get("cf-connecting-ip") || "unknown";
+      const rl = await checkRateLimit(env, ip, "vote");
+      if (!rl.allowed) {
+        return json({ error: "Rate limit exceeded" }, 429, request, {
+          "Retry-After": String(rl.retryAfter),
+        });
       }
 
       // Parse JSON safely
