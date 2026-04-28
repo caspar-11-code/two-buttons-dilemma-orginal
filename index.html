@@ -1469,6 +1469,335 @@
       font-family: 'Newsreader', serif;
     }
 
+    /* ─── Essays UI ─── */
+    .essays-intro {
+      max-width: 580px;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+
+    .essays-intro h2 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .essays-intro p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-mute);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .essays-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .essay-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .essay-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .essay-card-number {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 32px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.7;
+      flex-shrink: 0;
+      width: 40px;
+    }
+
+    .essay-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .essay-card-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .essay-card-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+    }
+
+    .essay-card-time { opacity: 0.7; }
+    .essay-card-action { color: var(--accent); }
+
+    .essays-locked {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 0.5px dashed var(--border-strong);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .essays-locked-icon {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 36px;
+      color: var(--accent);
+      opacity: 0.4;
+      margin-bottom: 12px;
+    }
+
+    .essays-locked-text {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .essays-locked-progress {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .essays-skip {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 0.5px solid var(--border);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .essays-skip-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .essays-skip-explain {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-mute);
+      margin-bottom: 16px;
+      opacity: 0.85;
+    }
+
+    .essays-skip-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-faint);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 0;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,0.15);
+      text-underline-offset: 4px;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .essays-skip-btn:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    .essays-skip-disabled .essays-skip-explain {
+      opacity: 0.55;
+    }
+
+    /* ─── Essay Detail ─── */
+    .essay-detail {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .essay-detail-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .essay-detail h1 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .essay-detail-meta {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .essay-body {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .essay-body h3 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 36px 0 12px;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    .essay-body h3:first-child { margin-top: 0; }
+
+    .essay-body p {
+      margin-bottom: 16px;
+    }
+
+    .essay-body ul {
+      margin: 12px 0 16px 22px;
+    }
+
+    .essay-body li {
+      margin-bottom: 6px;
+    }
+
+    .essay-body em {
+      color: var(--accent);
+      font-style: italic;
+      opacity: 0.92;
+    }
+
+    .essay-body strong {
+      color: var(--text);
+      font-weight: 500;
+      background: rgba(212, 184, 150, 0.08);
+      padding: 0 3px;
+      border-radius: 2px;
+    }
+
+    .essay-sources {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .essay-sources-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .essay-sources ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .essay-sources li {
+      padding: 6px 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .essay-sources a {
+      color: var(--text-mute);
+      text-decoration: none;
+      border-bottom: 0.5px dotted var(--text-faint);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .essay-sources a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .essay-detail-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .essay-detail-actions .btn {
+      flex: 1 1 auto;
+      min-width: 140px;
+    }
+
+    @media (max-width: 600px) {
+      .essay-detail h1 { font-size: 32px; }
+      .essay-body { font-size: 16px; }
+      .essay-body h3 { font-size: 20px; }
+      .essay-card { padding: 18px 18px; gap: 12px; }
+      .essay-card-number { font-size: 26px; width: 32px; }
+      .essay-card-title { font-size: 18px; }
+    }
+
     .footer {
       margin-top: 80px;
       padding-top: 24px;
@@ -1731,6 +2060,7 @@
     <div class="top-bar">
       <div class="brand" id="brand">Two Buttons · kwh</div>
       <div class="top-bar-controls">
+        <button class="sound-toggle-top" id="help-toggle" onclick="showHelp()" aria-label="Help" title="Help">?</button>
         <button class="sound-toggle-top" id="sound-toggle" onclick="toggleSound()" aria-label="Toggle sound" aria-pressed="true">♪</button>
         <div class="lang-toggle">
           <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
@@ -1835,6 +2165,7 @@
 
       <div class="secondary-actions">
         <button class="btn" onclick="showReality()" id="btn-research"></button>
+        <button class="btn" onclick="showEssays()" id="btn-essays-intro"></button>
         <button class="btn hidden" id="btn-questions" onclick="showQuestions()"></button>
       </div>
     </div>
@@ -1843,6 +2174,8 @@
     <div id="screen-reality" class="screen hidden"></div>
     <div id="screen-questions" class="screen hidden"></div>
     <div id="screen-personality" class="screen hidden"></div>
+    <div id="screen-essays" class="screen hidden"></div>
+    <div id="screen-essay-detail" class="screen hidden"></div>
 
     <div id="stats" class="stats hidden">
       <p class="stats-label" id="stats-label"></p>
@@ -1905,6 +2238,19 @@
       <p class="easter-body" id="easter-body"></p>
       <div style="text-align: center; margin-top: 28px;">
         <button class="btn" onclick="closeEaster()" id="easter-close-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help modal — site usage guide -->
+  <div id="help-modal" class="privacy-modal hidden" onclick="if(event.target===this)closeHelp()">
+    <div class="privacy-modal-content">
+      <button class="privacy-close" onclick="closeHelp()">×</button>
+      <h2 id="help-title"></h2>
+      <p class="privacy-updated" id="help-updated"></p>
+      <div id="help-body"></div>
+      <div style="text-align: center; margin-top: 24px;">
+        <button class="btn" onclick="closeHelp()" id="help-close-btn"></button>
       </div>
     </div>
   </div>
@@ -2037,6 +2383,283 @@
         easterNightBody: 'It\'s 3:33 in your time zone. You should be sleeping. Or maybe the question is: who do you become at 3:33, when no one is watching, when the world is asleep, when even your own performance has gone quiet? Same red and blue. Different you.',
         easterFoundLabel: 'Hidden discovery',
         easterDismiss: 'Close',
+
+        // Essays "Deeper"
+        essaysButton: 'Essays ↗',
+        essaysListTitle: 'Essays · Deeper',
+        essaysListSub: 'Six texts that go further than the game. Philosophy, game theory, history. Each is a different angle — uncomfortable for every side, in different places.',
+        essaysListLocked: 'Essays unlock after discovering all 16 questions and casting your vote.',
+        essaysListLockedProgress: (q, hasVoted) => `${q}/16 questions · vote ${hasVoted ? 'cast' : 'not yet cast'}`,
+        essaysSkipLabel: 'Or skip the game',
+        essaysSkipExplain: 'The 16 questions exist for a reason — they make you doubt your choice. Skipping them is fine, but you\'ll get less out of the essays. We won\'t stop you.',
+        essaysSkipNeedVote: 'You still need to cast a vote first. The essays exist as a follow-up to your decision, not a substitute for it.',
+        essaysSkipBtn: 'Show me the essays anyway →',
+
+        // Help
+        helpTitle: 'How this works',
+        helpUpdated: 'A short guide',
+        helpClose: 'Got it',
+        helpBody: `
+          <h3>The basic idea</h3>
+          <p>You have two buttons: <strong>red</strong> and <strong>blue</strong>. Imagine every person on Earth has the same two buttons. The rules:</p>
+          <ul>
+            <li>If <strong>more than 50%</strong> of humanity picks blue — everyone lives.</li>
+            <li>If <strong>50% or fewer</strong> pick blue — everyone who picked blue dies. Reds live.</li>
+            <li>If <strong>everyone</strong> picks red — everyone lives.</li>
+          </ul>
+          <p>Red is the safe choice. Blue is an act of trust in other people.</p>
+
+          <h3>Your first click is real</h3>
+          <p>Your <strong>first click</strong> on red or blue is recorded in the global counter. Every device casts at most one vote. After that, you can keep clicking — but those clicks only run a simulation. The world map and statistics show real votes from real people.</p>
+
+          <h3>What you unlock by playing</h3>
+          <ul>
+            <li><strong>16 questions</strong> — every game reveals one new question that challenges your choice. Eight challenge red. Eight challenge blue. Hidden until you play.</li>
+            <li><strong>Your moral profile</strong> — after 5 rounds, the game generates your archetype (Calculator, Believer, Hesitant, etc). Includes a shareable image.</li>
+            <li><strong>Six essays</strong> — unlocked after all 16 questions are revealed and your vote is cast. Philosophy, game theory, history. About 3 min each.</li>
+          </ul>
+
+          <h3>The world map</h3>
+          <p>Click <em>"Show world map"</em> in the live results section to see how different countries vote. Each dot is a country — color shows blue %, size shows total votes. Hover (or tap on mobile) for details. Below the map: rankings of most cooperative and most self-interested countries.</p>
+
+          <h3>Your profile</h3>
+          <p>The <em>"Test yourself"</em> banner shows your unlock progress. After 5 rounds you'll get your moral type with a quote, statistics, and a downloadable image (1200×630 PNG, perfect for social media). On the result screen, click <em>"Your profile"</em> to see it again.</p>
+
+          <h3>Sound</h3>
+          <p>The <strong>♪</strong> icon at the top toggles all sound. By default it's on. You'll hear: short clicks when you choose, dramatic descending tone when blue dies, ascending chord when blue wins. No music, no ambient noise.</p>
+
+          <h3>Languages</h3>
+          <p>Two languages: English and Polish, switchable in the top-right. The site auto-detects your language from your browser, but you can override anytime. Adding more languages is on the roadmap.</p>
+
+          <h3>Privacy</h3>
+          <p>This site stores a random anonymous ID in your browser (so each device votes once) and uses your country code from Cloudflare for the map. No tracking, no analytics, no third parties. Click <em>Privacy</em> in the footer for full details.</p>
+
+          <h3>Stuck? Tips:</h3>
+          <ul>
+            <li>If you don't want to play 16 rounds — vote at least once, then click "Essays" and you'll see an option to skip directly to them.</li>
+            <li>The questions reveal in random order. Same with the side they challenge — but always alternating to keep balance.</li>
+            <li>If something looks broken, hard refresh (Ctrl+Shift+R / Cmd+Shift+R). Cache may be stale.</li>
+          </ul>
+
+          <h3>Why does this exist?</h3>
+          <p>The dilemma isn't abstract. It's the exact structure of climate cooperation, vaccinations, taxes, and every collective action problem in real life. Most people <em>say</em> they'd cooperate but <em>act</em> otherwise. The game is a tool to notice the gap between your stated values and your actual behavior — when no one is watching.</p>
+        `,
+        essaysReadTime: 'min read',
+        essaysRead: 'Read →',
+        essaysBack: '← Back to essays',
+        essaysNext: 'Next essay →',
+        essaysSourcesLabel: 'Sources and further reading',
+
+        essays: [
+          {
+            id: 'kant-mill',
+            number: 1,
+            title: 'Kant vs Mill',
+            eyebrow: 'Philosophy · deontological vs utilitarian ethics',
+            readTime: 3,
+            content: `<p>Two of the greatest moral philosophers of the 19th century would have answered this dilemma in completely opposite ways. And both would be right — within their own systems.</p>
+
+<h3>Kant: blue is the only possible answer</h3>
+<p>The categorical imperative goes roughly: <em>"act only according to that maxim by which you can at the same time will that it should become a universal law."</em> When you pick red, you're saying in effect: <em>"I want everyone to save themselves at the cost of risk to others."</em> But if everyone chose that way, the risk would vanish — everyone would survive. Kant would say: <strong>the logic of your choice undoes its own justification</strong>.</p>
+<p>Kant's second formulation cuts even deeper: <em>"treat humanity always as an end, never merely as a means."</em> Picking red means treating other people's lives as acceptable losses for your safety. Blue is the only choice in which no one becomes collateral to your calculation.</p>
+
+<h3>Mill: red is rationally correct</h3>
+<p>John Stuart Mill, father of utilitarianism, sees it differently. What matters is <strong>aggregate good</strong>. If the probability that more than 50% of humanity will pick blue is low — and every empirical study says it is — then the expected value of blue for you is negative. You lose your life, and your single vote saves no one, because there won't be enough blues anyway.</p>
+<p>Mill says: <strong>your individual sacrifice doesn't change the math</strong>. Given that, the rational decision is red — it minimises suffering (yours) and creates no additional good (too few blues either way).</p>
+
+<h3>Where they part</h3>
+<p>Kant judges <em>intent</em>. Mill judges <em>consequences</em>. If a blue choice turns out to be a catastrophe (all blues die), Mill says: "you chose wrongly." Kant says: "you chose well, the world failed you."</p>
+<p>This distinction isn't academic. Every consequential moral decision in your life — voting, whistleblowing, putting yourself at risk for a stranger — requires a choice: <strong>do I judge myself by intent, or by outcome?</strong></p>
+
+<h3>A third way: virtue</h3>
+<p>Aristotle would say both are wrong to try to compress morality into a rule or a formula. The question isn't "what's right in this situation," but "what kind of person do I want to be?" Blue or red — which choice fits the person you're trying to become?</p>
+<p>That's a question no study or simulation can answer for you.</p>`,
+            sources: [
+              { name: 'Kant — Groundwork of the Metaphysics of Morals (1785)', url: 'https://en.wikipedia.org/wiki/Categorical_imperative' },
+              { name: 'Mill — Utilitarianism (1863)', url: 'https://en.wikipedia.org/wiki/Utilitarianism_(book)' },
+              { name: 'Stanford Encyclopedia — Deontological Ethics', url: 'https://plato.stanford.edu/entries/ethics-deontological/' }
+            ]
+          },
+          {
+            id: 'schelling',
+            number: 2,
+            title: 'Schelling and the focal point',
+            eyebrow: 'Game theory · why red feels "obvious"',
+            readTime: 3,
+            content: `<p>Thomas Schelling won the Nobel Prize in economics in 2005 for showing that people can coordinate <strong>without communication</strong>. The experiment was simple: two strangers must meet in New York on some day. They can't contact each other. Where do they go, and at what time?</p>
+<p>Most answer without hesitation: <strong>Grand Central Station, at noon</strong>. Because it's "obvious." Schelling called this a <em>focal point</em> — a coordination point people converge on by themselves when no other coordination is available.</p>
+
+<h3>Red is the focal point of two buttons</h3>
+<p>In our dilemma, red is the <em>dominant strategy</em> in game-theoretic terms — it wins or ties in every possible scenario. But something more important is also true: it's <strong>obvious</strong>. Everyone sees it as safe. Everyone assumes others see it as safe. So everyone picks it — and is right, because everyone else picks it.</p>
+<p>The same self-reinforcing belief that "everyone will pick red" produces the reality in which everyone picks red. <strong>Blue requires an assumption no one has grounds to make</strong>: that more than half of unknown people will trust other unknown people.</p>
+
+<h3>Every social movement has been a fight over the focal point</h3>
+<p>Think about women's suffrage in the 19th century. The first women voting in New Zealand (1893) didn't change the math — they shifted the focal point. They showed that "women don't vote" wasn't a law of nature, just a default expectation. When the expectation broke, coordination suddenly pushed in the other direction.</p>
+<p>The same with LGBT rights, vaccinations, smoking in restaurants, masks in Asia. <strong>Most social change is focal point shifts</strong>, not changes in fundamental morality.</p>
+
+<h3>Why they usually fail</h3>
+<p>Schelling also showed focal points are stable. Changing one requires enormous energy and usually coordination from leaders, institutions, media. <strong>A single individual "blue vote" never shifts the focal point</strong> — it can at best be a brick in the foundation of a new one.</p>
+<p>This is why heroic individual sacrifice rarely works. The world doesn't need your blue vote as a moral gesture. The world needs a million blue votes <em>simultaneously</em>, ideally with PR and institutional backing. Anything else is romance.</p>
+
+<h3>The brutal conclusion</h3>
+<p>So if you pick blue in the real world — in elections, in taxes, on climate — and lose, that <strong>doesn't mean you chose wrongly</strong>. It means the focal point isn't ready yet. Your task is double: pick blue, <em>and</em> work to shift everyone else's expectations. Either alone is insufficient.</p>`,
+            sources: [
+              { name: 'Schelling — The Strategy of Conflict (1960)', url: 'https://en.wikipedia.org/wiki/Thomas_Schelling' },
+              { name: 'Focal point (Schelling) — Wikipedia', url: 'https://en.wikipedia.org/wiki/Focal_point_(game_theory)' },
+              { name: 'Nobel Prize 2005 — citation', url: 'https://www.nobelprize.org/prizes/economic-sciences/2005/summary/' }
+            ]
+          },
+          {
+            id: 'climate-vaccines-taxes',
+            number: 3,
+            title: 'Climate, vaccines, taxes',
+            eyebrow: 'Politics · your choice returns, every day',
+            readTime: 3,
+            content: `<p>The two-button dilemma isn't abstract. It's the structure of every global coordination problem — and you're choosing within it daily, without knowing.</p>
+
+<h3>Climate — country as player</h3>
+<p>Germany cuts emissions? Other countries should too. If everyone cuts — everyone wins (climate target met, planet stays habitable). If only Germany cuts — they lose economically, climate changes anyway (because China, US, India picked red).</p>
+<p>Each country individually has <strong>incentive to pick red</strong> — protect their economy, wait for others to do the work. Together — everyone loses. That's why the Paris Agreement has such pathetic implementation statistics. Everyone signed, but everyone says "my sacrifices must be proportional to others'," and no one jumps first.</p>
+
+<h3>Vaccines — free riders</h3>
+<p>Herd immunity requires roughly 70-95% vaccinated (depending on disease). Once that threshold's hit, <strong>even unvaccinated are protected</strong>, because the virus can't spread. That's blue winning.</p>
+<p>But for an individual the logic is different. If 70% of others are vaccinated, I can skip the vaccine and piggyback on their immunity. Less risk (vaccine side effects), same protection. That's red.</p>
+<p>When too many people think this way, herd immunity collapses. <strong>Measles returns, having been eradicated by 2000</strong>. Individual red collectively kills its own children.</p>
+
+<h3>Taxes — culture of blue</h3>
+<p>Everyone pays taxes honestly? Working state, infrastructure, healthcare, education. Blue victory.</p>
+<p>Every individual has incentive to game it — under-report income, hide transactions, route through foreign accounts. Calculation simple: 0% chance of detection × 0% penalty = 0% cost. Pure savings.</p>
+<p>Scandinavia works not because Scandinavians are morally superior. It works because <strong>they built a culture of blue</strong> — control systems, social norms, transparency (in Norway anyone can look up your salary and what you paid). Blue there isn't an act of heroism, just the default focal point.</p>
+
+<h3>What this game won't teach you</h3>
+<p>Here a single decision is isolated — you click, the result tallies. In real life, <strong>none of these choices are isolated</strong>. Each is built on culture, norms, institutions, trust which either exist or don't.</p>
+<p>That's why people who click blue in the abstract still optimise their taxes, still fly, still externalise social costs in real life. Not from hypocrisy — from calculation in an environment where the focal point is red.</p>
+<p>Want to change your choice? Change the environment in which you choose first.</p>`,
+            sources: [
+              { name: 'Tragedy of the commons — Hardin (1968)', url: 'https://en.wikipedia.org/wiki/Tragedy_of_the_commons' },
+              { name: 'Public goods game — experiments', url: 'https://en.wikipedia.org/wiki/Public_goods_game' },
+              { name: 'Fehr & Gächter — punishment in cooperation games (2000)', url: 'https://www.nature.com/articles/415137a' },
+              { name: 'Stiglitz — global public goods', url: 'https://www8.gsb.columbia.edu/faculty/jstiglitz/' }
+            ]
+          },
+          {
+            id: 'switzerland',
+            number: 4,
+            title: 'Why Switzerland works',
+            eyebrow: 'Institutions · why "strong leader" always loses to procedures',
+            readTime: 3,
+            content: `<p>Switzerland hasn't had a coup in 175 years. No civil war since 1847. Functions in the middle of Europe, surrounded by four imperial neighbours (historically), with four official languages and six major religions — and nobody finds this remarkable.</p>
+<p>It's not an accident. It's the cleanest demonstration that <strong>enforced blue beats voluntary red</strong>.</p>
+
+<h3>What the Swiss did differently</h3>
+<p>They have no strong leader. The Federal Council consists of seven people, each rotating into the presidential role for a year. Most Swiss can't name their presidents.</p>
+<p>They have referenda for every major change. Citizens vote 4 times a year on specific bills. Canton St. Gallen can have different laws than Geneva.</p>
+<p>Their army is a militia. Every man under 30 has a gun at home (seriously). But gun violence is lower than most of Europe. Because <strong>guns aren't the problem</strong> — culture is.</p>
+
+<h3>What this has to do with two buttons</h3>
+<p>A situation where everyone <em>has to</em> pick blue — because the system, law, courts, institutions force it — is stable in a way voluntary blue never will be.</p>
+<p>Pakistan is full of people who'd individually click blue. But when a general clicks red and seizes power, everyone else loses the choice. Myanmar, Egypt, Congo — these aren't countries where people are morally worse. They're countries where <strong>mechanisms forcing blue are missing</strong>.</p>
+<p>Democracy, separation of powers, independent courts, free media — these are technologies that force blue coordination. Without them any single player (general, oligarch, politician) can always click red and destroy everyone else's outcome.</p>
+
+<h3>The "if only we had a good leader" trap</h3>
+<p>You still hear the argument: "Poland / USA / Germany / whatever — we need a <em>strong leader</em>, someone who'll really sort things out."</p>
+<p>Every such argument is a request for a single player who could click red and force their choice against the system. Sounds attractive when <em>your</em> beliefs are the strong leader — but is catastrophic when the next strong leader is on the opposite side.</p>
+<p>Switzerland doesn't need a strong leader. Because the system already forces each person individually toward blue. <strong>It's the only durable cooperation technology humanity has invented</strong>.</p>
+
+<h3>Why it's hard to copy</h3>
+<p>Unfortunately. Swiss federalism is the result of 700 years of history, religious war trauma, mountainous geography that made centralisation hard, plus neutrality that spared them both world wars. You can't just import it.</p>
+<p>But one thing is learnable: <strong>don't trust anyone who promises a single person will solve your problems</strong>. If the solution requires one strong player, that means the system is weak — and sooner or later that player will be someone you didn't want.</p>`,
+            sources: [
+              { name: 'Swiss federalism — Wikipedia', url: 'https://en.wikipedia.org/wiki/Switzerland' },
+              { name: 'Direct democracy in Switzerland', url: 'https://en.wikipedia.org/wiki/Voting_in_Switzerland' },
+              { name: 'Acemoglu & Robinson — "Why Nations Fail" (2012)', url: 'https://en.wikipedia.org/wiki/Why_Nations_Fail' },
+              { name: 'Fukuyama — "Origins of Political Order"', url: 'https://en.wikipedia.org/wiki/The_Origins_of_Political_Order' }
+            ]
+          },
+          {
+            id: 'warsaw-uprising',
+            number: 5,
+            title: 'The Warsaw Uprising and calculation',
+            eyebrow: 'History · when blue is the only choice, despite everything',
+            readTime: 3,
+            content: `<p>August 1st, 1944. Polish Home Army command issues "Operation Tempest" — uprising in Warsaw. 200,000 people facing the German army. The Soviet Red Army stands on the other side of the Vistula river. And waits.</p>
+<p>63 days later, Warsaw lies in ruins. 18,000 Home Army soldiers dead, 25,000 wounded, 180,000 civilians dead. The city razed — Germans systematically blew up every building after capitulation.</p>
+<p>From a pure utilitarian calculation: <strong>the uprising was a catastrophe</strong>. Mill would say: it shouldn't have started. Too many casualties, too few chances, wrong moment.</p>
+
+<h3>But Mill is wrong here</h3>
+<p>Colonel Antoni Chruściel "Monter," uprising commander, knew the statistics. Knew about the Soviets across the river. Knew the Allies wouldn't help effectively. Knew the chances of winning were slim.</p>
+<p>He chose blue.</p>
+<p>Because the argument for the uprising wasn't utilitarian. The argument was: <strong>"Poland must liberate itself, or it will never really be Polish."</strong> It wasn't a cost-benefit calculation. It was a decision about who we want to be as a nation.</p>
+
+<h3>What's blue here, what's red</h3>
+<p>Red in 1944: wait. Let the Soviets liberate. Thousands of Poles will survive, the city will stand. Let someone else pay the price.</p>
+<p>Blue: now, despite everything. Without guarantees. Without calculations. Because some things are more important than survival.</p>
+<p>The two-button game was inverted here: <strong>the insurgents knew blue would lose</strong>. They picked it anyway. This wasn't a game where "someone has to trust." This was a decision that some values exist for which probability calculations don't matter.</p>
+
+<h3>Why it still hurts</h3>
+<p>80 years later, Poles still argue about it. Was the uprising heroism or madness? Did the High Command have moral right to send young people to die? Did it accelerate Warsaw's fall, or — opposite — prove Poland exists?</p>
+<p>There's no clean answer. <strong>Because every answer chooses between two moral systems that are fundamentally contradictory</strong>.</p>
+<p>Mill: the sacrifices made no sense. They didn't help. Suspending the uprising would have saved 200,000 lives.</p>
+<p>Kant: the sacrifices were an act of dignity. They showed the world Poland decides for itself. Without them, Poland would be a country that waited to be liberated by others. Maybe safer, but a different nation.</p>
+
+<h3>Connection to two buttons</h3>
+<p>Every person clicking blue in the game who got defeated — stands in the same line as the Warsaw insurgents. The statistics say it was pointless. Mill says it was pointless. But if history is so, then no liberation movement in history was right in its first generation.</p>
+<p><strong>Blue in the face of certain defeat isn't a calculation error</strong>. It's a declaration that some values exceed survival. You can call it madness. You can call it sanctity. Hard to hold both at once.</p>
+<p>But one thing is sure: a country that never has such people stops existing too — just slower and more quietly.</p>`,
+            sources: [
+              { name: 'Warsaw Uprising Museum', url: 'https://www.1944.pl/en' },
+              { name: 'Norman Davies — "Rising \'44"', url: 'https://en.wikipedia.org/wiki/Rising_%2744:_The_Battle_for_Warsaw' },
+              { name: 'Warsaw Uprising — historical debate', url: 'https://en.wikipedia.org/wiki/Warsaw_Uprising' }
+            ]
+          },
+          {
+            id: 'forced-collective',
+            number: 6,
+            title: 'When "the collective" kills',
+            eyebrow: 'History · the dark side of forced blue',
+            readTime: 3,
+            content: `<p>Blue as a choice looks beautiful in the abstract. Collective action, solidarity, saving everyone. Most leftist political thought is built on the assumption that more coordination = more good.</p>
+<p>But 20th century history shows something uncomfortable: <strong>forced blue is often worse than voluntary red</strong>. Sometimes by orders of magnitude.</p>
+
+<h3>The Great Leap Forward, China, 1958-1962</h3>
+<p>Mao Zedong proclaimed: every village becomes a commune, everyone works for the collective, private fields disappear, private stoves disappear, everyone gives their things to the common good. This was meant to be blue's triumph — coordination that would lift China out of poverty within a decade.</p>
+<p>Result: <strong>15-55 million dead from starvation</strong> (estimates vary). The worst famine in human history. Not from drought — from policy. Peasants burned their tools because they were being requisitioned. Adults died in the fields because nobody had motivation to farm land they didn't own.</p>
+
+<h3>Pol Pot and Year Zero, Cambodia, 1975-1979</h3>
+<p>The Khmer Rouge proclaimed: collective agrarian society, everything from scratch. Cities were emptied in 24 hours — millions on foot to the countryside. Money was abolished. Religion abolished. Intelligentsia abolished (literally — those who wore glasses died). Family abolished.</p>
+<p>Result in 4 years: <strong>1.5-2 million dead</strong>, out of a population of 8 million. One in four Cambodians. This was meant to be the triumph of equality and the collective.</p>
+
+<h3>Soviet collectivisation, USSR, 1929-1933</h3>
+<p>Stalin proclaimed: private farms vanish, everything becomes a kolkhoz. Kulaks (wealthier peasants) — class enemy. Their property confiscated, they themselves exiled or killed.</p>
+<p>The Holodomor in Ukraine — <strong>3-7 million dead</strong> in 1932-33. Grain was exported to the West while Ukrainians starved. This was meant to be social progress.</p>
+
+<h3>The pattern repeats</h3>
+<p>All three cases share the same structure:</p>
+<ul>
+<li>Blue is officially mandatory (collective ownership, collective good)</li>
+<li>Anyone choosing red (hiding grain, fleeing, keeping tools) is a "traitor of the cause"</li>
+<li>The system permits no voluntary blue — only enforced blue</li>
+<li>Result: <strong>mass death, far greater than any red world would produce</strong></li>
+</ul>
+
+<h3>Why this happens</h3>
+<p>Voluntary blue requires trust, which is built slowly. It requires institutions that enforce rules without crushing people. It requires accepting that some won't cooperate — and that's OK.</p>
+<p><strong>Forced blue is an attempt to achieve trust's outcome without building trust</strong>. Except trust can't be forced. The attempt always produces the same thing: terror, denunciations, death of those who "don't get it."</p>
+
+<h3>Connection to two buttons</h3>
+<p>Blue in the game is uncomfortable: it requires trust, you risk your life. But at least it's <strong>your choice</strong>. You can pick red and no one kills you for it.</p>
+<p>Forced blue removes the choice. It sounds like solving the coordination problem ("everyone just <em>has to</em> pick blue!"), but is worse than the problem. It trades statistical risk of death for certain death for those the system deems "insufficiently blue."</p>
+<p>Every person clicking blue in the game and thinking "if only we could <em>force</em> everyone to blue" — is at the start of the road to the Great Famine. Uncomfortable, but true.</p>
+<p><strong>Trust that can't be voluntarily chosen isn't trust.</strong></p>`,
+            sources: [
+              { name: 'Great Leap Forward — Wikipedia', url: 'https://en.wikipedia.org/wiki/Great_Leap_Forward' },
+              { name: 'Pol Pot and the Khmer Rouge', url: 'https://en.wikipedia.org/wiki/Khmer_Rouge' },
+              { name: 'Holodomor (Ukrainian famine)', url: 'https://en.wikipedia.org/wiki/Holodomor' },
+              { name: 'Hayek — "The Road to Serfdom" (1944)', url: 'https://en.wikipedia.org/wiki/The_Road_to_Serfdom' },
+              { name: 'Frank Dikötter — "Mao\'s Great Famine"', url: 'https://en.wikipedia.org/wiki/Mao%27s_Great_Famine' }
+            ]
+          }
+        ],
 
         // Self-test CTA
         selfTestTitle: 'Test yourself · earn your badge',
@@ -2293,6 +2916,283 @@
         easterNightBody: 'Jest 3:33 w twojej strefie czasowej. Powinieneś spać. A może pytanie brzmi: kim się stajesz o 3:33, kiedy nikt nie patrzy, kiedy świat śpi, kiedy nawet twój własny występ ucichł? Ten sam czerwony i niebieski. Inny ty.',
         easterFoundLabel: 'Ukryte odkrycie',
         easterDismiss: 'Zamknij',
+
+        // Eseje "Głębiej"
+        essaysButton: 'Eseje ↗',
+        essaysListTitle: 'Eseje · Głębiej',
+        essaysListSub: 'Sześć tekstów które idą głębiej niż gra. Filozofia, teoria gier, historia. Każdy to inny kąt — dla każdej strony niewygodny w innym miejscu.',
+        essaysListLocked: 'Eseje odblokowują się po odkryciu wszystkich 16 pytań i oddaniu głosu.',
+        essaysListLockedProgress: (q, hasVoted) => `${q}/16 pytań · głos ${hasVoted ? 'oddany' : 'jeszcze nieoddany'}`,
+        essaysSkipLabel: 'Albo pomiń zabawę',
+        essaysSkipExplain: '16 pytań istnieje nie bez powodu — mają sprawić, że zwątpisz w swój wybór. Pominięcie ich jest OK, ale wyniesiesz z esejów mniej. Nie zatrzymamy cię.',
+        essaysSkipNeedVote: 'Najpierw musisz oddać głos. Eseje istnieją jako dalszy ciąg twojej decyzji, nie zamiennik.',
+        essaysSkipBtn: 'Pokaż mi eseje mimo wszystko →',
+
+        // Pomoc
+        helpTitle: 'Jak to działa',
+        helpUpdated: 'Krótki przewodnik',
+        helpClose: 'Rozumiem',
+        helpBody: `
+          <h3>Podstawowa idea</h3>
+          <p>Masz dwa przyciski: <strong>czerwony</strong> i <strong>niebieski</strong>. Wyobraź sobie, że każda osoba na Ziemi ma te same dwa przyciski. Zasady:</p>
+          <ul>
+            <li>Jeśli <strong>ponad 50%</strong> ludzkości wybierze niebieski — wszyscy przeżyją.</li>
+            <li>Jeśli <strong>50% lub mniej</strong> wybierze niebieski — wszyscy, którzy wybrali niebieski, giną. Czerwoni żyją.</li>
+            <li>Jeśli <strong>wszyscy</strong> wybiorą czerwony — wszyscy przeżyją.</li>
+          </ul>
+          <p>Czerwony to bezpieczny wybór. Niebieski to akt zaufania do innych ludzi.</p>
+
+          <h3>Twój pierwszy klik jest prawdziwy</h3>
+          <p>Twój <strong>pierwszy klik</strong> w czerwony lub niebieski jest zapisywany w globalnym liczniku. Każde urządzenie oddaje maksymalnie jeden głos. Potem możesz klikać dalej — ale te kliknięcia tylko uruchamiają symulację. Mapa świata i statystyki pokazują prawdziwe głosy prawdziwych ludzi.</p>
+
+          <h3>Co odblokowujesz grając</h3>
+          <ul>
+            <li><strong>16 pytań</strong> — każda gra odkrywa jedno nowe pytanie podważające twój wybór. Osiem podważa czerwony. Osiem podważa niebieski. Ukryte dopóki nie zagrasz.</li>
+            <li><strong>Twój profil moralny</strong> — po 5 rundach gra generuje twój archetyp (Kalkulator, Wierzący, Niezdecydowany itd). Zawiera obrazek do udostępnienia.</li>
+            <li><strong>Sześć esejów</strong> — odblokowane po odkryciu wszystkich 16 pytań i oddaniu głosu. Filozofia, teoria gier, historia. Około 3 minut każdy.</li>
+          </ul>
+
+          <h3>Mapa świata</h3>
+          <p>Kliknij <em>"Pokaż mapę świata"</em> w sekcji live, żeby zobaczyć, jak głosują różne kraje. Każda kropka to kraj — kolor pokazuje % niebieskich, rozmiar pokazuje liczbę głosów. Najechanie kursorem (lub dotknięcie na mobilu) pokazuje szczegóły. Pod mapą: rankingi najbardziej kooperatywnych i najbardziej egoistycznych krajów.</p>
+
+          <h3>Twój profil</h3>
+          <p>Pasek <em>"Sprawdź siebie"</em> pokazuje postęp odblokowania. Po 5 rundach otrzymasz swój typ moralny z cytatem, statystykami i obrazkiem do pobrania (1200×630 PNG, idealny do social media). Na ekranie wyniku kliknij <em>"Twój profil"</em>, żeby zobaczyć go ponownie.</p>
+
+          <h3>Dźwięk</h3>
+          <p>Ikona <strong>♪</strong> u góry przełącza wszystkie dźwięki. Domyślnie włączone. Usłyszysz: krótkie kliknięcia przy wyborze, dramatyczny opadający ton kiedy niebieski ginie, wstępujący akord kiedy niebieski wygrywa. Bez muzyki, bez tła.</p>
+
+          <h3>Języki</h3>
+          <p>Dwa języki: polski i angielski, przełączane w prawym górnym rogu. Strona automatycznie wykrywa twój język z przeglądarki, ale możesz to zmienić w każdym momencie. Więcej języków planowane.</p>
+
+          <h3>Prywatność</h3>
+          <p>Ta strona przechowuje losowy anonimowy identyfikator w twojej przeglądarce (żeby każde urządzenie głosowało raz) i używa kodu kraju z Cloudflare do mapy. Bez śledzenia, bez analityki, bez stron trzecich. Kliknij <em>Privacy</em> w stopce po pełne szczegóły.</p>
+
+          <h3>Utknąłeś? Wskazówki:</h3>
+          <ul>
+            <li>Jeśli nie chcesz grać 16 rund — zagłosuj przynajmniej raz, potem kliknij "Eseje" i zobaczysz opcję pominięcia gry.</li>
+            <li>Pytania odkrywają się w losowej kolejności. To samo ze stroną, którą podważają — ale zawsze naprzemiennie, żeby zachować balans.</li>
+            <li>Jeśli coś wygląda na zepsute, twardy reload (Ctrl+Shift+R / Cmd+Shift+R). Cache może być nieaktualny.</li>
+          </ul>
+
+          <h3>Po co to wszystko?</h3>
+          <p>Dylemat nie jest abstrakcyjny. To dokładnie struktura kooperacji klimatycznej, szczepień, podatków i każdego problemu zbiorowego działania w prawdziwym życiu. Większość ludzi <em>mówi</em> że by współpracowała, ale <em>działa</em> inaczej. Gra jest narzędziem, żeby zauważyć przepaść między tym, co głosisz, a tym, jak naprawdę działasz — kiedy nikt nie patrzy.</p>
+        `,
+        essaysReadTime: 'min czytania',
+        essaysRead: 'Czytaj →',
+        essaysBack: '← Wróć do esejów',
+        essaysNext: 'Następny esej →',
+        essaysSourcesLabel: 'Źródła i lektury dalsze',
+
+        essays: [
+          {
+            id: 'kant-mill',
+            number: 1,
+            title: 'Kant kontra Mill',
+            eyebrow: 'Filozofia · etyka deontologiczna vs utylitarna',
+            readTime: 3,
+            content: `<p>Dwóch największych filozofów moralnych XIX wieku odpowiedziałoby zupełnie inaczej na ten sam dylemat. I obaj mają rację — z perspektywy swojego systemu.</p>
+
+<h3>Kant: niebieski jest jedyną możliwą odpowiedzią</h3>
+<p>Imperatyw kategoryczny brzmi w przybliżeniu: <em>"postępuj tylko według takiej zasady, co do której mógłbyś chcieć, żeby stała się prawem powszechnym."</em> Wybierając czerwony, mówisz w istocie: <em>"chcę, żeby każdy ratował siebie kosztem ryzyka dla innych."</em> Ale gdyby każdy tak wybrał, ryzyko by zniknęło — wszyscy żyliby. Kant powiedziałby: <strong>logika twojego wyboru obala twoje uzasadnienie</strong>.</p>
+<p>Druga formuła Kanta jest jeszcze ostrzejsza: <em>"traktuj człowieczeństwo zawsze jako cel, nigdy wyłącznie jako środek."</em> Wybierając czerwony, traktujesz cudze życie jako akceptowalną stratę dla swojego bezpieczeństwa. Niebieski jest jedynym wyborem, w którym nikt nie staje się ofiarą twojej kalkulacji.</p>
+
+<h3>Mill: czerwony jest racjonalnie poprawny</h3>
+<p>John Stuart Mill, ojciec utylitaryzmu, patrzy inaczej. Liczy się <strong>sumaryczne dobro</strong>. Jeśli prawdopodobieństwo, że ponad 50% ludzkości wybierze niebieski jest niskie — a wszystkie badania empiryczne mówią, że jest niskie — to oczekiwana wartość niebieskiego dla ciebie jest ujemna. Tracisz życie, a swoim głosem nikogo nie ratujesz, bo i tak nie wystarczy.</p>
+<p>Mill powie: <strong>twoje pojedyncze poświęcenie nie zmienia matematyki</strong>. Skoro tak, racjonalna decyzja to czerwony — minimalizuje cierpienie (twoje), nie generuje dodatkowego dobra (i tak za mało niebieskich, żeby ratować wszystkich).</p>
+
+<h3>Gdzie się rozchodzą</h3>
+<p>Kant ocenia <em>intencję</em>. Mill ocenia <em>konsekwencje</em>. Jeśli wybór niebieski okazuje się katastrofą (wszyscy niebiescy giną), Mill mówi: "źle wybrałeś". Kant mówi: "wybrałeś dobrze, świat zawiódł ciebie."</p>
+<p>To rozróżnienie nie jest akademickie. Każda istotna decyzja moralna w twoim życiu — głos w wyborach, ujawnienie nadużyć, ryzyko dla obcego — wymaga wyboru: <strong>czy oceniam siebie według intencji, czy według skutków?</strong></p>
+
+<h3>Trzecia droga: cnota</h3>
+<p>Arystoteles by powiedział, że obaj się mylą, próbując zdekompresować moralność do reguły lub wzoru. Pytanie nie brzmi "co jest dobrze w tej sytuacji", tylko "jaki człowiek chcę być?". Niebieski czy czerwony — który wybór bardziej pasuje do osoby, którą próbujesz się stać?</p>
+<p>To jest pytanie, na które żadne badanie ani symulacja nie odpowie za ciebie.</p>`,
+            sources: [
+              { name: 'Kant — Uzasadnienie metafizyki moralności (1785)', url: 'https://pl.wikipedia.org/wiki/Imperatyw_kategoryczny' },
+              { name: 'Mill — Utylitaryzm (1863)', url: 'https://pl.wikipedia.org/wiki/Utylitaryzm' },
+              { name: 'Stanford Encyclopedia — Deontological Ethics', url: 'https://plato.stanford.edu/entries/ethics-deontological/' }
+            ]
+          },
+          {
+            id: 'schelling',
+            number: 2,
+            title: 'Schelling i punkt skupienia',
+            eyebrow: 'Teoria gier · dlaczego czerwony jest "oczywisty"',
+            readTime: 3,
+            content: `<p>Thomas Schelling dostał Nobla z ekonomii w 2005 roku za pokazanie, że ludzie potrafią koordynować się <strong>bez komunikacji</strong>. Eksperyment był prosty: dwie osoby, które się nie znają, mają spotkać się w Nowym Jorku któregoś dnia. Nie mogą się skontaktować. Gdzie pójdą i o której?</p>
+<p>Większość bez wahania odpowiada: <strong>Grand Central Station, w południe</strong>. Bo to "oczywiste". Schelling nazwał to <em>focal point</em> — punkt skupienia, do którego ludzie zbiegają się sami z siebie, kiedy nie mają innej koordynacji.</p>
+
+<h3>Czerwony jest focal pointem dwóch przycisków</h3>
+<p>W naszym dylemacie czerwony to <em>strategia dominująca</em> w teorii gier — wygrywa lub remisuje w każdym możliwym scenariuszu. Ale ważniejsze jest co innego: jest <strong>oczywisty</strong>. Każdy go widzi jako bezpieczny. Każdy zakłada, że inni też tak go widzą. Więc każdy go wybiera — i ma rację, bo i tak inni wybiorą tak samo.</p>
+<p>To samo wzmacniające się przekonanie, że "wszyscy wybiorą czerwony", produkuje rzeczywistość, w której wszyscy wybierają czerwony. <strong>Niebieski wymaga założenia którego nikt nie ma podstaw zrobić</strong>: że ponad połowa nieznanych ludzi zaufa innym nieznanym ludziom.</p>
+
+<h3>Każdy ruch społeczny był walką o focal point</h3>
+<p>Pomyśl o emancypacji kobiet w XIX wieku. Pierwsze sufrażystki głosujące w Nowej Zelandii (1893) nie zmieniły matematyki — zmieniły focal point. Pokazały że "kobiety nie głosują" nie jest prawem natury, tylko domyślnym oczekiwaniem. Kiedy oczekiwanie się przełamało, nagle koordynacja zaczęła pchać w drugą stronę.</p>
+<p>To samo z prawami osób LGBT, ze szczepieniami, z paleniem w restauracjach, z noszeniem masek w Azji. <strong>Większość zmian społecznych to przesunięcia focal pointów</strong>, nie zmiany fundamentalnej moralności.</p>
+
+<h3>Czemu zwykle przegrywają</h3>
+<p>Schelling pokazał też, że focal points są stabilne. Zmiana wymaga ogromnej energii i zwykle koordynacji ze strony liderów, instytucji, mediów. <strong>Sam pojedynczy "niebieski głos" nigdy nie zmieni focal pointa</strong> — może być co najwyżej cegłą w fundamentach nowego.</p>
+<p>To dlatego heroiczne jednostkowe poświęcenie tak rzadko działa. Świat nie potrzebuje twojego niebieskiego głosu jako moralnego gestu. Świat potrzebuje miliona niebieskich głosów <em>jednocześnie</em>, najlepiej z odpowiednim PR-em i instytucjonalnym wsparciem. Cała reszta to romantyzm.</p>
+
+<h3>Brutalna konkluzja</h3>
+<p>Jeśli więc wybierasz niebieski w prawdziwym świecie — w głosowaniach, w podatkach, w klimacie — i przegrywasz, to <strong>nie znaczy że źle wybrałeś</strong>. Znaczy, że focal point nie jest jeszcze gotowy. Twoje zadanie jest dwojakie: wybrać niebieski, <em>i</em> pracować nad zmianą oczekiwań innych. Tylko jedno z nich nie wystarczy.</p>`,
+            sources: [
+              { name: 'Schelling — The Strategy of Conflict (1960)', url: 'https://pl.wikipedia.org/wiki/Thomas_Schelling' },
+              { name: 'Focal point (Schelling) — Wikipedia', url: 'https://en.wikipedia.org/wiki/Focal_point_(game_theory)' },
+              { name: 'Nobel Prize 2005 — uzasadnienie', url: 'https://www.nobelprize.org/prizes/economic-sciences/2005/summary/' }
+            ]
+          },
+          {
+            id: 'climate-vaccines-taxes',
+            number: 3,
+            title: 'Klimat, szczepienia, podatki',
+            eyebrow: 'Polityka · twój wybór wraca, codziennie',
+            readTime: 3,
+            content: `<p>Dylemat dwóch przycisków nie jest abstrakcyjny. To dokładnie problem każdej globalnej koordynacji — i wybierasz w nim codziennie, bez świadomości.</p>
+
+<h3>Klimat — kraj jako gracz</h3>
+<p>Polska redukuje emisje? Inne kraje też powinny. Jeśli redukują wszyscy — wszyscy żyją (cel klimatyczny osiągnięty, planeta nadal nadająca się do życia). Jeśli redukuje tylko Polska — przegrywamy gospodarczo, klimat i tak się zmienia (bo Chiny, USA, Indie wybrały czerwony).</p>
+<p>Każdy kraj indywidualnie ma <strong>incentive żeby wybrać czerwony</strong> — chronić swoją gospodarkę, czekać aż inni zrobią pracę. Wszyscy razem — przegrywamy. To dlatego porozumienie paryskie ma tak żałosne statystyki realizacji. Każdy podpisał, ale każdy mówi: "moje ofiary muszą być proporcjonalne do innych", i nikt pierwszy nie skacze.</p>
+
+<h3>Szczepienia — pasażer na gapę</h3>
+<p>Herd immunity wymaga około 70-95% zaszczepionych (zależnie od choroby). Gdy ten próg zostanie osiągnięty, <strong>nawet niezaszczepieni są chronieni</strong>, bo wirus nie ma jak się przenosić. To jest niebieski wygrany.</p>
+<p>Ale dla pojedynczej osoby logika jest inna. Jeśli 70% innych się zaszczepiło, ja mogę pominąć szczepienie i jechać na piggyback ich odporności. Ryzykuję mniej (skutki uboczne szczepionki), zyskuję ochronę. To jest czerwony.</p>
+<p>Kiedy zbyt wiele osób tak myśli, herd immunity się załamuje. <strong>Powraca odra, która była wytępiona w 2000 roku</strong>. Indywidualny czerwony zbiorowo zabija własne dzieci.</p>
+
+<h3>Podatki — kultura niebieskiego</h3>
+<p>Wszyscy płacą podatki uczciwie? Mamy działające państwo, infrastrukturę, służbę zdrowia, edukację. Zwycięstwo niebieskiego.</p>
+<p>Każdy indywidualnie ma incentive żeby kombinować — zaniżyć dochód, ukryć transakcje, przerzucić na zagraniczne konto. Kalkulacja prosta: 0% szans wykrycia × 0% kary = 0% kosztu. Pełna oszczędność.</p>
+<p>Skandynawia działa nie dlatego, że Skandynawowie są moralnie lepsi. Działa, bo <strong>wytworzyli kulturę niebieskiego</strong> — system kontroli, normy społeczne, transparentność (w Norwegii każdy może zobaczyć ile zarabiasz i ile płacisz). Niebieski tam nie jest aktem heroizmu, tylko domyślnym focal pointem.</p>
+
+<h3>Czego ta gra cię nie nauczy</h3>
+<p>Tu pojedyncza decyzja jest izolowana — kliknąłeś, wynik się zliczył. W prawdziwym życiu <strong>żaden z tych wyborów nie jest izolowany</strong>. Każdy buduje się na kulturze, normach, instytucjach, zaufaniu które albo istnieje, albo nie.</p>
+<p>To dlatego osoby które klikają niebieski w abstrakcji, w prawdziwym życiu wciąż optymalizują podatki, wciąż latają samolotami, wciąż obchodzą społeczne koszty. Nie z hipokryzji — z kalkulacji w środowisku gdzie focal point to czerwony.</p>
+<p>Chcesz zmienić swój wybór? Najpierw zmień środowisko w którym wybierasz.</p>`,
+            sources: [
+              { name: 'Tragedy of the commons — Hardin (1968)', url: 'https://pl.wikipedia.org/wiki/Tragedia_wsp%C3%B3lnego_pastwiska' },
+              { name: 'Public goods game — eksperymenty', url: 'https://en.wikipedia.org/wiki/Public_goods_game' },
+              { name: 'Fehr & Gächter — kary w grach kooperacyjnych (2000)', url: 'https://www.nature.com/articles/415137a' },
+              { name: 'Stiglitz — globalne wspólne dobra', url: 'https://www8.gsb.columbia.edu/faculty/jstiglitz/' }
+            ]
+          },
+          {
+            id: 'switzerland',
+            number: 4,
+            title: 'Dlaczego Szwajcaria działa',
+            eyebrow: 'Instytucje · dlaczego "silny przywódca" zawsze przegrywa z procedurami',
+            readTime: 3,
+            content: `<p>Szwajcaria nie miała zamachu stanu od 175 lat. Nie miała wojny domowej od 1847 roku. Funkcjonuje w środku Europy, otoczona przez czterech imperialnych sąsiadów (kiedyś), z czterema oficjalnymi językami i sześcioma głównymi religiami — i nikogo to nie wzrusza.</p>
+<p>To nie jest przypadek. To jest <strong>najczystsza demonstracja, że wymuszony niebieski przebija dobrowolnego czerwonego</strong>.</p>
+
+<h3>Co Szwajcarzy zrobili inaczej</h3>
+<p>Nie mają silnego przywódcy. Federalna Rada składa się z siedmiu osób, każda przez rok rotacyjnie pełni funkcję prezydenta. Większość Szwajcarów nie potrafi wymienić nazwisk swoich prezydentów.</p>
+<p>Mają referendum dla każdej większej zmiany. Obywatele głosują 4 razy w roku nad konkretnymi ustawami. Kanton St. Gallen może mieć inne prawo niż Genewa.</p>
+<p>Ich armia to milicja. Każdy mężczyzna do 30 roku życia ma broń w domu (poważnie). Ale przemoc z bronią palną jest niższa niż w większości Europy. Bo <strong>broń to nie problem</strong> — problem to kultura, w której broni używasz.</p>
+
+<h3>Co to ma wspólnego z dwoma przyciskami</h3>
+<p>Sytuacja w której każdy musi wybierać niebieski — bo system, prawo, sąd, instytucje go do tego zmuszają — jest stabilna w sposób, w jaki dobrowolny niebieski nigdy nie będzie.</p>
+<p>Pakistan jest pełen ludzi gotowych klikać niebieski osobiście. Ale kiedy generał klika czerwony i bierze władzę, wszyscy inni tracą wybór. Myanmar, Egipt, Kongo — to nie są kraje gdzie ludzie są moralnie gorsi. To kraje gdzie <strong>brakuje mechanizmów wymuszających niebieski</strong>.</p>
+<p>Demokracja, podział władzy, niezależne sądownictwo, wolne media — to wszystko są technologie zmuszające do koordynacji niebieskiego. Bez nich pojedynczy gracz (generał, oligarcha, polityk) zawsze może kliknąć czerwony i zniszczyć wynik wszystkich pozostałych.</p>
+
+<h3>Pułapka "gdyby tylko mieli dobrego przywódcę"</h3>
+<p>Wciąż słychać argument: "Polska / USA / Niemcy / cokolwiek — potrzebujemy <em>silnego przywódcy</em>, kogoś kto naprawdę zrobi porządek."</p>
+<p>Każdy taki argument jest prośbą o pojedynczego gracza, który mógłby kliknąć czerwony i przeforsować swój wybór wbrew systemu. Brzmi atrakcyjnie, kiedy <em>twoje</em> przekonania są silnym przywódcą — ale jest katastrofą, kiedy następny silny przywódca jest po przeciwnej stronie.</p>
+<p>Szwajcaria nie potrzebuje silnego przywódcy. Bo system już zmusza każdego z osobna do niebieskiego. <strong>To jest jedyna trwała technologia kooperacji jaką ludzkość wynalazła</strong>.</p>
+
+<h3>Dlaczego trudno tego skopiować</h3>
+<p>Niestety. Federalizm szwajcarski to wynik 700 lat historii, traumy religijnych wojen, geografii górskiej która utrudnia centralizację, oraz neutralności która oszczędziła im obu wojen światowych. Nie da się tego po prostu zaimportować.</p>
+<p>Ale można uczyć się jednej rzeczy: <strong>nie ufaj nikomu, kto obiecuje że pojedynczy człowiek rozwiąże twoje problemy</strong>. Jeśli rozwiązanie wymaga jednego silnego gracza, to znaczy że system jest słaby — i prędzej czy później ten gracz okaże się tym, kogo nie chciałeś.</p>`,
+            sources: [
+              { name: 'Federalizm szwajcarski — Wikipedia', url: 'https://pl.wikipedia.org/wiki/Szwajcaria' },
+              { name: 'Demokracja bezpośrednia w Szwajcarii', url: 'https://en.wikipedia.org/wiki/Voting_in_Switzerland' },
+              { name: 'Acemoglu & Robinson — "Why Nations Fail" (2012)', url: 'https://en.wikipedia.org/wiki/Why_Nations_Fail' },
+              { name: 'Fukuyama — "Origins of Political Order"', url: 'https://en.wikipedia.org/wiki/The_Origins_of_Political_Order' }
+            ]
+          },
+          {
+            id: 'warsaw-uprising',
+            number: 5,
+            title: 'Powstanie Warszawskie a kalkulacja',
+            eyebrow: 'Historia · kiedy niebieski to jedyny wybór, mimo wszystko',
+            readTime: 3,
+            content: `<p>1 sierpnia 1944. Komenda Główna Armii Krajowej wydaje rozkaz "Burza" — powstanie w Warszawie. 200 tysięcy ludzi naprzeciwko niemieckiej armii. Sowiecka Armia Czerwona stoi po drugiej stronie Wisły i czeka.</p>
+<p>63 dni później Warszawa leży w gruzach. 18 tysięcy żołnierzy AK zabitych, 25 tysięcy rannych, 180 tysięcy cywili zabitych. Miasto zrównane z ziemią — Niemcy systematycznie wysadzili każdy budynek po kapitulacji.</p>
+<p>Z punktu widzenia czystej kalkulacji utylitarystycznej: <strong>powstanie było katastrofą</strong>. Mill by powiedział: nie powinno się zacząć. Zbyt wiele ofiar, zbyt mało szans, zły moment.</p>
+
+<h3>Ale Mill nie ma tu racji</h3>
+<p>Pułkownik Antoni Chruściel "Monter", dowódca powstania, znał statystyki. Wiedział o Sowietach po drugiej stronie. Wiedział, że alianci nie pomogą skutecznie. Wiedział, że szans na zwycięstwo jest niewiele.</p>
+<p>Wybrał niebieski.</p>
+<p>Bo argument za powstaniem nie był utylitarystyczny. Argument brzmiał: <strong>"Polska musi sama się wyzwolić, albo nigdy nie będzie naprawdę polska."</strong> To nie była kalkulacja kosztów i korzyści. To była decyzja o tym, kim chcemy być jako naród.</p>
+
+<h3>Co tu jest niebieskim, co czerwonym</h3>
+<p>Czerwony w 1944: poczekać. Niech Sowieci wyzwalają. Tysiące Polaków przeżyje, miasto zostanie. Niech ktoś inny zapłaci cenę.</p>
+<p>Niebieski: teraz, mimo wszystko. Bez gwarancji. Bez kalkulacji. Bo niektóre rzeczy są ważniejsze od przeżycia.</p>
+<p>Gra dwóch przycisków była tu odwrotna od symulacji: <strong>powstańcy wiedzieli, że niebieski przegra</strong>. Wybrali go i tak. To nie była gra, w której "ktoś musi zaufać". To była decyzja o tym, że są wartości, dla których kalkulacja prawdopodobieństw nie ma znaczenia.</p>
+
+<h3>Dlaczego to wciąż boli</h3>
+<p>80 lat później Polacy nadal się o to kłócą. Czy powstanie było bohaterstwem czy szaleństwem? Czy Komenda Główna miała moralne prawo posłać młodych ludzi na śmierć? Czy przyspieszyło to upadek Warszawy, czy odwrotnie — udowodniło że Polska istnieje?</p>
+<p>Nie ma czystej odpowiedzi. <strong>Bo każda odpowiedź wybiera między dwoma systemami moralnymi, które są fundamentalnie sprzeczne</strong>.</p>
+<p>Mill: ofiary nie miały sensu. Nie pomogły. Wstrzymanie powstania uratowałoby 200 tysięcy ludzi.</p>
+<p>Kant: ofiary były aktem godności. Pokazały światu że Polska sama o sobie decyduje. Bez nich Polska byłaby krajem, który czekał na cudze wyzwolenie. Może bezpieczniejszym, ale innym narodem.</p>
+
+<h3>Co to ma do dwóch przycisków</h3>
+<p>Każda osoba klikająca niebieski w grze, która została pokonana — staje w jednym szeregu z powstańcami. Statystyki mówią, że to było bezsensowne. Mill mówi, że to było bezsensowne. Ale jeśli historia tak jest, to żaden ruch wolnościowy w historii nie miał racji w pierwszym pokoleniu.</p>
+<p><strong>Niebieski w obliczu pewnej przegranej to nie jest błąd kalkulacji</strong>. To jest oświadczenie, że są wartości większe od przeżycia. Możesz uważać to za szaleństwo. Możesz uważać to za świętość. Trudno mieć obie odpowiedzi naraz.</p>
+<p>Ale jedna rzecz jest pewna: kraj, który nigdy nie ma takich ludzi, też przestaje istnieć — tylko wolniej i ciszej.</p>`,
+            sources: [
+              { name: 'Powstanie Warszawskie — Muzeum', url: 'https://www.1944.pl/' },
+              { name: 'Norman Davies — "Powstanie ’44"', url: 'https://pl.wikipedia.org/wiki/Powstanie_%2744' },
+              { name: 'Spór o sens powstania — debata historyków', url: 'https://pl.wikipedia.org/wiki/Powstanie_warszawskie' }
+            ]
+          },
+          {
+            id: 'forced-collective',
+            number: 6,
+            title: 'Gdy "kolektyw" zabija',
+            eyebrow: 'Historia · ciemna strona przymuszonego niebieskiego',
+            readTime: 3,
+            content: `<p>Niebieski jako wybór wygląda pięknie w abstrakcji. Działanie zbiorowe, solidarność, ratowanie wszystkich. Większość lewicowej myśli politycznej jest zbudowana na założeniu, że więcej koordynacji = więcej dobra.</p>
+<p>Ale historia XX wieku pokazuje coś niewygodnego: <strong>wymuszony niebieski jest często gorszy od dobrowolnego czerwonego</strong>. Czasem o rzędy wielkości.</p>
+
+<h3>Wielki Skok Naprzód, Chiny, 1958-1962</h3>
+<p>Mao Zedong ogłosił: każda wieś ma stać się komuną, każdy ma pracować dla kolektywu, prywatne pole znika, prywatny piec znika, każdy oddaje swoje rzeczy do wspólnego dobra. To miał być triumf niebieskiego — koordynacja, która wyciągnie Chiny z biedy w ciągu dekady.</p>
+<p>Wynik: <strong>15-55 milionów martwych z głodu</strong> (szacunki różnią się). Najgorszy głód w historii ludzkości. Nie z powodu suszy — z powodu polityki. Wieśniacy palili swoje narzędzia, bo zostały zarekwirowane. Dorośli ludzie umierali w polach, bo nikt nie miał motywacji do uprawiania ziemi, której nie był właścicielem.</p>
+
+<h3>Pol Pot i Rok Zero, Kambodża, 1975-1979</h3>
+<p>Czerwoni Khmerzy ogłosili: kolektywne społeczeństwo agrarne, wszystko od zera. Miasta zostały opróżnione w 24 godziny — milion ludzi pieszo na wieś. Pieniądze zostały zniesione. Religia zniesiona. Inteligencja zniesiona (dosłownie — kto nosił okulary, ten zginął). Rodzina zniesiona.</p>
+<p>Wynik w 4 lata: <strong>1.5-2 miliony martwych</strong>, na populacji 8 milionów. Co czwarty Kambodżanin. To miał być triumf równości i kolektywu.</p>
+
+<h3>Kolektywizacja sowiecka, ZSRR, 1929-1933</h3>
+<p>Stalin ogłosił: prywatne gospodarstwa znikają, wszystko staje się kołchozem. Kułacy (zamożniejsi chłopi) — wróg klasowy. Ich majątek skonfiskowany, oni sami zesłani lub zabici.</p>
+<p>Wielki Głód na Ukrainie (Hołodomor) — <strong>3-7 milionów martwych</strong> w 1932-33. Zboże eksportowano na Zachód, podczas gdy Ukraińcy umierali. To miał być postęp społeczny.</p>
+
+<h3>Wzór się powtarza</h3>
+<p>Wszystkie trzy przypadki mają tę samą strukturę:</p>
+<ul>
+<li>Niebieski jest oficjalnie obowiązkowy (kolektywna własność, kolektywne dobro)</li>
+<li>Każdy kto wybiera czerwony (chowa zboże, ucieka, zatrzymuje narzędzia) jest "zdrajcą sprawy"</li>
+<li>System nie pozwala na dobrowolny niebieski — tylko na wymuszony</li>
+<li>Skutek: <strong>masowa śmierć, znacznie większa niż jakikolwiek czerwony świat</strong> by spowodował</li>
+</ul>
+
+<h3>Dlaczego to się dzieje</h3>
+<p>Dobrowolny niebieski wymaga zaufania, które buduje się powoli. Wymaga instytucji które egzekwują reguły bez tłumienia ludzi. Wymaga zgody na to, że niektórzy nie będą współpracować — i to OK.</p>
+<p><strong>Wymuszony niebieski to próba osiągnięcia rezultatu zaufania bez budowania zaufania</strong>. Tylko że zaufanie nie da się wymusić siłą. Próba zawsze produkuje to samo: terror, denuncjacje, śmierć tych którzy "nie rozumieją sprawy".</p>
+
+<h3>Co to ma do dwóch przycisków</h3>
+<p>Niebieski w grze jest niewygodny: wymaga zaufania, ryzykujesz życiem. Ale co najmniej jest <strong>twoim wyborem</strong>. Możesz wybrać czerwony i nikt cię nie zabije.</p>
+<p>Wymuszony niebieski usuwa wybór. To brzmi jak rozwiązanie problemu koordynacji ("po prostu wszyscy muszą wybrać niebieski!"), ale jest gorsze niż problem. Zamienia statystyczne ryzyko śmierci na pewną śmierć dla tych, których system uzna za "niewystarczająco niebieskich".</p>
+<p>Każda osoba która klika niebieski w grze i myśli "gdyby tylko można było <em>zmusić</em> wszystkich do niebieskiego" — jest na początku drogi do Wielkiego Głodu. Niewygodne, ale prawdziwe.</p>
+<p><strong>Zaufanie którego nie można dobrowolnie wybrać, nie jest zaufaniem.</strong></p>`,
+            sources: [
+              { name: 'Wielki Skok Naprzód — Wikipedia', url: 'https://pl.wikipedia.org/wiki/Wielki_skok_naprz%C3%B3d' },
+              { name: 'Pol Pot i Czerwoni Khmerzy', url: 'https://pl.wikipedia.org/wiki/Czerwoni_Khmerzy' },
+              { name: 'Hołodomor (Wielki Głód na Ukrainie)', url: 'https://pl.wikipedia.org/wiki/Wielki_g%C5%82%C3%B3d_na_Ukrainie' },
+              { name: 'Hayek — "Droga do zniewolenia" (1944)', url: 'https://pl.wikipedia.org/wiki/Droga_do_zniewolenia' },
+              { name: 'Frank Dikötter — "Maos großer Hunger"', url: 'https://en.wikipedia.org/wiki/Mao%27s_Great_Famine' }
+            ]
+          }
+        ],
 
         // Self-test CTA
         selfTestTitle: 'Sprawdź siebie · zdobądź odznakę',
@@ -3169,6 +4069,20 @@
       document.getElementById('privacy-modal').classList.add('hidden');
     }
 
+    function showHelp(e) {
+      if (e) e.preventDefault();
+      const txt = t();
+      document.getElementById('help-title').textContent = txt.helpTitle;
+      document.getElementById('help-updated').textContent = txt.helpUpdated;
+      document.getElementById('help-body').innerHTML = txt.helpBody;
+      document.getElementById('help-close-btn').textContent = txt.helpClose;
+      document.getElementById('help-modal').classList.remove('hidden');
+    }
+
+    function closeHelp() {
+      document.getElementById('help-modal').classList.add('hidden');
+    }
+
     // ───────────────────────────────────────────────
     // EASTER EGGS — hidden discoveries
     // ───────────────────────────────────────────────
@@ -3428,6 +4342,12 @@
         );
         btn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
       }
+      // Also localize the help button tooltip
+      const helpBtn = document.getElementById('help-toggle');
+      if (helpBtn) {
+        helpBtn.setAttribute('title', currentLang === 'pl' ? 'Pomoc — jak to działa' : 'Help — how this works');
+        helpBtn.setAttribute('aria-label', currentLang === 'pl' ? 'Pomoc' : 'Help');
+      }
     }
 
     // Subtle click — short percussive tone
@@ -3580,6 +4500,16 @@
       document.getElementById('hint').textContent = txt.hint;
       document.getElementById('btn-research').textContent = txt.btnResearch;
       document.getElementById('btn-questions').textContent = txt.btnQuestions;
+
+      // Essays button — visible always, but visually locked until 16/16 + first vote
+      const btnEssays = document.getElementById('btn-essays-intro');
+      const isEssaysUnlocked = essaysUnlocked();
+      btnEssays.textContent = isEssaysUnlocked
+        ? txt.essaysButton
+        : `${txt.essaysButton.replace(' ↗', '')} (${unlockedBlue.length + unlockedRed.length}/16)`;
+      btnEssays.classList.toggle('btn-personality-active', isEssaysUnlocked);
+      btnEssays.classList.toggle('btn-personality-locked', !isEssaysUnlocked);
+
       document.getElementById('footer-text').textContent = txt.footerText;
       document.getElementById('footer-privacy').textContent = txt.footerPrivacy;
 
@@ -3682,7 +4612,7 @@
     }
 
     function hideAll() {
-      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality'].forEach(id => {
+      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality', 'screen-essays', 'screen-essay-detail'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
     }
@@ -3789,6 +4719,7 @@
             <button class="btn" onclick="showQuestions()">${txt.seeQuestions} (${unlockedBlue.length + unlockedRed.length}/16) ↗</button>
             <button class="btn" onclick="showReality()">${txt.seeReality}</button>
             <button class="btn ${stats.total >= 5 ? 'btn-personality-active' : 'btn-personality-locked'}" onclick="showPersonality()">${txt.personalityButtonShort} ${stats.total >= 5 ? '↗' : `(${stats.total}/5)`}</button>
+            ${essaysUnlocked() ? `<button class="btn btn-personality-active" onclick="showEssays()">${txt.essaysButton}</button>` : ''}
           </div>
         </div>
       `;
@@ -3933,6 +4864,133 @@
       const r = document.getElementById('screen-questions');
       r.innerHTML = html;
       r.classList.remove('hidden');
+    }
+
+    // ───────────────────────────────────────────────
+    // ESSAYS — unlocked after 16/16 questions + first vote
+    // ───────────────────────────────────────────────
+
+    let essaysSkipped = false; // Set to true when user chooses to skip the 16 questions
+
+    function essaysUnlocked() {
+      const totalUnlocked = unlockedBlue.length + unlockedRed.length;
+      // Either: completed all 16 questions + voted, OR: voted + chose to skip
+      return !!firstChoice && (totalUnlocked >= 16 || essaysSkipped);
+    }
+
+    function skipToEssays() {
+      if (!firstChoice) return; // Vote is still required
+      essaysSkipped = true;
+      showEssays();
+    }
+
+    function showEssays() {
+      const txt = t();
+      const screen = document.getElementById('screen-essays');
+
+      let html = `
+        <div class="essays-intro">
+          <h2>${txt.essaysListTitle}</h2>
+          <p>${txt.essaysListSub}</p>
+        </div>
+      `;
+
+      if (!essaysUnlocked()) {
+        const totalUnlocked = unlockedBlue.length + unlockedRed.length;
+        const hasVoted = !!firstChoice;
+        // Skip option only available after voting
+        const skipBlock = hasVoted ? `
+          <div class="essays-skip">
+            <div class="essays-skip-label">${txt.essaysSkipLabel}</div>
+            <p class="essays-skip-explain">${txt.essaysSkipExplain}</p>
+            <button class="essays-skip-btn" onclick="skipToEssays()">${txt.essaysSkipBtn}</button>
+          </div>
+        ` : `
+          <div class="essays-skip essays-skip-disabled">
+            <p class="essays-skip-explain">${txt.essaysSkipNeedVote}</p>
+          </div>
+        `;
+        html += `
+          <div class="essays-locked">
+            <div class="essays-locked-icon">§</div>
+            <div class="essays-locked-text">${txt.essaysListLocked}</div>
+            <div class="essays-locked-progress">${txt.essaysListLockedProgress(totalUnlocked, hasVoted)}</div>
+            <div style="margin-top: 28px;">
+              <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+            </div>
+            ${skipBlock}
+          </div>
+        `;
+      } else {
+        html += `<div class="essays-list">`;
+        txt.essays.forEach((essay) => {
+          html += `
+            <div class="essay-card" onclick="showEssay('${essay.id}')">
+              <div class="essay-card-number">${essay.number}</div>
+              <div class="essay-card-content">
+                <div class="essay-card-eyebrow">${essay.eyebrow}</div>
+                <div class="essay-card-title">${essay.title}</div>
+                <div class="essay-card-meta">
+                  <span class="essay-card-time">${essay.readTime} ${txt.essaysReadTime}</span>
+                  <span class="essay-card-action">${txt.essaysRead}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+        html += `
+          <div style="text-align: center; margin-top: 36px;">
+            <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+          </div>
+        `;
+      }
+
+      hideAll();
+      screen.innerHTML = html;
+      screen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showEssay(essayId) {
+      const txt = t();
+      const screen = document.getElementById('screen-essay-detail');
+      const idx = txt.essays.findIndex(e => e.id === essayId);
+      if (idx === -1) return;
+      const essay = txt.essays[idx];
+      const nextEssay = txt.essays[idx + 1];
+
+      const sourcesHtml = essay.sources && essay.sources.length ? `
+        <div class="essay-sources">
+          <div class="essay-sources-label">${txt.essaysSourcesLabel}</div>
+          <ul>
+            ${essay.sources.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.name}</a></li>`).join('')}
+          </ul>
+        </div>
+      ` : '';
+
+      const nextHtml = nextEssay
+        ? `<button class="btn" onclick="showEssay('${nextEssay.id}')">${txt.essaysNext}</button>`
+        : '';
+
+      const html = `
+        <div class="essay-detail">
+          <div class="essay-detail-eyebrow">${essay.eyebrow}</div>
+          <h1>${essay.title}</h1>
+          <div class="essay-detail-meta">${essay.readTime} ${txt.essaysReadTime}</div>
+          <div class="essay-body">${essay.content}</div>
+          ${sourcesHtml}
+          <div class="essay-detail-actions">
+            <button class="btn" onclick="showEssays()">${txt.essaysBack}</button>
+            ${nextHtml}
+          </div>
+        </div>
+      `;
+
+      hideAll();
+      screen.innerHTML = html;
+      screen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // ───────────────────────────────────────────────
