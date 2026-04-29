@@ -194,7 +194,8 @@
     }
 
     .lang-toggle button:first-child { border-radius: 4px 0 0 4px; }
-    .lang-toggle button:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+    .lang-toggle button:not(:first-child) { border-left: none; }
+    .lang-toggle button:last-child { border-radius: 0 4px 4px 0; }
     .lang-toggle button:hover { color: var(--text); }
     .lang-toggle button.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
@@ -2065,6 +2066,7 @@
         <div class="lang-toggle">
           <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
           <button id="lang-pl" onclick="setLang('pl')">PL</button>
+          <button id="lang-fr" onclick="setLang('fr')">FR</button>
         </div>
       </div>
     </div>
@@ -3337,6 +3339,293 @@
           'Możliwa konsekwencja czerwonego: żyjesz wiedząc, że ludzkość zawiodła test. Jeśli to się wydarza — to zwycięstwo, czy potwierdzenie najgorszych podejrzeń o sobie i innych?',
           'Gdybyś wiedział, że twoje dziecko wybrało niebieski — a ty czerwony — co byś czuł?'
         ]
+      },
+      fr: {
+        brand: 'Two Buttons · kwh',
+        eyebrow: 'Un dilemme moral · Expérience de théorie des jeux',
+        title: 'Deux <em>boutons</em>.<br>Un seul choix.',
+        sub: 'Un test de qui tu deviens quand personne ne regarde.',
+        rulesLabel: 'Les règles',
+        rule1: 'Si plus de 50% de l\'humanité choisit bleu → tout le monde survit.',
+        rule2: 'Si 50% ou moins choisissent bleu → les bleus meurent, les rouges vivent.',
+        rule3: 'Si tout le monde choisit rouge → tout le monde survit aussi.',
+        red: 'Rouge',
+        blue: 'Bleu',
+        privacyNote: 'Personne ne saura jamais ce que tu as choisi',
+        hint: 'Choisis. Tu pourras rejouer ensuite.',
+        btnResearch: 'Ce que dit la recherche ↗',
+        btnQuestions: 'Questions débloquées',
+        statsLabel: 'TES CHOIX DANS CETTE SESSION',
+        statTotal: 'Parties',
+        statRed: 'Rouge',
+        statBlue: 'Bleu',
+        statQuestions: 'Questions',
+        patternHigh: (p) => `${p}% bleu — un schéma rare. La recherche en laboratoire montre rarement plus de 50% de coopération.`,
+        patternMid: (p) => `${p}% bleu — proche du niveau de coopération en laboratoire dans les dilemmes du prisonnier (~47%).`,
+        patternLow: (p) => `${p}% bleu — en-dessous des taux de coopération typiques. Le rouge est la stratégie dominante.`,
+        patternVeryLow: (p) => `${p}% bleu — un schéma de défection presque pure. Cohérent avec les modèles d\'égoïsme rationnel.`,
+        playAgain: 'Rejouer',
+        seeQuestions: 'Voir les questions',
+        seeReality: 'Recherche ↗',
+        comparison: 'Comparé à la recherche',
+        comparisonRed: 'Dans une méta-analyse de 130 expériences de dilemme du prisonnier (Sally 1995), le taux moyen de coopération était de ~47% — donc ~53% choisissent de faire défaut. Tu es dans cette majorité. C\'est la norme statistique, pas l\'exception.',
+        comparisonBlue: 'Dans une méta-analyse de 130 expériences de dilemme du prisonnier (Sally 1995), le taux moyen de coopération était de ~47%. Tu as choisi bleu — tu es proche de cette moyenne. Dans des scénarios à enjeu réel, la coopération chute bien en dessous.',
+        liveLabel: 'EN DIRECT · DE VRAIS VOTES DANS LE MONDE',
+        liveExplain: 'Ce n\'est pas qu\'une simulation. Ton <em>premier</em> clic compte dans la statistique globale ci-dessous. Chaque partie suivante n\'est qu\'une simulation. Une personne, un vote.',
+        liveTotalLabel: 'TOTAL DES VOTES',
+        liveRedLabel: 'ROUGE',
+        liveBlueLabel: 'BLEU',
+        liveOffline: 'Statistiques globales temporairement indisponibles',
+        liveYourVote: 'Ton vote a été enregistré',
+        liveAlreadyVoted: 'Déjà voté',
+        firstVoteCounted: (c) => `Ton premier clic a été enregistré comme ${c}. À partir de maintenant, tu ne fais que lancer la simulation.`,
+        liveResultsHeader: 'Résultats réels jusqu\'ici',
+        thresholdQuestionLabel: 'Arrête-toi sur ça',
+        thresholdQuestionRed: 'Tu as choisi rouge. Quel pourcentage de l\'humanité choisissant bleu devrait être garanti à l\'avance — pour que tu appuies sur bleu au lieu de rouge ? 70% ? 90% ? Ou jamais, quoi qu\'il arrive ?',
+        thresholdQuestionBlue: 'Tu as choisi bleu. Et si seulement 30% de l\'humanité te rejoignait ? Toujours bleu ? Et 10% ? À quel moment la foi en l\'humanité devient stupidité — ou ce moment n\'existe-t-il pas ?',
+        cacheDisclaimer: 'Les mises à jour peuvent prendre ~60 secondes',
+        progressLabelLeft: 'Distance pour sauver l\'humanité',
+        progressStatusBelow: (gap) => `Le bleu est à <strong>${gap}%</strong> de sauver l\'humanité. Chaque vote déplace la ligne.`,
+        progressStatusAt: 'Seuil critique. Chaque vote individuel fait basculer la balance.',
+        progressStatusPassed: '✦ L\'HUMANITÉ A RÉUSSI LE TEST ✦',
+        progressStatusPassedSub: (over) => `Le bleu dépasse le seuil de 50% de ${over}%. Si le monde votait maintenant, tout le monde survivrait.`,
+        histogramRainLabel: 'En direct · activité simulée des votants',
+        selfTestTitle: 'Teste-toi · gagne ton badge',
+        selfTestSub: 'Joue 5 rounds. On te dira qui tu es. Partage le résultat.',
+        selfTestSubReady: 'Ton profil moral est prêt. Clique pour le voir et le partager.',
+        selfTestSubProgress: (n) => `Encore ${5 - n} ${5 - n === 1 ? 'round' : 'rounds'} pour débloquer ton profil.`,
+        personalityEyebrow: 'Ton profil moral',
+        personalityLockedTitle: 'Profil verrouillé',
+        personalityLockedSub: 'Joue au moins 5 rounds pour débloquer ton type moral et ton badge à partager.',
+        personalityLockedProgress: (n) => `${n} / 5 rounds joués`,
+        personalityShare: 'Partager le badge',
+        personalityCopyLink: 'Copier le résultat',
+        personalityDownload: 'Télécharger l\'image',
+        personalityCopied: 'Copié !',
+        personalityShareText: (name) => `Je suis ${name} selon gamestheory.org — et toi ?`,
+        personalityStatRounds: 'Rounds joués',
+        personalityStatRed: 'Rouge',
+        personalityStatBlue: 'Bleu',
+        personalityBack: 'Retour au jeu',
+        personalityButtonShort: 'Ton profil',
+        imageEyebrow: 'GAMESTHEORY.ORG  ·  TON PROFIL MORAL',
+        imageRoundsLabel: 'ROUNDS',
+        imageRedLabel: 'ROUGE',
+        imageBlueLabel: 'BLEU',
+        imageTagline: 'Un test de qui tu deviens quand personne ne regarde',
+        archetypes: {
+          calculator: {
+            name: 'Le <em>Calculateur</em>',
+            tagline: 'Logique froide, pas d\'illusions.',
+            quote: '"Je fais confiance aux maths, pas à mon espèce."',
+            desc: 'Tu as choisi rouge presque à chaque fois. La théorie des jeux dit que tu as raison — rouge est la stratégie dominante. Mais tu n\'as pas hésité, tu n\'as même pas tressailli. Ce n\'est pas que de la rationalité, c\'est une vision du monde : fais confiance à tes calculs, pas à ton espèce.'
+          },
+          pragmatist: {
+            name: 'Le <em>Pragmatique</em>',
+            tagline: 'Surtout sûr, parfois plein d\'espoir.',
+            quote: '"Je fais le calcul, mais une partie de moi espère encore."',
+            desc: 'Tu as penché vers le rouge mais tenté le bleu au moins une fois. Tu comprends les maths, mais une partie de toi se demande ce qui se passerait si tu prenais le risque. C\'est dans cette tension que la plupart des gens vivent vraiment.'
+          },
+          hesitant: {
+            name: 'L\'<em>Indécis</em>',
+            tagline: 'Tiraillé entre deux mondes.',
+            quote: '"La certitude serait un mensonge. Alors je reste avec la question."',
+            desc: 'Presque 50/50. Tu n\'as pas de réponse claire — et c\'est honnête. La plupart des gens qui prétendent être certains jouent un rôle. Toi tu t\'es assis avec l\'inconfort d\'un vrai dilemme. C\'est plus rare que tu ne crois.'
+          },
+          believer: {
+            name: 'Le <em>Croyant</em>',
+            tagline: 'Foi en l\'humanité plutôt que garantie.',
+            quote: '"Je préfère me tromper avec espoir que d\'avoir raison seul."',
+            desc: 'Tu as choisi bleu plus souvent que rouge. Tu as parié sur l\'humanité même en connaissant les statistiques. Peut-être que tu es un idéaliste. Peut-être que tu refuses simplement d\'être quelqu\'un qui se sauve quand les autres meurent. Dans tous les cas, tu as choisi le sens plutôt que les chances.'
+          },
+          martyr: {
+            name: 'Le <em>Martyr</em>',
+            tagline: 'À fond. À chaque fois.',
+            quote: '"Entre vivre seul et mourir avec les autres — j\'ai choisi depuis longtemps."',
+            desc: 'Presque chaque clic était bleu. Soit tu as une foi radicale dans l\'action collective — soit tu as décidé que le coût moral de choisir rouge était trop élevé. Dans la vraie vie, ton type est rare. Les mouvements sociaux sont construits sur des gens comme toi.'
+          },
+          performer: {
+            name: 'L\'<em>Acteur</em>',
+            tagline: 'Dit une chose, fait une autre.',
+            quote: '"Je découvre qui je suis — un clic à la fois."',
+            desc: 'Tu as choisi bleu, puis rouge, puis bleu encore. Peut-être que tu testes le jeu. Peut-être que tu te testes toi-même. Dans tous les cas, ton comportement révèle ce que les sondages cachent : même nos meilleures intentions ne survivent pas au contact du coût.'
+          },
+          observer: {
+            name: 'L\'<em>Observateur</em>',
+            tagline: 'Regarde, mais ne s\'engage pas encore.',
+            quote: '"Avant d\'agir, je veux comprendre ce qu\'agir signifie."',
+            desc: 'Ton schéma n\'est pas encore révélé. Tu n\'as pas encore montré ta main — et c\'est peut-être le lieu le plus honnête. Continue à jouer. Le schéma se révélera tout seul.'
+          }
+        },
+        mapToggleShow: 'Voir la carte du monde ↗',
+        mapToggleHide: 'Cacher la carte',
+        mapHeader: 'Coopération à travers les pays',
+        mapLegendRed: '0% bleus',
+        mapLegendBlue: '100% bleus',
+        mapNoData: 'Pas encore de données',
+        mapTopBlue: 'Plus coopératifs',
+        mapTopRed: 'Plus égoïstes',
+        mapMinVotes: 'min. 5 votes',
+        mapTooltipVotes: (n) => `${n} ${n === 1 ? 'vote' : 'votes'}`,
+        mapTooltipBlue: 'bleu',
+        newQuestion: 'NOUVELLE QUESTION DÉBLOQUÉE',
+        playLockedBlue: 'Joue à nouveau pour débloquer',
+        playLockedRed: 'Joue à nouveau pour débloquer',
+        bluePlays: 'Questions qui contestent BLEU',
+        redPlays: 'Questions qui contestent ROUGE',
+        questionsTitle: 'Questions',
+        questionsBack: '← Retour',
+        questionsSub: 'Chaque partie débloque une question qui sonde le côté que tu as choisi. 16 questions au total.',
+        allUnlocked: '16/16 DÉBLOQUÉES',
+        allUnlockedHeadline: 'Tu as vu tous les angles. Maintenant la vraie question :',
+        allUnlockedDetail: 'Avec les 16 questions devant toi, repenses-tu à ton premier clic ? Ou ton premier clic est-il ce que tu défends après tout ?',
+        halfwayInsight: (n) => `${n}/16 débloquées. Plus tu joues, plus le jeu doute de toi.`,
+        realityTitle: 'Ce que la recherche dit en réalité',
+        realityBack: '← Retour au jeu',
+        realityIntro: 'La théorie des jeux et les sciences comportementales ont étudié ce dilemme pendant des décennies. Voici ce qu\'on a découvert.',
+        realityResearch: [
+          { title: 'Sally (1995) — méta-analyse', text: 'Synthèse de 130 expériences avec dilemme du prisonnier. Taux moyen de coopération : ~37%. Les humains coopèrent moins que la théorie le prédit.', source: 'Sally, D. (1995). Conversation and cooperation in social dilemmas. Rationality and Society 7(1).' },
+          { title: 'Darley & Latané (1968) — l\'effet du témoin', text: 'Plus il y a de témoins, moins la probabilité que quelqu\'un aide. La diffusion de la responsabilité fait que tout le monde attend que l\'autre agisse.', source: 'Darley, J.M., & Latané, B. (1968). Bystander intervention in emergencies. Journal of Personality and Social Psychology 8(4).' },
+          { title: 'Oliner (1988) — Personnalité altruiste', text: 'Étude des sauveteurs juifs pendant l\'Holocauste. Trait commun : ils n\'ont pas calculé. Ils ont agi rapidement, comme si le calcul rationnel n\'était pas une option.', source: 'Oliner, S.P., & Oliner, P.M. (1988). The Altruistic Personality: Rescuers of Jews in Nazi Europe.' },
+          { title: 'Fehr & Gächter (2000) — punition altruiste', text: 'Quand on permet aux participants de punir les défecteurs (à leurs propres frais), la coopération monte à ~80%. Sans cette possibilité — elle s\'effondre à 10%.', source: 'Fehr, E., & Gächter, S. (2000). Cooperation and punishment in public goods experiments. American Economic Review 90(4).' }
+        ],
+        realityConclusion: 'Conclusion : la coopération est rare, vulnérable et exige des institutions qui imposent les règles. Sans elles, le rouge gagne presque toujours.',
+        closingQuote: 'La question n\'est pas "que choisirais-tu". La question est "que choisirais-tu, sachant que la majorité choisit autrement qu\'elle ne le déclare".',
+        footerText: 'PolyForm Noncommercial 1.0.0',
+        footerPrivacy: 'Confidentialité',
+        cookieBannerText: 'Ce site stocke un identifiant aléatoire localement (pour que ton vote ne compte qu\'une fois) et utilise le code pays pour colorer la carte du monde. Pas de tracking, pas d\'analytics, pas de tiers. <a href="#" onclick="showPrivacy(event); return false;">En savoir plus</a>',
+        cookieBannerAccept: 'Compris',
+        cookieBannerLearn: 'Détails de confidentialité',
+        privacyTitle: 'Confidentialité',
+        privacyUpdated: 'Dernière mise à jour · avril 2026',
+        privacyClose: 'Fermer',
+        privacyBody: `<p>Ce jeu est un projet hobby. Il existe pour faire réfléchir — pas pour pister. Voici exactement ce qui se passe avec tes données :</p><h3>Ce qu'on stocke</h3><ul><li><strong>Un identifiant aléatoire anonyme</strong> dans le localStorage de ton navigateur. Aucun lien avec ton nom, ton email, ton IP ou quoi que ce soit de personnel. Il existe uniquement pour s'assurer que chaque appareil ne vote qu'une seule fois dans le compteur global.</li><li><strong>Ton code pays à deux lettres</strong> (par ex. PL, US, FR), détecté automatiquement par Cloudflare depuis ta connexion. Utilisé seulement pour colorer la carte du monde et les classements par pays. On ne stocke jamais ton adresse IP, ta ville, ou aucune localisation précise.</li><li><strong>Ton vote unique</strong> (rouge ou bleu). Agrégé avec ceux de tout le monde. Pas lié à ton identité.</li></ul><h3>Ce qu'on ne fait pas</h3><ul><li>Pas d'analytics (ni Google Analytics, ni Facebook Pixel, ni rien de similaire).</li><li>Pas de cookies tiers.</li><li>Pas de trackers publicitaires ou marketing.</li><li>Aucune donnée vendue ou partagée avec qui que ce soit, jamais.</li></ul><h3>Tes droits</h3><p>Tu peux effacer toutes les données à tout moment en effaçant le localStorage de ton navigateur pour ce site.</p><h3>Où vivent les données</h3><p>Sur l'infrastructure Cloudflare (serveurs edge dans le monde entier). Le site est hébergé sur Cloudflare Pages. Les comptes agrégés vivent dans Cloudflare KV. Aucun service tiers impliqué.</p><h3>Contact</h3><p>C'est un projet personnel. Pour les questions de confidentialité, ouvre une issue sur le repo GitHub lié dans le pied de page.</p>`,
+        easterStreakTitle: 'Une observation discrète',
+        easterStreakBody: 'Tu as choisi rouge dix fois de suite. Pourquoi joues-tu encore — si tu connais déjà la réponse ?',
+        easterBothTitle: 'Question cachée · #17',
+        easterBothBody: 'Tu as essayé d\'appuyer sur les deux. Comme essayer de vivre et mourir en même temps. Le dilemme supposait que tu choisirais. Et si la réponse la plus honnête était de refuser ?',
+        easterNightTitle: 'Question · #18 · Débloquée la nuit',
+        easterNightBody: 'Il est 3:33 dans ton fuseau horaire. Tu devrais dormir. Ou peut-être que la question est : qui deviens-tu à 3:33, quand personne ne regarde, quand le monde dort, quand même ta propre performance s\'est tue ? Le même rouge et bleu. Un autre toi.',
+        easterFoundLabel: 'Découverte cachée',
+        easterDismiss: 'Fermer',
+        essaysButton: 'Essais ↗',
+        essaysListTitle: 'Essais · Plus en profondeur',
+        essaysListSub: 'Six textes qui vont plus loin que le jeu. Philosophie, théorie des jeux, histoire. Chacun sous un angle différent — inconfortable pour chaque camp, en différents endroits.',
+        essaysListLocked: 'Les essais se débloquent après avoir découvert les 16 questions et voté.',
+        essaysListLockedProgress: (q, hasVoted) => `${q}/16 questions · vote ${hasVoted ? 'donné' : 'pas encore donné'}`,
+        essaysReadTime: 'min de lecture',
+        essaysRead: 'Lire →',
+        essaysBack: '← Retour aux essais',
+        essaysNext: 'Essai suivant →',
+        essaysSourcesLabel: 'Sources et lectures complémentaires',
+        essaysSkipLabel: 'Ou passe le jeu',
+        essaysSkipExplain: 'Les 16 questions existent pour une raison — elles sont faites pour te faire douter de ton choix. Les passer est ok, mais tu tireras moins des essais. On ne te retiendra pas.',
+        essaysSkipNeedVote: 'Tu dois d\'abord voter. Les essais existent comme suite de ta décision, pas comme substitut.',
+        essaysSkipBtn: 'Montre-moi les essais quand même →',
+        essays: [
+          {
+            id: 'kant-mill',
+            number: 1,
+            title: 'Kant contre Mill',
+            eyebrow: 'Philosophie · éthique déontologique vs utilitariste',
+            readTime: 3,
+            content: `<p>Deux des plus grands philosophes moraux du XIXe siècle auraient répondu à ce dilemme de manière complètement opposée. Et tous les deux auraient raison — au sein de leur propre système.</p><h3>Kant : le bleu est la seule réponse possible</h3><p>L'impératif catégorique se résume à peu près ainsi : <em>"agis seulement selon la maxime que tu pourrais en même temps vouloir voir devenir une loi universelle."</em> Quand tu choisis rouge, tu dis en effet : <em>"je veux que tout le monde se sauve au prix du risque pour les autres."</em> Mais si tout le monde choisissait ainsi, le risque disparaîtrait — tout le monde survivrait. Kant dirait : <strong>la logique de ton choix défait sa propre justification</strong>.</p><p>La seconde formulation de Kant est encore plus tranchante : <em>"traite l'humanité toujours comme une fin, jamais simplement comme un moyen."</em> Choisir rouge signifie traiter la vie d'autrui comme une perte acceptable pour ta sécurité. Le bleu est le seul choix dans lequel personne ne devient un dommage collatéral de ton calcul.</p><h3>Mill : le rouge est rationnellement correct</h3><p>John Stuart Mill, père de l'utilitarisme, voit les choses différemment. Ce qui compte est le <strong>bien agrégé</strong>. Si la probabilité que plus de 50% de l'humanité choisisse bleu est faible — et chaque étude empirique le confirme — alors la valeur attendue du bleu pour toi est négative. Tu perds ta vie, et ton vote individuel ne sauve personne, parce qu'il n'y aura pas assez de bleus de toute façon.</p><p>Mill dit : <strong>ton sacrifice individuel ne change pas les maths</strong>. Étant donné cela, la décision rationnelle est rouge — elle minimise la souffrance (la tienne) et ne crée aucun bien supplémentaire (trop peu de bleus dans tous les cas).</p><h3>Où ils divergent</h3><p>Kant juge l'<em>intention</em>. Mill juge les <em>conséquences</em>. Si un choix bleu se révèle catastrophique (tous les bleus meurent), Mill dit : "tu as mal choisi". Kant dit : "tu as bien choisi, le monde t'a manqué."</p><p>Cette distinction n'est pas académique. Chaque décision morale conséquente dans ta vie — voter, dénoncer, te mettre en danger pour un inconnu — exige un choix : <strong>je me juge selon l'intention, ou selon le résultat ?</strong></p><h3>Une troisième voie : la vertu</h3><p>Aristote dirait que les deux ont tort d'essayer de comprimer la moralité en une règle ou une formule. La question n'est pas "qu'est-ce qui est juste dans cette situation," mais "quel genre de personne est-ce que je veux être ?" Bleu ou rouge — quel choix correspond à la personne que tu essaies de devenir ?</p><p>C'est une question à laquelle aucune étude ni simulation ne peut répondre à ta place.</p>`,
+            sources: [
+              { name: 'Kant — Fondements de la métaphysique des mœurs (1785)', url: 'https://fr.wikipedia.org/wiki/Imp%C3%A9ratif_cat%C3%A9gorique' },
+              { name: 'Mill — L\'Utilitarisme (1863)', url: 'https://fr.wikipedia.org/wiki/Utilitarisme' },
+              { name: 'Stanford Encyclopedia — Deontological Ethics', url: 'https://plato.stanford.edu/entries/ethics-deontological/' }
+            ]
+          },
+          {
+            id: 'schelling',
+            number: 2,
+            title: 'Schelling et le point focal',
+            eyebrow: 'Théorie des jeux · pourquoi le rouge est "évident"',
+            readTime: 3,
+            content: `<p>Thomas Schelling a reçu le Nobel d'économie en 2005 pour avoir montré que les gens peuvent se coordonner <strong>sans communication</strong>. L'expérience était simple : deux inconnus doivent se rencontrer à New York un certain jour. Ils ne peuvent pas se contacter. Où vont-ils, et à quelle heure ?</p><p>La plupart répondent sans hésiter : <strong>Grand Central Station, à midi</strong>. Parce que c'est "évident". Schelling a appelé ça un <em>point focal</em> — un point de coordination vers lequel les gens convergent d'eux-mêmes quand aucune autre coordination n'est disponible.</p><h3>Le rouge est le point focal de deux boutons</h3><p>Dans notre dilemme, le rouge est la <em>stratégie dominante</em> en termes de théorie des jeux — il gagne ou fait match nul dans tous les scénarios possibles. Mais quelque chose de plus important est aussi vrai : il est <strong>évident</strong>. Tout le monde le voit comme sûr. Tout le monde suppose que les autres le voient comme sûr. Donc tout le monde le choisit — et a raison, parce que tous les autres le choisissent.</p><p>La même croyance auto-renforçante que "tout le monde choisira rouge" produit la réalité dans laquelle tout le monde choisit rouge. <strong>Le bleu exige une supposition que personne n'a de raison de faire</strong> : que plus de la moitié des inconnus feront confiance à d'autres inconnus.</p><h3>Chaque mouvement social a été un combat sur le point focal</h3><p>Pense au suffrage des femmes au XIXe siècle. Les premières femmes votant en Nouvelle-Zélande (1893) n'ont pas changé les maths — elles ont déplacé le point focal. Elles ont montré que "les femmes ne votent pas" n'était pas une loi de la nature, juste une attente par défaut. Quand l'attente s'est brisée, la coordination s'est soudain mise à pousser dans l'autre sens.</p><p>Idem pour les droits LGBT, la vaccination, fumer dans les restaurants, les masques en Asie. <strong>La plupart des changements sociaux sont des déplacements de points focaux</strong>, pas des changements de morale fondamentale.</p><h3>Pourquoi ils échouent généralement</h3><p>Schelling a aussi montré que les points focaux sont stables. Les changer exige une énergie énorme et généralement de la coordination de la part des leaders, des institutions, des médias. <strong>Un seul "vote bleu" individuel ne déplace jamais le point focal</strong> — ce peut être au mieux une brique dans la fondation d'un nouveau.</p><p>C'est pourquoi le sacrifice individuel héroïque fonctionne rarement. Le monde n'a pas besoin de ton vote bleu comme geste moral. Le monde a besoin d'un million de votes bleus <em>simultanément</em>, idéalement avec des relations publiques et un soutien institutionnel. Tout le reste est romance.</p><h3>La conclusion brutale</h3><p>Donc si tu choisis bleu dans le monde réel — dans les élections, dans les impôts, sur le climat — et que tu perds, ça <strong>ne signifie pas que tu as mal choisi</strong>. Ça signifie que le point focal n'est pas encore prêt. Ta tâche est double : choisir bleu, <em>et</em> travailler à déplacer les attentes des autres. L'un seul ne suffit pas.</p>`,
+            sources: [
+              { name: 'Schelling — La stratégie du conflit (1960)', url: 'https://fr.wikipedia.org/wiki/Thomas_Schelling' },
+              { name: 'Point focal (Schelling) — Wikipedia', url: 'https://en.wikipedia.org/wiki/Focal_point_(game_theory)' },
+              { name: 'Prix Nobel 2005', url: 'https://www.nobelprize.org/prizes/economic-sciences/2005/summary/' }
+            ]
+          },
+          {
+            id: 'climate-vaccines-taxes',
+            number: 3,
+            title: 'Climat, vaccins, impôts',
+            eyebrow: 'Politique · ton choix revient, chaque jour',
+            readTime: 3,
+            content: `<p>Le dilemme des deux boutons n'est pas abstrait. C'est la structure exacte de chaque problème de coordination globale — et tu y choisis quotidiennement, sans le savoir.</p><h3>Climat — pays comme joueur</h3><p>La France réduit ses émissions ? Les autres pays devraient aussi. Si tout le monde réduit — tout le monde gagne (objectif climatique atteint, planète habitable). Si seule la France réduit — elle perd économiquement, le climat change quand même (parce que la Chine, les USA, l'Inde ont choisi rouge).</p><p>Chaque pays individuellement a <strong>un intérêt à choisir rouge</strong> — protéger son économie, attendre que les autres fassent le travail. Ensemble — tout le monde perd. C'est pourquoi l'Accord de Paris a des statistiques de mise en œuvre aussi pathétiques. Tout le monde a signé, mais tout le monde dit "mes sacrifices doivent être proportionnels à ceux des autres," et personne ne saute le premier.</p><h3>Vaccins — passagers clandestins</h3><p>L'immunité collective exige environ 70-95% de vaccinés (selon la maladie). Une fois ce seuil atteint, <strong>même les non-vaccinés sont protégés</strong>, parce que le virus ne peut pas se propager. C'est le bleu qui gagne.</p><p>Mais pour un individu, la logique est différente. Si 70% des autres sont vaccinés, je peux sauter le vaccin et profiter de leur immunité. Moins de risque (effets secondaires du vaccin), même protection. C'est le rouge.</p><p>Quand trop de gens pensent ainsi, l'immunité collective s'effondre. <strong>La rougeole revient, ayant été éradiquée en 2000</strong>. Le rouge individuel tue collectivement ses propres enfants.</p><h3>Impôts — culture du bleu</h3><p>Tout le monde paie ses impôts honnêtement ? On a un État qui fonctionne, des infrastructures, la santé, l'éducation. Victoire bleue.</p><p>Chaque individu a intérêt à truander — sous-déclarer ses revenus, cacher des transactions, faire passer par des comptes étrangers. Calcul simple : 0% de chance de détection × 0% de pénalité = 0% de coût. Pure économie.</p><p>La Scandinavie fonctionne non pas parce que les Scandinaves sont moralement supérieurs. Elle fonctionne parce qu'<strong>ils ont construit une culture du bleu</strong> — systèmes de contrôle, normes sociales, transparence. Le bleu là-bas n'est pas un acte d'héroïsme, juste le point focal par défaut.</p><h3>Ce que ce jeu ne t'apprendra pas</h3><p>Ici une seule décision est isolée. Dans la vraie vie, <strong>aucun de ces choix n'est isolé</strong>. Chacun est construit sur la culture, les normes, les institutions, la confiance qui existent ou non.</p><p>Tu veux changer ton choix ? Change d'abord l'environnement dans lequel tu choisis.</p>`,
+            sources: [
+              { name: 'Tragédie des biens communs — Hardin (1968)', url: 'https://fr.wikipedia.org/wiki/Trag%C3%A9die_des_biens_communs' },
+              { name: 'Public goods game', url: 'https://en.wikipedia.org/wiki/Public_goods_game' },
+              { name: 'Fehr & Gächter (2000)', url: 'https://www.nature.com/articles/415137a' }
+            ]
+          },
+          {
+            id: 'switzerland',
+            number: 4,
+            title: 'Pourquoi la Suisse fonctionne',
+            eyebrow: 'Institutions · pourquoi le "leader fort" perd toujours contre les procédures',
+            readTime: 3,
+            content: `<p>La Suisse n'a pas eu de coup d'État depuis 175 ans. Pas de guerre civile depuis 1847. Elle fonctionne au milieu de l'Europe, entourée de quatre voisins impériaux (historiquement), avec quatre langues officielles et six religions principales — et personne ne trouve ça remarquable.</p><p>Ce n'est pas un accident. C'est la démonstration la plus pure que <strong>le bleu imposé bat le rouge volontaire</strong>.</p><h3>Ce que les Suisses ont fait différemment</h3><p>Ils n'ont pas de leader fort. Le Conseil fédéral est composé de sept personnes, chacune assumant le rôle présidentiel à tour de rôle pour un an. La plupart des Suisses ne peuvent pas nommer leurs présidents.</p><p>Ils ont des référendums pour chaque changement majeur. Les citoyens votent 4 fois par an sur des projets de loi spécifiques. Le canton de Saint-Gall peut avoir des lois différentes de Genève.</p><p>Leur armée est une milice. Chaque homme de moins de 30 ans a une arme à la maison (sérieusement). Mais la violence par armes à feu est plus faible qu'en grande partie de l'Europe. Parce que <strong>les armes ne sont pas le problème</strong> — la culture l'est.</p><h3>Ce que ça a à voir avec deux boutons</h3><p>Une situation où chacun <em>doit</em> choisir bleu — parce que le système, la loi, les tribunaux, les institutions le forcent — est stable d'une manière dont le bleu volontaire ne le sera jamais.</p><p>Démocratie, séparation des pouvoirs, justice indépendante, médias libres — ce sont toutes des technologies qui forcent la coordination bleue. Sans elles, n'importe quel joueur unique (général, oligarque, politicien) peut toujours cliquer rouge et détruire le résultat de tout le monde.</p><h3>Le piège du "si seulement on avait un bon leader"</h3><p>On entend encore l'argument : "On a besoin d'un <em>leader fort</em>, quelqu'un qui mettra vraiment de l'ordre."</p><p>Chaque tel argument est une demande pour un seul joueur qui pourrait cliquer rouge et imposer son choix contre le système. Ça paraît attractif quand <em>tes</em> convictions sont le leader fort — mais c'est catastrophique quand le prochain leader fort est de l'autre côté.</p><p>La Suisse n'a pas besoin d'un leader fort. Parce que le système force déjà chaque personne individuellement vers le bleu. <strong>C'est la seule technologie de coopération durable que l'humanité ait inventée</strong>.</p>`,
+            sources: [
+              { name: 'Fédéralisme suisse', url: 'https://fr.wikipedia.org/wiki/Suisse' },
+              { name: 'Démocratie directe en Suisse', url: 'https://fr.wikipedia.org/wiki/Votations_f%C3%A9d%C3%A9rales_suisses' },
+              { name: 'Acemoglu & Robinson — "Why Nations Fail"', url: 'https://en.wikipedia.org/wiki/Why_Nations_Fail' }
+            ]
+          },
+          {
+            id: 'warsaw-uprising',
+            number: 5,
+            title: 'L\'Insurrection de Varsovie et le calcul',
+            eyebrow: 'Histoire · quand le bleu est le seul choix, malgré tout',
+            readTime: 3,
+            content: `<p>1er août 1944. Le commandement de l'Armée de l'Intérieur polonaise lance "Opération Tempête" — insurrection à Varsovie. 200 000 personnes face à l'armée allemande. L'Armée rouge soviétique est de l'autre côté de la Vistule. Et attend.</p><p>63 jours plus tard, Varsovie gît en ruines. 18 000 soldats de l'Armée de l'Intérieur morts, 25 000 blessés, 180 000 civils morts. La ville rasée — les Allemands ont systématiquement fait sauter chaque bâtiment après la capitulation.</p><p>D'un point de vue purement utilitariste : <strong>l'insurrection a été une catastrophe</strong>. Mill dirait : ça n'aurait pas dû commencer.</p><h3>Mais Mill a tort ici</h3><p>Le commandant de l'insurrection connaissait les statistiques. Il savait que les chances de victoire étaient minces. Il a choisi bleu.</p><p>Parce que l'argument pour l'insurrection n'était pas utilitariste. L'argument était : <strong>"La Pologne doit se libérer elle-même, ou elle ne sera jamais vraiment polonaise."</strong> Ce n'était pas un calcul coût-bénéfice. C'était une décision sur qui nous voulons être en tant que nation.</p><h3>Lien avec deux boutons</h3><p>Chaque personne cliquant bleu dans le jeu et qui a perdu — se tient dans la même file que les insurgés de Varsovie. Les statistiques disent que c'était inutile. Mais si l'histoire est ainsi, alors aucun mouvement de libération n'avait raison dans sa première génération.</p><p><strong>Le bleu face à la défaite certaine n'est pas une erreur de calcul</strong>. C'est une déclaration que certaines valeurs dépassent la survie. Tu peux appeler ça de la folie. Tu peux appeler ça de la sainteté. Difficile de tenir les deux à la fois.</p><p>Mais une chose est sûre : un pays qui n'a jamais de telles personnes cesse aussi d'exister — juste plus lentement et plus silencieusement.</p>`,
+            sources: [
+              { name: 'Musée de l\'Insurrection de Varsovie', url: 'https://www.1944.pl/en' },
+              { name: 'Insurrection de Varsovie', url: 'https://fr.wikipedia.org/wiki/Insurrection_de_Varsovie' }
+            ]
+          },
+          {
+            id: 'forced-collective',
+            number: 6,
+            title: 'Quand "le collectif" tue',
+            eyebrow: 'Histoire · le côté sombre du bleu imposé',
+            readTime: 3,
+            content: `<p>Le bleu comme choix paraît beau dans l'abstrait. Action collective, solidarité, sauver tout le monde. La majeure partie de la pensée politique de gauche est construite sur l'hypothèse que plus de coordination = plus de bien.</p><p>Mais l'histoire du XXe siècle montre quelque chose d'inconfortable : <strong>le bleu imposé est souvent pire que le rouge volontaire</strong>. Parfois de plusieurs ordres de grandeur.</p><h3>Le Grand Bond en avant, Chine, 1958-1962</h3><p>Mao Zedong proclamait : chaque village devient une commune, tout le monde travaille pour le collectif, les champs privés disparaissent. Cela devait être le triomphe du bleu — coordination qui sortirait la Chine de la pauvreté en une décennie.</p><p>Résultat : <strong>15-55 millions de morts par famine</strong>. La pire famine de l'histoire humaine. Pas à cause de la sécheresse — à cause de la politique.</p><h3>Pol Pot et l'Année zéro, Cambodge, 1975-1979</h3><p>Les Khmers rouges proclamaient : société agraire collective, tout depuis zéro. Résultat en 4 ans : <strong>1,5-2 millions de morts</strong>, sur une population de 8 millions.</p><h3>Collectivisation soviétique, URSS, 1929-1933</h3><p>Staline proclamait : les fermes privées disparaissent. L'Holodomor en Ukraine — <strong>3-7 millions de morts</strong> en 1932-33.</p><h3>Le schéma se répète</h3><p>Les trois cas partagent la même structure : le bleu est officiellement obligatoire, quiconque choisit rouge est un "traître," le système n'autorise aucun bleu volontaire — seulement le bleu imposé. Résultat : <strong>mort de masse, bien plus grande que tout monde rouge ne produirait</strong>.</p><h3>Pourquoi ça arrive</h3><p>Le bleu volontaire exige de la confiance, qui se construit lentement. <strong>Le bleu imposé est une tentative d'atteindre le résultat de la confiance sans construire la confiance</strong>. Sauf que la confiance ne peut pas être imposée.</p><h3>Lien avec deux boutons</h3><p>Le bleu dans le jeu est inconfortable : il exige de la confiance, tu risques ta vie. Mais au moins c'est <strong>ton choix</strong>. Tu peux choisir rouge et personne ne te tue pour ça.</p><p>Chaque personne cliquant bleu dans le jeu et pensant "si seulement on pouvait <em>forcer</em> tout le monde au bleu" — est au début du chemin vers la Grande Famine. Inconfortable, mais vrai.</p><p><strong>La confiance qu'on ne peut pas choisir volontairement n'est pas de la confiance.</strong></p>`,
+            sources: [
+              { name: 'Grand Bond en avant', url: 'https://fr.wikipedia.org/wiki/Grand_Bond_en_avant' },
+              { name: 'Khmers rouges', url: 'https://fr.wikipedia.org/wiki/Khmers_rouges' },
+              { name: 'Holodomor', url: 'https://fr.wikipedia.org/wiki/Holodomor' },
+              { name: 'Hayek — "La Route de la servitude"', url: 'https://fr.wikipedia.org/wiki/La_Route_de_la_servitude' }
+            ]
+          }
+        ],
+        helpTitle: 'Comment ça marche',
+        helpUpdated: 'Un guide rapide',
+        helpClose: 'Compris',
+        helpBody: `<h3>L'idée de base</h3><p>Tu as deux boutons : <strong>rouge</strong> et <strong>bleu</strong>. Imagine que chaque personne sur Terre a les mêmes deux boutons. Les règles :</p><ul><li>Si <strong>plus de 50%</strong> de l'humanité choisit bleu — tout le monde survit.</li><li>Si <strong>50% ou moins</strong> choisissent bleu — tous ceux qui ont choisi bleu meurent. Les rouges survivent.</li><li>Si <strong>tout le monde</strong> choisit rouge — tout le monde survit.</li></ul><p>Rouge est le choix sûr. Bleu est un acte de confiance dans les autres.</p><h3>Ton premier clic est réel</h3><p>Ton <strong>premier clic</strong> sur rouge ou bleu est enregistré dans le compteur global. Chaque appareil ne vote qu'une seule fois.</p><h3>Ce que tu débloques en jouant</h3><ul><li><strong>16 questions</strong> — chaque partie révèle une nouvelle question qui remet en cause ton choix.</li><li><strong>Ton profil moral</strong> — après 5 rounds, le jeu génère ton archétype.</li><li><strong>Six essais</strong> — débloqués après les 16 questions et le vote.</li></ul><h3>La carte du monde</h3><p>Voir comment différents pays votent. Chaque point est un pays.</p><h3>Son</h3><p>L'icône <strong>♪</strong> en haut active/désactive tous les sons.</p><h3>Langues</h3><p>Trois langues : anglais, polonais et français.</p><h3>Confidentialité</h3><p>Pas de tracking, pas d'analytics, pas de tiers.</p><h3>Bloqué ? Astuces :</h3><ul><li>Si tu ne veux pas jouer 16 rounds — vote au moins une fois, puis clique sur "Essais" et tu verras une option pour les sauter directement.</li></ul><h3>Pourquoi ça existe ?</h3><p>Le dilemme n'est pas abstrait. C'est la structure exacte de la coopération climatique, des vaccinations, des impôts, et de chaque problème d'action collective dans la vraie vie.</p>`,
+        questionsBlue: [
+          'Pour qui es-tu prêt à mourir personnellement ? Et qu\'est-ce que ça dit de ton choix bleu — qui est exactement ça ?',
+          'Si tu cliques bleu et que tu perds, ta famille n\'a plus de toi. Sont-ils d\'accord avec cette transaction ?',
+          'Le bleu est plus facile quand on n\'a personne à perdre. Combien de tes "convictions morales" disparaîtraient si tu avais un enfant ?',
+          'Si à la place de la mort tu pouvais subir 10 ans de souffrance — choisirais-tu encore bleu ? Ou ton bleu n\'existe que dans le scénario "vite et sans douleur" ?',
+          'Le bleu ne sauve pas ceux qui ont choisi rouge. Cela ne fait-il pas de toi quelqu\'un qui aide juste ceux qui pensent comme toi ?',
+          'Si bleu est le choix moral, pourquoi tu ne le choisis pas dans la vraie vie — par exemple en versant 50% de tes revenus à des œuvres caritatives ?',
+          'L\'utilitarisme dit : ton sacrifice n\'aide personne s\'il y a moins de 50% de bleus. Comprends-tu que ton clic bleu peut être moralement vide ?',
+          'Combien de tes amis pourraient gagner pour que tu cliques rouge ? À quel moment tu trahirais ton bleu ?'
+        ],
+        questionsRed: [
+          'Si tout le monde dans ta famille choisit bleu et meurt, et toi tu vis seul — c\'est une victoire ?',
+          'Tu cliques rouge "rationnellement". Mais qu\'est-ce que tu rationalises en réalité — la lâcheté ou la prudence ?',
+          'Sur ton lit de mort tu te rappelleras de ce clic. "Je me suis sauvé moi-même" est-ce que ce sera une consolation, ou un fardeau ?',
+          'Rouge est le choix de l\'égoïsme rationnel. Es-tu prêt à t\'appeler ainsi en te regardant dans le miroir ?',
+          'Si tout le monde choisit rouge, tout le monde survit. Mais quelqu\'un doit faire confiance le premier. Es-tu cette personne, ou celui qui attend que l\'autre prenne le risque ?',
+          'Les insurgés de Varsovie ont choisi bleu. Les Justes parmi les Nations ont choisi bleu. Es-tu fier d\'avoir choisi autrement qu\'eux ?',
+          'Rouge est la garantie de survie. Bleu est un acte de foi en l\'humanité. Y a-t-il dans ta vie des moments où tu as choisi la foi en les autres plutôt que la garantie ?',
+          'Conséquence possible du rouge : tu vis en sachant que l\'humanité a échoué au test. Si ça arrive — c\'est une victoire, ou une confirmation des pires soupçons sur toi-même et les autres ?'
+        ]
       }
     };
 
@@ -3494,7 +3783,8 @@
     }
 
     function fmtNum(n) {
-      return (n || 0).toLocaleString(currentLang === 'pl' ? 'pl-PL' : 'en-US');
+      const localeMap = { pl: 'pl-PL', fr: 'fr-FR', en: 'en-US' };
+      return (n || 0).toLocaleString(localeMap[currentLang] || 'en-US');
     }
 
     function pct(part, total) {
@@ -3667,10 +3957,33 @@
       }
     }
 
+    // For FR, we use a small overlay map of names that differ significantly from EN.
+    const COUNTRY_NAMES_FR = {
+      'US': 'États-Unis', 'CA': 'Canada', 'MX': 'Mexique', 'BR': 'Brésil',
+      'AR': 'Argentine', 'CL': 'Chili', 'CO': 'Colombie', 'PE': 'Pérou',
+      'VE': 'Venezuela', 'GB': 'Royaume-Uni', 'IE': 'Irlande',
+      'FR': 'France', 'DE': 'Allemagne', 'ES': 'Espagne', 'PT': 'Portugal',
+      'IT': 'Italie', 'PL': 'Pologne', 'NL': 'Pays-Bas', 'BE': 'Belgique',
+      'CH': 'Suisse', 'AT': 'Autriche', 'SE': 'Suède', 'NO': 'Norvège',
+      'FI': 'Finlande', 'DK': 'Danemark', 'CZ': 'République tchèque',
+      'SK': 'Slovaquie', 'HU': 'Hongrie', 'RO': 'Roumanie', 'GR': 'Grèce',
+      'TR': 'Turquie', 'UA': 'Ukraine', 'RU': 'Russie', 'BY': 'Biélorussie',
+      'CN': 'Chine', 'JP': 'Japon', 'KR': 'Corée du Sud', 'IN': 'Inde',
+      'PK': 'Pakistan', 'BD': 'Bangladesh', 'TH': 'Thaïlande', 'VN': 'Vietnam',
+      'PH': 'Philippines', 'ID': 'Indonésie', 'MY': 'Malaisie', 'SG': 'Singapour',
+      'AU': 'Australie', 'NZ': 'Nouvelle-Zélande', 'EG': 'Égypte',
+      'ZA': 'Afrique du Sud', 'NG': 'Nigéria', 'KE': 'Kenya', 'ET': 'Éthiopie',
+      'MA': 'Maroc', 'DZ': 'Algérie', 'SA': 'Arabie saoudite', 'AE': 'Émirats arabes unis',
+      'IL': 'Israël', 'IR': 'Iran', 'IQ': 'Irak', 'AF': 'Afghanistan',
+      'TW': 'Taïwan', 'HK': 'Hong Kong'
+    };
+
     function getCountryName(code) {
       const pos = COUNTRY_POSITIONS[code];
       if (!pos) return code;
-      return currentLang === 'pl' ? pos[3] : pos[2];
+      if (currentLang === 'pl') return pos[3];
+      if (currentLang === 'fr') return COUNTRY_NAMES_FR[code] || pos[2];
+      return pos[2];
     }
 
     function toggleMap() {
@@ -4405,17 +4718,26 @@
       if (btn) {
         btn.textContent = '♪';
         btn.classList.toggle('muted', !soundEnabled);
-        btn.setAttribute('title', soundEnabled
-          ? (currentLang === 'pl' ? 'Dźwięk włączony — kliknij aby wyłączyć' : 'Sound on — click to mute')
-          : (currentLang === 'pl' ? 'Dźwięk wyłączony — kliknij aby włączyć' : 'Sound off — click to enable')
-        );
+        const titles = {
+          en: { on: 'Sound on — click to mute', off: 'Sound off — click to enable' },
+          pl: { on: 'Dźwięk włączony — kliknij aby wyłączyć', off: 'Dźwięk wyłączony — kliknij aby włączyć' },
+          fr: { on: 'Son activé — cliquez pour couper', off: 'Son coupé — cliquez pour activer' }
+        };
+        const t = titles[currentLang] || titles.en;
+        btn.setAttribute('title', soundEnabled ? t.on : t.off);
         btn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
       }
       // Also localize the help button tooltip
       const helpBtn = document.getElementById('help-toggle');
       if (helpBtn) {
-        helpBtn.setAttribute('title', currentLang === 'pl' ? 'Pomoc — jak to działa' : 'Help — how this works');
-        helpBtn.setAttribute('aria-label', currentLang === 'pl' ? 'Pomoc' : 'Help');
+        const helpTitles = {
+          en: { title: 'Help — how this works', label: 'Help' },
+          pl: { title: 'Pomoc — jak to działa', label: 'Pomoc' },
+          fr: { title: 'Aide — comment ça marche', label: 'Aide' }
+        };
+        const ht = helpTitles[currentLang] || helpTitles.en;
+        helpBtn.setAttribute('title', ht.title);
+        helpBtn.setAttribute('aria-label', ht.label);
       }
     }
 
@@ -4546,6 +4868,7 @@
       document.documentElement.lang = lang;
       document.getElementById('lang-en').classList.toggle('active', lang === 'en');
       document.getElementById('lang-pl').classList.toggle('active', lang === 'pl');
+      document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
       renderIntro();
       renderLiveBanner();
       updateStats();
@@ -4583,12 +4906,19 @@
       document.getElementById('footer-privacy').textContent = txt.footerPrivacy;
 
       // SEO: update document title + meta tags per language
-      const pageTitle = currentLang === 'en'
-        ? 'Two Buttons — A test of who you become when no one is watching'
-        : 'Dwa przyciski — test tego, kim się stajesz, kiedy nikt nie patrzy';
-      const pageDesc = currentLang === 'en'
-        ? 'An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. 16 questions that challenge whoever you think you are.'
-        : 'Interaktywna gra dylematu moralnego oparta na teorii gier i badaniach behawioralnych. Wybierz czerwony albo niebieski. 16 pytań, które kwestionują to, kim myślisz że jesteś.';
+      const pageTitles = {
+        en: 'Two Buttons — A test of who you become when no one is watching',
+        pl: 'Dwa przyciski — test tego, kim się stajesz, kiedy nikt nie patrzy',
+        fr: 'Deux boutons — un test de qui tu deviens quand personne ne regarde'
+      };
+      const pageDescs = {
+        en: 'An interactive moral dilemma game based on game theory and behavioral research. Choose red or blue. 16 questions that challenge whoever you think you are.',
+        pl: 'Interaktywna gra dylematu moralnego oparta na teorii gier i badaniach behawioralnych. Wybierz czerwony albo niebieski. 16 pytań, które kwestionują to, kim myślisz że jesteś.',
+        fr: 'Un jeu interactif de dilemme moral basé sur la théorie des jeux et la recherche comportementale. Choisis rouge ou bleu. 16 questions qui remettent en question qui tu crois être.'
+      };
+      const localesMap = { en: 'en_US', pl: 'pl_PL', fr: 'fr_FR' };
+      const pageTitle = pageTitles[currentLang] || pageTitles.en;
+      const pageDesc = pageDescs[currentLang] || pageDescs.en;
       document.title = pageTitle;
       const setMeta = (sel, content) => {
         const el = document.querySelector(sel);
@@ -4597,7 +4927,7 @@
       setMeta('meta[name="description"]', pageDesc);
       setMeta('meta[property="og:title"]', pageTitle);
       setMeta('meta[property="og:description"]', pageDesc);
-      setMeta('meta[property="og:locale"]', currentLang === 'en' ? 'en_US' : 'pl_PL');
+      setMeta('meta[property="og:locale"]', localesMap[currentLang] || 'en_US');
       setMeta('meta[name="twitter:title"]', pageTitle);
       setMeta('meta[name="twitter:description"]', pageDesc);
     }
@@ -4717,7 +5047,16 @@
       const blueWidth = Math.round(bluePct);
       const redWidth = 100 - blueWidth;
 
-      const noNewQ = !newQ ? `<p style="font-size: 13px; opacity: 0.6; font-style: italic; margin-top: 16px;">${currentLang === 'en' ? 'All ' + (choice === 'blue' ? 'blue' : 'red') + '-questioning unlocked. Try the other side.' : 'Wszystkie pytania ' + (choice === 'blue' ? 'kwestionujące niebieski' : 'kwestionujące czerwony') + ' odkryte. Spróbuj drugiego przycisku.'}</p>` : '';
+      const noNewQ = !newQ ? (() => {
+        const sideLabel = choice === 'blue' ? { en: 'blue', pl: 'kwestionujące niebieski', fr: 'qui contestent le bleu' }[currentLang]
+                                            : { en: 'red',  pl: 'kwestionujące czerwony',  fr: 'qui contestent le rouge' }[currentLang];
+        const tmpl = {
+          en: (s) => `All ${s}-questioning unlocked. Try the other side.`,
+          pl: (s) => `Wszystkie pytania ${s} odkryte. Spróbuj drugiego przycisku.`,
+          fr: (s) => `Toutes les questions ${s} sont débloquées. Essaie l'autre côté.`
+        }[currentLang] || ((s) => `All ${s}-questioning unlocked. Try the other side.`);
+        return `<p style="font-size: 13px; opacity: 0.6; font-style: italic; margin-top: 16px;">${tmpl(sideLabel)}</p>`;
+      })() : '';
 
       const newQHtml = newQ ? `
         <div class="new-question ${choice}">
@@ -4772,7 +5111,7 @@
               <div class="histogram-red" style="width: ${redWidth}%"></div>
             </div>
             <div class="histogram-threshold"></div>
-            <div class="histogram-label">${currentLang === 'en' ? 'threshold 50% · blue: ' : 'próg 50% · niebieski: '}${bluePct.toFixed(1)}%</div>
+            <div class="histogram-label">${({en: 'threshold 50% · blue: ', pl: 'próg 50% · niebieski: ', fr: 'seuil 50% · bleu : '}[currentLang] || 'threshold 50% · blue: ')}${bluePct.toFixed(1)}%</div>
           </div>
           <div class="result-detail">${msg.detail}</div>
           <div class="result-section">
@@ -5120,8 +5459,17 @@
       const urlLang = urlParams.get('lang');
       const browserLang = (navigator.language || 'en').toLowerCase();
 
-      if (urlLang === 'pl' || (!urlLang && browserLang.startsWith('pl'))) {
-        setLang('pl');
+      let detectedLang = 'en';
+      if (urlLang === 'pl' || urlLang === 'fr' || urlLang === 'en') {
+        detectedLang = urlLang;
+      } else if (browserLang.startsWith('pl')) {
+        detectedLang = 'pl';
+      } else if (browserLang.startsWith('fr')) {
+        detectedLang = 'fr';
+      }
+
+      if (detectedLang !== 'en') {
+        setLang(detectedLang);
       } else {
         renderIntro();
         renderLiveBanner();
