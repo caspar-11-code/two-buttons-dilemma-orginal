@@ -364,3 +364,189 @@ W kwestii prywatności lub usunięcia głosu: otwórz issue.
 ---
 
 *Skoro wszyscy, których znasz, i tak umrą, liczy się tylko, jakim człowiekiem zdecydujesz się być po drodze.*
+
+---
+---
+
+# 🇫🇷 Version française
+
+## Deux Boutons
+
+**Un dilemme moral interactif · Un test de qui tu deviens quand personne ne regarde.**
+
+🌐 Site : [gamestheory.org](https://gamestheory.org)
+
+---
+
+## De quoi s'agit-il ?
+
+Tu as deux boutons. Rouge et bleu. Comme chaque autre personne sur Terre.
+
+- Si **plus de 50%** de l'humanité choisit bleu → tout le monde survit.
+- Si **50% ou moins** choisissent bleu → tous ceux qui ont choisi bleu meurent. Les rouges survivent.
+- Si **tout le monde** choisit rouge → tout le monde survit.
+
+Rouge est le choix sûr. Bleu est un acte de confiance.
+
+Le jeu enregistre ton **premier clic** comme un vrai vote dans un compteur global. Après ça, chaque partie n'est qu'une simulation qui révèle une nouvelle question remettant en cause ton choix. Les 16 questions, les archétypes de personnalité, la carte mondiale de coopération et les six essais approfondis sont des outils pour te faire t'asseoir avec l'écart inconfortable entre **ce que tu dirais que tu choisirais** et **ce que tu fais réellement quand personne ne regarde**.
+
+Ce n'est pas un jeu. C'est la structure de la coopération climatique, des vaccinations, des impôts, et de chaque problème d'action collective dans l'histoire humaine.
+
+---
+
+## Fonctionnalités
+
+### 🎮 Cœur du jeu
+- **Dilemme à deux boutons** avec compteur global persistant
+- **Un vote par appareil** (ID anonyme aléatoire dans localStorage)
+- **16 questions débloquables** qui contestent ton choix — huit contestent rouge, huit contestent bleu, révélées une par partie
+- **Statistiques globales en direct** — votes totaux, % rouge, % bleu
+- **Barre de progression** montrant la « distance pour que l'humanité réussisse le test » avec retour visuel dramatique quand bleu dépasse 50%
+
+### 🌍 Géographie
+- **Carte mondiale en direct** colorée selon les taux de coopération par pays (utilise l'en-tête `cf-ipcountry` de Cloudflare)
+- **Top 5 pays les plus coopératifs / les plus égoïstes**
+- **Tooltips** affichant les votes et le % bleu par pays
+
+### 👤 Type moral
+- **8 archétypes moraux** débloqués après 5 rounds (Calculateur, Pragmatique, Indécis, Croyant, Martyr, Acteur, Observateur)
+- Chaque archétype contient : nom, accroche, citation provocatrice, description en 3 paragraphes
+- **Génération d'image partageable** — 1200×630 PNG avec données de personnalité, parfait pour les réseaux sociaux (Open Graph)
+- **« Copier le résultat »** pour partage direct par texte
+
+### 📚 Six essais · « Plus en profondeur »
+Textes longs débloqués après avoir découvert les 16 questions et voté (ou via l'option « passer le jeu » après le vote). Chacun ~3 min de lecture, avec sources :
+
+1. **Kant contre Mill** — éthique déontologique vs utilitariste
+2. **Schelling et le point focal** — théorie des jeux · pourquoi rouge semble « évident »
+3. **Climat, vaccins, impôts** — ton choix revient, chaque jour
+4. **Pourquoi la Suisse fonctionne** — institutions plutôt que leaders forts
+5. **L'Insurrection de Varsovie et le calcul** — quand bleu est le seul choix
+6. **Quand « le collectif » tue** — Mao, Pol Pot, Staline · le côté sombre du bleu imposé
+
+Chaque essai délibérément inconfortable pour un côté idéologique différent.
+
+### 🎵 Sound design
+Web Audio API (sans fichiers externes) :
+- Tons de clic distincts pour rouge (grave) vs bleu (aigu)
+- Son de mort quand bleu perd (drone descendant)
+- Accord de triomphe quand bleu gagne (ascendant C-E-G)
+- Ton lourd quand rouge gagne
+- Toggle dans la barre du haut, persisté dans localStorage, ACTIVÉ par défaut
+
+### 🌧️ Détails atmosphériques
+- **Histogramme animé** de l'activité des votants — les points tombent en continu, biais selon le ratio bleu/rouge global
+- **Favicon animé** alternant rouge/bleu chaque seconde
+- **Question de seuil provocatrice** apparaissant toutes les deux parties (« Quel % faudrait-il avant que tu cliques bleu ? »)
+
+### 🥚 Easter eggs
+Trois découvertes cachées, une seule fois chacune :
+- **10× rouge à la suite** → « Pourquoi joues-tu encore si tu connais déjà la réponse ? »
+- **Les deux boutons en <250ms** → Question cachée #17 sur le refus de choisir
+- **3:33 heure locale** → Question cachée #18 sur qui tu deviens quand même ta performance s'est tue
+
+### 🌐 Internationalisation
+- Traductions complètes **anglais**, **polonais** et **français**
+- Détection automatique de la langue du navigateur avec override manuel
+- Support du paramètre URL (`?lang=fr`, `?lang=pl`, `?lang=en`)
+- Texte de partage, génération d'image et meta tags SEO localisés
+
+### 🛡️ Confidentialité
+- **Pas d'analytics, pas de trackers tiers, pas de publicité**
+- ID anonyme aléatoire dans localStorage (un vote par appareil)
+- Code pays détecté par Cloudflare uniquement (pas de stockage IP, pas de localisation précise)
+- Banner cookie à la première visite, modal de politique de confidentialité complète dans le pied de page
+- Conforme RGPD/GDPR
+
+### ❓ Système d'aide
+- Bouton `?` dans la barre du haut ouvre un guide expliquant toutes les fonctionnalités
+- 9 sections couvrant règles, vote, déblocages, carte, profil, son, langues, confidentialité, astuces
+- Localisé en EN, PL et FR
+
+---
+
+## Architecture
+
+### Frontend
+**Fichier HTML statique unique** — pas de build step, pas de framework, pas de dépendances.
+- JavaScript vanilla (~5500 lignes)
+- CSS avec design tokens, thème sombre
+- Carte SVG du monde (contours continentaux simplifiés + positions de points)
+- Canvas API pour images partageables et histogramme animé
+- Web Audio API pour son procédural
+
+Hébergé sur **Cloudflare Pages** avec auto-deploy depuis GitHub.
+
+### Backend
+**Cloudflare Worker** + namespace **KV** (`STATS`) :
+
+```
+GET  /api/stats      → { red, blue, total, countries: { PL: {...}, US: {...} } }
+POST /api/vote       → body: { voter_id, choice }
+                       retourne { success | already_voted, choice, stats }
+```
+
+Clés KV :
+- `global` → `{ red, blue, total }`
+- `countries` → `{ "US": {red,blue,total}, "PL": {...}, ... }`
+- `voter:{uuid}` → `"red"` | `"blue"` (application d'un vote)
+
+KV cacheTtl : 60s. Détection pays via en-tête `cf-ipcountry`.
+
+### Licence
+**[PolyForm Noncommercial 1.0.0](LICENSE)** — gratuit pour tout usage non commercial incluant académique, éducatif, projets personnels. L'usage commercial nécessite une autorisation.
+
+---
+
+## Setup (pour développeurs)
+
+Voir **[SETUP_GLOBAL_STATS.md](SETUP_GLOBAL_STATS.md)** pour le guide complet de déploiement Cloudflare Worker + KV.
+
+Version courte :
+1. Forke le repo
+2. Connecte à Cloudflare Pages (auto-deploy de `index.html`)
+3. Crée un Cloudflare Worker, colle `worker.js`, lie un namespace KV comme `STATS`
+4. Mets à jour la constante `API_BASE` dans `index.html` avec ton URL Worker
+5. Optionnellement, sème les stats initiales dans KV (clé `global` avec `{"red":N,"blue":M,"total":N+M}`)
+
+---
+
+## Sources et inspirations
+
+Les questions et essais du jeu s'inspirent de :
+
+- **Sally (1995)** — méta-analyse des taux de coopération dans les expériences de dilemme du prisonnier (~37% baseline)
+- **Darley & Latané (1968)** — recherche sur l'effet du témoin
+- **Oliner & Oliner (1988)** — *The Altruistic Personality* (sauveteurs juifs pendant l'Holocauste)
+- **Fehr & Gächter (2000)** — punition dans les jeux coopératifs
+- **Schelling (1960)** — *La Stratégie du conflit* · points focaux
+- **Kant (1785)** — *Fondements de la métaphysique des mœurs*
+- **Mill (1863)** — *L'Utilitarisme*
+- **Acemoglu & Robinson (2012)** — *Why Nations Fail*
+- **Dikötter** — *La Grande Famine de Mao*
+- **Hayek (1944)** — *La Route de la servitude*
+
+Le format même du dilemme fait écho aux expériences de pensée en théorie du choix social et aux problèmes de coordination globale.
+
+---
+
+## Roadmap
+
+- [x] Trois langues (EN, PL, FR)
+- [ ] Plus de langues (DE, ES, IT)
+- [ ] Mécanique « dernière chance » — autoriser un re-vote après que toutes les questions sont découvertes
+- [ ] Plus d'essais (bibliothèque étendue)
+- [ ] Mode « comparer avec des amis » (URLs de comparaison partageables)
+- [ ] Salons de classe/groupe pour usage éducatif
+
+---
+
+## Contact
+
+C'est un projet personnel. Issues, suggestions et traductions bienvenues via les issues GitHub.
+
+Pour les questions de confidentialité ou les demandes de suppression de vote : ouvre une issue.
+
+---
+
+*Si tous ceux que tu connais vont mourir de toute façon, ce qui compte est le genre de personne que tu choisis d'être en chemin.*
