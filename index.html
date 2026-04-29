@@ -4931,14 +4931,7 @@
       document.getElementById('btn-research').textContent = txt.btnResearch;
       document.getElementById('btn-questions').textContent = txt.btnQuestions;
 
-      // Essays button — visible always, but visually locked until 16/16 + first vote
-      const btnEssays = document.getElementById('btn-essays-intro');
-      const isEssaysUnlocked = essaysUnlocked();
-      btnEssays.textContent = isEssaysUnlocked
-        ? txt.essaysButton
-        : `${txt.essaysButton.replace(' ↗', '')} (${unlockedBlue.length + unlockedRed.length}/16)`;
-      btnEssays.classList.toggle('btn-personality-active', isEssaysUnlocked);
-      btnEssays.classList.toggle('btn-personality-locked', !isEssaysUnlocked);
+      updateIntroButtons();
 
       document.getElementById('footer-text').textContent = txt.footerText;
       document.getElementById('footer-privacy').textContent = txt.footerPrivacy;
@@ -4983,8 +4976,8 @@
       const totalUnlocked = unlockedBlue.length + unlockedRed.length;
       document.getElementById('stat-questions').textContent = totalUnlocked + '/16';
 
-      const btnQ = document.getElementById('btn-questions');
-      btnQ.classList.toggle('hidden', totalUnlocked === 0);
+      // Refresh intro buttons (questions counter, essays unlock state)
+      updateIntroButtons();
 
       const pattern = document.getElementById('pattern');
       if (stats.total < 3) {
@@ -5185,9 +5178,40 @@
       }, 350);
     }
 
+    function updateIntroButtons() {
+      const txt = t();
+      const totalUnlocked = unlockedBlue.length + unlockedRed.length;
+
+      // Essays button — visible always, but visually locked until 16/16 + first vote
+      const btnEssays = document.getElementById('btn-essays-intro');
+      if (btnEssays) {
+        const isEssaysUnlocked = essaysUnlocked();
+        btnEssays.textContent = isEssaysUnlocked
+          ? txt.essaysButton
+          : `${txt.essaysButton.replace(' ↗', '')} (${totalUnlocked}/16)`;
+        btnEssays.classList.toggle('btn-personality-active', isEssaysUnlocked);
+        btnEssays.classList.toggle('btn-personality-locked', !isEssaysUnlocked);
+      }
+
+      // Questions button — show only if at least one question unlocked, with counter
+      const btnQuestions = document.getElementById('btn-questions');
+      if (btnQuestions) {
+        if (totalUnlocked > 0) {
+          btnQuestions.classList.remove('hidden');
+          btnQuestions.textContent = `${txt.btnQuestions.replace(' ↗', '')} (${totalUnlocked}/16) ↗`;
+        } else {
+          btnQuestions.classList.add('hidden');
+          btnQuestions.textContent = txt.btnQuestions;
+        }
+      }
+    }
+
     function playAgain() {
       hideAll();
       document.getElementById('screen-intro').classList.remove('hidden');
+      // Refresh intro state (counters, button labels, self-test progress)
+      updateIntroButtons();
+      renderLiveBanner();
     }
 
     function showReality() {
