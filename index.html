@@ -1902,6 +1902,7 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.2s;
+      position: relative;
     }
 
     .scenario-choice:hover {
@@ -1910,8 +1911,29 @@
     }
 
     .scenario-choice:disabled {
-      opacity: 0.5;
       cursor: default;
+    }
+
+    /* Selected (the one user clicked) — gold border, slight bg tint, small checkmark */
+    .scenario-choice.selected {
+      border-color: var(--accent);
+      border-width: 1.5px;
+      background: rgba(196, 167, 110, 0.08);
+      box-shadow: 0 0 0 1px rgba(196, 167, 110, 0.25);
+    }
+    .scenario-choice.selected::before {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      color: var(--accent);
+      font-size: 14px;
+      font-family: 'Instrument Serif', serif;
+    }
+
+    /* Not-selected (other choice after vote) — dimmed */
+    .scenario-choice:disabled:not(.selected) {
+      opacity: 0.35;
     }
 
     .scenario-choice-cooperate { color: #6ba3ff; }
@@ -4166,7 +4188,7 @@
             context: `Twoja wioska łowi te wody od pokoleń. Stado ryb jest teraz wyczerpane. Naukowcy mówią, że jeśli wszyscy łowią poniżej legalnego limitu, stado odbudowuje się w pięć lat. Jeśli zbyt wielu ignoruje limit, łowisko upadnie trwale w ciągu dwóch sezonów.`,
             stakes: `Jeśli <strong>ponad 70%</strong> trzyma się limitu, stado się odbudowuje i wszyscy znów łowią. Jeśli mniej trzyma się reguły, ci którzy się powstrzymali tracą dochód za nic — upadek i tak nadchodzi, a ci którzy łowili intensywnie, najpierw się wzbogacili.`,
             ask: 'Łowisz w limicie, czy ile się da?',
-            cooperateLabel: 'W limicie',
+            cooperateLabel: 'Łowię w limicie',
             defectLabel: 'Łowię ile się da',
             interpretCooperateWin: 'Trzymałeś się limitu. Większość innych też. Stado się odbudowało. Twoje dzieci będą łowić te wody. Zarabiałeś mniej przez pięć lat i dostałeś wszystko z powrotem. Powoli.',
             interpretCooperateLose: 'Trzymałeś się limitu. Wielu nie. Łowisko upadło w 14 miesięcy. Zarabiałeś mniej niż inni podczas upadku. Teraz nikt nie może łowić. Trzymałeś się reguły. Byłeś za to biedniejszy. Potem byłeś biedny ze wszystkimi.',
@@ -4193,15 +4215,15 @@
           climate: {
             title: 'Strajk klimatyczny',
             short: 'Kraj · zobowiązanie redukcji emisji',
-            cooperate: 'Tnę konsumpcję',
+            cooperate: 'Ograniczam',
             defect: 'Lecę dalej',
             context: `Modele klimatyczne pokazują, że jeśli 50% wysokoemisyjnych populacji zmniejszy o połowę osobisty ślad węglowy w pięć lat, ocieplenie zostaje na poziomie do przeżycia. Cięcie oznacza realne zmiany: mniej lotów, mniej mięsa, mniejsze auta, mniejsze domy. Defektowanie oznacza wygodę, którą masz dzisiaj.`,
             stakes: `Jeśli <strong>co najmniej 50%</strong> zmniejszy emisje o połowę, planeta pozostaje do życia przez następne stulecie — lekko zubożała, w większości zamieszkiwalna. Jeśli mniej tnie, cięcia kosztują kooperatorów (mniej konsumpcji, mniej podróży, mniej bogactwa) bez zapobieżenia katastrofie. Defektorzy żyją normalnie aż wszystko zawiedzie naraz.`,
-            ask: 'Tniesz konsumpcję teraz, czy czekasz?',
-            cooperateLabel: 'Tnę',
+            ask: 'Ograniczasz konsumpcję teraz, czy czekasz?',
+            cooperateLabel: 'Ograniczam',
             defectLabel: 'Lecę dalej',
-            interpretCooperateWin: 'Tnąłeś. Wystarczająco innych też. Cel 1.5°C zsunął się, ale nie wystarczająco żeby liczyło. Twoje dzieci będą żyć w lekko biedniejszym, lekko bardziej funkcjonalnym świecie. Oddałeś za to wakacje i steki. Większość z nich nigdy się o tym nie dowie.',
-            interpretCooperateLose: 'Tnąłeś. Większość nie. Planeta przekroczyła próg. Twoje wyrzeczenia niczego nie zmieniły. Jadłeś mniej mięsa i latałeś mniej za nic mierzalnego. Atmosfera nie dba o intencje.',
+            interpretCooperateWin: 'Ograniczyłeś. Wystarczająco innych też. Cel 1.5°C zsunął się, ale nie wystarczająco żeby liczyło. Twoje dzieci będą żyć w lekko biedniejszym, lekko bardziej funkcjonalnym świecie. Oddałeś za to wakacje i steki. Większość z nich nigdy się o tym nie dowie.',
+            interpretCooperateLose: 'Ograniczyłeś. Większość nie. Planeta przekroczyła próg. Twoje wyrzeczenia niczego nie zmieniły. Jadłeś mniej mięsa i latałeś mniej za nic mierzalnego. Atmosfera nie dba o intencje.',
             interpretDefectWin: 'Zachowałeś normalne życie. Inni cięli wystarczająco, żeby planeta się utrzymała. Miałeś wakacje, komfort, pełne menu — i przyszłość do życia. Pasażer na gapę zadziałał idealnie. Kooperatorzy mogą lub nie czuć się oszukani. Są zbyt grzeczni żeby powiedzieć.',
             interpretDefectLose: 'Konsumowałeś dalej. Tak samo większość. Próg minął. Dekada katastrof zaczyna się teraz. Cieszyłeś się dwoma dekadami normalnego życia, a teraz wszyscy mierzą się razem z tym co nadchodzi. Były ostrzeżenia.'
           },
@@ -6839,12 +6861,12 @@
           <p class="scenario-stakes">${sd.stakes}</p>
           <div class="scenario-ask">${escapeHtml(sd.ask)}</div>
           <div class="scenario-choices">
-            <button class="scenario-choice scenario-choice-cooperate"
+            <button class="scenario-choice scenario-choice-cooperate ${userVote === 'cooperate' ? 'selected' : ''}"
               ${userVote ? 'disabled' : ''}
               onclick="handleScenarioVote('${scenarioId}', 'cooperate')">
               ${escapeHtml(sd.cooperateLabel)}
             </button>
-            <button class="scenario-choice scenario-choice-defect"
+            <button class="scenario-choice scenario-choice-defect ${userVote === 'defect' ? 'selected' : ''}"
               ${userVote ? 'disabled' : ''}
               onclick="handleScenarioVote('${scenarioId}', 'defect')">
               ${escapeHtml(sd.defectLabel)}
@@ -6852,9 +6874,21 @@
           </div>
           ${resultBlock}
           <div class="scenario-result-actions">
+            ${userVote ? (() => {
+              // Find next unanswered scenario after the current one in the list
+              const currentIdx = SCENARIOS.findIndex(s => s.id === scenarioId);
+              // Look forward from current+1 first, then wrap to start
+              let next = SCENARIOS.slice(currentIdx + 1).find(s => !scenarioVotes[s.id])
+                      || SCENARIOS.slice(0, currentIdx).find(s => !scenarioVotes[s.id]);
+              if (next) {
+                return `<button class="btn btn-personality-active" onclick="showScenario('${next.id}')">${txt.scenariosNext}</button>`;
+              }
+              // All answered — surface signature button instead
+              return `<button class="btn btn-personality-active" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ↗</button>`;
+            })() : ''}
             <button class="btn" onclick="showScenarios()">${txt.scenariosListBack}</button>
-            ${SCENARIOS.filter(s => scenarioVotes[s.id]).length > 0
-              ? `<button class="btn" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ↗</button>`
+            ${userVote && SCENARIOS.filter(s => scenarioVotes[s.id]).length > 0 && SCENARIOS.find(s => !scenarioVotes[s.id])
+              ? `<button class="btn" onclick="showCooperationSignature()">${txt.scenariosViewSignature}</button>`
               : ''}
           </div>
         </div>
