@@ -3320,8 +3320,8 @@
         scenariosNotVoted: 'Not voted',
         scenariosThresholdLabel: (pct) => `Threshold: ${pct}% must cooperate`,
         scenariosResultHeader: 'How the world voted',
-        scenariosResultThresholdMet: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Cooperation succeeded — those who cooperated are safe.`,
-        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Cooperation failed — those who cooperated bore the cost. Those who defected are fine.`,
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Coordination succeeded.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Coordination failed.`,
         scenariosYouCooperated: 'You cooperated.',
         scenariosYouDefected: 'You defected.',
         scenariosCount: (n, total) => `${n}/${total} answered`,
@@ -4058,8 +4058,8 @@
         scenariosNotVoted: 'Bez odpowiedzi',
         scenariosThresholdLabel: (pct) => `Próg: ${pct}% musi kooperować`,
         scenariosResultHeader: 'Jak głosował świat',
-        scenariosResultThresholdMet: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Kooperacja się powiodła — ci, którzy kooperowali, są bezpieczni.`,
-        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Kooperacja zawiodła — ci, którzy kooperowali, ponieśli koszt. Ci, którzy zdezerterowali, są bezpieczni.`,
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Koordynacja się powiodła.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Koordynacja zawiodła.`,
         scenariosYouCooperated: 'Wybrałeś kooperację.',
         scenariosYouDefected: 'Wybrałeś dezercję.',
         scenariosCount: (n, total) => `${n}/${total} odpowiedzianych`,
@@ -4589,8 +4589,8 @@
         scenariosNotVoted: 'Sans réponse',
         scenariosThresholdLabel: (pct) => `Seuil : ${pct}% doivent coopérer`,
         scenariosResultHeader: 'Comment le monde a voté',
-        scenariosResultThresholdMet: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coopération a réussi — ceux qui ont coopéré sont en sécurité.`,
-        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coopération a échoué — ceux qui ont coopéré ont supporté le coût. Ceux qui ont fait défection sont indemnes.`,
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coordination a réussi.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coordination a échoué.`,
         scenariosYouCooperated: 'Tu as coopéré.',
         scenariosYouDefected: 'Tu as fait défection.',
         scenariosCount: (n, total) => `${n}/${total} répondus`,
@@ -6261,6 +6261,11 @@
       ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality', 'screen-essays', 'screen-essay-detail', 'screen-scenarios', 'screen-scenario-detail', 'screen-signature'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
+      // Hide the "Your choices in this session" panel — it belongs only to the result screen.
+      // Without this, after voting once and then navigating to scenarios/essays/etc., the panel
+      // stays visible with stale main-game data, which is confusing.
+      const statsPanel = document.getElementById('stats');
+      if (statsPanel) statsPanel.classList.add('hidden');
     }
 
     function choose(choice) {
