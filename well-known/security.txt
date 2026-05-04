@@ -1,7 +1,0 @@
-# Security policy for gamestheory.org
-# https://www.rfc-editor.org/rfc/rfc9116
-
-Contact: https://github.com/caspar-11-code/two-buttons-dilemma-orginal/issues
-Expires: 2027-04-29T23:59:59.000Z
-Preferred-Languages: en, pl, fr
-Canonical: https://gamestheory.org/.well-known/security.txt
