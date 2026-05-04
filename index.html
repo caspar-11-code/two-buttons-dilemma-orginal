@@ -2047,6 +2047,7 @@
     }
     .signature-dot.cooperate { background: #6ba3ff; border-color: #6ba3ff; }
     .signature-dot.defect    { background: #c97070; border-color: #c97070; }
+    .signature-dot.pending   { background: transparent; border-color: var(--border); border-style: dashed; }
 
     .signature-dots-legend {
       font-family: 'JetBrains Mono', monospace;
@@ -3287,7 +3288,7 @@
         scenariosCtaTitle: 'Try the same dilemma — with stakes you recognize',
         scenariosCtaSub: 'Ten situations from real life: a strike, a boycott, an uprising. Same structure as the buttons. Different gut response.',
         scenariosCtaSubInProgress: (n, total) => `${n}/${total} answered. Continue where you left off.`,
-        scenariosCtaSubDone: 'You\'ve answered all ten. See your cooperation signature.',
+        scenariosCtaSubDone: 'You\'ve answered all ten. See your full summary.',
         scenariosListTitle: 'Scenarios',
         scenariosListSub: 'Ten real-world situations with the same structure as the core game — coordination thresholds, asymmetric risk, no clean answer. Each one tracks how the world votes.',
         scenariosBack: '← Back',
@@ -3302,21 +3303,21 @@
         scenariosYouCooperated: 'You cooperated.',
         scenariosYouDefected: 'You defected.',
         scenariosCount: (n, total) => `${n}/${total} answered`,
-        scenariosCompletionTitle: 'Your cooperation signature',
-        scenariosCompletionSub: 'Ten situations. Ten choices. Here\'s how you compare to everyone else who took this test.',
+        scenariosCompletionTitle: 'Your choice summary',
+        scenariosCompletionSub: 'Your choices across all the scenarios you\'ve answered so far — and how you compare to everyone else.',
         scenariosComparisonMore: (pct) => `You cooperated more than ${pct}% of players.`,
         scenariosComparisonLess: (pct) => `You cooperated less than ${pct}% of players.`,
         scenariosComparisonSame: 'You cooperated about the same as the average player.',
         scenariosCompletionLockedTitle: 'Not all answered yet',
         scenariosCompletionLockedSub: (n, total) => `You\'ve answered ${n} of ${total} scenarios. Finish them all to see your full cooperation signature.`,
-        scenariosSignatureLabel: 'YOUR PATTERN',
-        scenariosSignatureCooperated: (n, total) => `You cooperated in ${n} of ${total} situations`,
+        scenariosSignatureLabel: 'YOUR CHOICES SO FAR',
+        scenariosSignatureCooperated: (n, answered, total) => `You cooperated in ${n} of ${answered} answered situations (${total} total)`,
         scenariosTopCooperateLabel: 'Where you stood out — for cooperation',
         scenariosTopCooperateSub: 'Situations where your cooperation was most ahead of the global average.',
         scenariosTopDefectLabel: 'Where you stood out — for self-interest',
         scenariosTopDefectSub: 'Situations where you defected while most players cooperated.',
         scenariosTopNone: 'Nothing notable on this side.',
-        scenariosViewSignature: 'See your signature',
+        scenariosViewSignature: 'See your summary',
         scenariosBackToList: '← Back to scenarios',
         scenariosGlobalAvgLabel: 'Global average',
         scenariosYourScoreLabel: 'You',
@@ -4025,7 +4026,7 @@
         scenariosCtaTitle: 'Spróbuj tego samego dylematu — w sytuacjach które znasz',
         scenariosCtaSub: 'Dziesięć sytuacji z prawdziwego życia: strajk, bojkot, powstanie. Ta sama struktura co przyciski. Inna reakcja brzucha.',
         scenariosCtaSubInProgress: (n, total) => `${n}/${total} odpowiedzianych. Wróć tam gdzie skończyłeś.`,
-        scenariosCtaSubDone: 'Odpowiedziałeś na wszystkie dziesięć. Zobacz swój podpis kooperacji.',
+        scenariosCtaSubDone: 'Odpowiedziałeś na wszystkie dziesięć. Zobacz pełne podsumowanie.',
         scenariosListTitle: 'Scenariusze',
         scenariosListSub: 'Dziesięć realnych sytuacji o tej samej strukturze co główna gra — progi kooperacji, asymetryczne ryzyko, brak czystej odpowiedzi. Każdy śledzi jak głosuje świat.',
         scenariosBack: '← Wróć',
@@ -4040,21 +4041,21 @@
         scenariosYouCooperated: 'Wybrałeś kooperację.',
         scenariosYouDefected: 'Wybrałeś dezercję.',
         scenariosCount: (n, total) => `${n}/${total} odpowiedzianych`,
-        scenariosCompletionTitle: 'Twój podpis kooperacji',
-        scenariosCompletionSub: 'Dziesięć sytuacji. Dziesięć wyborów. Tak wypadasz na tle wszystkich, którzy zrobili ten test.',
+        scenariosCompletionTitle: 'Podsumowanie twoich wyborów',
+        scenariosCompletionSub: 'Twoje wybory we wszystkich scenariuszach, na które do tej pory odpowiedziałeś — i jak wypadasz na tle innych.',
         scenariosComparisonMore: (pct) => `Kooperowałeś bardziej niż ${pct}% graczy.`,
         scenariosComparisonLess: (pct) => `Kooperowałeś mniej niż ${pct}% graczy.`,
         scenariosComparisonSame: 'Kooperowałeś podobnie jak średni gracz.',
         scenariosCompletionLockedTitle: 'Jeszcze nie wszystkie',
         scenariosCompletionLockedSub: (n, total) => `Odpowiedziałeś na ${n} z ${total} scenariuszy. Skończ wszystkie żeby zobaczyć pełny podpis kooperacji.`,
-        scenariosSignatureLabel: 'TWÓJ WZORZEC',
-        scenariosSignatureCooperated: (n, total) => `Kooperowałeś w ${n} z ${total} sytuacji`,
+        scenariosSignatureLabel: 'TWOJE WYBORY DO TEJ PORY',
+        scenariosSignatureCooperated: (n, answered, total) => `Kooperowałeś w ${n} z ${answered} sytuacji (${total} łącznie)`,
         scenariosTopCooperateLabel: 'Tam wyróżniłeś się — kooperacją',
         scenariosTopCooperateSub: 'Sytuacje, w których twoja kooperacja najbardziej wyprzedziła globalną średnią.',
         scenariosTopDefectLabel: 'Tam wyróżniłeś się — egoizmem',
         scenariosTopDefectSub: 'Sytuacje, w których zdezerterowałeś, gdy większość kooperowała.',
         scenariosTopNone: 'Nic znaczącego po tej stronie.',
-        scenariosViewSignature: 'Zobacz swój podpis',
+        scenariosViewSignature: 'Zobacz podsumowanie',
         scenariosBackToList: '← Wróć do scenariuszy',
         scenariosGlobalAvgLabel: 'Średnia globalna',
         scenariosYourScoreLabel: 'Ty',
@@ -4244,7 +4245,7 @@
         ]
       },
       fr: {
-        brand: 'Two Buttons · kwh',
+        brand: 'Deux Boutons · kwh',
         eyebrow: 'Un dilemme moral · Expérience de théorie des jeux',
         title: 'Deux <em>boutons</em>.<br>Un seul choix.',
         sub: 'Un test de qui tu deviens quand personne ne regarde.',
@@ -4417,13 +4418,15 @@
 
         // Research data (for reality screen)
         researchData: [
-          { title: 'Sally (1995) — méta-analyse', text: 'Synthèse de 130 expériences avec dilemme du prisonnier. Taux moyen de coopération : ~47%. Les humains coopèrent moins que la théorie le prédit.', source: 'Sally, D. (1995). Conversation and cooperation in social dilemmas. Rationality and Society 7(1).' },
-          { title: 'Darley & Latané (1968) — l\'effet du témoin', text: 'Plus il y a de témoins, moins la probabilité que quelqu\'un aide. La diffusion de la responsabilité fait que tout le monde attend que l\'autre agisse.', source: 'Darley, J.M., & Latané, B. (1968). Bystander intervention in emergencies. Journal of Personality and Social Psychology 8(4).' },
-          { title: 'Oliner (1988) — Personnalité altruiste', text: 'Étude des sauveteurs juifs pendant l\'Holocauste. Trait commun : ils n\'ont pas calculé. Ils ont agi rapidement, comme si le calcul rationnel n\'était pas une option.', source: 'Oliner, S.P., & Oliner, P.M. (1988). The Altruistic Personality: Rescuers of Jews in Nazi Europe.' },
-          { title: 'Fehr & Gächter (2000) — punition altruiste', text: 'Quand on permet aux participants de punir les défecteurs (à leurs propres frais), la coopération monte à ~80%. Sans cette possibilité — elle s\'effondre à 10%.', source: 'Fehr, E., & Gächter, S. (2000). Cooperation and punishment in public goods experiments. American Economic Review 90(4).' }
+          { label: 'Dans les sondages (déclaré)', headline: '~70% disent "j\'aiderais un inconnu en danger"', detail: 'Les sondages hypothétiques sont des choix sans coût. Les gens déclarent constamment un altruisme élevé.' },
+          { label: 'En laboratoire (dilemme du prisonnier)', headline: '~47% choisissent la coopération', detail: 'Sally (1995), méta-analyse de 130 expériences. Quand les décisions commencent à avoir des conséquences, la coopération chute nettement par rapport à la volonté déclarée.' },
+          { label: 'En expérience (effet du témoin)', headline: '31% aident quand ils pensent que 4 autres témoins sont présents', detail: 'Darley & Latané (1968). Seuls : 85% aident ; avec un autre : 62% ; avec quatre autres : 31%. "Quelqu\'un d\'autre s\'en occupera" — diffusion de la responsabilité.' },
+          { label: 'Dans l\'histoire (Holocauste, Europe occupée)', headline: 'Bien moins de 1% de la population a activement caché des Juifs', detail: 'Oliner & Oliner (1988). Quand l\'enjeu est une vraie mort, le pourcentage de gens prêts à se sacrifier est microscopique.' },
+          { label: 'Dans la réalité (port du masque COVID)', headline: 'Japon ~85% / Allemagne ~65% / USA ~50%', detail: 'Même dilemme, même virus, résultats différents (auto-déclaré, variant selon la période). La coopération n\'est pas une constante de "l\'humanité" — elle dépend de la culture et de la confiance institutionnelle.' },
+          { label: 'En économie (jeu des biens publics)', headline: 'Coopération : ~50% → ~10% après 10 tours', detail: 'Fehr & Gächter (2000). Sans punition pour les passagers clandestins, la coopération s\'érode — par frustration, pas par cupidité.' }
         ],
 
-                archetypes: {
+        archetypes: {
           calculator: {
             name: 'Le <em>Calculateur</em>',
             tagline: 'Logique froide, pas d\'illusions.',
@@ -4554,7 +4557,7 @@
         scenariosCtaTitle: 'Essaie le même dilemme — avec des enjeux que tu reconnais',
         scenariosCtaSub: 'Dix situations réelles : une grève, un boycott, une insurrection. Même structure que les boutons. Réaction viscérale différente.',
         scenariosCtaSubInProgress: (n, total) => `${n}/${total} répondus. Continue où tu t\'es arrêté.`,
-        scenariosCtaSubDone: 'Tu as répondu aux dix. Vois ta signature de coopération.',
+        scenariosCtaSubDone: 'Tu as répondu aux dix. Vois ton résumé complet.',
         scenariosListTitle: 'Scénarios',
         scenariosListSub: 'Dix situations réelles avec la même structure que le jeu principal — seuils de coopération, risque asymétrique, pas de réponse propre. Chacune suit comment vote le monde.',
         scenariosBack: '← Retour',
@@ -4569,21 +4572,21 @@
         scenariosYouCooperated: 'Tu as coopéré.',
         scenariosYouDefected: 'Tu as fait défection.',
         scenariosCount: (n, total) => `${n}/${total} répondus`,
-        scenariosCompletionTitle: 'Ta signature de coopération',
-        scenariosCompletionSub: 'Dix situations. Dix choix. Voici comment tu te compares à tous ceux qui ont fait ce test.',
+        scenariosCompletionTitle: 'Résumé de tes choix',
+        scenariosCompletionSub: 'Tes choix dans tous les scénarios auxquels tu as répondu jusqu\'ici — et comment tu te compares aux autres.',
         scenariosComparisonMore: (pct) => `Tu as coopéré plus que ${pct}% des joueurs.`,
         scenariosComparisonLess: (pct) => `Tu as coopéré moins que ${pct}% des joueurs.`,
         scenariosComparisonSame: 'Tu as coopéré à peu près comme le joueur moyen.',
         scenariosCompletionLockedTitle: 'Pas tous répondus',
         scenariosCompletionLockedSub: (n, total) => `Tu as répondu à ${n} des ${total} scénarios. Termine-les tous pour voir ta signature de coopération complète.`,
-        scenariosSignatureLabel: 'TON SCHÉMA',
-        scenariosSignatureCooperated: (n, total) => `Tu as coopéré dans ${n} des ${total} situations`,
+        scenariosSignatureLabel: 'TES CHOIX JUSQU\'ICI',
+        scenariosSignatureCooperated: (n, answered, total) => `Tu as coopéré dans ${n} des ${answered} situations (${total} au total)`,
         scenariosTopCooperateLabel: 'Là tu t\'es démarqué — par la coopération',
         scenariosTopCooperateSub: 'Situations où ta coopération a le plus dépassé la moyenne globale.',
         scenariosTopDefectLabel: 'Là tu t\'es démarqué — par l\'égoïsme',
         scenariosTopDefectSub: 'Situations où tu as fait défection alors que la plupart des joueurs coopéraient.',
         scenariosTopNone: 'Rien de notable de ce côté.',
-        scenariosViewSignature: 'Voir ta signature',
+        scenariosViewSignature: 'Voir le résumé',
         scenariosBackToList: '← Retour aux scénarios',
         scenariosGlobalAvgLabel: 'Moyenne globale',
         scenariosYourScoreLabel: 'Toi',
@@ -6803,7 +6806,7 @@
         <div class="scenarios-progress">${txt.scenariosCount(answered, total)}</div>
         <div class="scenarios-list">${cards}</div>
         <div style="text-align: center; margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          ${answered === total ? `<button class="btn btn-personality-active" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ↗</button>` : ''}
+          ${answered > 0 ? `<button class="btn ${answered === total ? 'btn-personality-active' : ''}" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ${answered === total ? '↗' : `(${answered}/${total})`}</button>` : ''}
           <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
         </div>
       `;
@@ -6850,6 +6853,9 @@
           ${resultBlock}
           <div class="scenario-result-actions">
             <button class="btn" onclick="showScenarios()">${txt.scenariosListBack}</button>
+            ${SCENARIOS.filter(s => scenarioVotes[s.id]).length > 0
+              ? `<button class="btn" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ↗</button>`
+              : ''}
           </div>
         </div>
       `;
@@ -6981,8 +6987,8 @@
       const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
       const screen = document.getElementById('screen-signature');
 
-      // Locked state if not all answered yet
-      if (answered < total) {
+      // Locked state ONLY if zero answered yet
+      if (answered === 0) {
         const html = `
           <div class="signature-card">
             <div class="signature-eyebrow">${txt.scenariosCompletionLockedTitle}</div>
@@ -7011,18 +7017,19 @@
       screen.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Parallel fetch all scenario stats
+      // Parallel fetch all scenario stats (only for those user voted on)
       const allStats = await Promise.all(SCENARIOS.map(s => fetchScenarioStats(s.id)));
 
-      // Compute user's cooperation score (0..1)
-      const userCooperatedCount = SCENARIOS.filter(s => scenarioVotes[s.id] === 'cooperate').length;
-      const userScore = userCooperatedCount / total;
+      // Compute user's cooperation score over ANSWERED scenarios only (0..1)
+      const answeredScenarios = SCENARIOS.filter(s => scenarioVotes[s.id]);
+      const userCooperatedCount = answeredScenarios.filter(s => scenarioVotes[s.id] === 'cooperate').length;
+      const userScore = answered > 0 ? userCooperatedCount / answered : 0;
 
-      // Compute global average cooperation score (0..1)
-      // Approach: per-scenario % of cooperators, then average across scenarios where data exists
+      // Compute global average cooperation score (0..1) across answered scenarios where stats exist
       let globalAvg = null;
       const validScenarios = [];
       SCENARIOS.forEach((s, i) => {
+        if (!scenarioVotes[s.id]) return; // skip unanswered
         const stats = allStats[i];
         if (stats && stats.total > 0) {
           const pct = stats.cooperate / stats.total;
@@ -7033,25 +7040,26 @@
         globalAvg = validScenarios.reduce((sum, v) => sum + v.pct, 0) / validScenarios.length;
       }
 
-      // Build dots row (visual signature: 10 colored dots)
+      // Build dots row — answered = colored, unanswered = neutral outline
       const dotsHtml = SCENARIOS.map(s => {
         const c = scenarioVotes[s.id];
+        if (!c) return `<div class="signature-dot pending" title="${escapeHtml((txt.scenarios[s.id] && txt.scenarios[s.id].title) || s.id)}"></div>`;
         return `<div class="signature-dot ${c === 'cooperate' ? 'cooperate' : 'defect'}" title="${escapeHtml((txt.scenarios[s.id] && txt.scenarios[s.id].title) || s.id)}"></div>`;
       }).join('');
 
-      // Comparison text
+      // Comparison text (only when meaningful — at least 3 answered)
       let comparisonHtml;
-      if (globalAvg === null) {
+      if (answered < 3) {
+        // Too few answers for meaningful comparison
+        comparisonHtml = '';
+      } else if (globalAvg === null) {
         comparisonHtml = `<div class="signature-comparison">${escapeHtml(txt.scenariosNoStatsYet)}</div>`;
       } else {
         const diff = userScore - globalAvg;
-        const absDiffPct = Math.round(Math.abs(diff) * 100);
         let comparisonText;
         if (Math.abs(diff) < 0.05) {
           comparisonText = txt.scenariosComparisonSame;
         } else if (diff > 0) {
-          // User cooperated more than global avg — translate to "more than X% of players"
-          // Heuristic: convert mean difference into rough percentile
           const percentile = Math.min(95, Math.round(50 + (diff * 100)));
           comparisonText = txt.scenariosComparisonMore(percentile);
         } else {
@@ -7061,17 +7069,16 @@
         comparisonHtml = `<div class="signature-comparison">${escapeHtml(comparisonText)}</div>`;
       }
 
-      // Compute top 3 standout cooperate (user cooperated where most defected)
-      // and top 3 standout defect (user defected where most cooperated)
+      // Compute top 3 standout cooperate / defect — over answered scenarios
       const cooperateStandouts = validScenarios
         .filter(v => v.userChoice === 'cooperate')
-        .map(v => ({ ...v, gap: 1 - v.pct })) // bigger gap = fewer others cooperated, you stood out
+        .map(v => ({ ...v, gap: 1 - v.pct }))
         .sort((a, b) => b.gap - a.gap)
         .slice(0, 3);
 
       const defectStandouts = validScenarios
         .filter(v => v.userChoice === 'defect')
-        .map(v => ({ ...v, gap: v.pct })) // bigger gap = more others cooperated, you stood out for defection
+        .map(v => ({ ...v, gap: v.pct }))
         .sort((a, b) => b.gap - a.gap)
         .slice(0, 3);
 
@@ -7083,8 +7090,6 @@
           const sd = txt.scenarios[item.id];
           const cooperatePct = Math.round(item.pct * 100);
           const displayPct = kind === 'cooperate' ? (100 - cooperatePct) : cooperatePct;
-          // For cooperation standout: show "X% defected (you didn't)"
-          // For defection standout: show "X% cooperated (you didn't)"
           return `
             <div class="signature-ranking-item">
               <div class="signature-ranking-name">${escapeHtml(sd.title)}</div>
@@ -7097,18 +7102,14 @@
         }).join('');
       };
 
-      const html = `
-        <div class="signature-card">
-          <div class="signature-eyebrow">${txt.scenariosSignatureLabel}</div>
-          <div class="signature-headline">${txt.scenariosCompletionTitle}</div>
-          <div class="signature-pattern">${escapeHtml(txt.scenariosSignatureCooperated(userCooperatedCount, total))}</div>
-          <div class="signature-dots">${dotsHtml}</div>
-          <div class="signature-dots-legend">
-            ${escapeHtml(txt.scenarios[SCENARIOS[0].id].cooperateLabel || '').replace(/[—·.,]/g,'')} · ${escapeHtml(txt.scenarios[SCENARIOS[0].id].defectLabel || '').replace(/[—·.,]/g,'')}
-          </div>
-          ${comparisonHtml}
-        </div>
+      // "Continue" button — surfaces next unanswered scenario if any remain
+      const nextUnanswered = SCENARIOS.find(s => !scenarioVotes[s.id]);
+      const continueBtn = nextUnanswered
+        ? `<button class="btn btn-personality-active" onclick="showScenario('${nextUnanswered.id}')">${txt.scenariosNext}</button>`
+        : '';
 
+      // Show rankings only if there are stats; hide both blocks when there's nothing to compare
+      const rankingsHtml = (cooperateStandouts.length > 0 || defectStandouts.length > 0) ? `
         <div class="signature-ranking">
           <div class="signature-ranking-label">${txt.scenariosTopCooperateLabel}</div>
           <div class="signature-ranking-sub">${escapeHtml(txt.scenariosTopCooperateSub)}</div>
@@ -7120,8 +7121,21 @@
           <div class="signature-ranking-sub">${escapeHtml(txt.scenariosTopDefectSub)}</div>
           <div class="signature-ranking-list">${renderRanking(defectStandouts, 'defect')}</div>
         </div>
+      ` : '';
+
+      const html = `
+        <div class="signature-card">
+          <div class="signature-eyebrow">${txt.scenariosSignatureLabel}</div>
+          <div class="signature-headline">${txt.scenariosCompletionTitle}</div>
+          <div class="signature-pattern">${escapeHtml(txt.scenariosSignatureCooperated(userCooperatedCount, answered, total))}</div>
+          <div class="signature-dots">${dotsHtml}</div>
+          ${comparisonHtml}
+        </div>
+
+        ${rankingsHtml}
 
         <div style="text-align: center; margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          ${continueBtn}
           <button class="btn" onclick="showScenarios()">${txt.scenariosBackToList}</button>
           <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
         </div>
