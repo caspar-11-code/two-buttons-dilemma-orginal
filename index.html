@@ -547,6 +547,73 @@
       opacity: 0.6;
     }
 
+    /* ─── Scenarios CTA banner (intro) ─── */
+    /* Distinct from self-test-cta (gold) — uses cool blue tint to grab fresh attention */
+    .scenarios-cta {
+      background: linear-gradient(135deg, rgba(107, 163, 255, 0.07) 0%, rgba(107, 163, 255, 0.02) 100%);
+      border: 0.5px solid rgba(107, 163, 255, 0.22);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .scenarios-cta:hover {
+      border-color: rgba(107, 163, 255, 0.45);
+      transform: translateY(-1px);
+    }
+    .scenarios-cta-icon {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      color: #6ba3ff;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .scenarios-cta-content { flex: 1; }
+    .scenarios-cta-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .scenarios-cta-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: rgba(107, 163, 255, 0.18);
+      color: #6ba3ff;
+      font-weight: 600;
+    }
+    .scenarios-cta-sub {
+      font-size: 13px;
+      color: var(--text-mute);
+      line-height: 1.4;
+    }
+    .scenarios-cta-arrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: #6ba3ff;
+      opacity: 0.7;
+    }
+
+    /* In result screen — slightly more compact variant */
+    .result-scenarios-cta {
+      margin-top: 20px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* ─── Personality Result Card ─── */
     .personality-card {
       background: linear-gradient(135deg, #1a1a1c 0%, #0f0f10 100%);
@@ -1655,6 +1722,420 @@
       opacity: 0.55;
     }
 
+    /* ─── Scenarios ─── */
+    .scenarios-intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .scenarios-intro h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 36px;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .scenarios-intro p {
+      font-family: 'Newsreader', serif;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-mute);
+    }
+
+    .scenarios-progress {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .scenarios-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .scenario-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .scenario-card-number {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 32px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.7;
+      flex-shrink: 0;
+      width: 40px;
+    }
+
+    .scenario-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .scenario-card-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .scenario-card-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .scenario-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+    }
+
+    .scenario-card-status-voted {
+      color: var(--accent);
+    }
+
+    /* ─── Scenario detail ─── */
+    .scenario-detail {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .scenario-detail-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .scenario-detail h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .scenario-detail-threshold {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .scenario-context, .scenario-stakes {
+      font-family: 'Newsreader', serif;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .scenario-stakes strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .scenario-ask {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--text);
+      margin: 32px 0 24px;
+      text-align: center;
+    }
+
+    .scenario-choices {
+      display: flex;
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .scenario-choice {
+      flex: 1;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .scenario-choice:hover {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .scenario-choice:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .scenario-choice-cooperate { color: #6ba3ff; }
+    .scenario-choice-defect { color: #c97070; }
+
+    .scenario-result {
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .scenario-result-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .scenario-result-stats {
+      font-family: 'Newsreader', serif;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .scenario-result-your {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .scenario-result-interpret {
+      font-family: 'Newsreader', serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      font-style: italic;
+      padding-top: 16px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .scenario-result-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .scenario-detail h1 { font-size: 32px; }
+      .scenario-ask { font-size: 18px; }
+      .scenario-choices { flex-direction: column; gap: 10px; }
+      .scenario-context, .scenario-stakes { font-size: 16px; }
+    }
+
+    /* ─── Cooperation Signature (completion screen) ─── */
+    .signature-card {
+      background: linear-gradient(135deg, #1a1a1c 0%, #0f0f10 100%);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 36px 32px;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+
+    .signature-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .signature-headline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .signature-pattern {
+      font-family: 'Newsreader', serif;
+      font-size: 18px;
+      color: var(--text-mute);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .signature-comparison {
+      font-family: 'Newsreader', serif;
+      font-size: 19px;
+      line-height: 1.5;
+      text-align: center;
+      color: var(--text);
+      padding: 22px 16px;
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .signature-comparison strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .signature-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .signature-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+    .signature-dot.cooperate { background: #6ba3ff; border-color: #6ba3ff; }
+    .signature-dot.defect    { background: #c97070; border-color: #c97070; }
+
+    .signature-dots-legend {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    /* Top 3 ranking block */
+    .signature-ranking {
+      max-width: 640px;
+      margin: 0 auto 24px;
+    }
+
+    .signature-ranking-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .signature-ranking-sub {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-mute);
+      margin-bottom: 14px;
+    }
+
+    .signature-ranking-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signature-ranking-item {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .signature-ranking-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 17px;
+    }
+
+    .signature-ranking-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-mute);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .signature-ranking-pct {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .signature-ranking-pct.defect { color: #c97070; }
+    .signature-ranking-pct.cooperate { color: #6ba3ff; }
+
+    .signature-ranking-empty {
+      text-align: center;
+      font-style: italic;
+      color: var(--text-mute);
+      padding: 14px;
+      font-family: 'Newsreader', serif;
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .signature-headline { font-size: 30px; }
+      .signature-comparison { font-size: 17px; }
+      .signature-card { padding: 28px 22px; }
+    }
+
     /* ─── Essay Detail ─── */
     .essay-detail {
       max-width: 620px;
@@ -2156,6 +2637,18 @@
       <p class="privacy-note" id="privacy-note"></p>
       <p class="hint" id="hint"></p>
 
+      <div class="scenarios-cta" id="scenarios-cta-intro" onclick="goToScenarios()">
+        <span class="scenarios-cta-icon">◇</span>
+        <div class="scenarios-cta-content">
+          <div class="scenarios-cta-title">
+            <span id="scenarios-cta-title-text"></span>
+            <span class="scenarios-cta-badge" id="scenarios-cta-badge"></span>
+          </div>
+          <div class="scenarios-cta-sub" id="scenarios-cta-sub"></div>
+        </div>
+        <span class="scenarios-cta-arrow">→</span>
+      </div>
+
       <div class="self-test-cta" onclick="showPersonality()">
         <span class="self-test-icon">⌖</span>
         <div class="self-test-content">
@@ -2167,6 +2660,7 @@
 
       <div class="secondary-actions">
         <button class="btn" onclick="showReality()" id="btn-research"></button>
+        <button class="btn" onclick="goToScenarios()" id="btn-scenarios-intro"></button>
         <button class="btn" onclick="showEssays()" id="btn-essays-intro"></button>
         <button class="btn hidden" id="btn-questions" onclick="showQuestions()"></button>
       </div>
@@ -2178,6 +2672,9 @@
     <div id="screen-personality" class="screen hidden"></div>
     <div id="screen-essays" class="screen hidden"></div>
     <div id="screen-essay-detail" class="screen hidden"></div>
+    <div id="screen-scenarios" class="screen hidden"></div>
+    <div id="screen-scenario-detail" class="screen hidden"></div>
+    <div id="screen-signature" class="screen hidden"></div>
 
     <div id="stats" class="stats hidden">
       <p class="stats-label" id="stats-label"></p>
@@ -2784,6 +3281,209 @@
         mainPatternHeadline: 'The more real the risk, the less cooperation.',
         mainPatternDetail: '70% in surveys. ~47% in the lab. Far below 1% in occupied Europe. Hypothetical morality and real choices are two different systems. When you pick blue in this game, you\'re in the first. If the stakes were real, most people jump to the second.',
 
+        // Scenarios — concrete real-world coordination dilemmas
+        scenariosButton: 'Scenarios ↗',
+        scenariosCtaBadge: 'NEW',
+        scenariosCtaTitle: 'Try the same dilemma — with stakes you recognize',
+        scenariosCtaSub: 'Ten situations from real life: a strike, a boycott, an uprising. Same structure as the buttons. Different gut response.',
+        scenariosCtaSubInProgress: (n, total) => `${n}/${total} answered. Continue where you left off.`,
+        scenariosCtaSubDone: 'You\'ve answered all ten. See your cooperation signature.',
+        scenariosListTitle: 'Scenarios',
+        scenariosListSub: 'Ten real-world situations with the same structure as the core game — coordination thresholds, asymmetric risk, no clean answer. Each one tracks how the world votes.',
+        scenariosBack: '← Back',
+        scenariosListBack: '← Back to scenarios',
+        scenariosNext: 'Next scenario →',
+        scenariosVoted: 'Voted',
+        scenariosNotVoted: 'Not voted',
+        scenariosThresholdLabel: (pct) => `Threshold: ${pct}% must cooperate`,
+        scenariosResultHeader: 'How the world voted',
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Cooperation succeeded — those who cooperated are safe.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% chose to cooperate. The threshold was ${threshold}%. Cooperation failed — those who cooperated bore the cost. Those who defected are fine.`,
+        scenariosYouCooperated: 'You cooperated.',
+        scenariosYouDefected: 'You defected.',
+        scenariosCount: (n, total) => `${n}/${total} answered`,
+        scenariosCompletionTitle: 'Your cooperation signature',
+        scenariosCompletionSub: 'Ten situations. Ten choices. Here\'s how you compare to everyone else who took this test.',
+        scenariosComparisonMore: (pct) => `You cooperated more than ${pct}% of players.`,
+        scenariosComparisonLess: (pct) => `You cooperated less than ${pct}% of players.`,
+        scenariosComparisonSame: 'You cooperated about the same as the average player.',
+        scenariosCompletionLockedTitle: 'Not all answered yet',
+        scenariosCompletionLockedSub: (n, total) => `You\'ve answered ${n} of ${total} scenarios. Finish them all to see your full cooperation signature.`,
+        scenariosSignatureLabel: 'YOUR PATTERN',
+        scenariosSignatureCooperated: (n, total) => `You cooperated in ${n} of ${total} situations`,
+        scenariosTopCooperateLabel: 'Where you stood out — for cooperation',
+        scenariosTopCooperateSub: 'Situations where your cooperation was most ahead of the global average.',
+        scenariosTopDefectLabel: 'Where you stood out — for self-interest',
+        scenariosTopDefectSub: 'Situations where you defected while most players cooperated.',
+        scenariosTopNone: 'Nothing notable on this side.',
+        scenariosViewSignature: 'See your signature',
+        scenariosBackToList: '← Back to scenarios',
+        scenariosGlobalAvgLabel: 'Global average',
+        scenariosYourScoreLabel: 'You',
+        scenariosNoStatsYet: 'Not enough global data yet to compare.',
+
+        scenarios: {
+          strike: {
+            title: 'The strike',
+            short: 'Workplace · 200 people',
+            cooperate: 'Strike',
+            defect: 'Go to work',
+            context: `Your workplace just fired 12 people for organizing a union — illegally, but the courts will take years. The remaining 200 of you have one shot: a coordinated walkout tomorrow morning.`,
+            stakes: `If <strong>more than 60%</strong> of you walk out, the company backs down — fired workers come back, no one loses their job. If fewer walk out, those who struck get fired. Those who showed up keep their jobs.`,
+            ask: 'Tomorrow morning — strike, or go to work?',
+            cooperateLabel: 'I strike',
+            defectLabel: 'I go in',
+            interpretCooperateWin: 'You stood with the others and the threshold held. Twelve people kept their jobs because of choices like yours. Easy in hindsight — but the morning of, no one knew which way it would tip.',
+            interpretCooperateLose: 'You stood. Not enough others did. Now you\'re looking for work, and the people who showed up to the office that morning are still inside. The math says you made the wrong individual call. Something else might say otherwise.',
+            interpretDefectWin: 'You went to work. Others struck — enough of them — and you kept your job. So did everyone else. You benefit from a victory you weren\'t part of. There\'s a name for that in coordination theory: free rider.',
+            interpretDefectLose: 'You went to work. Not enough struck. The fired stay fired. You\'re fine — same job, same desk, same paycheck. The 12 are gone. You did the rational thing.'
+          },
+
+          evacuation: {
+            title: 'The evacuation',
+            short: 'Coastal city · hurricane warning',
+            cooperate: 'Leave now',
+            defect: 'Wait it out',
+            context: `A category 4 hurricane will make landfall in 36 hours. The city has issued a voluntary evacuation. Highways will jam if everyone leaves at the same time. The people who go now travel freely. The people who wait until the mandatory order get stuck in gridlock.`,
+            stakes: `If <strong>more than 40%</strong> leave early, traffic flows, and even late evacuees make it out. If fewer leave early, the highways gridlock when the panic hits — those who waited are trapped, and those who already left are fine.`,
+            ask: 'Do you pack the car now, or trust the storm will weaken?',
+            cooperateLabel: 'Leave now',
+            defectLabel: 'Wait',
+            interpretCooperateWin: 'You left early. Enough others did too. Even the late evacuees got out. Your house may or may not still exist tomorrow — but everyone you love is alive. Anticlimactic. That\'s how good coordination feels.',
+            interpretCooperateLose: 'You left. Most stayed. The roads were clear for you, but the storm was worse than forecast. You\'re safe. They\'re not. The radio is full of names you recognize.',
+            interpretDefectWin: 'You stayed. Enough left that the roads stayed open. When the order came, you got out clean. You saved a day of disruption. The early evacuees lost two days. Pure efficiency.',
+            interpretDefectLose: 'You stayed. So did most. The mandatory order came — but the highways were already gridlocked by then. You\'re still in your driveway when the wind hits 130 mph. You weren\'t wrong to wait. Everyone else made the same call.'
+          },
+
+          shelter: {
+            title: 'The shelter',
+            short: 'Nuclear shelter · 100 people · 70 spots',
+            cooperate: 'Step outside',
+            defect: 'Stay inside',
+            context: `A radioactive cloud is six hours out. The community shelter holds 100 people but only has filtered air for 70. If everyone crowds in, oxygen runs out within a day and everyone suffocates. If 30 people leave to take their chances on the surface, the rest survive.`,
+            stakes: `This one is reversed. <strong>At least 30%</strong> must volunteer to leave. If too many stay, all 100 die. The volunteers face fallout exposure — they may live, may not. The ones who stay are guaranteed safe, but only if enough others leave.`,
+            ask: 'Do you step outside, or stay where it\'s safe?',
+            cooperateLabel: 'I leave',
+            defectLabel: 'I stay',
+            interpretCooperateWin: 'You walked out. Enough others did too. The 70 inside lived because of you. Some of you made it through the fallout. Some didn\'t. There\'s no medal. No one outside the shelter ever knew your name.',
+            interpretCooperateLose: 'You walked out. Almost no one followed. The shelter sealed with too many inside — they all suffocated within 18 hours. You\'re on the surface, irradiated, alone. Your sacrifice prevented nothing.',
+            interpretDefectWin: 'You stayed. Just enough others left that you survived. You owe your life to people who walked out into a poisoned sky so you wouldn\'t. You will not see them again.',
+            interpretDefectLose: 'You stayed. So did almost everyone else. The shelter ran out of air. You were one of 100 people who chose certain mutual death over uncertain individual sacrifice. The math was visible. So was the answer.'
+          },
+
+          boycott: {
+            title: 'The boycott',
+            short: 'Retail chain · documented labor abuses',
+            cooperate: 'Boycott',
+            defect: 'Keep shopping',
+            context: `A major retail chain has been caught — repeatedly, with documentation — paying foreign workers below subsistence wages and crushing union efforts with violence. A coordinated boycott is being organized. The store is the cheapest option in your area.`,
+            stakes: `If <strong>more than 25%</strong> of regular customers boycott for three months, the company shifts policy publicly to recover sales. If fewer participate, prices rise slightly for those who switched stores, and the company waits out the news cycle.`,
+            ask: 'Do you boycott, or keep shopping where it\'s cheap?',
+            cooperateLabel: 'I boycott',
+            defectLabel: 'I keep shopping',
+            interpretCooperateWin: 'You switched stores. Enough others did. The company announced policy reforms in week ten. Whether the reforms are real or PR theatre is its own question. But you were part of why they had to choose.',
+            interpretCooperateLose: 'You switched stores. The boycott fizzled. You spent three months paying more for groceries to make a point that, statistically, was not made. The company\'s sales held. Their lawyers are pleased.',
+            interpretDefectWin: 'You kept shopping. Others boycotted — enough — and the company changed. You got cheap groceries through the entire campaign and the moral payoff at the end. There is a word for that.',
+            interpretDefectLose: 'You kept shopping. So did most. The boycott didn\'t reach threshold. Workers in distant warehouses still earn what they earned before. Your weekly receipts are unchanged. So is your conscience, more or less.'
+          },
+
+          whistleblower: {
+            title: 'The whistleblower vote',
+            short: 'Accounting team · 12 know · joint disclosure',
+            cooperate: 'Sign on',
+            defect: 'Stay quiet',
+            context: `You\'re one of 12 accountants who\'ve found systematic fraud — billions in falsified statements. A joint disclosure to regulators offers legal protection only if at least 7 of you sign. Solo whistleblowers face retaliation: legal harassment, blacklisting, sometimes worse.`,
+            stakes: `If <strong>at least 58%</strong> sign together, all 12 of you are protected by whistleblower statutes — the company can\'t retaliate. If fewer sign, those who did face the full force of the company\'s lawyers. Those who stayed quiet are professionally fine.`,
+            ask: 'Do you sign the joint disclosure?',
+            cooperateLabel: 'I sign',
+            defectLabel: 'I don\'t',
+            interpretCooperateWin: 'You signed. Eight others did. The disclosure went out with legal cover. The fraud collapsed in court. You\'ll be unemployable in finance for two years, then you\'ll be fine. Some of your colleagues won\'t be.',
+            interpretCooperateLose: 'You signed. Five did. The protection threshold wasn\'t met. The company\'s lawyers are filing against you personally. You\'ll be in court for years. The fraud continues. Your colleagues who stayed quiet got promoted.',
+            interpretDefectWin: 'You stayed quiet. The seven who signed got protection. The fraud collapsed. You kept your job through the whole thing — quietly, with deniability. Your name doesn\'t appear in any of the news coverage. That\'s exactly what you wanted.',
+            interpretDefectLose: 'You stayed quiet. So did most of the others. The disclosure didn\'t go out. The fraud continues. You go to work tomorrow morning and see the same people doing the same thing. You did nothing wrong. Technically.'
+          },
+
+          donor: {
+            title: 'The bone marrow registry',
+            short: 'Population · stem cell donor pool',
+            cooperate: 'Register',
+            defect: 'Skip it',
+            context: `Bone marrow transplants need genetic matches. Most patients with rare types never find a donor. Registration is free, the cheek swab takes 90 seconds — but if matched, you\'ll spend a day in a clinic and feel sore for a week.`,
+            stakes: `If <strong>at least 30%</strong> of healthy adults register, almost every patient with leukemia or lymphoma finds a match in time. Below that threshold, matching gets statistically rare — patients with rare types die waiting.`,
+            ask: 'Do you register?',
+            cooperateLabel: 'I register',
+            defectLabel: 'I skip',
+            interpretCooperateWin: 'You\'re on the registry. Enough others are too. Most patients get matched in time. Maybe you\'ll get a call in seven years. Maybe you won\'t. The cost was a swab. The payoff is statistical.',
+            interpretCooperateLose: 'You\'re on the registry. Few others are. Match rates are still poor. People with rare genetic types still die waiting. Your registration is genuinely useless unless coverage improves. But it\'s harmless to keep.',
+            interpretDefectWin: 'You didn\'t register. Enough others did. Patients get matched. The system works without you. You saved 90 seconds and a possible day in a clinic. The math is in your favor.',
+            interpretDefectLose: 'You didn\'t register. Coverage stayed below threshold. Patients with rare types continue to die waiting. You\'re individually blameless — the registry isn\'t enforced, the cost is real, the benefit to any one donor is zero. The collective just doesn\'t survive that logic.'
+          },
+
+          fishery: {
+            title: 'The shared fishery',
+            short: 'Coastal village · fishing fleet',
+            cooperate: 'Stay within limits',
+            defect: 'Catch what you can',
+            context: `Your village has fished these waters for generations. The fish stocks are now depleted. Scientists say if everyone catches less than the legal limit, the stocks recover in five years. If too many ignore the limit, the fishery collapses permanently within two seasons.`,
+            stakes: `If <strong>more than 70%</strong> stay within the limit, stocks recover and everyone fishes again. If fewer follow the rule, those who restrained themselves lose income for nothing — the collapse happens anyway, and those who fished hard got rich first.`,
+            ask: 'Do you fish within the limit, or catch what you can?',
+            cooperateLabel: 'Within limits',
+            defectLabel: 'Catch what I can',
+            interpretCooperateWin: 'You stayed within the limit. Most others did too. The stocks recovered. Your kids will fish these waters. You made less money for five years and got everything back. Slowly.',
+            interpretCooperateLose: 'You stayed within the limit. Many didn\'t. The fishery collapsed in 14 months. You earned less than the others during the collapse. Now no one can fish. You followed the rule. You were poorer for it. Then you were poor with everyone else.',
+            interpretDefectWin: 'You fished hard. Most stayed within the limit. The stocks recovered despite your overcatch. You made twice what your neighbors made for five years. You\'re now richer. The math says you played it perfectly.',
+            interpretDefectLose: 'You fished hard. So did most. The collapse came in 14 months. You made good money for a year, nothing for the rest of your life. The waters are dead. Your boat is for sale.'
+          },
+
+          blacklist: {
+            title: 'The blacklist',
+            short: 'Industry · sexual harassment claim',
+            cooperate: 'Speak up',
+            defect: 'Stay quiet',
+            context: `A senior executive in your industry has harassed multiple women over the years. There\'s an open call: anyone who has experienced or witnessed it can sign a public letter. The executive is powerful — companies that employ signatories tend to lose contracts.`,
+            stakes: `If <strong>at least 50%</strong> of women in the industry who know sign, the social cost of retaliating becomes too high — companies can\'t fire all of them, the executive\'s position becomes untenable. If fewer sign, signatories get quietly informally blacklisted. Those who stayed quiet keep their careers.`,
+            ask: 'Do you sign the letter?',
+            cooperateLabel: 'I sign',
+            defectLabel: 'I don\'t',
+            interpretCooperateWin: 'You signed. So did enough others. The letter became unignorable. The executive is gone. You\'re still working — different company, same field. Some of the signatories aren\'t. The math worked. The personal cost was real.',
+            interpretCooperateLose: 'You signed. Few others did. The letter died in the news cycle. The executive is still there. You\'re looking for work. The companies that didn\'t officially blacklist you also didn\'t call you back. There\'s no proof, but you\'ve worked in this industry long enough to know.',
+            interpretDefectWin: 'You stayed quiet. Enough others signed. The executive is gone. You kept your job, your contracts, your career. Some signatories paid a price for what you also benefited from. Their names are on a public letter. Yours isn\'t.',
+            interpretDefectLose: 'You stayed quiet. So did most. The letter never reached threshold. The executive is still there. You still have your career. So does he.'
+          },
+
+          climate: {
+            title: 'The climate strike',
+            short: 'Country · emissions reduction commitment',
+            cooperate: 'Cut consumption',
+            defect: 'Carry on',
+            context: `Climate models show that if 50% of high-emitting populations halve their personal carbon footprint within five years, warming stays survivable. Cutting means real changes: less flying, less meat, smaller cars, smaller homes. Defecting means the convenience you have today.`,
+            stakes: `If <strong>at least 50%</strong> halve emissions, the planet stays livable for the next century — slightly diminished, mostly habitable. If fewer cut, the cuts cost the cooperators (less consumption, less travel, less wealth) without preventing the disaster. The defectors live their normal lives until everything fails at once.`,
+            ask: 'Do you cut your consumption now, or wait?',
+            cooperateLabel: 'I cut',
+            defectLabel: 'I keep going',
+            interpretCooperateWin: 'You cut. Enough others did. The 1.5°C target slipped, but not by enough to matter. Your kids will live in a slightly poorer, slightly more functional world. You gave up vacations and steaks for that. Most of them won\'t know.',
+            interpretCooperateLose: 'You cut. Most didn\'t. The planet warmed past the threshold. Your sacrifices changed nothing. You ate less meat and flew less for nothing measurable. The atmosphere doesn\'t care about intent.',
+            interpretDefectWin: 'You kept your normal life. Others cut enough that the planet held. You got vacations, comfort, the full menu — and a livable future. Free riding worked perfectly. The cooperators may or may not feel cheated. They\'re too polite to say.',
+            interpretDefectLose: 'You kept consuming. So did most. The threshold passed. The decade of disasters is starting now. You enjoyed two more decades of normal life, and now everyone faces what comes next together. There were warnings.'
+          },
+
+          uprising: {
+            title: 'The uprising',
+            short: 'Occupied city · resistance call',
+            cooperate: 'Fight',
+            defect: 'Stay home',
+            context: `Your city has been occupied for four years. The resistance has called for an armed uprising in two days. Soviet forces are 30 km east — close enough to support, but they\'re waiting. If the uprising holds the city for a week, history is rewritten. If it doesn\'t, the city is destroyed and tens of thousands die.`,
+            stakes: `If <strong>at least 50%</strong> of fighting-age civilians take up arms, the city holds long enough that the Soviets must intervene or lose face — political pressure makes them advance. If fewer fight, the resistance is crushed, the city is razed in retaliation. Those who stayed home survive — quieter, smaller, occupied.`,
+            ask: 'Do you fight, or stay home with your family?',
+            cooperateLabel: 'I fight',
+            defectLabel: 'I stay home',
+            interpretCooperateWin: 'You fought. Enough others did. The Soviets advanced. The occupation ended. The city is half-destroyed but free. You and your friends will be in textbooks. Some of your friends won\'t make it to those textbooks. You\'re alive. You can\'t shake what you saw.',
+            interpretCooperateLose: 'You fought. Not enough did. After 63 days, the city fell. You\'re dead, or you\'re in a camp, or you\'re hiding in rubble while engineers dynamite what\'s left. The Soviets watched from across the river. Historians will still call this a victory of meaning. You don\'t get to read them.',
+            interpretDefectWin: 'You stayed home. The fighting was savage but enough did go. The Soviets advanced, the occupation ended. The city is rebuilding. The names of the dead are on a wall you walk past sometimes. Your name isn\'t there.',
+            interpretDefectLose: 'You stayed home. So did most. The uprising failed within weeks. The reprisals took 200,000 civilians. You\'re alive only because you weren\'t worth singling out. Your city is rubble. The men who fought are corpses or refugees. You\'ll grow old in the ruins.'
+          }
+        },
+
         // Questions
         questionsBlue: [
           'If you truly trusted humanity, the risk would be zero. Were your hands trembling when you clicked?',
@@ -3319,6 +4019,209 @@
         mainPatternHeadline: 'Im bardziej realne ryzyko — tym mniej kooperacji.',
         mainPatternDetail: '70% w ankiecie. ~47% w laboratorium. Znacznie poniżej 1% w okupowanej Europie. Hipotetyczna moralność i realne wybory to dwa różne systemy. Kiedy wybierasz niebieski w grze, jesteś w pierwszym. Kiedy stawka byłaby prawdziwa, większość ludzi przeskakuje do drugiego.',
 
+        // Scenariusze
+        scenariosButton: 'Scenariusze ↗',
+        scenariosCtaBadge: 'NOWE',
+        scenariosCtaTitle: 'Spróbuj tego samego dylematu — w sytuacjach które znasz',
+        scenariosCtaSub: 'Dziesięć sytuacji z prawdziwego życia: strajk, bojkot, powstanie. Ta sama struktura co przyciski. Inna reakcja brzucha.',
+        scenariosCtaSubInProgress: (n, total) => `${n}/${total} odpowiedzianych. Wróć tam gdzie skończyłeś.`,
+        scenariosCtaSubDone: 'Odpowiedziałeś na wszystkie dziesięć. Zobacz swój podpis kooperacji.',
+        scenariosListTitle: 'Scenariusze',
+        scenariosListSub: 'Dziesięć realnych sytuacji o tej samej strukturze co główna gra — progi kooperacji, asymetryczne ryzyko, brak czystej odpowiedzi. Każdy śledzi jak głosuje świat.',
+        scenariosBack: '← Wróć',
+        scenariosListBack: '← Wróć do scenariuszy',
+        scenariosNext: 'Następny scenariusz →',
+        scenariosVoted: 'Odpowiedziane',
+        scenariosNotVoted: 'Bez odpowiedzi',
+        scenariosThresholdLabel: (pct) => `Próg: ${pct}% musi kooperować`,
+        scenariosResultHeader: 'Jak głosował świat',
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Kooperacja się powiodła — ci, którzy kooperowali, są bezpieczni.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Kooperacja zawiodła — ci, którzy kooperowali, ponieśli koszt. Ci, którzy zdezerterowali, są bezpieczni.`,
+        scenariosYouCooperated: 'Wybrałeś kooperację.',
+        scenariosYouDefected: 'Wybrałeś dezercję.',
+        scenariosCount: (n, total) => `${n}/${total} odpowiedzianych`,
+        scenariosCompletionTitle: 'Twój podpis kooperacji',
+        scenariosCompletionSub: 'Dziesięć sytuacji. Dziesięć wyborów. Tak wypadasz na tle wszystkich, którzy zrobili ten test.',
+        scenariosComparisonMore: (pct) => `Kooperowałeś bardziej niż ${pct}% graczy.`,
+        scenariosComparisonLess: (pct) => `Kooperowałeś mniej niż ${pct}% graczy.`,
+        scenariosComparisonSame: 'Kooperowałeś podobnie jak średni gracz.',
+        scenariosCompletionLockedTitle: 'Jeszcze nie wszystkie',
+        scenariosCompletionLockedSub: (n, total) => `Odpowiedziałeś na ${n} z ${total} scenariuszy. Skończ wszystkie żeby zobaczyć pełny podpis kooperacji.`,
+        scenariosSignatureLabel: 'TWÓJ WZORZEC',
+        scenariosSignatureCooperated: (n, total) => `Kooperowałeś w ${n} z ${total} sytuacji`,
+        scenariosTopCooperateLabel: 'Tam wyróżniłeś się — kooperacją',
+        scenariosTopCooperateSub: 'Sytuacje, w których twoja kooperacja najbardziej wyprzedziła globalną średnią.',
+        scenariosTopDefectLabel: 'Tam wyróżniłeś się — egoizmem',
+        scenariosTopDefectSub: 'Sytuacje, w których zdezerterowałeś, gdy większość kooperowała.',
+        scenariosTopNone: 'Nic znaczącego po tej stronie.',
+        scenariosViewSignature: 'Zobacz swój podpis',
+        scenariosBackToList: '← Wróć do scenariuszy',
+        scenariosGlobalAvgLabel: 'Średnia globalna',
+        scenariosYourScoreLabel: 'Ty',
+        scenariosNoStatsYet: 'Za mało danych globalnych do porównania.',
+
+        scenarios: {
+          strike: {
+            title: 'Strajk',
+            short: 'Praca · 200 osób',
+            cooperate: 'Strajk',
+            defect: 'Idę do pracy',
+            context: `Twoja firma właśnie zwolniła 12 osób za zakładanie związku zawodowego — bezprawnie, ale sąd będzie ciągnął się latami. Pozostałych 200 z was ma jedną szansę: skoordynowany strajk jutro rano.`,
+            stakes: `Jeśli <strong>ponad 60%</strong> z was wyjdzie, firma się ugnie — zwolnieni wracają, nikt nie traci pracy. Jeśli mniej wyjdzie, ci którzy strajkują zostają zwolnieni. Ci, którzy się stawili, zachowują pracę.`,
+            ask: 'Jutro rano — strajkujesz, czy idziesz do pracy?',
+            cooperateLabel: 'Strajkuję',
+            defectLabel: 'Idę do roboty',
+            interpretCooperateWin: 'Stanąłeś z innymi i próg się utrzymał. Dwanaście osób wróciło do pracy dzięki wyborom takim jak twój. Łatwo to ocenić wstecz — ale tego ranka nikt nie wiedział, w którą stronę to się przechyli.',
+            interpretCooperateLose: 'Stanąłeś. Nie stanęło wystarczająco innych. Teraz szukasz pracy, a ludzie którzy stawili się tego ranka w biurze nadal tam są. Matematyka mówi, że indywidualnie wybrałeś źle. Coś innego może mówić co innego.',
+            interpretDefectWin: 'Poszedłeś do pracy. Inni strajkowali — wystarczająco wielu — i zachowałeś pracę. Tak samo wszyscy inni. Korzystasz ze zwycięstwa, w którym nie brałeś udziału. W teorii koordynacji jest na to nazwa: pasażer na gapę.',
+            interpretDefectLose: 'Poszedłeś do pracy. Nie strajkowało dość. Zwolnieni pozostają zwolnieni. Tobie nic — ta sama praca, to samo biurko, ta sama wypłata. Tych dwunastu już nie ma. Postąpiłeś racjonalnie.'
+          },
+
+          evacuation: {
+            title: 'Ewakuacja',
+            short: 'Miasto nadmorskie · ostrzeżenie przed huraganem',
+            cooperate: 'Wyjeżdżam teraz',
+            defect: 'Czekam',
+            context: `Huragan kategorii 4 uderzy za 36 godzin. Miasto wydało dobrowolny nakaz ewakuacji. Autostrady zakorkują się jeśli wszyscy wyjadą naraz. Ci, którzy wyjeżdżają teraz — jadą bez problemu. Ci, którzy poczekają na obowiązkowy alarm — utkną w korkach.`,
+            stakes: `Jeśli <strong>ponad 40%</strong> wyjedzie wcześnie, ruch idzie sprawnie i nawet spóźnialscy zdążą. Jeśli mniej wyjedzie, autostrady zakorkowują się gdy wybuchnie panika — ci, którzy czekali, są uwięzieni, a ci którzy już wyjechali, są bezpieczni.`,
+            ask: 'Pakujesz auto teraz, czy ufasz że burza osłabnie?',
+            cooperateLabel: 'Wyjeżdżam',
+            defectLabel: 'Czekam',
+            interpretCooperateWin: 'Wyjechałeś wcześnie. Tak samo wystarczająco innych. Nawet spóźnialscy zdążyli. Twój dom może jutro być, może nie być — ale wszyscy których kochasz żyją. Bez fanfar. Tak czuje się dobra koordynacja.',
+            interpretCooperateLose: 'Wyjechałeś. Większość została. Drogi były dla ciebie wolne, ale burza była gorsza niż przewidywano. Ty jesteś bezpieczny. Oni nie. Radio wymienia nazwiska, które rozpoznajesz.',
+            interpretDefectWin: 'Zostałeś. Wystarczająco innych wyjechało, żeby drogi pozostały drożne. Kiedy przyszedł alarm, wyjechałeś sprawnie. Zaoszczędziłeś dzień. Ci, co wyjechali wcześniej, stracili dwa dni. Czysta efektywność.',
+            interpretDefectLose: 'Zostałeś. Tak samo większość. Alarm przyszedł — ale autostrady były już zakorkowane. Stoisz przed garażem, gdy wiatr osiąga 200 km/h. Nie pomyliłeś się czekając. Wszyscy inni postanowili tak samo.'
+          },
+
+          shelter: {
+            title: 'Schron',
+            short: 'Schron przeciwatomowy · 100 osób · 70 miejsc',
+            cooperate: 'Wychodzę',
+            defect: 'Zostaję',
+            context: `Chmura radioaktywna dotrze za sześć godzin. Schron mieści 100 osób, ale filtrowanego powietrza starczy tylko dla 70. Jeśli wszyscy się stłoczą, tlen skończy się w ciągu doby i wszyscy się uduszą. Jeśli 30 osób wyjdzie i zaryzykuje na powierzchni, pozostali przeżyją.`,
+            stakes: `Ten jest odwrócony. <strong>Co najmniej 30%</strong> musi się zgłosić do wyjścia. Jeśli zbyt wielu zostanie, wszyscy 100 umrą. Ochotnicy mierzą się z opadem radioaktywnym — mogą przeżyć, mogą nie. Ci, którzy zostają, mają pewność bezpieczeństwa, ale tylko jeśli wystarczająco innych wyjdzie.`,
+            ask: 'Wychodzisz na zewnątrz, czy zostajesz tam gdzie bezpiecznie?',
+            cooperateLabel: 'Wychodzę',
+            defectLabel: 'Zostaję',
+            interpretCooperateWin: 'Wyszedłeś. Wystarczająco innych też. 70 osób w środku przeżyło dzięki tobie. Niektórzy z was przeżyli opad. Niektórzy nie. Nie ma medali. Nikt poza schronem nigdy nie poznał twojego nazwiska.',
+            interpretCooperateLose: 'Wyszedłeś. Prawie nikt nie poszedł za tobą. Schron zamknął się ze zbyt wieloma w środku — wszyscy udusili się w ciągu 18 godzin. Ty jesteś na powierzchni, napromieniowany, sam. Twoje poświęcenie niczego nie zapobiegło.',
+            interpretDefectWin: 'Zostałeś. Wystarczająco innych wyszło, żebyś przeżył. Twoje życie zawdzięczasz ludziom, którzy wyszli pod zatrute niebo, żebyś nie musiał. Już ich nie zobaczysz.',
+            interpretDefectLose: 'Zostałeś. Tak samo prawie wszyscy. Powietrze się skończyło. Byłeś jednym ze 100 osób, które wybrały pewną wspólną śmierć zamiast niepewnego indywidualnego poświęcenia. Matematyka była widoczna. Odpowiedź też.'
+          },
+
+          boycott: {
+            title: 'Bojkot',
+            short: 'Sieć handlowa · udokumentowane łamanie praw pracowniczych',
+            cooperate: 'Bojkotuję',
+            defect: 'Robię zakupy dalej',
+            context: `Duża sieć handlowa wielokrotnie — z dokumentacją — została przyłapana na płaceniu zagranicznym pracownikom poniżej minimum egzystencji i tłumieniu przemocą prób zakładania związków. Organizowany jest skoordynowany bojkot. Sklep jest najtańszą opcją w twojej okolicy.`,
+            stakes: `Jeśli <strong>ponad 25%</strong> regularnych klientów bojkotuje przez trzy miesiące, firma publicznie zmienia politykę żeby odbudować sprzedaż. Jeśli mniej, ceny lekko rosną tym, którzy zmienili sklep, a firma przeczekuje cykl medialny.`,
+            ask: 'Bojkotujesz, czy robisz zakupy gdzie tanio?',
+            cooperateLabel: 'Bojkotuję',
+            defectLabel: 'Robię dalej zakupy',
+            interpretCooperateWin: 'Zmieniłeś sklep. Wystarczająco innych też. Firma ogłosiła reformy w dziesiątym tygodniu. Czy reformy są prawdziwe, czy to PR-owy spektakl — to osobne pytanie. Ale byłeś częścią powodu, dla którego musieli wybrać.',
+            interpretCooperateLose: 'Zmieniłeś sklep. Bojkot się rozmył. Spędziłeś trzy miesiące płacąc więcej za zakupy, żeby zrobić punkt, który statystycznie nie został zrobiony. Sprzedaż firmy się utrzymała. Ich prawnicy są zadowoleni.',
+            interpretDefectWin: 'Robiłeś dalej zakupy. Inni bojkotowali — wystarczająco — i firma się zmieniła. Miałeś tanie zakupy przez całą kampanię i moralną zapłatę na końcu. Jest na to słowo.',
+            interpretDefectLose: 'Robiłeś dalej zakupy. Tak samo większość. Bojkot nie osiągnął progu. Pracownicy w odległych magazynach nadal zarabiają to, co zarabiali. Twoje paragony są bez zmian. Sumienie też, mniej więcej.'
+          },
+
+          whistleblower: {
+            title: 'Zgłoszenie sygnalisty',
+            short: 'Dział księgowości · 12 wie · wspólne zgłoszenie',
+            cooperate: 'Podpisuję',
+            defect: 'Milczę',
+            context: `Jesteś jednym z 12 księgowych, którzy znaleźli systemowe oszustwo — miliardy w sfałszowanych raportach. Wspólne zgłoszenie do regulatora daje ochronę prawną tylko jeśli podpisze co najmniej 7 z was. Pojedynczy sygnaliści mierzą się z odwetem: prawnym nękaniem, czarnymi listami, czasem gorzej.`,
+            stakes: `Jeśli <strong>co najmniej 58%</strong> podpisze razem, wszystkich 12 chronią przepisy o sygnalistach — firma nie może podjąć odwetu. Jeśli mniej podpisze, ci którzy to zrobili, mierzą się z pełną siłą prawników firmy. Ci którzy zachowali milczenie, są zawodowo bezpieczni.`,
+            ask: 'Podpisujesz wspólne zgłoszenie?',
+            cooperateLabel: 'Podpisuję',
+            defectLabel: 'Nie podpisuję',
+            interpretCooperateWin: 'Podpisałeś. Ośmiu innych też. Zgłoszenie wyszło z ochroną prawną. Oszustwo upadło w sądzie. W finansach będziesz nie do zatrudnienia przez dwa lata, potem wszystko wróci. Niektórzy z twoich kolegów nie wrócą.',
+            interpretCooperateLose: 'Podpisałeś. Pięciu podpisało. Próg ochrony nie został osiągnięty. Prawnicy firmy składają teraz pozwy przeciwko tobie osobiście. Będziesz w sądach latami. Oszustwo trwa. Twoi koledzy, którzy milczeli, dostali awans.',
+            interpretDefectWin: 'Milczałeś. Siedmiu, którzy podpisali, dostało ochronę. Oszustwo upadło. Zachowałeś pracę przez całe to zamieszanie — cicho, z możliwością wyparcia. Twoje nazwisko nie pojawia się w żadnym artykule. Dokładnie tego chciałeś.',
+            interpretDefectLose: 'Milczałeś. Tak samo większość pozostałych. Zgłoszenie nie wyszło. Oszustwo trwa. Idziesz jutro do pracy i widzisz tych samych ludzi robiących to samo. Nie zrobiłeś nic złego. Technicznie.'
+          },
+
+          donor: {
+            title: 'Rejestr dawców szpiku',
+            short: 'Populacja · pula dawców komórek macierzystych',
+            cooperate: 'Rejestruję się',
+            defect: 'Pomijam',
+            context: `Przeszczepy szpiku wymagają dopasowania genetycznego. Większość pacjentów z rzadkimi typami nigdy nie znajduje dawcy. Rejestracja jest darmowa, wymaz z policzka trwa 90 sekund — ale jeśli będziesz pasować, spędzisz dzień w klinice i tydzień będziesz obolały.`,
+            stakes: `Jeśli <strong>co najmniej 30%</strong> zdrowych dorosłych się zarejestruje, prawie każdy pacjent z białaczką lub chłoniakiem znajduje dopasowanie na czas. Poniżej tego progu dopasowanie staje się statystycznie rzadkie — pacjenci z rzadkimi typami umierają czekając.`,
+            ask: 'Rejestrujesz się?',
+            cooperateLabel: 'Rejestruję się',
+            defectLabel: 'Pomijam',
+            interpretCooperateWin: 'Jesteś w rejestrze. Wystarczająco innych też. Większość pacjentów dostaje dopasowanie na czas. Może zadzwonią za siedem lat. Może nie. Kosztem był wymaz. Zysk jest statystyczny.',
+            interpretCooperateLose: 'Jesteś w rejestrze. Niewielu innych. Statystyki dopasowań są nadal słabe. Ludzie z rzadkimi typami genetycznymi nadal umierają czekając. Twoja rejestracja jest naprawdę bezużyteczna, jeśli pokrycie się nie poprawi. Ale nieszkodliwa do utrzymania.',
+            interpretDefectWin: 'Nie zarejestrowałeś się. Wystarczająco innych to zrobiło. Pacjenci dostają dopasowanie. System działa bez ciebie. Zaoszczędziłeś 90 sekund i potencjalny dzień w klinice. Matematyka jest po twojej stronie.',
+            interpretDefectLose: 'Nie zarejestrowałeś się. Pokrycie zostało poniżej progu. Pacjenci z rzadkimi typami nadal umierają czekając. Indywidualnie nie masz winy — rejestr nie jest egzekwowany, koszt jest realny, korzyść dla pojedynczego dawcy to zero. Tylko że kolektyw nie przeżywa tej logiki.'
+          },
+
+          fishery: {
+            title: 'Wspólne łowisko',
+            short: 'Wioska rybacka · flota',
+            cooperate: 'W limicie',
+            defect: 'Łowię ile mogę',
+            context: `Twoja wioska łowi te wody od pokoleń. Stado ryb jest teraz wyczerpane. Naukowcy mówią, że jeśli wszyscy łowią poniżej legalnego limitu, stado odbudowuje się w pięć lat. Jeśli zbyt wielu ignoruje limit, łowisko upadnie trwale w ciągu dwóch sezonów.`,
+            stakes: `Jeśli <strong>ponad 70%</strong> trzyma się limitu, stado się odbudowuje i wszyscy znów łowią. Jeśli mniej trzyma się reguły, ci którzy się powstrzymali tracą dochód za nic — upadek i tak nadchodzi, a ci którzy łowili intensywnie, najpierw się wzbogacili.`,
+            ask: 'Łowisz w limicie, czy ile się da?',
+            cooperateLabel: 'W limicie',
+            defectLabel: 'Łowię ile się da',
+            interpretCooperateWin: 'Trzymałeś się limitu. Większość innych też. Stado się odbudowało. Twoje dzieci będą łowić te wody. Zarabiałeś mniej przez pięć lat i dostałeś wszystko z powrotem. Powoli.',
+            interpretCooperateLose: 'Trzymałeś się limitu. Wielu nie. Łowisko upadło w 14 miesięcy. Zarabiałeś mniej niż inni podczas upadku. Teraz nikt nie może łowić. Trzymałeś się reguły. Byłeś za to biedniejszy. Potem byłeś biedny ze wszystkimi.',
+            interpretDefectWin: 'Łowiłeś intensywnie. Większość trzymała się limitu. Stado się odbudowało mimo twojego nadmiernego połowu. Zarobiłeś dwa razy więcej niż sąsiedzi przez pięć lat. Jesteś teraz bogatszy. Matematyka mówi, że zagrałeś idealnie.',
+            interpretDefectLose: 'Łowiłeś intensywnie. Tak samo większość. Upadek przyszedł w 14 miesięcy. Zarobiłeś dobrze przez rok, nic przez resztę życia. Wody są martwe. Twoja łódź jest na sprzedaż.'
+          },
+
+          blacklist: {
+            title: 'Czarna lista',
+            short: 'Branża · zarzuty molestowania seksualnego',
+            cooperate: 'Wypowiadam się',
+            defect: 'Milczę',
+            context: `Wysoki dyrektor w twojej branży molestował kilka kobiet przez lata. Trwa otwarte wezwanie: każda, która tego doświadczyła lub była świadkiem, może podpisać publiczny list. Dyrektor jest wpływowy — firmy, które zatrudniają sygnatariuszki, zwykle tracą kontrakty.`,
+            stakes: `Jeśli <strong>co najmniej 50%</strong> kobiet w branży, które wiedzą, podpisze, koszt społeczny odwetu staje się zbyt wysoki — firmy nie mogą zwolnić wszystkich, pozycja dyrektora się załamuje. Jeśli mniej podpisze, sygnatariuszki zostają cicho i nieformalnie umieszczone na czarnej liście. Te które milczały, zachowują karierę.`,
+            ask: 'Podpisujesz list?',
+            cooperateLabel: 'Podpisuję',
+            defectLabel: 'Nie podpisuję',
+            interpretCooperateWin: 'Podpisałaś. Tak samo wystarczająco innych. List stał się niemożliwy do zignorowania. Dyrektor odszedł. Ty nadal pracujesz — inna firma, ta sama branża. Niektóre sygnatariuszki nie. Matematyka zadziałała. Osobisty koszt był prawdziwy.',
+            interpretCooperateLose: 'Podpisałaś. Niewiele innych. List zniknął w cyklu medialnym. Dyrektor nadal jest. Szukasz pracy. Firmy, które oficjalnie nie wpisały cię na czarną listę, też cię nie oddzwoniły. Nie ma dowodu, ale pracujesz w tej branży wystarczająco długo, żeby wiedzieć.',
+            interpretDefectWin: 'Milczałaś. Wystarczająco innych podpisało. Dyrektor odszedł. Zachowałaś pracę, kontrakty, karierę. Niektóre sygnatariuszki zapłaciły cenę za coś, z czego ty też skorzystałaś. Ich nazwiska są w publicznym liście. Twojego nie ma.',
+            interpretDefectLose: 'Milczałaś. Tak samo większość. List nigdy nie osiągnął progu. Dyrektor nadal jest. Ty nadal masz karierę. On też.'
+          },
+
+          climate: {
+            title: 'Strajk klimatyczny',
+            short: 'Kraj · zobowiązanie redukcji emisji',
+            cooperate: 'Tnę konsumpcję',
+            defect: 'Lecę dalej',
+            context: `Modele klimatyczne pokazują, że jeśli 50% wysokoemisyjnych populacji zmniejszy o połowę osobisty ślad węglowy w pięć lat, ocieplenie zostaje na poziomie do przeżycia. Cięcie oznacza realne zmiany: mniej lotów, mniej mięsa, mniejsze auta, mniejsze domy. Defektowanie oznacza wygodę, którą masz dzisiaj.`,
+            stakes: `Jeśli <strong>co najmniej 50%</strong> zmniejszy emisje o połowę, planeta pozostaje do życia przez następne stulecie — lekko zubożała, w większości zamieszkiwalna. Jeśli mniej tnie, cięcia kosztują kooperatorów (mniej konsumpcji, mniej podróży, mniej bogactwa) bez zapobieżenia katastrofie. Defektorzy żyją normalnie aż wszystko zawiedzie naraz.`,
+            ask: 'Tniesz konsumpcję teraz, czy czekasz?',
+            cooperateLabel: 'Tnę',
+            defectLabel: 'Lecę dalej',
+            interpretCooperateWin: 'Tnąłeś. Wystarczająco innych też. Cel 1.5°C zsunął się, ale nie wystarczająco żeby liczyło. Twoje dzieci będą żyć w lekko biedniejszym, lekko bardziej funkcjonalnym świecie. Oddałeś za to wakacje i steki. Większość z nich nigdy się o tym nie dowie.',
+            interpretCooperateLose: 'Tnąłeś. Większość nie. Planeta przekroczyła próg. Twoje wyrzeczenia niczego nie zmieniły. Jadłeś mniej mięsa i latałeś mniej za nic mierzalnego. Atmosfera nie dba o intencje.',
+            interpretDefectWin: 'Zachowałeś normalne życie. Inni cięli wystarczająco, żeby planeta się utrzymała. Miałeś wakacje, komfort, pełne menu — i przyszłość do życia. Pasażer na gapę zadziałał idealnie. Kooperatorzy mogą lub nie czuć się oszukani. Są zbyt grzeczni żeby powiedzieć.',
+            interpretDefectLose: 'Konsumowałeś dalej. Tak samo większość. Próg minął. Dekada katastrof zaczyna się teraz. Cieszyłeś się dwoma dekadami normalnego życia, a teraz wszyscy mierzą się razem z tym co nadchodzi. Były ostrzeżenia.'
+          },
+
+          uprising: {
+            title: 'Powstanie',
+            short: 'Okupowane miasto · wezwanie do oporu',
+            cooperate: 'Walczę',
+            defect: 'Zostaję w domu',
+            context: `Twoje miasto jest okupowane od czterech lat. Podziemie ogłosiło zbrojne powstanie za dwa dni. Sowieckie siły są 30 km na wschód — wystarczająco blisko żeby wesprzeć, ale czekają. Jeśli powstanie utrzyma miasto przez tydzień, historia zostaje napisana na nowo. Jeśli nie, miasto zostaje zniszczone i giną dziesiątki tysięcy.`,
+            stakes: `Jeśli <strong>co najmniej 50%</strong> cywilów w wieku poborowym chwyci za broń, miasto utrzyma się wystarczająco długo, że Sowieci muszą zainterweniować albo stracić twarz — presja polityczna zmusza ich do natarcia. Jeśli mniej walczy, opór zostaje zdławiony, miasto zrównane w odwecie. Ci którzy zostali w domu, przeżywają — ciszej, mniejsi, okupowani.`,
+            ask: 'Walczysz, czy zostajesz w domu z rodziną?',
+            cooperateLabel: 'Walczę',
+            defectLabel: 'Zostaję w domu',
+            interpretCooperateWin: 'Walczyłeś. Wystarczająco innych też. Sowieci natarli. Okupacja się skończyła. Miasto jest w połowie zniszczone, ale wolne. Ty i twoi przyjaciele będziecie w podręcznikach. Niektórzy z twoich przyjaciół nie dotrą do tych podręczników. Ty żyjesz. Nie możesz uciec od tego co widziałeś.',
+            interpretCooperateLose: 'Walczyłeś. Nie walczyło dość. Po 63 dniach miasto upadło. Ty nie żyjesz, albo jesteś w obozie, albo ukrywasz się w gruzach gdy saperzy wysadzają to, co zostało. Sowieci patrzyli z drugiej strony rzeki. Historycy nadal nazwą to zwycięstwem znaczenia. Ty nie dożyjesz żeby ich przeczytać.',
+            interpretDefectWin: 'Zostałeś w domu. Walki były brutalne, ale wystarczająco poszło. Sowieci natarli, okupacja się skończyła. Miasto się odbudowuje. Imiona poległych są na ścianie obok której czasem przechodzisz. Twojego tam nie ma.',
+            interpretDefectLose: 'Zostałeś w domu. Tak samo większość. Powstanie upadło w ciągu tygodni. Represje pochłonęły 200 000 cywilów. Żyjesz tylko dlatego, że nie byłeś wart wyróżnienia. Twoje miasto to gruzy. Mężczyźni, którzy walczyli, to trupy lub uchodźcy. Zestarzejesz się w ruinach.'
+          }
+        },
+
         questionsBlue: [
           'Gdybyś naprawdę ufał ludzkości, ryzyko byłoby zerowe. Twoje ręce się trzęsły, kiedy klikałeś?',
           'Powstańcy Warszawscy też "wybierali niebieski". Tylko że oni wiedzieli, kogo ratują. Ty wybierasz dla anonimowych miliardów. To samo, czy zupełnie co innego?',
@@ -3644,6 +4547,210 @@
             ]
           }
         ],
+
+        // Scénarios
+        scenariosButton: 'Scénarios ↗',
+        scenariosCtaBadge: 'NOUVEAU',
+        scenariosCtaTitle: 'Essaie le même dilemme — avec des enjeux que tu reconnais',
+        scenariosCtaSub: 'Dix situations réelles : une grève, un boycott, une insurrection. Même structure que les boutons. Réaction viscérale différente.',
+        scenariosCtaSubInProgress: (n, total) => `${n}/${total} répondus. Continue où tu t\'es arrêté.`,
+        scenariosCtaSubDone: 'Tu as répondu aux dix. Vois ta signature de coopération.',
+        scenariosListTitle: 'Scénarios',
+        scenariosListSub: 'Dix situations réelles avec la même structure que le jeu principal — seuils de coopération, risque asymétrique, pas de réponse propre. Chacune suit comment vote le monde.',
+        scenariosBack: '← Retour',
+        scenariosListBack: '← Retour aux scénarios',
+        scenariosNext: 'Scénario suivant →',
+        scenariosVoted: 'Répondu',
+        scenariosNotVoted: 'Sans réponse',
+        scenariosThresholdLabel: (pct) => `Seuil : ${pct}% doivent coopérer`,
+        scenariosResultHeader: 'Comment le monde a voté',
+        scenariosResultThresholdMet: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coopération a réussi — ceux qui ont coopéré sont en sécurité.`,
+        scenariosResultThresholdMissed: (pct, threshold) => `${pct}% ont choisi de coopérer. Le seuil était ${threshold}%. La coopération a échoué — ceux qui ont coopéré ont supporté le coût. Ceux qui ont fait défection sont indemnes.`,
+        scenariosYouCooperated: 'Tu as coopéré.',
+        scenariosYouDefected: 'Tu as fait défection.',
+        scenariosCount: (n, total) => `${n}/${total} répondus`,
+        scenariosCompletionTitle: 'Ta signature de coopération',
+        scenariosCompletionSub: 'Dix situations. Dix choix. Voici comment tu te compares à tous ceux qui ont fait ce test.',
+        scenariosComparisonMore: (pct) => `Tu as coopéré plus que ${pct}% des joueurs.`,
+        scenariosComparisonLess: (pct) => `Tu as coopéré moins que ${pct}% des joueurs.`,
+        scenariosComparisonSame: 'Tu as coopéré à peu près comme le joueur moyen.',
+        scenariosCompletionLockedTitle: 'Pas tous répondus',
+        scenariosCompletionLockedSub: (n, total) => `Tu as répondu à ${n} des ${total} scénarios. Termine-les tous pour voir ta signature de coopération complète.`,
+        scenariosSignatureLabel: 'TON SCHÉMA',
+        scenariosSignatureCooperated: (n, total) => `Tu as coopéré dans ${n} des ${total} situations`,
+        scenariosTopCooperateLabel: 'Là tu t\'es démarqué — par la coopération',
+        scenariosTopCooperateSub: 'Situations où ta coopération a le plus dépassé la moyenne globale.',
+        scenariosTopDefectLabel: 'Là tu t\'es démarqué — par l\'égoïsme',
+        scenariosTopDefectSub: 'Situations où tu as fait défection alors que la plupart des joueurs coopéraient.',
+        scenariosTopNone: 'Rien de notable de ce côté.',
+        scenariosViewSignature: 'Voir ta signature',
+        scenariosBackToList: '← Retour aux scénarios',
+        scenariosGlobalAvgLabel: 'Moyenne globale',
+        scenariosYourScoreLabel: 'Toi',
+        scenariosNoStatsYet: 'Pas encore assez de données globales pour comparer.',
+
+        scenarios: {
+          strike: {
+            title: 'La grève',
+            short: 'Travail · 200 personnes',
+            cooperate: 'Faire grève',
+            defect: 'Aller travailler',
+            context: `Ton entreprise vient de licencier 12 personnes pour avoir tenté de syndiquer — illégalement, mais les tribunaux mettront des années. Vous, les 200 restants, avez une seule chance : un débrayage coordonné demain matin.`,
+            stakes: `Si <strong>plus de 60%</strong> sortent, l\'entreprise recule — les licenciés reviennent, personne ne perd son emploi. Si moins sortent, ceux qui font grève sont licenciés. Ceux qui se sont présentés gardent leur emploi.`,
+            ask: 'Demain matin — tu fais grève, ou tu vas travailler ?',
+            cooperateLabel: 'Je fais grève',
+            defectLabel: 'Je vais bosser',
+            interpretCooperateWin: 'Tu t\'es tenu avec les autres et le seuil a tenu. Douze personnes ont gardé leur emploi grâce à des choix comme le tien. Facile à juger après coup — mais ce matin-là, personne ne savait dans quel sens ça allait basculer.',
+            interpretCooperateLose: 'Tu t\'es tenu. Pas assez d\'autres l\'ont fait. Maintenant tu cherches du travail, et les gens qui se sont présentés au bureau ce matin-là sont toujours dedans. Les maths disent que tu as fait le mauvais choix individuel. Autre chose pourrait dire le contraire.',
+            interpretDefectWin: 'Tu es allé travailler. D\'autres ont fait grève — assez d\'entre eux — et tu as gardé ton emploi. Tout le monde aussi. Tu profites d\'une victoire à laquelle tu n\'as pas participé. Il y a un nom pour ça en théorie de la coordination : passager clandestin.',
+            interpretDefectLose: 'Tu es allé travailler. Pas assez ont fait grève. Les licenciés restent licenciés. Toi, ça va — même boulot, même bureau, même salaire. Les 12 sont partis. Tu as fait la chose rationnelle.'
+          },
+
+          evacuation: {
+            title: 'L\'évacuation',
+            short: 'Ville côtière · alerte ouragan',
+            cooperate: 'Partir maintenant',
+            defect: 'Attendre',
+            context: `Un ouragan de catégorie 4 touchera terre dans 36 heures. La ville a émis une évacuation volontaire. Les autoroutes seront bloquées si tout le monde part en même temps. Ceux qui partent maintenant circulent librement. Ceux qui attendent l\'ordre obligatoire sont coincés dans les bouchons.`,
+            stakes: `Si <strong>plus de 40%</strong> partent tôt, la circulation passe et même les retardataires s\'en sortent. Si moins partent tôt, les autoroutes se bloquent quand la panique frappe — ceux qui ont attendu sont piégés, et ceux qui sont déjà partis vont bien.`,
+            ask: 'Tu fais ta valise maintenant, ou tu paries que la tempête s\'affaiblira ?',
+            cooperateLabel: 'Je pars',
+            defectLabel: 'J\'attends',
+            interpretCooperateWin: 'Tu es parti tôt. Assez d\'autres aussi. Même les retardataires sont sortis. Ta maison existera peut-être demain, peut-être pas — mais tous ceux que tu aimes sont vivants. Sans drama. C\'est l\'effet d\'une bonne coordination.',
+            interpretCooperateLose: 'Tu es parti. La plupart sont restés. Les routes étaient libres pour toi, mais la tempête a été pire que prévu. Toi tu es en sécurité. Eux non. La radio est pleine de noms que tu reconnais.',
+            interpretDefectWin: 'Tu es resté. Assez d\'autres sont partis pour que les routes restent ouvertes. Quand l\'ordre est venu, tu es sorti proprement. Tu as économisé un jour. Les premiers évacués ont perdu deux jours. Pure efficacité.',
+            interpretDefectLose: 'Tu es resté. La plupart aussi. L\'ordre obligatoire est venu — mais les autoroutes étaient déjà bloquées. Tu es encore dans ton allée quand le vent atteint 200 km/h. Tu n\'as pas eu tort d\'attendre. Tout le monde a fait le même calcul.'
+          },
+
+          shelter: {
+            title: 'L\'abri',
+            short: 'Abri antinucléaire · 100 personnes · 70 places',
+            cooperate: 'Sortir',
+            defect: 'Rester',
+            context: `Un nuage radioactif arrive dans six heures. L\'abri communautaire contient 100 personnes mais n\'a de l\'air filtré que pour 70. Si tout le monde s\'entasse, l\'oxygène s\'épuise en une journée et tout le monde suffoque. Si 30 personnes partent tenter leur chance en surface, les autres survivent.`,
+            stakes: `Celui-ci est inversé. <strong>Au moins 30%</strong> doivent se porter volontaires pour sortir. Si trop restent, les 100 meurent. Les volontaires affrontent la radioactivité — ils peuvent vivre, ou pas. Ceux qui restent sont en sécurité garantie, mais seulement si assez d\'autres sortent.`,
+            ask: 'Tu sors, ou tu restes là où c\'est sûr ?',
+            cooperateLabel: 'Je sors',
+            defectLabel: 'Je reste',
+            interpretCooperateWin: 'Tu es sorti. Assez d\'autres aussi. Les 70 à l\'intérieur ont vécu grâce à toi. Certains d\'entre vous ont survécu aux retombées. D\'autres non. Pas de médaille. Personne en dehors de l\'abri n\'a jamais connu ton nom.',
+            interpretCooperateLose: 'Tu es sorti. Presque personne ne t\'a suivi. L\'abri s\'est scellé avec trop de monde dedans — ils ont tous suffoqué en 18 heures. Tu es à la surface, irradié, seul. Ton sacrifice n\'a empêché rien.',
+            interpretDefectWin: 'Tu es resté. Juste assez d\'autres sont sortis pour que tu survives. Tu dois ta vie à des gens qui sont sortis dans un ciel empoisonné pour que tu n\'aies pas à le faire. Tu ne les reverras pas.',
+            interpretDefectLose: 'Tu es resté. Presque tout le monde aussi. L\'abri a manqué d\'air. Tu étais l\'une des 100 personnes qui ont choisi la mort mutuelle certaine plutôt qu\'un sacrifice individuel incertain. Les maths étaient visibles. La réponse aussi.'
+          },
+
+          boycott: {
+            title: 'Le boycott',
+            short: 'Chaîne de magasins · abus du travail documentés',
+            cooperate: 'Boycotter',
+            defect: 'Continuer à acheter',
+            context: `Une grande chaîne de magasins a été prise — à plusieurs reprises, avec documentation — à payer les travailleurs étrangers en dessous du minimum vital et à écraser les efforts syndicaux par la violence. Un boycott coordonné est organisé. Le magasin est l\'option la moins chère dans ton quartier.`,
+            stakes: `Si <strong>plus de 25%</strong> des clients réguliers boycottent pendant trois mois, l\'entreprise change publiquement de politique pour récupérer les ventes. Si moins participent, les prix montent légèrement pour ceux qui ont changé de magasin, et l\'entreprise attend que le cycle médiatique passe.`,
+            ask: 'Tu boycottes, ou tu continues d\'acheter là où c\'est moins cher ?',
+            cooperateLabel: 'Je boycotte',
+            defectLabel: 'Je continue',
+            interpretCooperateWin: 'Tu as changé de magasin. Assez d\'autres aussi. L\'entreprise a annoncé des réformes la dixième semaine. Que les réformes soient réelles ou du spectacle de RP est une autre question. Mais tu faisais partie de la raison pour laquelle ils ont dû choisir.',
+            interpretCooperateLose: 'Tu as changé de magasin. Le boycott s\'est essoufflé. Tu as passé trois mois à payer plus pour les courses pour faire un point qui, statistiquement, n\'a pas été fait. Les ventes de l\'entreprise ont tenu. Leurs avocats sont contents.',
+            interpretDefectWin: 'Tu as continué d\'acheter. D\'autres ont boycotté — assez — et l\'entreprise a changé. Tu as eu des courses pas chères pendant toute la campagne et la victoire morale à la fin. Il y a un mot pour ça.',
+            interpretDefectLose: 'Tu as continué d\'acheter. La plupart aussi. Le boycott n\'a pas atteint le seuil. Les travailleurs dans des entrepôts lointains gagnent toujours ce qu\'ils gagnaient avant. Tes tickets de caisse sont inchangés. Ta conscience aussi, plus ou moins.'
+          },
+
+          whistleblower: {
+            title: 'Le lanceur d\'alerte',
+            short: 'Comptabilité · 12 savent · divulgation conjointe',
+            cooperate: 'Signer',
+            defect: 'Se taire',
+            context: `Tu es l\'un de 12 comptables qui ont trouvé une fraude systématique — des milliards en états falsifiés. Une divulgation conjointe aux régulateurs offre une protection légale seulement si au moins 7 d\'entre vous signez. Les lanceurs d\'alerte solos affrontent des représailles : harcèlement juridique, listes noires, parfois pire.`,
+            stakes: `Si <strong>au moins 58%</strong> signent ensemble, vous 12 êtes protégés par les lois sur les lanceurs d\'alerte — l\'entreprise ne peut pas riposter. Si moins signent, ceux qui l\'ont fait affrontent la pleine force des avocats de l\'entreprise. Ceux qui se sont tus sont professionnellement saufs.`,
+            ask: 'Tu signes la divulgation conjointe ?',
+            cooperateLabel: 'Je signe',
+            defectLabel: 'Je signe pas',
+            interpretCooperateWin: 'Tu as signé. Huit autres aussi. La divulgation est sortie avec couverture juridique. La fraude s\'est effondrée au tribunal. Tu seras inembauchable en finance pendant deux ans, puis ça ira. Certains de tes collègues ne s\'en sortiront pas.',
+            interpretCooperateLose: 'Tu as signé. Cinq ont signé. Le seuil de protection n\'a pas été atteint. Les avocats de l\'entreprise déposent maintenant des plaintes contre toi personnellement. Tu seras au tribunal pendant des années. La fraude continue. Tes collègues qui se sont tus ont été promus.',
+            interpretDefectWin: 'Tu t\'es tu. Les sept qui ont signé ont eu la protection. La fraude s\'est effondrée. Tu as gardé ton boulot pendant tout ça — discrètement, avec déniabilité. Ton nom n\'apparaît dans aucun article. C\'est exactement ce que tu voulais.',
+            interpretDefectLose: 'Tu t\'es tu. La plupart des autres aussi. La divulgation n\'est pas sortie. La fraude continue. Tu vas au boulot demain et tu vois les mêmes gens faire la même chose. Tu n\'as rien fait de mal. Techniquement.'
+          },
+
+          donor: {
+            title: 'Le registre de moelle osseuse',
+            short: 'Population · pool de donneurs de cellules souches',
+            cooperate: 'M\'inscrire',
+            defect: 'Passer',
+            context: `Les greffes de moelle osseuse nécessitent des correspondances génétiques. La plupart des patients aux types rares ne trouvent jamais de donneur. L\'inscription est gratuite, le frottis prend 90 secondes — mais si tu es compatible, tu passes une journée en clinique et tu seras endolori une semaine.`,
+            stakes: `Si <strong>au moins 30%</strong> des adultes en bonne santé s\'inscrivent, presque tous les patients atteints de leucémie ou de lymphome trouvent une correspondance à temps. En dessous, la correspondance devient statistiquement rare — les patients aux types rares meurent en attendant.`,
+            ask: 'Tu t\'inscris ?',
+            cooperateLabel: 'Je m\'inscris',
+            defectLabel: 'Je passe',
+            interpretCooperateWin: 'Tu es au registre. Assez d\'autres aussi. La plupart des patients sont appariés à temps. Peut-être qu\'on t\'appellera dans sept ans. Peut-être pas. Le coût a été un frottis. La récompense est statistique.',
+            interpretCooperateLose: 'Tu es au registre. Peu d\'autres le sont. Les taux d\'appariement sont toujours mauvais. Les gens aux types génétiques rares continuent de mourir en attendant. Ton inscription est vraiment inutile à moins que la couverture s\'améliore. Mais inoffensive à garder.',
+            interpretDefectWin: 'Tu ne t\'es pas inscrit. Assez d\'autres l\'ont fait. Les patients sont appariés. Le système marche sans toi. Tu as économisé 90 secondes et possiblement une journée en clinique. Les maths sont en ta faveur.',
+            interpretDefectLose: 'Tu ne t\'es pas inscrit. La couverture est restée sous le seuil. Les patients aux types rares continuent de mourir en attendant. Individuellement tu n\'es pas blâmable — le registre n\'est pas obligatoire, le coût est réel, le bénéfice pour un seul donneur est zéro. Le collectif ne survit juste pas à cette logique.'
+          },
+
+          fishery: {
+            title: 'La pêcherie commune',
+            short: 'Village côtier · flotte de pêche',
+            cooperate: 'Respecter les limites',
+            defect: 'Attraper ce que je peux',
+            context: `Ton village pêche ces eaux depuis des générations. Les stocks de poissons sont maintenant épuisés. Les scientifiques disent que si tout le monde pêche moins que la limite légale, les stocks récupèrent en cinq ans. Si trop ignorent la limite, la pêcherie s\'effondre définitivement en deux saisons.`,
+            stakes: `Si <strong>plus de 70%</strong> respectent la limite, les stocks récupèrent et tout le monde pêche à nouveau. Si moins suivent la règle, ceux qui se sont retenus perdent du revenu pour rien — l\'effondrement arrive quand même, et ceux qui ont pêché à fond se sont enrichis d\'abord.`,
+            ask: 'Tu pêches dans la limite, ou tout ce que tu peux ?',
+            cooperateLabel: 'Dans la limite',
+            defectLabel: 'Tout ce que je peux',
+            interpretCooperateWin: 'Tu es resté dans la limite. La plupart aussi. Les stocks ont récupéré. Tes enfants pêcheront ces eaux. Tu as gagné moins d\'argent pendant cinq ans et tout est revenu. Lentement.',
+            interpretCooperateLose: 'Tu es resté dans la limite. Beaucoup non. La pêcherie s\'est effondrée en 14 mois. Tu as gagné moins que les autres pendant l\'effondrement. Maintenant personne ne peut pêcher. Tu as suivi la règle. Tu étais plus pauvre pour ça. Puis tu étais pauvre avec tout le monde.',
+            interpretDefectWin: 'Tu as pêché à fond. La plupart sont restés dans la limite. Les stocks ont récupéré malgré ta surpêche. Tu as gagné deux fois plus que tes voisins pendant cinq ans. Tu es maintenant plus riche. Les maths disent que tu as joué parfaitement.',
+            interpretDefectLose: 'Tu as pêché à fond. La plupart aussi. L\'effondrement est arrivé en 14 mois. Tu as bien gagné pendant un an, rien le reste de ta vie. Les eaux sont mortes. Ton bateau est à vendre.'
+          },
+
+          blacklist: {
+            title: 'La liste noire',
+            short: 'Industrie · plainte de harcèlement sexuel',
+            cooperate: 'Parler',
+            defect: 'Se taire',
+            context: `Un cadre supérieur dans ton industrie a harcelé plusieurs femmes au fil des ans. Un appel ouvert : toute personne qui en a fait l\'expérience ou en a été témoin peut signer une lettre publique. Le cadre est puissant — les entreprises qui emploient des signataires ont tendance à perdre des contrats.`,
+            stakes: `Si <strong>au moins 50%</strong> des femmes de l\'industrie qui savent signent, le coût social de la rétaliation devient trop élevé — les entreprises ne peuvent pas toutes les renvoyer, la position du cadre devient intenable. Si moins signent, les signataires sont silencieusement informellement blacklistées. Celles qui se sont tues gardent leur carrière.`,
+            ask: 'Tu signes la lettre ?',
+            cooperateLabel: 'Je signe',
+            defectLabel: 'Je signe pas',
+            interpretCooperateWin: 'Tu as signé. Assez d\'autres aussi. La lettre est devenue inignorable. Le cadre est parti. Tu travailles toujours — entreprise différente, même domaine. Certaines signataires non. Les maths ont marché. Le coût personnel était réel.',
+            interpretCooperateLose: 'Tu as signé. Peu d\'autres l\'ont fait. La lettre est morte dans le cycle médiatique. Le cadre est toujours là. Tu cherches du travail. Les entreprises qui ne t\'ont pas officiellement blacklistée ne t\'ont pas non plus rappelée. Pas de preuve, mais tu travailles dans cette industrie depuis assez longtemps pour savoir.',
+            interpretDefectWin: 'Tu t\'es tue. Assez d\'autres ont signé. Le cadre est parti. Tu as gardé ton travail, tes contrats, ta carrière. Certaines signataires ont payé un prix pour quelque chose dont tu as aussi bénéficié. Leurs noms sont sur une lettre publique. Le tien non.',
+            interpretDefectLose: 'Tu t\'es tue. La plupart aussi. La lettre n\'a jamais atteint le seuil. Le cadre est toujours là. Tu as toujours ta carrière. Lui aussi.'
+          },
+
+          climate: {
+            title: 'La grève climatique',
+            short: 'Pays · engagement de réduction d\'émissions',
+            cooperate: 'Couper la consommation',
+            defect: 'Continuer',
+            context: `Les modèles climatiques montrent que si 50% des populations à hautes émissions divisent par deux leur empreinte carbone personnelle dans cinq ans, le réchauffement reste vivable. Couper signifie de vrais changements : moins de vols, moins de viande, voitures plus petites, maisons plus petites. Faire défection signifie le confort que tu as aujourd\'hui.`,
+            stakes: `Si <strong>au moins 50%</strong> divisent par deux leurs émissions, la planète reste vivable pour le siècle prochain — légèrement diminuée, surtout habitable. Si moins coupent, les coupes coûtent aux coopérateurs (moins de consommation, moins de voyages, moins de richesse) sans empêcher la catastrophe. Les défecteurs vivent normalement jusqu\'à ce que tout échoue d\'un coup.`,
+            ask: 'Tu coupes ta consommation maintenant, ou tu attends ?',
+            cooperateLabel: 'Je coupe',
+            defectLabel: 'Je continue',
+            interpretCooperateWin: 'Tu as coupé. Assez d\'autres aussi. L\'objectif 1.5°C a glissé, mais pas assez pour que ça compte. Tes enfants vivront dans un monde un peu plus pauvre, un peu plus fonctionnel. Tu as renoncé aux vacances et aux steaks pour ça. La plupart d\'entre eux ne le sauront jamais.',
+            interpretCooperateLose: 'Tu as coupé. La plupart non. La planète a chauffé au-delà du seuil. Tes sacrifices n\'ont rien changé. Tu as mangé moins de viande et volé moins pour rien de mesurable. L\'atmosphère ne se soucie pas des intentions.',
+            interpretDefectWin: 'Tu as gardé ta vie normale. D\'autres ont coupé assez pour que la planète tienne. Tu as eu des vacances, du confort, le menu complet — et un avenir vivable. Le passager clandestin a marché parfaitement. Les coopérateurs peuvent ou non se sentir trompés. Ils sont trop polis pour le dire.',
+            interpretDefectLose: 'Tu as continué à consommer. La plupart aussi. Le seuil est passé. La décennie de catastrophes commence maintenant. Tu as profité de deux décennies de vie normale, et maintenant tout le monde affronte ensemble ce qui vient. Il y avait des avertissements.'
+          },
+
+          uprising: {
+            title: 'L\'insurrection',
+            short: 'Ville occupée · appel à la résistance',
+            cooperate: 'Se battre',
+            defect: 'Rester chez soi',
+            context: `Ta ville est occupée depuis quatre ans. La résistance a appelé à un soulèvement armé dans deux jours. Les forces soviétiques sont à 30 km à l\'est — assez près pour soutenir, mais elles attendent. Si l\'insurrection tient la ville pendant une semaine, l\'histoire est réécrite. Si elle ne tient pas, la ville est détruite et des dizaines de milliers meurent.`,
+            stakes: `Si <strong>au moins 50%</strong> des civils en âge de combattre prennent les armes, la ville tient assez longtemps pour que les Soviétiques doivent intervenir ou perdre la face — la pression politique les force à avancer. Si moins se battent, la résistance est écrasée, la ville rasée en représailles. Ceux qui sont restés chez eux survivent — plus silencieux, plus petits, occupés.`,
+            ask: 'Tu te bats, ou tu restes chez toi avec ta famille ?',
+            cooperateLabel: 'Je me bats',
+            defectLabel: 'Je reste',
+            interpretCooperateWin: 'Tu t\'es battu. Assez d\'autres aussi. Les Soviétiques ont avancé. L\'occupation s\'est terminée. La ville est à moitié détruite mais libre. Toi et tes amis serez dans les manuels. Certains de tes amis ne verront pas ces manuels. Tu es vivant. Tu ne peux pas oublier ce que tu as vu.',
+            interpretCooperateLose: 'Tu t\'es battu. Pas assez l\'ont fait. Après 63 jours, la ville est tombée. Tu es mort, ou tu es dans un camp, ou tu te caches dans les ruines pendant que les ingénieurs dynamitent ce qui reste. Les Soviétiques regardaient depuis l\'autre côté du fleuve. Les historiens appelleront quand même ça une victoire de sens. Tu ne les liras pas.',
+            interpretDefectWin: 'Tu es resté chez toi. Les combats étaient sauvages mais assez sont allés. Les Soviétiques ont avancé, l\'occupation a pris fin. La ville se reconstruit. Les noms des morts sont sur un mur devant lequel tu passes parfois. Le tien n\'y est pas.',
+            interpretDefectLose: 'Tu es resté chez toi. La plupart aussi. L\'insurrection a échoué en quelques semaines. Les représailles ont coûté 200 000 civils. Tu es vivant seulement parce que tu ne valais pas la peine d\'être singularisé. Ta ville est en ruines. Les hommes qui ont combattu sont des cadavres ou des réfugiés. Tu vieilliras dans les ruines.'
+          }
+        },
+
         questionsBlue: [
           'Pour qui es-tu prêt à mourir personnellement ? Et qu\'est-ce que ça dit de ton choix bleu — qui est exactement ça ?',
           'Si tu cliques bleu et que tu perds, ta famille n\'a plus de toi. Sont-ils d\'accord avec cette transaction ?',
@@ -3681,12 +4788,59 @@
 
     const VOTER_ID_KEY = 'gamestheory_voter_id';
     const FIRST_CHOICE_KEY = 'gamestheory_first_choice';
+    const SCENARIO_VOTES_KEY = 'gamestheory_scenario_votes';
 
     let voterId = null;
     let firstChoice = null;
     let globalStats = { red: 0, blue: 0, total: 0, countries: {} };
     let apiAvailable = true;
     let mapVisible = false;
+
+    // Language-independent scenario metadata: id, threshold (% needed for cooperators to be safe), order
+    // Text content lives in T[lang].scenarios[id]
+    const SCENARIOS = [
+      { id: 'strike',       threshold: 60 },
+      { id: 'evacuation',   threshold: 40 },
+      { id: 'shelter',      threshold: 30, inverted: true }, // inverted: 30% must LEAVE so the rest can survive
+      { id: 'boycott',      threshold: 25 },
+      { id: 'whistleblower',threshold: 58 },
+      { id: 'donor',        threshold: 30 },
+      { id: 'fishery',      threshold: 70 },
+      { id: 'blacklist',    threshold: 50 },
+      { id: 'climate',      threshold: 50 },
+      { id: 'uprising',     threshold: 50 },
+    ];
+
+    // User's scenario votes (loaded from localStorage), shape: { strike: 'cooperate', shelter: 'defect', ... }
+    let scenarioVotes = {};
+    // Cached aggregated stats per scenario (loaded from API), shape: { strike: {cooperate, defect, total}, ... }
+    let scenarioStats = {};
+    // Currently viewed scenario detail (for re-render on language switch)
+    let currentScenarioId = null;
+
+    function loadScenarioVotes() {
+      try {
+        const raw = localStorage.getItem(SCENARIO_VOTES_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        // Defensive: keep only valid string values
+        const clean = {};
+        for (const [k, v] of Object.entries(parsed || {})) {
+          if (typeof v === 'string' && (v === 'cooperate' || v === 'defect')) {
+            clean[k] = v;
+          }
+        }
+        scenarioVotes = clean;
+      } catch (e) {
+        scenarioVotes = {};
+      }
+    }
+
+    function saveScenarioVote(scenarioId, choice) {
+      scenarioVotes[scenarioId] = choice;
+      try {
+        localStorage.setItem(SCENARIO_VOTES_KEY, JSON.stringify(scenarioVotes));
+      } catch (e) { /* localStorage full or unavailable */ }
+    }
 
     // RFC 4122 v4 UUID validation regex (matches the strict format the Worker requires)
     const UUID_V4_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -4901,6 +6055,9 @@
 
     // ───────────────────────────────────────────────
 
+    // Track which essay is currently open (for re-render on language switch)
+    let currentEssayId = null;
+
     function setLang(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -4910,6 +6067,40 @@
       renderIntro();
       renderLiveBanner();
       updateStats();
+
+      // Re-render currently visible sub-screen so language switch works everywhere
+      const visibleScreen = ['screen-result', 'screen-reality', 'screen-questions', 'screen-personality', 'screen-essays', 'screen-essay-detail', 'screen-scenarios', 'screen-scenario-detail', 'screen-signature']
+        .map(id => document.getElementById(id))
+        .find(el => el && !el.classList.contains('hidden'));
+
+      if (visibleScreen) {
+        switch (visibleScreen.id) {
+          case 'screen-reality':     showReality(); break;
+          case 'screen-questions':   showQuestions(); break;
+          case 'screen-personality': showPersonality(); break;
+          case 'screen-essays':      showEssays(); break;
+          case 'screen-essay-detail':
+            if (currentEssayId) showEssay(currentEssayId);
+            break;
+          case 'screen-scenarios':   showScenarios(); break;
+          case 'screen-scenario-detail':
+            if (currentScenarioId) showScenario(currentScenarioId);
+            break;
+          case 'screen-signature':   showCooperationSignature(); break;
+          // screen-result is dynamic per-game; we leave it as-is
+        }
+      }
+
+      // Re-render help modal if open
+      const helpModal = document.getElementById('help-modal');
+      if (helpModal && !helpModal.classList.contains('hidden')) {
+        showHelp();
+      }
+      // Re-render privacy modal if open
+      const privacyModal = document.getElementById('privacy-modal');
+      if (privacyModal && !privacyModal.classList.contains('hidden')) {
+        showPrivacy();
+      }
     }
 
     function t() { return T[currentLang]; }
@@ -5042,7 +6233,7 @@
     }
 
     function hideAll() {
-      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality', 'screen-essays', 'screen-essay-detail'].forEach(id => {
+      ['screen-intro', 'screen-result', 'screen-reality', 'screen-questions', 'screen-personality', 'screen-essays', 'screen-essay-detail', 'screen-scenarios', 'screen-scenario-detail', 'screen-signature'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
     }
@@ -5153,6 +6344,31 @@
           ${newQHtml}
           ${thresholdHtml}
           ${noNewQ}
+          ${(() => {
+            // Scenarios CTA — only show if not all answered yet
+            const totalScenarios = SCENARIOS.length;
+            const answeredScenarios = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+            if (answeredScenarios >= totalScenarios) return '';
+            const subText = answeredScenarios === 0
+              ? txt.scenariosCtaSub
+              : txt.scenariosCtaSubInProgress(answeredScenarios, totalScenarios);
+            const badge = answeredScenarios === 0
+              ? `<span class="scenarios-cta-badge">${txt.scenariosCtaBadge}</span>`
+              : '';
+            return `
+              <div class="scenarios-cta result-scenarios-cta" onclick="goToScenarios()">
+                <span class="scenarios-cta-icon">◇</span>
+                <div class="scenarios-cta-content">
+                  <div class="scenarios-cta-title">
+                    <span>${escapeHtml(txt.scenariosCtaTitle)}</span>
+                    ${badge}
+                  </div>
+                  <div class="scenarios-cta-sub">${escapeHtml(subText)}</div>
+                </div>
+                <span class="scenarios-cta-arrow">→</span>
+              </div>
+            `;
+          })()}
           <div class="result-actions">
             <button class="btn btn-play-again" onclick="playAgain()">${txt.playAgain}</button>
             <button class="btn" onclick="showQuestions()">${txt.seeQuestions} (${unlockedBlue.length + unlockedRed.length}/16) ↗</button>
@@ -5191,6 +6407,36 @@
           : `${txt.essaysButton.replace(' ↗', '')} (${totalUnlocked}/16)`;
         btnEssays.classList.toggle('btn-personality-active', isEssaysUnlocked);
         btnEssays.classList.toggle('btn-personality-locked', !isEssaysUnlocked);
+      }
+
+      // Scenarios button — always visible, shows progress (X/total) if any answered
+      const btnScenarios = document.getElementById('btn-scenarios-intro');
+      const total = SCENARIOS.length;
+      const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+      if (btnScenarios) {
+        btnScenarios.textContent = answered > 0
+          ? `${txt.scenariosButton.replace(' ↗', '')} (${answered}/${total}) ↗`
+          : txt.scenariosButton;
+      }
+
+      // Scenarios CTA banner — shows "NEW" badge when zero answered, progress otherwise
+      const ctaTitleText = document.getElementById('scenarios-cta-title-text');
+      const ctaBadge = document.getElementById('scenarios-cta-badge');
+      const ctaSub = document.getElementById('scenarios-cta-sub');
+      if (ctaTitleText) ctaTitleText.textContent = txt.scenariosCtaTitle;
+      if (ctaBadge) {
+        if (answered === 0) {
+          ctaBadge.textContent = txt.scenariosCtaBadge;
+          ctaBadge.classList.remove('hidden');
+          ctaBadge.style.display = '';
+        } else {
+          ctaBadge.style.display = 'none';
+        }
+      }
+      if (ctaSub) {
+        if (answered === 0) ctaSub.textContent = txt.scenariosCtaSub;
+        else if (answered < total) ctaSub.textContent = txt.scenariosCtaSubInProgress(answered, total);
+        else ctaSub.textContent = txt.scenariosCtaSubDone;
       }
 
       // Questions button — show only if at least one question unlocked, with counter
@@ -5423,6 +6669,7 @@
     }
 
     function showEssay(essayId) {
+      currentEssayId = essayId;
       const txt = t();
       const screen = document.getElementById('screen-essay-detail');
       const idx = txt.essays.findIndex(e => e.id === essayId);
@@ -5464,8 +6711,426 @@
     }
 
     // ───────────────────────────────────────────────
-    // ANIMATED FAVICON — alternating red/blue dot
+    // SCENARIOS — concrete real-world coordination dilemmas
     // ───────────────────────────────────────────────
+
+    async function fetchScenarioStats(scenarioId) {
+      if (!API_BASE) return null;
+      try {
+        const res = await fetch(`${API_BASE}/api/scenario/${encodeURIComponent(scenarioId)}/stats?t=${Date.now()}`, {
+          method: 'GET',
+          cache: 'no-store',
+        });
+        if (!res.ok) throw new Error('Bad response');
+        const data = await res.json();
+        // Sanitize
+        const safeNum = (v) => {
+          const n = Number(v);
+          if (!Number.isFinite(n) || n < 0) return 0;
+          return Math.floor(n);
+        };
+        return {
+          cooperate: safeNum(data.cooperate),
+          defect: safeNum(data.defect),
+          total: safeNum(data.total),
+        };
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function submitScenarioVote(scenarioId, choice) {
+      if (!API_BASE) return null;
+      // Whitelist scenarioId to known scenarios to prevent arbitrary endpoint creation
+      if (!SCENARIOS.find(s => s.id === scenarioId)) return null;
+      if (choice !== 'cooperate' && choice !== 'defect') return null;
+      try {
+        const res = await fetch(`${API_BASE}/api/scenario/${encodeURIComponent(scenarioId)}/vote`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ voter_id: voterId, choice }),
+        });
+        if (!res.ok) throw new Error('Bad response: ' + res.status);
+        const data = await res.json();
+        const safeNum = (v) => {
+          const n = Number(v);
+          if (!Number.isFinite(n) || n < 0) return 0;
+          return Math.floor(n);
+        };
+        if (data.stats) {
+          return {
+            cooperate: safeNum(data.stats.cooperate),
+            defect: safeNum(data.stats.defect),
+            total: safeNum(data.stats.total),
+          };
+        }
+        return null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function showScenarios() {
+      const txt = t();
+      const total = SCENARIOS.length;
+      const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+
+      const cards = SCENARIOS.map((s, idx) => {
+        const sd = (txt.scenarios && txt.scenarios[s.id]) || null;
+        if (!sd) return ''; // skip if translation missing for this scenario
+        const voted = !!scenarioVotes[s.id];
+        const number = String(idx + 1).padStart(2, '0');
+        return `
+          <div class="scenario-card" onclick="showScenario('${s.id}')">
+            <div class="scenario-card-number">${number}</div>
+            <div class="scenario-card-content">
+              <div class="scenario-card-eyebrow">${escapeHtml(sd.short)}</div>
+              <div class="scenario-card-title">${escapeHtml(sd.title)}</div>
+              <div class="scenario-card-meta">
+                <span>${txt.scenariosThresholdLabel(s.threshold)}</span>
+                <span class="${voted ? 'scenario-card-status-voted' : ''}">${voted ? txt.scenariosVoted : txt.scenariosNotVoted}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const html = `
+        <div class="scenarios-intro">
+          <h2>${txt.scenariosListTitle}</h2>
+          <p>${txt.scenariosListSub}</p>
+        </div>
+        <div class="scenarios-progress">${txt.scenariosCount(answered, total)}</div>
+        <div class="scenarios-list">${cards}</div>
+        <div style="text-align: center; margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          ${answered === total ? `<button class="btn btn-personality-active" onclick="showCooperationSignature()">${txt.scenariosViewSignature} ↗</button>` : ''}
+          <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+        </div>
+      `;
+
+      hideAll();
+      const screen = document.getElementById('screen-scenarios');
+      screen.innerHTML = html;
+      screen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function showScenario(scenarioId) {
+      currentScenarioId = scenarioId;
+      const txt = t();
+      const meta = SCENARIOS.find(s => s.id === scenarioId);
+      if (!meta) return;
+      const sd = (txt.scenarios && txt.scenarios[scenarioId]) || null;
+      if (!sd) return;
+
+      const userVote = scenarioVotes[scenarioId];
+      const screen = document.getElementById('screen-scenario-detail');
+
+      // Render initial layout (without result yet, fetched async if user already voted)
+      const renderShell = (resultBlock) => `
+        <div class="scenario-detail">
+          <div class="scenario-detail-eyebrow">${escapeHtml(sd.short)}</div>
+          <h1>${escapeHtml(sd.title)}</h1>
+          <div class="scenario-detail-threshold">${txt.scenariosThresholdLabel(meta.threshold)}</div>
+          <p class="scenario-context">${sd.context}</p>
+          <p class="scenario-stakes">${sd.stakes}</p>
+          <div class="scenario-ask">${escapeHtml(sd.ask)}</div>
+          <div class="scenario-choices">
+            <button class="scenario-choice scenario-choice-cooperate"
+              ${userVote ? 'disabled' : ''}
+              onclick="handleScenarioVote('${scenarioId}', 'cooperate')">
+              ${escapeHtml(sd.cooperateLabel)}
+            </button>
+            <button class="scenario-choice scenario-choice-defect"
+              ${userVote ? 'disabled' : ''}
+              onclick="handleScenarioVote('${scenarioId}', 'defect')">
+              ${escapeHtml(sd.defectLabel)}
+            </button>
+          </div>
+          ${resultBlock}
+          <div class="scenario-result-actions">
+            <button class="btn" onclick="showScenarios()">${txt.scenariosListBack}</button>
+          </div>
+        </div>
+      `;
+
+      hideAll();
+      screen.innerHTML = renderShell('');
+      screen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // If user has already voted, show the result block (fetch fresh stats)
+      if (userVote) {
+        const stats = await fetchScenarioStats(scenarioId);
+        renderScenarioResult(scenarioId, userVote, stats);
+      }
+    }
+
+    async function handleScenarioVote(scenarioId, choice) {
+      // Optimistically save locally first
+      saveScenarioVote(scenarioId, choice);
+      playClick(choice === 'cooperate' ? 'blue' : 'red', 0.18);
+
+      // Submit to server (fire-and-forget — we re-render with fresh stats below)
+      const stats = await submitScenarioVote(scenarioId, choice);
+
+      // Check if this was the LAST scenario answered — if so, give the user a moment
+      // to see the result, then auto-advance to the cooperation signature
+      const total = SCENARIOS.length;
+      const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+      const justCompletedAll = answered === total;
+
+      // Re-render the scenario screen with the result
+      await showScenario(scenarioId);
+
+      // If they just completed the last one, auto-show the signature after a beat
+      if (justCompletedAll) {
+        // Don't blow past their last result — give them a moment to read it
+        setTimeout(() => {
+          // Only auto-advance if user is still on the scenario detail screen
+          const detailScreen = document.getElementById('screen-scenario-detail');
+          if (detailScreen && !detailScreen.classList.contains('hidden')) {
+            showCooperationSignature();
+          }
+        }, 4000);
+      }
+    }
+
+    function renderScenarioResult(scenarioId, userChoice, stats) {
+      const txt = t();
+      const meta = SCENARIOS.find(s => s.id === scenarioId);
+      const sd = (txt.scenarios && txt.scenarios[scenarioId]) || null;
+      if (!meta || !sd) return;
+
+      // Build result block content
+      let resultHtml;
+      if (!stats || stats.total === 0) {
+        // No data yet from server — show user's choice but defer interpretation
+        const userChoiceLabel = userChoice === 'cooperate' ? txt.scenariosYouCooperated : txt.scenariosYouDefected;
+        resultHtml = `
+          <div class="scenario-result">
+            <div class="scenario-result-header">${txt.scenariosResultHeader}</div>
+            <div class="scenario-result-stats">${escapeHtml(txt.liveLoading || '...')}</div>
+            <div class="scenario-result-your">${userChoiceLabel}</div>
+          </div>
+        `;
+      } else {
+        const pct = Math.round((stats.cooperate / stats.total) * 100);
+        const thresholdMet = pct >= meta.threshold;
+        const statsText = thresholdMet
+          ? txt.scenariosResultThresholdMet(pct, meta.threshold)
+          : txt.scenariosResultThresholdMissed(pct, meta.threshold);
+
+        // Determine which interpretation to show
+        let interpretText;
+        if (userChoice === 'cooperate' && thresholdMet) interpretText = sd.interpretCooperateWin;
+        else if (userChoice === 'cooperate' && !thresholdMet) interpretText = sd.interpretCooperateLose;
+        else if (userChoice === 'defect' && thresholdMet) interpretText = sd.interpretDefectWin;
+        else interpretText = sd.interpretDefectLose;
+
+        const userChoiceLabel = userChoice === 'cooperate' ? txt.scenariosYouCooperated : txt.scenariosYouDefected;
+
+        resultHtml = `
+          <div class="scenario-result">
+            <div class="scenario-result-header">${txt.scenariosResultHeader}</div>
+            <div class="scenario-result-stats">${statsText}</div>
+            <div class="scenario-result-your">${userChoiceLabel}</div>
+            <div class="scenario-result-interpret">${escapeHtml(interpretText)}</div>
+          </div>
+        `;
+      }
+
+      // Inject into the existing screen — find a good slot
+      const screen = document.getElementById('screen-scenario-detail');
+      const detail = screen.querySelector('.scenario-detail');
+      if (!detail) return;
+      const choices = detail.querySelector('.scenario-choices');
+      if (!choices) return;
+      // Remove any existing result block
+      const old = detail.querySelector('.scenario-result');
+      if (old) old.remove();
+      // Insert after choices
+      choices.insertAdjacentHTML('afterend', resultHtml);
+    }
+
+    function showScenariosFromIntro() { showScenarios(); }
+
+    /**
+     * Router used by CTA banners — sends user to the signature when all scenarios
+     * are done, otherwise to the list. Avoids the awkward "you've answered all 10"
+     * banner copy leading to a list of already-answered cards.
+     */
+    function goToScenarios() {
+      const total = SCENARIOS.length;
+      const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+      if (answered >= total) {
+        showCooperationSignature();
+      } else {
+        showScenarios();
+      }
+    }
+
+    /**
+     * Cooperation Signature — completion screen after answering all 10 scenarios.
+     * Shows: percentage of scenarios you cooperated in, comparison to global average,
+     * and Top 3 rankings: where you most stood OUT for cooperation, and where for defection.
+     */
+    async function showCooperationSignature() {
+      const txt = t();
+      const total = SCENARIOS.length;
+      const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+      const screen = document.getElementById('screen-signature');
+
+      // Locked state if not all answered yet
+      if (answered < total) {
+        const html = `
+          <div class="signature-card">
+            <div class="signature-eyebrow">${txt.scenariosCompletionLockedTitle}</div>
+            <div class="signature-pattern">${escapeHtml(txt.scenariosCompletionLockedSub(answered, total))}</div>
+            <div style="text-align: center; margin-top: 20px;">
+              <button class="btn" onclick="showScenarios()">${txt.scenariosBackToList}</button>
+            </div>
+          </div>
+        `;
+        hideAll();
+        screen.innerHTML = html;
+        screen.classList.remove('hidden');
+        return;
+      }
+
+      // Render shell with loading state, then fetch all scenarios in parallel
+      hideAll();
+      screen.innerHTML = `
+        <div class="signature-card">
+          <div class="signature-eyebrow">${txt.scenariosSignatureLabel}</div>
+          <div class="signature-headline">${txt.scenariosCompletionTitle}</div>
+          <div class="signature-pattern">${escapeHtml(txt.scenariosCompletionSub)}</div>
+          <div style="text-align: center; color: var(--text-mute); padding: 18px;">${escapeHtml(txt.liveLoading || '...')}</div>
+        </div>
+      `;
+      screen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Parallel fetch all scenario stats
+      const allStats = await Promise.all(SCENARIOS.map(s => fetchScenarioStats(s.id)));
+
+      // Compute user's cooperation score (0..1)
+      const userCooperatedCount = SCENARIOS.filter(s => scenarioVotes[s.id] === 'cooperate').length;
+      const userScore = userCooperatedCount / total;
+
+      // Compute global average cooperation score (0..1)
+      // Approach: per-scenario % of cooperators, then average across scenarios where data exists
+      let globalAvg = null;
+      const validScenarios = [];
+      SCENARIOS.forEach((s, i) => {
+        const stats = allStats[i];
+        if (stats && stats.total > 0) {
+          const pct = stats.cooperate / stats.total;
+          validScenarios.push({ id: s.id, threshold: s.threshold, userChoice: scenarioVotes[s.id], stats, pct });
+        }
+      });
+      if (validScenarios.length > 0) {
+        globalAvg = validScenarios.reduce((sum, v) => sum + v.pct, 0) / validScenarios.length;
+      }
+
+      // Build dots row (visual signature: 10 colored dots)
+      const dotsHtml = SCENARIOS.map(s => {
+        const c = scenarioVotes[s.id];
+        return `<div class="signature-dot ${c === 'cooperate' ? 'cooperate' : 'defect'}" title="${escapeHtml((txt.scenarios[s.id] && txt.scenarios[s.id].title) || s.id)}"></div>`;
+      }).join('');
+
+      // Comparison text
+      let comparisonHtml;
+      if (globalAvg === null) {
+        comparisonHtml = `<div class="signature-comparison">${escapeHtml(txt.scenariosNoStatsYet)}</div>`;
+      } else {
+        const diff = userScore - globalAvg;
+        const absDiffPct = Math.round(Math.abs(diff) * 100);
+        let comparisonText;
+        if (Math.abs(diff) < 0.05) {
+          comparisonText = txt.scenariosComparisonSame;
+        } else if (diff > 0) {
+          // User cooperated more than global avg — translate to "more than X% of players"
+          // Heuristic: convert mean difference into rough percentile
+          const percentile = Math.min(95, Math.round(50 + (diff * 100)));
+          comparisonText = txt.scenariosComparisonMore(percentile);
+        } else {
+          const percentile = Math.min(95, Math.round(50 + (Math.abs(diff) * 100)));
+          comparisonText = txt.scenariosComparisonLess(percentile);
+        }
+        comparisonHtml = `<div class="signature-comparison">${escapeHtml(comparisonText)}</div>`;
+      }
+
+      // Compute top 3 standout cooperate (user cooperated where most defected)
+      // and top 3 standout defect (user defected where most cooperated)
+      const cooperateStandouts = validScenarios
+        .filter(v => v.userChoice === 'cooperate')
+        .map(v => ({ ...v, gap: 1 - v.pct })) // bigger gap = fewer others cooperated, you stood out
+        .sort((a, b) => b.gap - a.gap)
+        .slice(0, 3);
+
+      const defectStandouts = validScenarios
+        .filter(v => v.userChoice === 'defect')
+        .map(v => ({ ...v, gap: v.pct })) // bigger gap = more others cooperated, you stood out for defection
+        .sort((a, b) => b.gap - a.gap)
+        .slice(0, 3);
+
+      const renderRanking = (items, kind) => {
+        if (items.length === 0) {
+          return `<div class="signature-ranking-empty">${escapeHtml(txt.scenariosTopNone)}</div>`;
+        }
+        return items.map(item => {
+          const sd = txt.scenarios[item.id];
+          const cooperatePct = Math.round(item.pct * 100);
+          const displayPct = kind === 'cooperate' ? (100 - cooperatePct) : cooperatePct;
+          // For cooperation standout: show "X% defected (you didn't)"
+          // For defection standout: show "X% cooperated (you didn't)"
+          return `
+            <div class="signature-ranking-item">
+              <div class="signature-ranking-name">${escapeHtml(sd.title)}</div>
+              <div class="signature-ranking-bar">
+                <span class="signature-ranking-pct ${kind}">${displayPct}%</span>
+                <span>${kind === 'cooperate' ? (txt.scenariosYouCooperated || '').replace('.','') : (txt.scenariosYouDefected || '').replace('.','')}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      };
+
+      const html = `
+        <div class="signature-card">
+          <div class="signature-eyebrow">${txt.scenariosSignatureLabel}</div>
+          <div class="signature-headline">${txt.scenariosCompletionTitle}</div>
+          <div class="signature-pattern">${escapeHtml(txt.scenariosSignatureCooperated(userCooperatedCount, total))}</div>
+          <div class="signature-dots">${dotsHtml}</div>
+          <div class="signature-dots-legend">
+            ${escapeHtml(txt.scenarios[SCENARIOS[0].id].cooperateLabel || '').replace(/[—·.,]/g,'')} · ${escapeHtml(txt.scenarios[SCENARIOS[0].id].defectLabel || '').replace(/[—·.,]/g,'')}
+          </div>
+          ${comparisonHtml}
+        </div>
+
+        <div class="signature-ranking">
+          <div class="signature-ranking-label">${txt.scenariosTopCooperateLabel}</div>
+          <div class="signature-ranking-sub">${escapeHtml(txt.scenariosTopCooperateSub)}</div>
+          <div class="signature-ranking-list">${renderRanking(cooperateStandouts, 'cooperate')}</div>
+        </div>
+
+        <div class="signature-ranking">
+          <div class="signature-ranking-label">${txt.scenariosTopDefectLabel}</div>
+          <div class="signature-ranking-sub">${escapeHtml(txt.scenariosTopDefectSub)}</div>
+          <div class="signature-ranking-list">${renderRanking(defectStandouts, 'defect')}</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn" onclick="showScenarios()">${txt.scenariosBackToList}</button>
+          <button class="btn" onclick="playAgain()">${txt.personalityBack}</button>
+        </div>
+      `;
+
+      screen.innerHTML = html;
+    }
+
+
     (function setupFaviconAnimation() {
       const favicon = document.getElementById('dynamic-favicon');
       if (!favicon) return;
@@ -5515,6 +7180,7 @@
       } catch(e) {
         firstChoice = null;
       }
+      loadScenarioVotes();
 
       // Detect language from URL ?lang= parameter, then browser
       const urlParams = new URLSearchParams(window.location.search);

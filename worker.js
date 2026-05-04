@@ -267,6 +267,125 @@ export default {
       }
     }
 
+    // ─── Scenario endpoints ────────────────────────────────────────────
+    // GET  /api/scenario/:id/stats   → { cooperate, defect, total }
+    // POST /api/scenario/:id/vote    → body: { voter_id, choice: 'cooperate'|'defect' }
+    //                                  returns { success | already_voted, choice, stats }
+    //
+    // Storage:
+    //   "scenario:{id}"            → { cooperate, defect, total }
+    //   "scenario_voter:{id}:{uuid}" → "cooperate" | "defect"
+
+    // Allow only known scenario IDs (mirrored from frontend SCENARIOS list)
+    const ALLOWED_SCENARIO_IDS = ["strike", "shelter", "boycott", "whistleblower", "evacuation", "fishery", "donor", "blacklist", "climate", "uprising"];
+    const SCENARIO_ID_REGEX = /^[a-z][a-z0-9_-]{0,31}$/;
+
+    const scenarioStatsMatch = url.pathname.match(/^\/api\/scenario\/([^/]+)\/stats$/);
+    if (scenarioStatsMatch && request.method === "GET") {
+      const scenarioId = scenarioStatsMatch[1];
+      if (!SCENARIO_ID_REGEX.test(scenarioId) || !ALLOWED_SCENARIO_IDS.includes(scenarioId)) {
+        return json({ error: "Unknown scenario" }, 400, request);
+      }
+      const ip = request.headers.get("cf-connecting-ip") || "unknown";
+      const rl = await checkRateLimit(env, ip, "stats");
+      if (!rl.allowed) {
+        return json({ error: "Rate limit exceeded" }, 429, request, {
+          "Retry-After": String(rl.retryAfter),
+        });
+      }
+      try {
+        const data = await env.STATS.get(`scenario:${scenarioId}`, { type: "json", cacheTtl: 60 });
+        return json(
+          {
+            cooperate: (data && data.cooperate) || 0,
+            defect: (data && data.defect) || 0,
+            total: (data && data.total) || 0,
+          },
+          200,
+          request,
+          { "Cache-Control": "no-store" }
+        );
+      } catch (e) {
+        return json({ error: "Stats unavailable" }, 503, request);
+      }
+    }
+
+    const scenarioVoteMatch = url.pathname.match(/^\/api\/scenario\/([^/]+)\/vote$/);
+    if (scenarioVoteMatch && request.method === "POST") {
+      const scenarioId = scenarioVoteMatch[1];
+      if (!SCENARIO_ID_REGEX.test(scenarioId) || !ALLOWED_SCENARIO_IDS.includes(scenarioId)) {
+        return json({ error: "Unknown scenario" }, 400, request);
+      }
+      if (!isOriginAllowed(request)) {
+        return json({ error: "Forbidden origin" }, 403, request);
+      }
+      const ip = request.headers.get("cf-connecting-ip") || "unknown";
+      const rl = await checkRateLimit(env, ip, "vote");
+      if (!rl.allowed) {
+        return json({ error: "Rate limit exceeded" }, 429, request, {
+          "Retry-After": String(rl.retryAfter),
+        });
+      }
+
+      let body;
+      try {
+        body = await request.json();
+      } catch {
+        return json({ error: "Invalid JSON" }, 400, request);
+      }
+      const { voter_id, choice } = body || {};
+      if (typeof voter_id !== "string" || !UUID_V4_REGEX.test(voter_id)) {
+        return json({ error: "Invalid voter ID" }, 400, request);
+      }
+      if (!["cooperate", "defect"].includes(choice)) {
+        return json({ error: "Invalid choice" }, 400, request);
+      }
+
+      const voterKey = `scenario_voter:${scenarioId}:${voter_id}`;
+
+      try {
+        const existing = await env.STATS.get(voterKey, { cacheTtl: 60 });
+        if (existing) {
+          const data = (await env.STATS.get(`scenario:${scenarioId}`, { type: "json", cacheTtl: 60 })) || {
+            cooperate: 0, defect: 0, total: 0,
+          };
+          return json(
+            {
+              already_voted: true,
+              choice: existing,
+              stats: data,
+            },
+            200,
+            request
+          );
+        }
+      } catch (e) {
+        return json({ error: "Storage unavailable" }, 503, request);
+      }
+
+      try {
+        await env.STATS.put(voterKey, choice);
+        const data = (await env.STATS.get(`scenario:${scenarioId}`, { type: "json", cacheTtl: 60 })) || {
+          cooperate: 0, defect: 0, total: 0,
+        };
+        data[choice] = (data[choice] || 0) + 1;
+        data.total = (data.total || 0) + 1;
+        await env.STATS.put(`scenario:${scenarioId}`, JSON.stringify(data));
+
+        return json(
+          {
+            success: true,
+            choice,
+            stats: data,
+          },
+          200,
+          request
+        );
+      } catch (e) {
+        return json({ error: "Storage unavailable" }, 503, request);
+      }
+    }
+
     return json({ error: "Not found" }, 404, request);
   },
 };
