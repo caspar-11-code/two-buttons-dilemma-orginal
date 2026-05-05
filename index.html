@@ -1423,6 +1423,9 @@
       font-size: 14px;
       color: var(--text-mute);
       line-height: 1.6;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .verdict {
@@ -1445,6 +1448,9 @@
     .verdict-text {
       font-size: 15px;
       line-height: 1.65;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .summary {
@@ -1865,6 +1871,9 @@
       line-height: 1.65;
       color: var(--text);
       margin-bottom: 18px;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .scenario-stakes strong {
@@ -1962,6 +1971,9 @@
       line-height: 1.55;
       color: var(--text);
       margin-bottom: 18px;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .scenario-result-your {
@@ -1981,6 +1993,9 @@
       font-style: italic;
       padding-top: 16px;
       border-top: 0.5px solid var(--border);
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .scenario-result-actions {
@@ -2218,6 +2233,9 @@
 
     .essay-body p {
       margin-bottom: 16px;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
     .essay-body ul {
@@ -3365,17 +3383,17 @@
           evacuation: {
             title: 'The evacuation',
             short: 'Coastal city · hurricane warning',
-            cooperate: 'Leave now',
-            defect: 'Wait it out',
-            context: `A category 4 hurricane will make landfall in 36 hours. The city has issued a voluntary evacuation. Highways will jam if everyone leaves at the same time. The people who go now travel freely. The people who wait until the mandatory order get stuck in gridlock.`,
-            stakes: `If <strong>more than 40%</strong> leave early, traffic flows, and even late evacuees make it out. If fewer leave early, the highways gridlock when the panic hits — those who waited are trapped, and those who already left are fine.`,
-            ask: 'Do you pack the car now, or trust the storm will weaken?',
-            cooperateLabel: 'Leave now',
-            defectLabel: 'Wait',
-            interpretCooperateWin: 'You left early. Enough others did too. Even the late evacuees got out. Your house may or may not still exist tomorrow — but everyone you love is alive. Anticlimactic. That\'s how good coordination feels.',
-            interpretCooperateLose: 'You left. Most stayed. The roads were clear for you, but the storm was worse than forecast. You\'re safe. They\'re not. The radio is full of names you recognize.',
-            interpretDefectWin: 'You stayed. Enough left that the roads stayed open. When the order came, you got out clean. You saved a day of disruption. The early evacuees lost two days. Pure efficiency.',
-            interpretDefectLose: 'You stayed. So did most. The mandatory order came — but the highways were already gridlocked by then. You\'re still in your driveway when the wind hits 130 mph. You weren\'t wrong to wait. Everyone else made the same call.'
+            cooperate: 'Wait for my district\'s window',
+            defect: 'Leave immediately',
+            context: `A category 4 hurricane will make landfall in 36 hours. Authorities have published a staged evacuation plan: each district has its own departure window, spread across the next 18 hours. Two highways out. If everyone leaves at once, both jam solid and no one gets out. If people stick to the schedule, the city empties cleanly.`,
+            stakes: `If <strong>more than 65%</strong> follow the staged plan and wait for their window, traffic flows and the whole city evacuates in time — including those who left early. If fewer follow the plan, the highways gridlock the moment panic spreads. The people who left immediately are gone before it locks up. The people waiting for their window get caught in the storm in their cars.`,
+            ask: 'Do you wait for your scheduled window, or pack the car now?',
+            cooperateLabel: 'I wait for my window',
+            defectLabel: 'I leave now',
+            interpretCooperateWin: 'You waited for your window. Enough others did too. The highways stayed flowing. Your district\'s convoy moved out smoothly two hours later. Even the last district made it. The city emptied without anyone dying in their car. That\'s how good coordination feels — anticlimactic.',
+            interpretCooperateLose: 'You waited for your window. Most didn\'t. By the time your district\'s slot came, both highways were a parking lot. You spent six hours moving four kilometers, then the storm hit. The radio is full of names you recognize. The people who panicked early are safe in motels three states over.',
+            interpretDefectWin: 'You bolted at the first warning. Most stayed disciplined. The roads stayed clear because the schedule worked, and you got out before anyone noticed. You saved yourself the wait. The cooperators paid the time cost so you didn\'t have to.',
+            interpretDefectLose: 'You bolted at the first warning. So did most. By the time the staged plan would have started, the highways were a wall of metal. The wind picks up while you\'re still in traffic, four kilometers from your house. You weren\'t wrong to leave. Everyone else made the same call.'
           },
 
           shelter: {
@@ -3400,7 +3418,7 @@
             cooperate: 'Boycott',
             defect: 'Keep shopping',
             context: `A major retail chain has been caught — repeatedly, with documentation — paying foreign workers below subsistence wages and crushing union efforts with violence. A coordinated boycott is being organized. The store is the cheapest option in your area.`,
-            stakes: `If <strong>more than 25%</strong> of regular customers boycott for three months, the company shifts policy publicly to recover sales. If fewer participate, prices rise slightly for those who switched stores, and the company waits out the news cycle.`,
+            stakes: `If <strong>more than 35%</strong> of regular customers boycott for three months, the company shifts policy publicly to recover sales. If fewer participate, prices rise slightly for those who switched stores, and the company waits out the news cycle.`,
             ask: 'Do you boycott, or keep shopping where it\'s cheap?',
             cooperateLabel: 'I boycott',
             defectLabel: 'I keep shopping',
@@ -3432,7 +3450,7 @@
             cooperate: 'Register',
             defect: 'Skip it',
             context: `Bone marrow transplants need genetic matches. Most patients with rare types never find a donor. Registration is free, the cheek swab takes 90 seconds — but if matched, you\'ll spend a day in a clinic and feel sore for a week.`,
-            stakes: `If <strong>at least 30%</strong> of healthy adults register, almost every patient with leukemia or lymphoma finds a match in time. Below that threshold, matching gets statistically rare — patients with rare types die waiting.`,
+            stakes: `If <strong>at least 50%</strong> of healthy adults register, almost every patient with leukemia or lymphoma finds a match in time. Below that threshold, matching gets statistically rare — patients with rare types die waiting.`,
             ask: 'Do you register?',
             cooperateLabel: 'I register',
             defectLabel: 'I skip',
@@ -3453,7 +3471,7 @@
             cooperateLabel: 'Within limits',
             defectLabel: 'Catch what I can',
             interpretCooperateWin: 'You stayed within the limit. Most others did too. The stocks recovered. Your kids will fish these waters. You made less money for five years and got everything back. Slowly.',
-            interpretCooperateLose: 'You stayed within the limit. Many didn\'t. The fishery collapsed in 14 months. You earned less than the others during the collapse. Now no one can fish. You followed the rule. You were poorer for it. Then you were poor with everyone else.',
+            interpretCooperateLose: 'You stayed within the limit. Many didn\'t. The fishery collapsed in 14 months. You earned less than the others during the collapse — they got rich first. Now the waters are empty. Your boat is rotting at the dock and your kids are leaving for the city to find work. You followed the rule. You were poorer for it. Then you were poor with everyone else.',
             interpretDefectWin: 'You fished hard. Most stayed within the limit. The stocks recovered despite your overcatch. You made twice what your neighbors made for five years. You\'re now richer. The math says you played it perfectly.',
             interpretDefectLose: 'You fished hard. So did most. The collapse came in 14 months. You made good money for a year, nothing for the rest of your life. The waters are dead. Your boat is for sale.'
           },
@@ -4061,7 +4079,7 @@
         scenariosResultThresholdMet: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Koordynacja się powiodła.`,
         scenariosResultThresholdMissed: (pct, threshold) => `${pct}% wybrało kooperację. Próg wynosił ${threshold}%. Koordynacja zawiodła.`,
         scenariosYouCooperated: 'Wybrałeś kooperację.',
-        scenariosYouDefected: 'Wybrałeś dezercję.',
+        scenariosYouDefected: 'Zachowałeś się egoistycznie.',
         scenariosCount: (n, total) => `${n}/${total} odpowiedzianych`,
         scenariosCompletionTitle: 'Podsumowanie twoich wyborów',
         scenariosCompletionSub: 'Twoje wybory we wszystkich scenariuszach, na które do tej pory odpowiedziałeś — i jak wypadasz na tle innych.',
@@ -4073,9 +4091,9 @@
         scenariosSignatureLabel: 'TWOJE WYBORY DO TEJ PORY',
         scenariosSignatureCooperated: (n, answered, total) => `Kooperowałeś w ${n} z ${answered} sytuacji (${total} łącznie)`,
         scenariosTopCooperateLabel: 'Tam wyróżniłeś się — kooperacją',
-        scenariosTopCooperateSub: 'Sytuacje, w których twoja kooperacja najbardziej wyprzedziła globalną średnią.',
+        scenariosTopCooperateSub: 'Sytuacje, w których twoja chęć współpracy najbardziej wyprzedziła globalną średnią.',
         scenariosTopDefectLabel: 'Tam wyróżniłeś się — egoizmem',
-        scenariosTopDefectSub: 'Sytuacje, w których zdezerterowałeś, gdy większość kooperowała.',
+        scenariosTopDefectSub: 'Sytuacje, w których wybrałeś dla siebie, gdy większość współpracowała.',
         scenariosTopNone: 'Nic znaczącego po tej stronie.',
         scenariosViewSignature: 'Zobacz podsumowanie',
         scenariosBackToList: '← Wróć do scenariuszy',
@@ -4103,17 +4121,17 @@
           evacuation: {
             title: 'Ewakuacja',
             short: 'Miasto nadmorskie · ostrzeżenie przed huraganem',
-            cooperate: 'Wyjeżdżam teraz',
-            defect: 'Czekam',
-            context: `Huragan kategorii 4 uderzy za 36 godzin. Miasto wydało dobrowolny nakaz ewakuacji. Autostrady zakorkują się jeśli wszyscy wyjadą naraz. Ci, którzy wyjeżdżają teraz — jadą bez problemu. Ci, którzy poczekają na obowiązkowy alarm — utkną w korkach.`,
-            stakes: `Jeśli <strong>ponad 40%</strong> wyjedzie wcześnie, ruch idzie sprawnie i nawet spóźnialscy zdążą. Jeśli mniej wyjedzie, autostrady zakorkowują się gdy wybuchnie panika — ci, którzy czekali, są uwięzieni, a ci którzy już wyjechali, są bezpieczni.`,
-            ask: 'Pakujesz auto teraz, czy ufasz że burza osłabnie?',
-            cooperateLabel: 'Wyjeżdżam',
-            defectLabel: 'Czekam',
-            interpretCooperateWin: 'Wyjechałeś wcześnie. Tak samo wystarczająco innych. Nawet spóźnialscy zdążyli. Twój dom może jutro być, może nie być — ale wszyscy których kochasz żyją. Bez fanfar. Tak czuje się dobra koordynacja.',
-            interpretCooperateLose: 'Wyjechałeś. Większość została. Drogi były dla ciebie wolne, ale burza była gorsza niż przewidywano. Ty jesteś bezpieczny. Oni nie. Radio wymienia nazwiska, które rozpoznajesz.',
-            interpretDefectWin: 'Zostałeś. Wystarczająco innych wyjechało, żeby drogi pozostały drożne. Kiedy przyszedł alarm, wyjechałeś sprawnie. Zaoszczędziłeś dzień. Ci, co wyjechali wcześniej, stracili dwa dni. Czysta efektywność.',
-            interpretDefectLose: 'Zostałeś. Tak samo większość. Alarm przyszedł — ale autostrady były już zakorkowane. Stoisz przed garażem, gdy wiatr osiąga 200 km/h. Nie pomyliłeś się czekając. Wszyscy inni postanowili tak samo.'
+            cooperate: 'Czekam na okno mojej dzielnicy',
+            defect: 'Wyjeżdżam natychmiast',
+            context: `Huragan kategorii 4 uderzy za 36 godzin. Władze opublikowały plan ewakuacji etapowej: każda dzielnica ma swoje okno wyjazdowe rozłożone na najbliższe 18 godzin. Dwie autostrady na zewnątrz. Jeśli wszyscy wyjadą naraz — obie się korkują na sztywno i nikt nie wyjedzie. Jeśli ludzie trzymają się harmonogramu, miasto opróżnia się czysto.`,
+            stakes: `Jeśli <strong>ponad 65%</strong> trzyma się planu i czeka na swoje okno, ruch płynie i całe miasto ewakuuje się na czas — łącznie z tymi, którzy wyjechali wcześniej. Jeśli mniej trzyma się planu, autostrady korkują się w momencie gdy szerzy się panika. Ci którzy wyjechali natychmiast są już daleko, zanim wszystko się zatka. Ci którzy czekali na swoje okno utkną w aucie podczas uderzenia burzy.`,
+            ask: 'Czekasz na zaplanowane okno wyjazdu, czy pakujesz auto teraz?',
+            cooperateLabel: 'Czekam na swoje okno',
+            defectLabel: 'Wyjeżdżam teraz',
+            interpretCooperateWin: 'Czekałeś na swoje okno. Wystarczająco innych też. Autostrady zostały drożne. Konwój twojej dzielnicy wyjechał płynnie dwie godziny później. Nawet ostatnia dzielnica zdążyła. Miasto opróżniło się bez ofiar w samochodach. Tak właśnie czuje się dobra koordynacja — bez fanfar.',
+            interpretCooperateLose: 'Czekałeś na swoje okno. Większość nie czekała. Gdy przyszła kolej twojej dzielnicy, obie autostrady były parkingami. Sześć godzin posunąłeś się o cztery kilometry, potem uderzyła burza. Radio wymienia nazwiska, które rozpoznajesz. Ludzie którzy spanikowali wcześnie są bezpieczni w motelach trzy stany dalej.',
+            interpretDefectWin: 'Wyjechałeś przy pierwszym ostrzeżeniu. Większość została zdyscyplinowana. Drogi pozostały drożne, bo harmonogram zadziałał, i wyjechałeś zanim ktokolwiek zauważył. Oszczędziłeś sobie czekania. Inni zapłacili koszt czasu i dyscypliny, żebyś ty nie musiał.',
+            interpretDefectLose: 'Wyjechałeś przy pierwszym ostrzeżeniu. Tak samo większość. Zanim plan etapowy miałby zacząć działać, autostrady były ścianą metalu. Wiatr nasila się, gdy ty wciąż stoisz w korku, cztery kilometry od domu. Nie pomyliłeś się wyjeżdżając. Wszyscy inni postanowili tak samo.'
           },
 
           shelter: {
@@ -4138,7 +4156,7 @@
             cooperate: 'Bojkotuję',
             defect: 'Robię zakupy dalej',
             context: `Duża sieć handlowa wielokrotnie — z dokumentacją — została przyłapana na płaceniu zagranicznym pracownikom poniżej minimum egzystencji i tłumieniu przemocą prób zakładania związków. Organizowany jest skoordynowany bojkot. Sklep jest najtańszą opcją w twojej okolicy.`,
-            stakes: `Jeśli <strong>ponad 25%</strong> regularnych klientów bojkotuje przez trzy miesiące, firma publicznie zmienia politykę żeby odbudować sprzedaż. Jeśli mniej, ceny lekko rosną tym, którzy zmienili sklep, a firma przeczekuje cykl medialny.`,
+            stakes: `Jeśli <strong>ponad 35%</strong> regularnych klientów bojkotuje przez trzy miesiące, firma publicznie zmienia politykę żeby odbudować sprzedaż. Jeśli mniej, ceny lekko rosną tym, którzy zmienili sklep, a firma przeczekuje cykl medialny.`,
             ask: 'Bojkotujesz, czy robisz zakupy gdzie tanio?',
             cooperateLabel: 'Bojkotuję',
             defectLabel: 'Robię dalej zakupy',
@@ -4170,7 +4188,7 @@
             cooperate: 'Rejestruję się',
             defect: 'Pomijam',
             context: `Przeszczepy szpiku wymagają dopasowania genetycznego. Większość pacjentów z rzadkimi typami nigdy nie znajduje dawcy. Rejestracja jest darmowa, wymaz z policzka trwa 90 sekund — ale jeśli będziesz pasować, spędzisz dzień w klinice i tydzień będziesz obolały.`,
-            stakes: `Jeśli <strong>co najmniej 30%</strong> zdrowych dorosłych się zarejestruje, prawie każdy pacjent z białaczką lub chłoniakiem znajduje dopasowanie na czas. Poniżej tego progu dopasowanie staje się statystycznie rzadkie — pacjenci z rzadkimi typami umierają czekając.`,
+            stakes: `Jeśli <strong>co najmniej 50%</strong> zdrowych dorosłych się zarejestruje, prawie każdy pacjent z białaczką lub chłoniakiem znajduje dopasowanie na czas. Poniżej tego progu dopasowanie staje się statystycznie rzadkie — pacjenci z rzadkimi typami umierają czekając.`,
             ask: 'Rejestrujesz się?',
             cooperateLabel: 'Rejestruję się',
             defectLabel: 'Pomijam',
@@ -4191,7 +4209,7 @@
             cooperateLabel: 'Łowię w limicie',
             defectLabel: 'Łowię ile się da',
             interpretCooperateWin: 'Trzymałeś się limitu. Większość innych też. Stado się odbudowało. Twoje dzieci będą łowić te wody. Zarabiałeś mniej przez pięć lat i dostałeś wszystko z powrotem. Powoli.',
-            interpretCooperateLose: 'Trzymałeś się limitu. Wielu nie. Łowisko upadło w 14 miesięcy. Zarabiałeś mniej niż inni podczas upadku. Teraz nikt nie może łowić. Trzymałeś się reguły. Byłeś za to biedniejszy. Potem byłeś biedny ze wszystkimi.',
+            interpretCooperateLose: 'Trzymałeś się limitu. Wielu nie. Łowisko upadło w 14 miesięcy. Zarabiałeś mniej niż inni podczas upadku — oni najpierw się wzbogacili. Teraz wody są puste. Twoja łódź gnije przy pomoście, a dzieci wyjeżdżają do miasta szukać pracy. Trzymałeś się reguły. Byłeś za to biedniejszy. Potem byłeś biedny ze wszystkimi.',
             interpretDefectWin: 'Łowiłeś intensywnie. Większość trzymała się limitu. Stado się odbudowało mimo twojego nadmiernego połowu. Zarobiłeś dwa razy więcej niż sąsiedzi przez pięć lat. Jesteś teraz bogatszy. Matematyka mówi, że zagrałeś idealnie.',
             interpretDefectLose: 'Łowiłeś intensywnie. Tak samo większość. Upadek przyszedł w 14 miesięcy. Zarobiłeś dobrze przez rok, nic przez resztę życia. Wody są martwe. Twoja łódź jest na sprzedaż.'
           },
@@ -4218,13 +4236,13 @@
             cooperate: 'Ograniczam',
             defect: 'Lecę dalej',
             context: `Modele klimatyczne pokazują, że jeśli 50% wysokoemisyjnych populacji zmniejszy o połowę osobisty ślad węglowy w pięć lat, ocieplenie zostaje na poziomie do przeżycia. Cięcie oznacza realne zmiany: mniej lotów, mniej mięsa, mniejsze auta, mniejsze domy. Defektowanie oznacza wygodę, którą masz dzisiaj.`,
-            stakes: `Jeśli <strong>co najmniej 50%</strong> zmniejszy emisje o połowę, planeta pozostaje do życia przez następne stulecie — lekko zubożała, w większości zamieszkiwalna. Jeśli mniej tnie, cięcia kosztują kooperatorów (mniej konsumpcji, mniej podróży, mniej bogactwa) bez zapobieżenia katastrofie. Defektorzy żyją normalnie aż wszystko zawiedzie naraz.`,
+            stakes: `Jeśli <strong>co najmniej 50%</strong> zmniejszy emisje o połowę, planeta pozostaje do życia przez następne stulecie — lekko zubożała, w większości zamieszkiwalna. Jeśli mniej tnie, cięcia kosztują tych, którzy współpracują (mniej konsumpcji, mniej podróży, mniej bogactwa), bez zapobieżenia katastrofie. Pozostali żyją normalnie aż wszystko zawiedzie naraz.`,
             ask: 'Ograniczasz konsumpcję teraz, czy czekasz?',
             cooperateLabel: 'Ograniczam',
             defectLabel: 'Lecę dalej',
             interpretCooperateWin: 'Ograniczyłeś. Wystarczająco innych też. Cel 1.5°C zsunął się, ale nie wystarczająco żeby liczyło. Twoje dzieci będą żyć w lekko biedniejszym, lekko bardziej funkcjonalnym świecie. Oddałeś za to wakacje i steki. Większość z nich nigdy się o tym nie dowie.',
             interpretCooperateLose: 'Ograniczyłeś. Większość nie. Planeta przekroczyła próg. Twoje wyrzeczenia niczego nie zmieniły. Jadłeś mniej mięsa i latałeś mniej za nic mierzalnego. Atmosfera nie dba o intencje.',
-            interpretDefectWin: 'Zachowałeś normalne życie. Inni cięli wystarczająco, żeby planeta się utrzymała. Miałeś wakacje, komfort, pełne menu — i przyszłość do życia. Pasażer na gapę zadziałał idealnie. Kooperatorzy mogą lub nie czuć się oszukani. Są zbyt grzeczni żeby powiedzieć.',
+            interpretDefectWin: 'Zachowałeś normalne życie. Inni cięli wystarczająco, żeby planeta się utrzymała. Miałeś wakacje, komfort, pełne menu — i przyszłość do życia. Pasażer na gapę zadziałał idealnie. Ci, którzy się ograniczali, mogą lub nie czuć się oszukani. Są zbyt grzeczni żeby powiedzieć.',
             interpretDefectLose: 'Konsumowałeś dalej. Tak samo większość. Próg minął. Dekada katastrof zaczyna się teraz. Cieszyłeś się dwoma dekadami normalnego życia, a teraz wszyscy mierzą się razem z tym co nadchodzi. Były ostrzeżenia.'
           },
 
@@ -4634,17 +4652,17 @@
           evacuation: {
             title: 'L\'évacuation',
             short: 'Ville côtière · alerte ouragan',
-            cooperate: 'Partir maintenant',
-            defect: 'Attendre',
-            context: `Un ouragan de catégorie 4 touchera terre dans 36 heures. La ville a émis une évacuation volontaire. Les autoroutes seront bloquées si tout le monde part en même temps. Ceux qui partent maintenant circulent librement. Ceux qui attendent l\'ordre obligatoire sont coincés dans les bouchons.`,
-            stakes: `Si <strong>plus de 40%</strong> partent tôt, la circulation passe et même les retardataires s\'en sortent. Si moins partent tôt, les autoroutes se bloquent quand la panique frappe — ceux qui ont attendu sont piégés, et ceux qui sont déjà partis vont bien.`,
-            ask: 'Tu fais ta valise maintenant, ou tu paries que la tempête s\'affaiblira ?',
-            cooperateLabel: 'Je pars',
-            defectLabel: 'J\'attends',
-            interpretCooperateWin: 'Tu es parti tôt. Assez d\'autres aussi. Même les retardataires sont sortis. Ta maison existera peut-être demain, peut-être pas — mais tous ceux que tu aimes sont vivants. Sans drama. C\'est l\'effet d\'une bonne coordination.',
-            interpretCooperateLose: 'Tu es parti. La plupart sont restés. Les routes étaient libres pour toi, mais la tempête a été pire que prévu. Toi tu es en sécurité. Eux non. La radio est pleine de noms que tu reconnais.',
-            interpretDefectWin: 'Tu es resté. Assez d\'autres sont partis pour que les routes restent ouvertes. Quand l\'ordre est venu, tu es sorti proprement. Tu as économisé un jour. Les premiers évacués ont perdu deux jours. Pure efficacité.',
-            interpretDefectLose: 'Tu es resté. La plupart aussi. L\'ordre obligatoire est venu — mais les autoroutes étaient déjà bloquées. Tu es encore dans ton allée quand le vent atteint 200 km/h. Tu n\'as pas eu tort d\'attendre. Tout le monde a fait le même calcul.'
+            cooperate: 'Attendre la fenêtre de mon quartier',
+            defect: 'Partir immédiatement',
+            context: `Un ouragan de catégorie 4 touchera terre dans 36 heures. Les autorités ont publié un plan d\'évacuation par étapes : chaque quartier a sa propre fenêtre de départ, étalée sur les 18 prochaines heures. Deux autoroutes en sortie. Si tout le monde part en même temps, les deux se bloquent et personne ne sort. Si les gens respectent le calendrier, la ville se vide proprement.`,
+            stakes: `Si <strong>plus de 65%</strong> respectent le plan et attendent leur fenêtre, la circulation passe et toute la ville évacue à temps — y compris ceux qui sont partis tôt. Si moins respectent le plan, les autoroutes se bloquent dès que la panique se répand. Ceux qui sont partis immédiatement sont déjà loin avant que ça se fige. Ceux qui attendent leur fenêtre se retrouvent coincés dans la tempête, dans leur voiture.`,
+            ask: 'Tu attends ta fenêtre planifiée, ou tu pars maintenant ?',
+            cooperateLabel: 'J\'attends ma fenêtre',
+            defectLabel: 'Je pars maintenant',
+            interpretCooperateWin: 'Tu as attendu ta fenêtre. Assez d\'autres aussi. Les autoroutes sont restées fluides. Le convoi de ton quartier est sorti deux heures plus tard, sans accroc. Même le dernier quartier est passé. La ville s\'est vidée sans qu\'on meure dans sa voiture. C\'est l\'effet d\'une bonne coordination — sans drama.',
+            interpretCooperateLose: 'Tu as attendu ta fenêtre. La plupart non. Quand le créneau de ton quartier est arrivé, les deux autoroutes étaient un parking. Tu as mis six heures pour faire quatre kilomètres, puis la tempête a frappé. La radio est pleine de noms que tu reconnais. Les gens qui ont paniqué tôt sont en sécurité dans des motels à trois États de là.',
+            interpretDefectWin: 'Tu es parti à la première alerte. La plupart sont restés disciplinés. Les routes sont restées dégagées parce que le calendrier a marché, et tu es sorti avant que quiconque ne s\'en rende compte. Tu t\'es épargné l\'attente. Les coopérateurs ont payé le coût en temps pour que tu n\'aies pas à le faire.',
+            interpretDefectLose: 'Tu es parti à la première alerte. La plupart aussi. Avant même que le plan par étapes ne commence, les autoroutes étaient un mur de métal. Le vent monte alors que tu es encore dans le bouchon, à quatre kilomètres de chez toi. Tu n\'as pas eu tort de partir. Tout le monde a fait le même calcul.'
           },
 
           shelter: {
@@ -4669,7 +4687,7 @@
             cooperate: 'Boycotter',
             defect: 'Continuer à acheter',
             context: `Une grande chaîne de magasins a été prise — à plusieurs reprises, avec documentation — à payer les travailleurs étrangers en dessous du minimum vital et à écraser les efforts syndicaux par la violence. Un boycott coordonné est organisé. Le magasin est l\'option la moins chère dans ton quartier.`,
-            stakes: `Si <strong>plus de 25%</strong> des clients réguliers boycottent pendant trois mois, l\'entreprise change publiquement de politique pour récupérer les ventes. Si moins participent, les prix montent légèrement pour ceux qui ont changé de magasin, et l\'entreprise attend que le cycle médiatique passe.`,
+            stakes: `Si <strong>plus de 35%</strong> des clients réguliers boycottent pendant trois mois, l\'entreprise change publiquement de politique pour récupérer les ventes. Si moins participent, les prix montent légèrement pour ceux qui ont changé de magasin, et l\'entreprise attend que le cycle médiatique passe.`,
             ask: 'Tu boycottes, ou tu continues d\'acheter là où c\'est moins cher ?',
             cooperateLabel: 'Je boycotte',
             defectLabel: 'Je continue',
@@ -4701,7 +4719,7 @@
             cooperate: 'M\'inscrire',
             defect: 'Passer',
             context: `Les greffes de moelle osseuse nécessitent des correspondances génétiques. La plupart des patients aux types rares ne trouvent jamais de donneur. L\'inscription est gratuite, le frottis prend 90 secondes — mais si tu es compatible, tu passes une journée en clinique et tu seras endolori une semaine.`,
-            stakes: `Si <strong>au moins 30%</strong> des adultes en bonne santé s\'inscrivent, presque tous les patients atteints de leucémie ou de lymphome trouvent une correspondance à temps. En dessous, la correspondance devient statistiquement rare — les patients aux types rares meurent en attendant.`,
+            stakes: `Si <strong>au moins 50%</strong> des adultes en bonne santé s\'inscrivent, presque tous les patients atteints de leucémie ou de lymphome trouvent une correspondance à temps. En dessous, la correspondance devient statistiquement rare — les patients aux types rares meurent en attendant.`,
             ask: 'Tu t\'inscris ?',
             cooperateLabel: 'Je m\'inscris',
             defectLabel: 'Je passe',
@@ -4722,7 +4740,7 @@
             cooperateLabel: 'Dans la limite',
             defectLabel: 'Tout ce que je peux',
             interpretCooperateWin: 'Tu es resté dans la limite. La plupart aussi. Les stocks ont récupéré. Tes enfants pêcheront ces eaux. Tu as gagné moins d\'argent pendant cinq ans et tout est revenu. Lentement.',
-            interpretCooperateLose: 'Tu es resté dans la limite. Beaucoup non. La pêcherie s\'est effondrée en 14 mois. Tu as gagné moins que les autres pendant l\'effondrement. Maintenant personne ne peut pêcher. Tu as suivi la règle. Tu étais plus pauvre pour ça. Puis tu étais pauvre avec tout le monde.',
+            interpretCooperateLose: 'Tu es resté dans la limite. Beaucoup non. La pêcherie s\'est effondrée en 14 mois. Tu as gagné moins que les autres pendant l\'effondrement — eux se sont enrichis d\'abord. Maintenant les eaux sont vides. Ton bateau pourrit au quai, et tes enfants partent en ville chercher du travail. Tu as suivi la règle. Tu étais plus pauvre pour ça. Puis tu étais pauvre avec tout le monde.',
             interpretDefectWin: 'Tu as pêché à fond. La plupart sont restés dans la limite. Les stocks ont récupéré malgré ta surpêche. Tu as gagné deux fois plus que tes voisins pendant cinq ans. Tu es maintenant plus riche. Les maths disent que tu as joué parfaitement.',
             interpretDefectLose: 'Tu as pêché à fond. La plupart aussi. L\'effondrement est arrivé en 14 mois. Tu as bien gagné pendant un an, rien le reste de ta vie. Les eaux sont mortes. Ton bateau est à vendre.'
           },
@@ -4825,11 +4843,11 @@
     // Text content lives in T[lang].scenarios[id]
     const SCENARIOS = [
       { id: 'strike',       threshold: 60 },
-      { id: 'evacuation',   threshold: 40 },
+      { id: 'evacuation',   threshold: 65 },
       { id: 'shelter',      threshold: 30, inverted: true }, // inverted: 30% must LEAVE so the rest can survive
-      { id: 'boycott',      threshold: 25 },
+      { id: 'boycott',      threshold: 35 },
       { id: 'whistleblower',threshold: 58 },
-      { id: 'donor',        threshold: 30 },
+      { id: 'donor',        threshold: 50 },
       { id: 'fishery',      threshold: 70 },
       { id: 'blacklist',    threshold: 50 },
       { id: 'climate',      threshold: 50 },
@@ -6744,7 +6762,14 @@
     // SCENARIOS — concrete real-world coordination dilemmas
     // ───────────────────────────────────────────────
 
-    async function fetchScenarioStats(scenarioId) {
+    /**
+     * Fetch stats for one scenario. Checks the in-memory cache first; only hits
+     * the API if `forceRefresh` is true or the cache is empty.
+     */
+    async function fetchScenarioStats(scenarioId, forceRefresh = false) {
+      if (!forceRefresh && scenarioStats[scenarioId]) {
+        return scenarioStats[scenarioId];
+      }
       if (!API_BASE) return null;
       try {
         const res = await fetch(`${API_BASE}/api/scenario/${encodeURIComponent(scenarioId)}/stats?t=${Date.now()}`, {
@@ -6759,13 +6784,32 @@
           if (!Number.isFinite(n) || n < 0) return 0;
           return Math.floor(n);
         };
-        return {
+        const stats = {
           cooperate: safeNum(data.cooperate),
           defect: safeNum(data.defect),
           total: safeNum(data.total),
         };
+        scenarioStats[scenarioId] = stats;
+        return stats;
       } catch (e) {
         return null;
+      }
+    }
+
+    /**
+     * Prefetch stats for all scenarios in parallel. Called on entry to the
+     * scenarios screen so the per-scenario detail and the final summary don't
+     * each trigger their own request. The result is cached in `scenarioStats`.
+     */
+    async function prefetchAllScenarioStats() {
+      if (!API_BASE) return;
+      try {
+        const results = await Promise.all(SCENARIOS.map(s => fetchScenarioStats(s.id, true)));
+        SCENARIOS.forEach((s, i) => {
+          if (results[i]) scenarioStats[s.id] = results[i];
+        });
+      } catch (e) {
+        // Silent — individual scenarios will fall back to their own fetch
       }
     }
 
@@ -6788,11 +6832,14 @@
           return Math.floor(n);
         };
         if (data.stats) {
-          return {
+          const stats = {
             cooperate: safeNum(data.stats.cooperate),
             defect: safeNum(data.stats.defect),
             total: safeNum(data.stats.total),
           };
+          // Update cache so subsequent reads don't refetch
+          scenarioStats[scenarioId] = stats;
+          return stats;
         }
         return null;
       } catch (e) {
@@ -6804,6 +6851,12 @@
       const txt = t();
       const total = SCENARIOS.length;
       const answered = SCENARIOS.filter(s => scenarioVotes[s.id]).length;
+
+      // Kick off a single batch fetch of all scenario stats in the background.
+      // Subsequent per-scenario detail / summary screens read from the cache
+      // instead of issuing their own requests. Fire-and-forget — failed fetch
+      // just leaves the cache empty and individual screens fall back gracefully.
+      prefetchAllScenarioStats();
 
       const cards = SCENARIOS.map((s, idx) => {
         const sd = (txt.scenarios && txt.scenarios[s.id]) || null;
@@ -7056,8 +7109,14 @@
       screen.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Parallel fetch all scenario stats (only for those user voted on)
-      const allStats = await Promise.all(SCENARIOS.map(s => fetchScenarioStats(s.id)));
+      // Use cached stats where available (populated by prefetchAllScenarioStats).
+      // Only fetch the ones that aren't cached yet — typically zero requests
+      // when the user got here via the scenarios list.
+      const missingIds = SCENARIOS.filter(s => !scenarioStats[s.id]).map(s => s.id);
+      if (missingIds.length > 0) {
+        await Promise.all(missingIds.map(id => fetchScenarioStats(id, true)));
+      }
+      const allStats = SCENARIOS.map(s => scenarioStats[s.id] || null);
 
       // Compute user's cooperation score over ANSWERED scenarios only (0..1)
       const answeredScenarios = SCENARIOS.filter(s => scenarioVotes[s.id]);
