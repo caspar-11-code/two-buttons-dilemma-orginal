@@ -24,6 +24,7 @@
 const ALLOWED_ORIGINS = [
   "https://gamestheory.org",
   "https://www.gamestheory.org",
+  "https://twobuttons.gamestheory.org",
   // Add your Cloudflare Pages preview URL here if you use one for testing:
   // "https://two-buttons-dilemma-orginal.pages.dev",
 ];
